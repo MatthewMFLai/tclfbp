@@ -1,0 +1,38 @@
+#Node section
+#Name process_proc
+BEGIN_STATE
+FIND_BEGIN hp_fsm::process_generic
+FIND_CUSTOM_STRING hp_fsm::process_generic
+FIND_CUSTOM_STRING2 hp_fsm::process_generic
+FIND_CUSTOM_STRING3 hp_fsm::process_generic
+FIND_KEY hp_fsm::process_generic
+FIND_VALUE hp_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_BEGIN FIND_CUSTOM_STRING hp_fsm::eval_begin_to_custom_string null 
+FIND_CUSTOM_STRING FIND_KEY hp_fsm::eval_to_key hp_fsm::act_set_key
+FIND_KEY FIND_VALUE hp_fsm::eval_key_to_value hp_fsm::act_set_value
+FIND_KEY FIND_CUSTOM_STRING3 hp_fsm::eval_key_to_custom_string3 hp_fsm::act_clear_key
+FIND_KEY FIND_CUSTOM_STRING2 hp_fsm::eval_to_custom_string2 null 
+FIND_CUSTOM_STRING3 FIND_KEY hp_fsm::eval_to_key hp_fsm::act_set_key
+FIND_CUSTOM_STRING3 FIND_CUSTOM_STRING2 hp_fsm::eval_to_custom_string2 null 
+FIND_VALUE FIND_KEY hp_fsm::eval_to_key hp_fsm::act_set_key 
+FIND_VALUE FIND_CUSTOM_STRING2 hp_fsm::eval_to_custom_string2 hp_fsm::act_set_value_only
+FIND_VALUE FIND_VALUE null hp_fsm::act_set_value
+FIND_CUSTOM_STRING2 TERMINATE hp_fsm::eval_custom_string2_to_terminate hp_fsm::act_to_terminate
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = hp_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_BEGIN
+END_DEFAULT_STATE
+

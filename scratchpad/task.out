@@ -1,0 +1,7 @@
+BLOCK s0:source3 INIT localhost:8009 IN-1 localhost:8004 OUT-1 localhost:8005 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0
+BLOCK s0:source2 INIT localhost:8010 IN-1 localhost:8002 OUT-1 localhost:8003 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0
+BLOCK s0:seq5sec INIT localhost:8011 IN-1 localhost:8006 IN-2 localhost:8007 IN-3 localhost:8008 PORTSET-1 {IN-1 PG1 ON} PORTSET-2 {IN-2 PG1 OFF} PORTSET-3 {IN-3 PG1 OFF} PROGRAM $env(DISK2)/component/basic/sequencer/seq5sec.tcl TIMEOUT 0
+BLOCK s0:cloner3 INIT localhost:8012 IN-1 localhost:8005 OUT-1 localhost:8004 OUT-2 localhost:8008 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0
+BLOCK s0:cloner1 INIT localhost:8013 IN-1 localhost:8001 OUT-1 localhost:8000 OUT-2 localhost:8006 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0
+BLOCK s0:cloner2 INIT localhost:8014 IN-1 localhost:8003 OUT-1 localhost:8002 OUT-2 localhost:8007 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0
+BLOCK s0:source1 INIT localhost:8015 IN-1 localhost:8000 OUT-1 localhost:8001 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0

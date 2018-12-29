@@ -1,0 +1,12 @@
+source fbp_mgr.tcl
+FbpMgr::Init 192.168.2 14000
+FbpMgr::Sweep 18 20
+set ipaddr "localhost"
+FbpMgr::send_one_file task.split $ipaddr 14001
+set fd [socket $ipaddr 14000]
+puts $fd "CREATE task.split"
+flush $fd
+puts $fd "ENABLE"
+flush $fd
+puts $fd "KICK"
+flush $fd

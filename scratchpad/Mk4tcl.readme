@@ -1,0 +1,3 @@
+Need to move the Mk4tcl.so into /usr/lib during set up:
+
+sudo cp Mk4tcl.so /usr/lib

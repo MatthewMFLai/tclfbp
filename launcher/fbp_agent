@@ -1,0 +1,116 @@
+#!/bin/sh 
+# \
+exec tclsh $0 $@
+source $env(LAUNCHER_HOME)/fbp_agent.dat
+source $env(LAUNCHER_HOME)/launcher_imp.tcl
+
+proc server_init {cid addr port} {
+    fileevent $cid readable "server_handle_init $cid"
+    fconfigure $cid -buffering line
+}
+
+proc server_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	#global main-loop
+        close $cid
+	#set main-loop 1
+    } else {
+        # Custom code to handle initialization. 
+        #
+	set response [process $request]
+	puts $cid $response
+	flush $cid
+    }
+}
+
+proc process {request} {
+    global g_program_data
+    global g_program_testdata
+    global g_initportlist
+    global g_ipaddr
+    global g_workdir
+
+    set response "DONE"
+    
+    switch -- [lindex $request 0] {
+	IDENT {
+	    set g_ipaddr [lindex $request 1]
+	}
+	CREATE {
+	    set taskfile [lindex $request 1]
+    	    set filename [file join $g_workdir $taskfile]
+	    if {![file exists $filename]} {
+		set response "$taskfile not found"
+		break
+	    }
+    	    set g_initportlist [Launcher::Runit_Create $filename\
+                $g_ipaddr g_program_data g_program_testdata]
+	}
+        ENABLE {
+    	    Launcher::Runit_Enable $g_initportlist g_program_data
+        }
+	PID {
+	    Launcher::Set_Block_Pid 
+	}
+	KICK {
+    	    Launcher::Runit_Kick g_program_testdata
+	}
+        DRAIN {
+	    Launcher::Drainit
+        }
+        DISABLE {
+	    Launcher::Stopit_outport
+	}
+	CLOSE {
+	    Launcher::Stopit_initport
+	    set g_initportlist ""
+	    foreach idx [array names g_program_data] {
+		unset g_program_data($idx)
+	    }
+	    foreach idx [array names g_program_testdata] {
+		unset g_program_testdata($idx)
+	    }
+        }
+	QUEUEQUERY {
+	}
+        default {
+	    set response "[lindex $request 0] not recognized"
+        }
+    }
+    return $response
+}
+
+proc receive_file {channel_name client_address client_port} {
+    global g_workdir
+
+    fconfigure $channel_name -translation binary
+    gets $channel_name line
+    foreach {name size} $line {}
+
+    set fully_qualified_filename [file join $g_workdir $name]
+    set fp [open $fully_qualified_filename w]
+    fconfigure $fp -translation binary
+
+    fcopy $channel_name $fp -size $size
+
+    close $channel_name
+    close $fp
+}
+
+variable g_program_data
+variable g_program_testdata
+variable g_initportlist
+variable g_ipaddr
+
+array set g_program_data {}
+array set g_program_testdata {}
+set g_initportlist ""
+set g_ipaddr 0.0.0.0
+
+Launcher::Init
+socket -server server_init $g_service_port
+socket -server receive_file $g_fcopy_port
+
+vwait main-loop
+
+exit 0

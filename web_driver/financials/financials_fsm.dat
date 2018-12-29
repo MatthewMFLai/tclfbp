@@ -1,0 +1,29 @@
+#Node section
+#Name process_proc
+BEGIN_STATE
+FIND_ASSET financials_fsm::process_generic
+FIND_ASSET_VALUE financials_fsm::process_generic
+FIND_LIABILITY financials_fsm::process_generic
+FIND_LIABILITY_VALUE financials_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_ASSET FIND_ASSET_VALUE financials_fsm::eval_asset_to_asset_value financials_fsm::act_set_key
+FIND_ASSET_VALUE FIND_LIABILITY financials_fsm::eval_value financials_fsm::act_set_value
+FIND_LIABILITY FIND_LIABILITY_VALUE financials_fsm::eval_liability_to_liability_value financials_fsm::act_set_key
+FIND_LIABILITY_VALUE TERMINATE financials_fsm::eval_value financials_fsm::act_set_value
+
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = financials_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_ASSET
+END_DEFAULT_STATE

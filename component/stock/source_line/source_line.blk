@@ -1,0 +1,4 @@
+name source_line
+filepath $env(DISK2)/component/stock/source_line
+inports {1}
+outports {1}

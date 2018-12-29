@@ -1,0 +1,345 @@
+#!/bin/sh 
+# \
+exec tclsh $0 $@
+#exec tclsh "$0" ${1+"$@"}
+
+set server_accept_template {
+proc server_accept_xxx {cid addr port} {
+    global g_ports
+    global g_channels
+
+    fileevent $cid readable "server_handle $cid"
+    fconfigure $cid -buffering line
+    set g_channels($cid) xxx 
+}}
+
+proc process_queued_request {port request} {
+    global g_channels
+
+    # Now dequeue request from inport queue.
+    regsub "IN-" $port "OUT-" outport
+    set cid $g_channels($outport)
+    #catch {puts $cid "[list $request]"}
+    catch {puts $cid $request} rc
+    catch {flush $cid}
+}
+
+proc server_handle {cid} {
+    global g_channels
+    global g_inport_queue
+    global g_inport_queue_max
+    global g_cur_request
+    global g_waitlist
+    global g_state
+
+    if {[gets $cid request] < 0} {
+        close $cid
+	#set port $g_channels($cid)
+	#unset g_channels($port)
+	unset g_channels($cid)
+    } else {
+	append g_cur_request($cid) $request
+	if {[info complete $g_cur_request($cid)]} {
+	    set request $g_cur_request($cid)
+	    set g_cur_request($cid) ""
+	} else {
+	    return
+	}
+        # Custom code to handle request
+        #
+	# Kludge
+	set port $g_channels($cid)
+	if {[string first "IN-MUX0" $port] > -1} {
+	    global g_testfile_fd
+	    #puts $g_testfile_fd [lindex $request end]
+	    #flush $g_testfile_fd
+	    # Remove the marker.
+	    set request [lrange $request 0 end-2]
+	}
+
+	set port $g_channels($cid)
+	if {[string first "IN" $port] == 0} {
+	    if {$g_state == "STATE_DRAIN"} {
+	    	# Send ack back to rxmgr.
+	    	catch {puts $cid "ACK"} rc
+	    	catch {flush $cid} rc
+	    	return
+	    }
+	    if {$g_inport_queue($port) < $g_inport_queue_max($port)} {
+		# Queue the request.
+		incr g_inport_queue($port)
+		#puts "rx send ACK"
+		puts $cid "ACK"
+		flush $cid
+
+            	process_queued_request $port $request
+	    } else {
+		# Queue full. Send nack back.
+		#puts "rx send NACK"
+		#puts $cid "NACK"
+		#flush $cid
+		lappend g_waitlist($port) "[list $request] $cid"
+	    }
+
+	} else {
+	    # Handle outport ack/nack.
+	    # Map outport back to inport.
+	    #set ack_nack [lindex $request 0]
+	    set ack_nack $request
+	    regsub "OUT-" $port "IN-" port 
+	    if {$ack_nack == "ACK"} {
+		incr g_inport_queue($port) -1
+		if {[llength $g_waitlist($port)] > 0} {
+		    set token [lindex $g_waitlist($port) 0]
+		    set g_waitlist($port) [lrange $g_waitlist($port) 1 end]
+		    set request [lindex $token 0]
+		    set cid [lindex $token 1]
+		    if {[catch {puts $cid "ACK"} rc]} {
+			puts "rxmgr puts ERROR rc = $rc"
+		    	return
+		    }
+		    if {[catch {flush $cid} rc]} {
+			puts "rxmgr flush ERROR rc = $rc"
+		    	return
+		    }
+		    incr g_inport_queue($port)
+            	    process_queued_request $port $request
+	 	}
+	    } else {
+		# Generate server log.
+		server_log "ERROR" "Unknown $request"
+		puts "ERROR" "Unknown $request"
+	    }
+	}
+    }
+}
+
+proc server_init {cid addr port} {
+    fileevent $cid readable "server_handle_init $cid"
+    fconfigure $cid -buffering line
+}
+
+proc server_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	global main-loop
+        close $cid
+	set main-loop 1
+    } else {
+        # Custom code to handle initialization. 
+        #
+	set response ""
+        if {[initialize $request response]} {
+	    puts $cid $response
+	    flush $cid
+	}
+    }
+}
+
+proc shutdown {} {
+    global g_inport_queue
+
+    # Flush all inport queues.
+    foreach port [array names g_inport_queue] {
+    	set g_inport_queue($port) 0 
+    } 
+}
+
+proc initialize {request p_response} {
+    global g_channels
+    global g_ports
+    global g_logfile
+    global g_state
+    global g_waitlist
+
+    upvar $p_response response
+    set response ""
+    set rc 0
+    
+    switch -- [lindex $request 0] {
+        ENABLE {
+	    foreach outport [get_outports] {
+            	set cid [socket localhost $g_ports($outport)]
+            	set g_channels($cid) $outport
+            	set g_channels($outport) $cid
+	    	#server_accept_$outport $g_channels($outport)
+	    	fileevent $cid readable "server_handle $cid"
+            	fconfigure $cid -buffering line
+            	puts "Initialized out port $outport"
+	    }
+            # Set up log file. Check for custom log file name.
+            if {[string first "logfile=" [lindex $request end]] == 0} {
+                set g_logfile [lindex [split [lindex $request end] "="] 1]
+            } else {
+                set g_logfile $g_ports(BLOCK)
+                append g_logfile ".log"
+            }
+
+	    # Kludge
+	    global g_testfile_fd
+	    set g_testfile_fd [open CONNECT_marker w]
+	 
+            # Pass the list of data to component for initialization.
+            #init [lrange $request 1 end]
+            ready_file $g_ports(INIT)
+        }
+        DRAIN {
+	    set g_state "STATE_DRAIN"
+	    foreach port [array names g_waitlist] {
+	    	foreach token $g_waitlist($port) {
+	    	    set request [lindex $token 0]
+	    	    set cid [lindex $token 1]
+	    	    catch {puts $cid "ACK"}
+	    	    catch {flush $cid}
+		}
+	    	set g_waitlist($port) ""
+	    }
+            ready_file $g_ports(INIT)
+        }
+        DISABLE {
+	    # Kludge
+	    global g_testfile_fd
+	    close $g_testfile_fd
+
+	    foreach outport [get_outports] {
+            	set fd $g_channels($outport)
+            	close $fd
+	    }
+            shutdown
+            ready_file $g_ports(INIT)
+        }
+	QUEUEQUERY {
+	    set response [dump_port_queue]
+	    set rc 1
+	}
+	PID {
+	    set response [pid]
+	    #after 30000 alive_alert
+	    set rc 1
+	}
+        default {
+
+        }
+    }
+    return $rc
+}
+
+proc alive_alert {} {
+    global g_logfile
+
+    set idx [string first ":" $g_logfile]
+    incr idx
+    set idx2 [string first "." $g_logfile]
+    incr idx2 -1
+    puts "[string range $g_logfile $idx $idx2] is alive..."
+    after 30000 alive_alert
+}
+
+proc server_log {mode data} {
+    global g_logfile
+    set fd [open $g_logfile a]
+    puts $fd "[clock format [clock seconds]] $mode $data"
+    flush $fd
+    close $fd
+}
+
+proc get_server_id {} {
+    global g_ports
+    return $g_ports(INIT)
+}
+
+proc get_inports {} {
+    global g_ports
+    return [array names g_ports "IN-*"]
+}
+
+proc get_outports {} {
+    global g_ports
+    return [array names g_ports "OUT-*"]
+}
+
+proc ready_file {initport} {
+    # Put a marker file to let the launcher know that
+    # the sockets have been set up.
+    set fd [open data_$initport.ready w]
+    puts $fd ""
+    close $fd
+}
+
+proc dump_port_queue {} {
+    global g_inport_queue
+
+    return [array get g_inport_queue]
+}
+
+variable g_ports
+variable g_channels
+variable g_logfile
+variable g_inport_queue
+variable g_inport_queue_limit
+variable g_inport_queue_max
+variable g_waitlist
+variable g_state
+array set g_channels {}
+array set g_inport_queue {} 
+set g_inport_queue_max_default 50
+array set g_inport_queue_max {} 
+array set g_outportt_status {}
+array set g_waitlist {} 
+set g_state "STATE_RUNNING"
+
+variable g_cur_request
+array set g_cur_request {} 
+
+# Passed in arguments should be of format
+# "IN-<port number> <os port number> OUT-<port number> <os port number>
+# eg.
+# IN-1 9000 IN-2 9001 OUT-1 9002 OUT-2 9003 INIT 9004
+set datalist $argv
+regsub -all {\\} $datalist "" datalist
+array set g_ports $datalist
+
+# Source in pattern classes to handle ip and memory allocation.
+#source $env(COMP_HOME)/ip/malloc.tcl
+source $env(PATTERN_HOME)/malloc.tcl
+source $env(COMP_HOME)/ip/ip.tcl
+ip::init malloc
+
+foreach inport [get_inports] {
+    # Need to bind the in port number to the handler procedure.
+    # Create a handler procedure on the fly, with the name
+    # server_accept_<inport>
+    regsub -all "xxx" $server_accept_template $inport server_proc
+    eval $server_proc
+
+    socket -server server_accept_$inport $g_ports($inport)
+
+    set g_inport_queue($inport) 0
+
+    # Initialize the queue length for each in port.
+    regsub "IN-" $inport "" port
+    set port QUEUE-$port
+    if {[info exists g_ports($port)]} {
+	set g_inport_queue_max($inport) $g_ports($port)
+    } else {
+	set g_inport_queue_max($inport) $g_inport_queue_max_default
+    }
+
+    # Initialize the per port waiting list.
+    set g_waitlist($inport) "" 
+}
+
+foreach outport [get_outports] {
+    # Need to bind the out port number to the handler procedure.
+    # Create a handler procedure on the fly, with the name
+    # server_accept_<outport>
+    regsub -all "xxx" $server_accept_template $outport server_proc
+    eval $server_proc
+}
+    
+socket -server server_init $g_ports(INIT)
+
+ready_file $g_ports(INIT)
+
+vwait main-loop
+
+exit 0

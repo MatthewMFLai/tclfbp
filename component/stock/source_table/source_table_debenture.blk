@@ -1,0 +1,5 @@
+name source_table
+filepath $env(DISK2)/component/stock/source_table
+init {http://www.financialpost.com/markets/data/bonds-debentures.html}
+kicker red-ball
+outports {1}

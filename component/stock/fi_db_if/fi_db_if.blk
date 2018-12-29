@@ -1,0 +1,5 @@
+name fi_db_if
+filepath $env(DISK2)/component/stock/fi_db_if
+init {stock_collate fi_db.dat report_T.dat TSX}
+inports {1 query}
+outports {1}

@@ -1,0 +1,5 @@
+http://www.gutenberg.org/ebooks/search/?query=XXX&go=Go
+http://www.gutenberg.org
+booklink.*?href=\"(.*?)\"
+Plain Text UTF-8.*?www\.gutenberg\.org(.*?)</td>
+The document has moved <a href=\"(.*?)\">

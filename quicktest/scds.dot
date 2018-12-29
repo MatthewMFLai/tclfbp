@@ -1,0 +1,7 @@
+digraph G {
+graph[rankdir=LR];
+byText -> text;
+byTokens -> tree;
+Token -> byTokens [label="init_node",fontsize=8];
+Token -> byText [label="init",fontsize=8];
+}

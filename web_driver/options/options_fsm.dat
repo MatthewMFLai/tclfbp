@@ -1,0 +1,33 @@
+#Node section
+#Name process_proc
+BEGIN_STATE 
+FIND_CALLPUT options_fsm::process_generic
+FIND_TABLE options_fsm::process_generic
+FIND_ROW options_fsm::process_generic
+FIND_FIELD options_fsm::process_generic
+FIND_FIELD_END options_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_CALLPUT FIND_TABLE options_fsm::eval_callput_to_table null 
+FIND_TABLE FIND_ROW options_fsm::eval_table_to_row null 
+FIND_ROW FIND_FIELD options_fsm::eval_row_to_field options_fsm::act_row_to_field 
+FIND_FIELD FIND_FIELD_END options_fsm::eval_field_to_field_end options_fsm::act_field_to_field_end 
+FIND_FIELD_END FIND_FIELD_END options_fsm::eval_field_end_to_field_end options_fsm::act_field_end_to_field_end 
+FIND_FIELD_END FIND_FIELD options_fsm::eval_field_end_to_field options_fsm::act_field_end_to_field
+FIND_FIELD FIND_ROW options_fsm::eval_field_to_row options_fsm::act_field_to_row
+FIND_ROW TERMINATE options_fsm::eval_row_to_terminate null 
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = options_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_CALLPUT
+END_DEFAULT_STATE

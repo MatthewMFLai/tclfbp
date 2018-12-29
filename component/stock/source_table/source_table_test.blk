@@ -1,0 +1,5 @@
+name source_table
+filepath $env(DISK2)/component/stock/source_table
+init {{f_Symbol EDV urlerror {}}}
+kicker red-ball
+outports {1}

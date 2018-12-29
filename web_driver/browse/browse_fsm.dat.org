@@ -1,0 +1,24 @@
+#Node section
+#Name process_proc
+BEGIN_STATE
+FIND_WORD1 browse_fsm::process_generic
+FIND_WORD2 browse_fsm::process_generic
+TERMINATE null
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_WORD1 FIND_WORD2 browse_fsm::eval_word1_to_word2 browse_fsm::act_word1_to_word2 
+FIND_WORD2 TERMINATE browse_fsm::eval_word2_to_terminate browse_fsm::act_word2_to_terminate
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = browse_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_WORD1
+END_DEFAULT_STATE

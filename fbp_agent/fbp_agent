@@ -1,0 +1,208 @@
+#!/bin/sh
+# \
+exec tclsh $0 $@
+source $env(DISK2)/fbp_agent/fbp_agent.dat
+source $env(LAUNCHER_HOME)/launcher_factory.tcl
+
+proc server_init {cid addr port} {
+    fileevent $cid readable "server_handle_init $cid"
+    fconfigure $cid -buffering line
+}
+
+proc server_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	#global main-loop
+        close $cid
+	#set main-loop 1
+    } else {
+        # Custom code to handle initialization. 
+        #
+	set response [process $request]
+	puts $cid $response
+	flush $cid
+    }
+}
+
+proc process {request} {
+    global g_program_data
+    global g_program_testdata
+    global g_initportlist
+    global g_ipaddr
+    global g_workdir
+
+    set response "DONE"
+
+    switch -- [lindex $request 0] {
+	IDENT {
+	    set g_ipaddr [lindex $request 1]
+	    # Return all the currrently runing graph ids.
+	    lappend response [Launcher_Obj::Get_All_Id]
+	}
+	CREATE {
+	    set taskfile [lindex $request 1]
+	    set graphfile [lindex $request 2]
+    	    set graph_id [lindex $request 3]
+    	    set filename [file join $g_workdir $taskfile]
+	    if {![file exists $filename]} {
+		set response "$taskfile not found"
+		return $response	
+	    }
+    	    set graphname [file join $g_workdir $graphfile]
+	    if {![file exists $graphname]} {
+		set response "$graphfile not found"
+	        return $response
+	    }
+	    set launcher [Launcher_Obj::Create $graph_id]
+	    ${launcher}::Init $graphname
+    	    set g_initportlist [${launcher}::Runit_Create $filename\
+                $g_ipaddr g_program_data g_program_testdata]
+	}
+        ENABLE {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+    	    ${launcher}::Runit_Enable $g_initportlist g_program_data
+        }
+	PID {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    ${launcher}::Set_Block_Pid 
+	}
+	KICK {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+    	    ${launcher}::Runit_Kick g_program_testdata
+	}
+        DRAIN {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    ${launcher}::Drainit
+        }
+        DISABLE {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    ${launcher}::Stopit_outport
+	}
+	CLOSE {
+    	    set graph_id [lindex $request 1]
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    ${launcher}::Stopit_initport
+	    set g_initportlist ""
+	    foreach idx [array names g_program_data] {
+		unset g_program_data($idx)
+	    }
+	    foreach idx [array names g_program_testdata] {
+		unset g_program_testdata($idx)
+	    }
+	    Launcher_Obj::Delete $graph_id 
+            set launcher ""
+        }
+	QUEUEQUERY {
+	}
+        default {
+	    set response "[lindex $request 0] not recognized"
+        }
+    }
+    return $response
+}
+
+proc receive_file {channel_name client_address client_port} {
+    global g_workdir
+
+    fconfigure $channel_name -translation binary
+    gets $channel_name line
+    foreach {name size} $line {}
+
+    set fully_qualified_filename [file join $g_workdir $name]
+    set fp [open $fully_qualified_filename w]
+    fconfigure $fp -translation binary
+
+    fcopy $channel_name $fp -size $size
+
+    close $channel_name
+    close $fp
+}
+
+proc info_init {cid addr port} {
+    fileevent $cid readable "info_handle_init $cid"
+    #fconfigure $cid -buffering line
+    fconfigure $cid -buffering none -translation binary 
+}
+
+proc info_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	#global main-loop
+        close $cid
+	#set main-loop 1
+    } else {
+        # Custom code to handle initialization. 
+        #
+	set response [process_info $request]
+	puts $cid $response
+	flush $cid
+    }
+}
+
+proc process_info {request} {
+
+    set rc ""
+    set graph_id [lindex $request 1]
+
+    switch -- [lindex $request 0] {
+        QUERY_QUEUE {
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+    	    set rc [${launcher}::QueryQueue]
+        }
+	QUERY_CPU {
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    set rc [${launcher}::QueryCpu]
+	}
+	QUERY_GRAPH {
+	    set launcher [Launcher_Obj::Get_Obj $graph_id]
+	    set rc [${launcher}::QueryGraph]
+	}
+        default {
+	    set rc "$request not recognized"
+        }
+    }
+    return $rc
+}
+
+variable g_program_data
+variable g_program_testdata
+variable g_initportlist
+variable g_ipaddr
+
+# If the mtc ports are passed in then use the custom ones.
+set port_custom [lindex $argv 0]
+if {$port_custom != "" &&
+    [string is integer $port_custom]} {
+    set g_service_port $port_custom
+}
+set port_custom [lindex $argv 1]
+if {$port_custom != "" &&
+    [string is integer $port_custom]} {
+    set g_fcopy_port $port_custom
+}
+set port_custom [lindex $argv 2]
+if {$port_custom != "" &&
+    [string is integer $port_custom]} {
+    set g_info_port $port_custom
+}
+
+array set g_program_data {}
+array set g_program_testdata {}
+set g_initportlist ""
+set g_ipaddr 0.0.0.0
+
+set rc [Launcher_Obj::Init $env(LAUNCHER_HOME)/launcher_imp.tcl]
+if {$rc != ""} {
+    puts "fbp_agent ERROR $rc"
+    exit -1
+}
+socket -server server_init $g_service_port
+socket -server receive_file $g_fcopy_port
+socket -server info_init $g_info_port
+
+vwait main-loop
+
+exit 0

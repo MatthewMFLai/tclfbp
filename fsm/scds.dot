@@ -1,0 +1,20 @@
+digraph G {
+graph[rankdir=LR];
+byFsm -> fsm;
+byLink -> link;
+byNode -> node;
+byState -> assoc;
+byFSMs -> assoc;
+byCurNode -> pointer;
+byTransition -> graph;
+Link -> byTransition [label="graph_init_edge",fontsize=8];
+Node -> byTransition [label="graph_init_vertex",fontsize=8];
+FsmMgr -> byFSMs [label="init_whole",fontsize=8];
+Fsm -> byCurNode [label="init_entity",fontsize=8];
+Node -> byState [label="init_part_new",fontsize=8];
+Fsm -> byState [label="init_whole",fontsize=8];
+Fsm -> byFSMs [label="init_part_new",fontsize=8];
+Link -> byLink [label="init",fontsize=8];
+Node -> byNode [label="init",fontsize=8];
+Fsm -> byFsm [label="init",fontsize=8];
+}

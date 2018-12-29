@@ -1,0 +1,134 @@
+set alloc_list [ list MALLOC0 MALLOC1 MALLOC2 MALLOC3 MALLOC4 MALLOC5 MALLOC6 MALLOC7 MALLOC8 MALLOC9 MALLOC10 MALLOC11 MALLOC12 MALLOC13 MALLOC14 MALLOC15 MALLOC16 MALLOC17 MALLOC18 MALLOC19 MALLOC20 MALLOC21 MALLOC22 MALLOC23 MALLOC24 MALLOC25 MALLOC26 MALLOC27 MALLOC28 MALLOC29 MALLOC30 MALLOC31 MALLOC32 MALLOC33 MALLOC34 MALLOC35 MALLOC36 MALLOC37 MALLOC38 MALLOC39 MALLOC40 MALLOC41 MALLOC42 MALLOC43 MALLOC44 MALLOC45 MALLOC46 MALLOC47 MALLOC48 MALLOC49 MALLOC50 MALLOC51 MALLOC52 MALLOC53 MALLOC54 MALLOC55 MALLOC56 MALLOC57 MALLOC58 MALLOC59 MALLOC60 MALLOC61 MALLOC62 MALLOC63 MALLOC64 ]
+set free_list [ list MALLOC66 MALLOC65 ]
+set next_id 67
+array set var_table { portfolio MALLOC20 fsm_var MALLOC0 }
+global MALLOC0
+array set MALLOC0 { assoc:byFSMs:part_list MALLOC1 }
+global MALLOC1
+array set MALLOC1 { fsm:byFsm:last_error {} assoc:byFSMs:whole_ref MALLOC0 fsm:byFsm:in_service 1 fsm:byFsm:init_proc rv_portfolio_fsm::init assoc:byFSMs:key rv_portfolio_fsm assoc:byState:part_list {MALLOC2 MALLOC3 MALLOC4 MALLOC5 MALLOC6 MALLOC7} pointer:byCurNode:reference MALLOC2 }
+global MALLOC2
+array set MALLOC2 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_generic assoc:byState:key rv_portfolio_fsm.SCAN graph:byTransition:to_edge_list MALLOC19 graph:byTransition:from_edge_list MALLOC8 }
+global MALLOC3
+array set MALLOC3 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_generic assoc:byState:key rv_portfolio_fsm.ACQUIRE graph:byTransition:to_edge_list {MALLOC8 MALLOC10} graph:byTransition:from_edge_list {MALLOC9 MALLOC10} }
+global MALLOC4
+array set MALLOC4 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_monitor assoc:byState:key rv_portfolio_fsm.MONITOR graph:byTransition:to_edge_list {MALLOC9 MALLOC14 MALLOC16} graph:byTransition:from_edge_list {MALLOC11 MALLOC12 MALLOC13} }
+global MALLOC5
+array set MALLOC5 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_monitor assoc:byState:key rv_portfolio_fsm.MONITOR_LOSS graph:byTransition:to_edge_list MALLOC11 graph:byTransition:from_edge_list {MALLOC14 MALLOC15} }
+global MALLOC6
+array set MALLOC6 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_monitor assoc:byState:key rv_portfolio_fsm.MONITOR_DATA_LOSS graph:byTransition:to_edge_list MALLOC12 graph:byTransition:from_edge_list {MALLOC16 MALLOC17} }
+global MALLOC7
+array set MALLOC7 { assoc:byState:whole_ref MALLOC1 node:byNode:process_proc rv_portfolio_fsm::process_generic assoc:byState:key rv_portfolio_fsm.SELL graph:byTransition:to_edge_list {MALLOC13 MALLOC15 MALLOC17 MALLOC18} graph:byTransition:from_edge_list {MALLOC18 MALLOC19} }
+global MALLOC8
+array set MALLOC8 { link:byLink:action_proc rv_portfolio_fsm::act_scan_to_acquire graph:byTransition:to_vertex MALLOC3 graph:byTransition:from_vertex MALLOC2 link:byLink:eval_proc rv_portfolio_fsm::eval_scan_to_acquire }
+global MALLOC9
+array set MALLOC9 { link:byLink:action_proc rv_portfolio_fsm::act_price_update graph:byTransition:to_vertex MALLOC4 graph:byTransition:from_vertex MALLOC3 link:byLink:eval_proc rv_portfolio_fsm::eval_acquire_to_monitor }
+global MALLOC10
+array set MALLOC10 { link:byLink:action_proc rv_portfolio_fsm::act_acquire_to_acquire graph:byTransition:to_vertex MALLOC3 graph:byTransition:from_vertex MALLOC3 link:byLink:eval_proc null }
+global MALLOC11
+array set MALLOC11 { link:byLink:action_proc null graph:byTransition:to_vertex MALLOC5 graph:byTransition:from_vertex MALLOC4 link:byLink:eval_proc rv_portfolio_fsm::eval_netloss }
+global MALLOC12
+array set MALLOC12 { link:byLink:action_proc null graph:byTransition:to_vertex MALLOC6 graph:byTransition:from_vertex MALLOC4 link:byLink:eval_proc rv_portfolio_fsm::eval_dataloss }
+global MALLOC13
+array set MALLOC13 { link:byLink:action_proc rv_portfolio_fsm::act_to_sell graph:byTransition:to_vertex MALLOC7 graph:byTransition:from_vertex MALLOC4 link:byLink:eval_proc rv_portfolio_fsm::eval_stoploss }
+global MALLOC14
+array set MALLOC14 { link:byLink:action_proc null graph:byTransition:to_vertex MALLOC4 graph:byTransition:from_vertex MALLOC5 link:byLink:eval_proc rv_portfolio_fsm::eval_monitor_loss_to_monitor }
+global MALLOC15
+array set MALLOC15 { link:byLink:action_proc rv_portfolio_fsm::act_to_sell graph:byTransition:to_vertex MALLOC7 graph:byTransition:from_vertex MALLOC5 link:byLink:eval_proc rv_portfolio_fsm::eval_loss }
+global MALLOC16
+array set MALLOC16 { link:byLink:action_proc null graph:byTransition:to_vertex MALLOC4 graph:byTransition:from_vertex MALLOC6 link:byLink:eval_proc rv_portfolio_fsm::eval_monitor_data_loss_to_monitor }
+global MALLOC17
+array set MALLOC17 { link:byLink:action_proc rv_portfolio_fsm::act_to_sell graph:byTransition:to_vertex MALLOC7 graph:byTransition:from_vertex MALLOC6 link:byLink:eval_proc rv_portfolio_fsm::eval_loss }
+global MALLOC18
+array set MALLOC18 { link:byLink:action_proc rv_portfolio_fsm::act_to_sell graph:byTransition:to_vertex MALLOC7 graph:byTransition:from_vertex MALLOC7 link:byLink:eval_proc null }
+global MALLOC19
+array set MALLOC19 { link:byLink:action_proc rv_portfolio_fsm::act_sell_to_scan graph:byTransition:to_vertex MALLOC2 graph:byTransition:from_vertex MALLOC7 link:byLink:eval_proc rv_portfolio_fsm::eval_sell_to_scan }
+global MALLOC20
+array set MALLOC20 { assoc:byMain_Symbol:part_list {} ordered_assoc:byMain_Date:part_list {MALLOC64 MALLOC63 MALLOC62} assoc:byMain_Filter:part_list {MALLOC23 MALLOC24 MALLOC25 MALLOC26 MALLOC27 MALLOC28 MALLOC29 MALLOC30 MALLOC31} assoc:byMain_Portfolio:part_list MALLOC59 assoc:byMain_Arg_group:part_list {MALLOC32 MALLOC33 MALLOC34 MALLOC35 MALLOC36} assoc:byMain_Exchange:part_list {MALLOC21 MALLOC22} assoc:byMain_Fundsrc:part_list MALLOC58 }
+global MALLOC21
+array set MALLOC21 { assoc:byMain_Exchange:key TSX-VEN plane2d:byFilterResult:plane_list {MALLOC39 MALLOC42 MALLOC47 MALLOC48 MALLOC51 MALLOC54 MALLOC57} exchange:byExchange:name TSX-VEN assoc:byMain_Exchange:whole_ref MALLOC20 }
+global MALLOC22
+array set MALLOC22 { assoc:byMain_Exchange:key TSX plane2d:byFilterResult:plane_list {MALLOC38 MALLOC41 MALLOC44 MALLOC46 MALLOC50 MALLOC53 MALLOC56} exchange:byExchange:name TSX assoc:byMain_Exchange:whole_ref MALLOC20 }
+global MALLOC23
+array set MALLOC23 { filter:byFilter:name Index assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Index }
+global MALLOC24
+array set MALLOC24 { filter:byFilter:name Derivative assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Derivative }
+global MALLOC25
+array set MALLOC25 { filter:byFilter:name Intrinsic_Expdate assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Intrinsic_Expdate }
+global MALLOC26
+array set MALLOC26 { filter:byFilter:name Sector assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Sector }
+global MALLOC27
+array set MALLOC27 { filter:byFilter:name Change assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Change }
+global MALLOC28
+array set MALLOC28 { filter:byFilter:name Volume assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Volume }
+global MALLOC29
+array set MALLOC29 { filter:byFilter:name Metric assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {MALLOC37 MALLOC40 MALLOC43 MALLOC45 MALLOC49 MALLOC52} assoc:byMain_Filter:key Metric }
+global MALLOC30
+array set MALLOC30 { filter:byFilter:name Metric_Compare assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list {} assoc:byMain_Filter:key Metric_Compare }
+global MALLOC31
+array set MALLOC31 { filter:byFilter:name Yield assoc:byMain_Filter:whole_ref MALLOC20 filter:byFilter:type {} assoc:byFilter_Filter_arg:part_list MALLOC55 assoc:byMain_Filter:key Yield }
+global MALLOC32
+array set MALLOC32 { lattice:byArg_group_Filter_result:rel_list {MALLOC38 MALLOC41 MALLOC50 MALLOC53 MALLOC56} arg_group:byArg_group:name arggrp1 assoc:byMain_Arg_group:whole_ref MALLOC20 arg_group:byArg_group:result {} arg_group:byArg_group:and_or AND assoc:byMain_Arg_group:key arggrp1 lattice:byStrategy_Arg_group:rel_list MALLOC60 }
+global MALLOC33
+array set MALLOC33 { lattice:byArg_group_Filter_result:rel_list {MALLOC39 MALLOC42 MALLOC51 MALLOC54 MALLOC57} arg_group:byArg_group:name arggrp2 assoc:byMain_Arg_group:whole_ref MALLOC20 arg_group:byArg_group:result {} arg_group:byArg_group:and_or AND assoc:byMain_Arg_group:key arggrp2 lattice:byStrategy_Arg_group:rel_list MALLOC61 }
+global MALLOC34
+array set MALLOC34 { lattice:byArg_group_Filter_result:rel_list {MALLOC44 MALLOC46} arg_group:byArg_group:name arggrp3 assoc:byMain_Arg_group:whole_ref MALLOC20 arg_group:byArg_group:result {} arg_group:byArg_group:and_or OR assoc:byMain_Arg_group:key arggrp3 lattice:byStrategy_Arg_group:rel_list MALLOC60 }
+global MALLOC35
+array set MALLOC35 { lattice:byArg_group_Filter_result:rel_list {MALLOC47 MALLOC48} arg_group:byArg_group:name arggrp4 assoc:byMain_Arg_group:whole_ref MALLOC20 arg_group:byArg_group:result {} arg_group:byArg_group:and_or OR assoc:byMain_Arg_group:key arggrp4 lattice:byStrategy_Arg_group:rel_list MALLOC61 }
+global MALLOC36
+array set MALLOC36 { lattice:byArg_group_Filter_result:rel_list {} arg_group:byArg_group:name arggrp5 assoc:byMain_Arg_group:whole_ref MALLOC20 arg_group:byArg_group:result {} arg_group:byArg_group:and_or AND assoc:byMain_Arg_group:key arggrp5 lattice:byStrategy_Arg_group:rel_list {} }
+global MALLOC37
+array set MALLOC37 { filter_arg:byFilter_arg:argument {{Price to Book} 0.20 2.00} plane2d:byFilterResult:plane_list {MALLOC38 MALLOC39} assoc:byFilter_Filter_arg:key {Price to Book:0.20:2.00} assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC38
+array set MALLOC38 { lattice:byArg_group_Filter_result:rel_list MALLOC32 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC37 filter_result:byFilter_result:result {} }
+global MALLOC39
+array set MALLOC39 { lattice:byArg_group_Filter_result:rel_list MALLOC33 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC37 filter_result:byFilter_result:result {} }
+global MALLOC40
+array set MALLOC40 { filter_arg:byFilter_arg:argument {{Liabilities-to-Equity Ratio} 0.00 2.00} plane2d:byFilterResult:plane_list {MALLOC41 MALLOC42} assoc:byFilter_Filter_arg:key {Liabilities-to-Equity Ratio:0.00:2.00} assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC41
+array set MALLOC41 { lattice:byArg_group_Filter_result:rel_list MALLOC32 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC40 filter_result:byFilter_result:result {} }
+global MALLOC42
+array set MALLOC42 { lattice:byArg_group_Filter_result:rel_list MALLOC33 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC40 filter_result:byFilter_result:result {} }
+global MALLOC43
+array set MALLOC43 { filter_arg:byFilter_arg:argument {{Cash Flow} 1000000 9000000000} plane2d:byFilterResult:plane_list {MALLOC44 MALLOC47} assoc:byFilter_Filter_arg:key {Cash Flow:1000000:9000000000} assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC44
+array set MALLOC44 { lattice:byArg_group_Filter_result:rel_list MALLOC34 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC43 filter_result:byFilter_result:result {} }
+global MALLOC45
+array set MALLOC45 { filter_arg:byFilter_arg:argument {Cash 1000000 9000000000} plane2d:byFilterResult:plane_list {MALLOC46 MALLOC48} assoc:byFilter_Filter_arg:key Cash:1000000:9000000000 assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC46
+array set MALLOC46 { lattice:byArg_group_Filter_result:rel_list MALLOC34 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC45 filter_result:byFilter_result:result {} }
+global MALLOC47
+array set MALLOC47 { lattice:byArg_group_Filter_result:rel_list MALLOC35 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC43 filter_result:byFilter_result:result {} }
+global MALLOC48
+array set MALLOC48 { lattice:byArg_group_Filter_result:rel_list MALLOC35 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC45 filter_result:byFilter_result:result {} }
+global MALLOC49
+array set MALLOC49 { filter_arg:byFilter_arg:argument {Earnings 1 6000000000} plane2d:byFilterResult:plane_list {MALLOC50 MALLOC51} assoc:byFilter_Filter_arg:key Earnings:1:6000000000 assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC50
+array set MALLOC50 { lattice:byArg_group_Filter_result:rel_list MALLOC32 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC49 filter_result:byFilter_result:result {} }
+global MALLOC51
+array set MALLOC51 { lattice:byArg_group_Filter_result:rel_list MALLOC33 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC49 filter_result:byFilter_result:result {} }
+global MALLOC52
+array set MALLOC52 { filter_arg:byFilter_arg:argument {PE 2.00 14.00} plane2d:byFilterResult:plane_list {MALLOC53 MALLOC54} assoc:byFilter_Filter_arg:key PE:2.00:14.00 assoc:byFilter_Filter_arg:whole_ref MALLOC29 }
+global MALLOC53
+array set MALLOC53 { lattice:byArg_group_Filter_result:rel_list MALLOC32 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC52 filter_result:byFilter_result:result {} }
+global MALLOC54
+array set MALLOC54 { lattice:byArg_group_Filter_result:rel_list MALLOC33 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC52 filter_result:byFilter_result:result {} }
+global MALLOC55
+array set MALLOC55 { filter_arg:byFilter_arg:argument {7.00 10.00} plane2d:byFilterResult:plane_list {MALLOC56 MALLOC57} assoc:byFilter_Filter_arg:key 7.00:10.00 assoc:byFilter_Filter_arg:whole_ref MALLOC31 }
+global MALLOC56
+array set MALLOC56 { lattice:byArg_group_Filter_result:rel_list MALLOC32 plane2d:byFilterResult:vertex_1 MALLOC22 plane2d:byFilterResult:vertex_2 MALLOC55 filter_result:byFilter_result:result {} }
+global MALLOC57
+array set MALLOC57 { lattice:byArg_group_Filter_result:rel_list MALLOC33 plane2d:byFilterResult:vertex_1 MALLOC21 plane2d:byFilterResult:vertex_2 MALLOC55 filter_result:byFilter_result:result {} }
+global MALLOC58
+array set MALLOC58 { plane2d:byFundtxferLink:plane_list MALLOC62 assoc:byMain_Fundsrc:whole_ref MALLOC20 fundsrc:byFundsrc:cur_amount 5000.0 fundsrc:byFundsrc:interest_list 3.5:2.5 fundsrc:byFundsrc:name src1 assoc:byMain_Fundsrc:key src1 }
+global MALLOC59
+array set MALLOC59 { portfolio:byPortfolio:name foo plane2d:byFundtxferLink:plane_list MALLOC62 assoc:byMain_Portfolio:whole_ref MALLOC20 portfolio:byPortfolio:total_fund_in 5000.0 portfolio:byPortfolio:total_fund_out 0.00 portfolio:byPortfolio:cash 3000.0 assoc:byPortfolio_Strategy:part_list {MALLOC60 MALLOC61} assoc:byMain_Portfolio:key foo plane2d:byMoneytxferLink:plane_list {MALLOC63 MALLOC64} assoc:byPortfolio_Strategy_Archive:part_list {} }
+global MALLOC60
+array set MALLOC60 { pointer_2way:byOpenPosition:reference {} assoc:byPortfolio_Strategy_Archive:whole_ref {} strategy:byStrategy:cash 1000.0 assoc:byPortfolio_Strategy:key s1 assoc:byPortfolio_Strategy_Archive:key {} strategy:byStrategy:state SCAN strategy:byStrategy:name s1 assoc:byPortfolio_Strategy:whole_ref MALLOC59 plane2d:byMoneytxferLink:plane_list MALLOC63 plane2d:byPositionLink:plane_list {} lattice:byStrategy_Arg_group:rel_list {MALLOC32 MALLOC34} }
+global MALLOC61
+array set MALLOC61 { pointer_2way:byOpenPosition:reference {} assoc:byPortfolio_Strategy_Archive:whole_ref {} strategy:byStrategy:cash 1000.0 assoc:byPortfolio_Strategy:key s2 assoc:byPortfolio_Strategy_Archive:key {} strategy:byStrategy:state SCAN strategy:byStrategy:name s2 assoc:byPortfolio_Strategy:whole_ref MALLOC59 plane2d:byMoneytxferLink:plane_list MALLOC64 plane2d:byPositionLink:plane_list {} lattice:byStrategy_Arg_group:rel_list {MALLOC33 MALLOC35} }
+global MALLOC62
+array set MALLOC62 { date:byDate:id 0 date:byDate:abstime 1365648197 plane2d:byFundtxferLink:vertex_2 MALLOC59 date:byDate:type FUNDTXFER ordered_assoc:byMain_Date:whole_ref MALLOC20 fundtxfer:byFundtxfer:amount 5000.00 ordered_assoc:byMain_Date:key 0 plane2d:byFundtxferLink:vertex_1 MALLOC58 }
+global MALLOC63
+array set MALLOC63 { date:byDate:id 1 date:byDate:abstime 1365648197 ordered_assoc:byMain_Date:whole_ref MALLOC20 date:byDate:type MONEYTXFER plane2d:byMoneytxferLink:vertex_1 MALLOC59 ordered_assoc:byMain_Date:key 1 plane2d:byMoneytxferLink:vertex_2 MALLOC60 fundtxfer:byFundtxfer:amount 1000.00 }
+global MALLOC64
+array set MALLOC64 { date:byDate:id 2 date:byDate:abstime 1365648197 ordered_assoc:byMain_Date:whole_ref MALLOC20 date:byDate:type MONEYTXFER plane2d:byMoneytxferLink:vertex_1 MALLOC59 ordered_assoc:byMain_Date:key 2 plane2d:byMoneytxferLink:vertex_2 MALLOC61 fundtxfer:byFundtxfer:amount 1000.00 }

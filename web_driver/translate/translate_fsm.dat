@@ -1,0 +1,24 @@
+#Node section
+#Name process_proc
+BEGIN_STATE
+FIND_WORD translate_fsm::process_generic
+FIND_EXPLANATION translate_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_WORD FIND_EXPLANATION translate_fsm::eval_word_to_explanation translate_fsm::act_word_to_explanation
+FIND_EXPLANATION TERMINATE translate_fsm::eval_explanation_to_terminate translate_fsm::act_explanation_to_terminate
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = translate_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_WORD
+END_DEFAULT_STATE

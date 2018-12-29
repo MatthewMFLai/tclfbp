@@ -1,0 +1,7 @@
+freedict_fsm.dat
+freedict_fsm.tcl - state machine definition and code for the htmparse
+getFreedict.tcl - cmd script to test the freedict_fsm.tcl
+sanity.tcl - quick test to ensure everything is working; uses getFreedict.tcl
+freedict.tcl - i/f to expose freedict to the fbp component; uses freedict_fsm.dat and .tcl
+freedict_test.tcl - to test freedict.tcl
+url.template - used by freedict_test.tcl and also for the fbp component

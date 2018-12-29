@@ -1,0 +1,36 @@
+#Node section
+#Name process_proc
+BEGIN_STATE 
+FIND_WORD freedict_fsm::process_generic
+FIND_CATEGORY freedict_fsm::process_generic
+FIND_CATEGORY_DESC freedict_fsm::process_generic
+FIND_NUMBER freedict_fsm::process_generic
+FIND_DATA freedict_fsm::process_generic
+FIND_DIFFICULTY freedict_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_WORD FIND_CATEGORY freedict_fsm::eval_word_to_category freedict_fsm::act_set_word 
+FIND_CATEGORY FIND_CATEGORY_DESC freedict_fsm::eval_category freedict_fsm::act_append_category 
+FIND_CATEGORY_DESC FIND_CATEGORY_DESC null freedict_fsm::act_append_category 
+FIND_CATEGORY_DESC FIND_NUMBER freedict_fsm::eval_to_number null 
+FIND_NUMBER FIND_DATA freedict_fsm::eval_number_to_data freedict_fsm::act_set_number 
+FIND_DATA FIND_NUMBER freedict_fsm::eval_to_number freedict_fsm::act_set_data 
+FIND_DATA FIND_CATEGORY_DESC freedict_fsm::eval_category freedict_fsm::act_data_to_category
+FIND_DATA FIND_DATA null freedict_fsm::act_append_data 
+FIND_DATA FIND_DIFFICULTY freedict_fsm::eval_data_to_difficulty freedict_fsm::act_set_data
+FIND_DIFFICULTY TERMINATE freedict_fsm::eval_difficulty_to_terminate freedict_fsm::act_set_difficulty
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = freedict_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_WORD
+END_DEFAULT_STATE

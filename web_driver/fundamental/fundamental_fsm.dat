@@ -1,0 +1,28 @@
+#Node section
+#Name process_proc
+BEGIN_STATE
+FIND_QUOTE fundamental_fsm::process_generic
+FIND_KEY fundamental_fsm::process_generic
+FIND_VALUE fundamental_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_QUOTE FIND_KEY fundamental_fsm::eval_fundamental_quote_to_key null 
+FIND_KEY FIND_VALUE fundamental_fsm::eval_key_to_value fundamental_fsm::act_key_to_value
+FIND_VALUE FIND_KEY fundamental_fsm::eval_value_to_key fundamental_fsm::act_value_to_key
+FIND_KEY TERMINATE fundamental_fsm::eval_key_to_terminate null 
+
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = fundamental_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_QUOTE
+END_DEFAULT_STATE

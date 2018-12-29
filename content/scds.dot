@@ -1,0 +1,32 @@
+digraph G {
+graph[rankdir=LR];
+byText -> text;
+byTokens -> tree;
+byAllWords -> assoc;
+byAuthor -> assoc;
+byTitle -> assoc;
+byAuthor_Title -> assoc;
+byLocalMeaning -> assoc;
+byConnect -> graph;
+Word -> byText [label="init",fontsize=8];
+ContentMain -> byTitle [label="init_whole",fontsize=8];
+ContentMain -> byAuthor [label="init_whole",fontsize=8];
+Word -> byAllWords [label="init_part_new",fontsize=8];
+Connect -> byConnect [label="graph_init_edge",fontsize=8];
+Title -> byTitle [label="init_part_new",fontsize=8];
+Token -> byText [label="init",fontsize=8];
+Author -> byAuthor [label="init_part_new",fontsize=8];
+Title -> byAuthor_Title [label="init_part_new",fontsize=8];
+Connect -> byText [label="init",fontsize=8];
+Author -> byAuthor_Title [label="init_whole",fontsize=8];
+Title -> byText [label="init",fontsize=8];
+ContentMain -> byAllWords [label="init_whole",fontsize=8];
+Author -> byText [label="init",fontsize=8];
+ContextMean -> byText [label="init",fontsize=8];
+Title -> byLocalMeaning [label="init_whole",fontsize=8];
+Token -> byTokens [label="init_node",fontsize=8];
+Word -> byConnect [label="graph_init_vertex",fontsize=8];
+Connect -> byTokens [label="init_node",fontsize=8];
+Title -> byTokens [label="init_node",fontsize=8];
+ContextMean -> byLocalMeaning [label="init_part_new",fontsize=8];
+}

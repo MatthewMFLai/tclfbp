@@ -1,0 +1,28 @@
+#Node section
+#Name process_proc
+BEGIN_STATE 
+FIND_DIVIDEND dividend_fsm::process_generic
+FIND_KEY dividend_fsm::process_generic
+FIND_VALUE dividend_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_DIVIDEND FIND_KEY dividend_fsm::eval_dividend_to_key null 
+FIND_KEY FIND_VALUE dividend_fsm::eval_key dividend_fsm::act_key_to_value
+FIND_VALUE FIND_KEY dividend_fsm::eval_value dividend_fsm::act_value_to_key
+FIND_KEY TERMINATE dividend_fsm::eval_key_to_terminate null 
+
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = dividend_fsm::init
+END_INIT
+
+#Init section
+BEGIN_DEFAULT_STATE
+state = FIND_DIVIDEND
+END_DEFAULT_STATE

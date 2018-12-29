@@ -1,0 +1,94 @@
+namespace eval browse_fsm {
+
+variable gWordlist
+
+variable m_text
+variable m_param
+variable m_slash
+variable m_tag
+
+proc init {} {
+    variable gWordlist
+    
+    variable m_text
+    variable m_param
+    variable m_slash
+    variable m_tag
+
+    set gWordlist ""
+
+    set m_text ""
+    set m_param ""
+    set m_slash ""
+    set m_tag ""
+}
+
+proc process_generic {p_arg_array} {
+    upvar $p_arg_array arg_array
+    variable m_text
+    variable m_param
+    variable m_slash
+    variable m_tag
+
+    set m_text $arg_array(text)
+    set m_param $arg_array(param)
+    set m_slash $arg_array(slash)
+    set m_tag $arg_array(tag)
+    return
+}
+
+proc eval_word1_to_word2 {} {
+    variable m_text
+
+    if {[string first "see definition of" $m_text] > 0} {
+	return 1
+    }
+    return 0
+}
+
+proc eval_word2_to_terminate {} {
+    variable m_param
+
+    if {[string first {class="headword"} $m_param] == 0} {
+	return 1
+    }
+    return 0
+}
+
+proc act_word1_to_word2 {} {
+    variable gWordlist
+    variable m_param
+
+    # data looks like ...www.dictionary.com/browse/<word>"...
+   
+    set idx [string first "browse" $m_param]
+    set idx [string first "/" $m_param $idx]
+    incr idx
+    set idx2 [string first "\"" $m_param $idx]
+    incr idx2 -1
+    lappend gWordlist [string range $m_param $idx $idx2] 
+    return
+}
+
+proc act_word2_to_terminate {} {
+    variable gWordlist
+    variable m_text
+
+    lappend gWordlist [string trim $m_text]
+    return
+}
+
+proc Dump {} {
+    variable gWordlist
+
+    puts "meanings = $gWordlist"
+    return
+}
+proc Dump_Translate {p_tmpdata} {
+    variable gWordlist
+    upvar $p_tmpdata tmpdata
+
+    set tmpdata(meanings) $gWordlist
+    return
+}
+}

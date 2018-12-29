@@ -1,0 +1,43 @@
+BEGIN simple CONTENT_HOME
+  byText text
+END
+
+BEGIN complex PATTERN_HOME
+  byTokens tree
+  byConnect graph
+  byAllWords assoc
+  byAuthor assoc
+  byTitle assoc
+  byAuthor_Title assoc
+  byLocalMeaning assoc
+END
+
+BEGIN dynamic_type
+  ContentMain byAllWords init_whole
+  ContentMain byAuthor init_whole
+  ContentMain byTitle init_whole
+
+  Author byText init
+  Author byAuthor init_part_new
+  Author byAuthor_Title init_whole
+
+  Title byText init
+  Title byTitle init_part_new
+  Title byTokens init_node
+  Title byAuthor_Title init_part_new
+  Title byLocalMeaning init_whole
+
+  ContextMean byText init
+  ContextMean byLocalMeaning init_part_new 
+
+  Token byText init
+  Token byTokens init_node
+
+  Connect byText init
+  Connect byTokens init_node
+  Connect byConnect graph_init_edge
+
+  Word byText init
+  Word byConnect graph_init_vertex
+  Word byAllWords init_part_new
+END

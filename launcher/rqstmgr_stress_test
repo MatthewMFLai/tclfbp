@@ -1,0 +1,150 @@
+#!/bin/sh 
+# \
+exec tclsh $0 $@
+#exec tclsh "$0" ${1+"$@"}
+
+set server_accept_template {
+proc server_accept_xxx {cid addr port} {
+    global g_ports
+    global g_channels
+
+    fileevent $cid readable "server_handle $cid"
+    fconfigure $cid -buffering full 
+    fconfigure $cid -buffersize 1000000
+    set g_channels($cid) xxx 
+}}
+
+proc server_handle {cid} {
+    global g_channels
+    if {[gets $cid request] < 0} {
+        close $cid
+	unset g_channels($cid)
+    } else {
+        # Custom code to handle request
+        #
+	set p_ip [ip::assemble $request]
+        process $g_channels($cid) $p_ip 
+    }
+}
+
+proc server_init {cid addr port} {
+    fileevent $cid readable "server_handle_init $cid"
+    fconfigure $cid -buffering line
+}
+
+proc server_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	global main-loop
+        close $cid
+	set main-loop 1
+    } else {
+        # Custom code to handle initialization. 
+        #
+        initialize $request
+    }
+}
+
+proc initialize {request} {
+    global g_channels
+    global g_ports
+
+    switch -- [lindex $request 0] {
+        ENABLE {
+	    foreach outport [array names g_ports "OUT-*"] {
+    	    	set g_channels($outport) [socket localhost $g_ports($outport)]
+		fconfigure $g_channels($outport) -buffering line
+		puts "Initialized out port $outport"
+	    }
+	    # Pass the list of data to component for initialization.
+	    init [lrange $request 1 end] 
+	    ready_file $g_ports(INIT)
+        }
+        DISABLE {
+	    foreach outport [array names g_channels "OUT-*"] {
+    	    	set fd $g_channels($outport)
+		close $fd
+	    }
+	    shutdown
+	    ready_file $g_ports(INIT)
+        }
+	TEST {
+	    set outports [array names g_channels "OUT-*"]
+	    if {[info commands kicker] == "kicker"} {
+		kicker [lrange $request 1 end]
+	    } else {
+		puts "component $g_ports(PROGRAM) does not support kicker!"
+	    }
+	}
+	default {
+
+	}
+    }
+}
+
+proc server_send {p_ip portid} {
+    global g_channels
+    if {$portid != ""} {
+        catch {puts $g_channels($portid) [ip::serialize $p_ip]} rc
+	#catch {flush $g_channels($portid)} rc
+    }
+    ip::destroy $p_ip
+}
+
+proc get_server_id {} {
+    global g_ports
+    return $g_ports(INIT)
+}
+
+proc get_inports {} {
+    global g_ports
+    return [array names g_ports "IN-*"]
+}
+
+proc get_outports {} {
+    global g_ports
+    return [array names g_ports "OUT-*"]
+}
+
+proc ready_file {initport} {
+    # Put a marker file to let the launcher know that
+    # the sockets have been set up.
+    set fd [open data_$initport.ready w]
+    puts $fd ""
+    close $fd
+}
+
+variable g_ports
+variable g_channels
+array set g_channels {}
+
+# Passed in arguments should be of format
+# "IN-<port number> <os port number> OUT-<port number> <os port number>
+# eg.
+# IN-1 9000 IN-2 9001 OUT-1 9002 OUT-2 9003 INIT 9004
+set datalist $argv
+regsub -all {\\} $datalist "" datalist
+array set g_ports $datalist
+source $g_ports(PROGRAM)
+
+# Source in pattern classes to handle ip and memory allocation.
+source $env(COMP_HOME)/ip/malloc.tcl
+source $env(COMP_HOME)/ip/ip.tcl
+ip::init malloc
+
+foreach inport [array names g_ports "IN-*"] {
+    # Need to bind the in port number to the handler procedure.
+    # Create a handler procedure on the fly, with the name
+    # server_accept_<inport>
+    regsub -all "xxx" $server_accept_template $inport server_proc
+    eval $server_proc
+
+    socket -server server_accept_$inport $g_ports($inport)
+}
+
+socket -server server_init $g_ports(INIT)
+
+ready_file $g_ports(INIT)
+
+vwait main-loop
+
+exit 0

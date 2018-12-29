@@ -1,0 +1,6259 @@
+tag = hmstart
+slash = 
+param = 
+text = 
+
+tag = html
+slash = 
+param = xmlns="http://www.w3.org/1999/xhtml"
+      prefix="og: http://opengraphprotocol.org/schema/ fb: http://www.facebook.com/2010/fbml d: http://dictionary.com/2011/dml"
+text =     
+
+tag = head
+slash = 
+param = 
+text =         
+
+tag = meta
+slash = 
+param = http-equiv="Content-type" content="text/html; charset=utf-8" /
+text =         
+
+tag = base
+slash = 
+param = href="http://www.dictionary.com/"
+text =         
+
+tag = title
+slash = 
+param = 
+text = Listened | Define Listened at Dictionary.com
+
+tag = title
+slash = /
+param = 
+text =         
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var cookiesManager = function ()&ob;        'use strict';        var persistentValues = [];        return &ob;            getCookieValue : function(name) &ob;                var value = null,                    cookies = document.cookie,                    searchedCookie = cookies.indexOf(" " + name + "=");                // it's worth to check, if cookie is not first cookie                if (searchedCookie === -1) &ob;                    var checkFirstCookie = cookies.indexOf(name + "=");                    searchedCookie = checkFirstCookie == 0 ? 0 : -1;                &cb;                if (searchedCookie > -1) &ob;                    var startPositionOfValue = cookies.indexOf("=", searchedCookie) + 1,                        endPositionOfValue = cookies.indexOf(";", searchedCookie);                    if (endPositionOfValue === -1) &ob;                        endPositionOfValue = searchedCookie.length;                    &cb;                    value = cookies.substring(startPositionOfValue,endPositionOfValue);                &cb;                return value;            &cb;,            setCookie: function(name, value, hours, domain) &ob;                var expires = '',                    domain  = domain || UrlHelper.getCurrentDomain();                if(hours !== undefined) &ob;                    var now     = new Date(),                        time    = now.getTime();                    time += (3600 * hours) * 1000;                    now.setTime(time);                    expires = ';expires=' + now.toGMTString();                &cb;                document.cookie =                    name + '=' + value +                        expires +                        ';path=/' +                        ';domain=' + domain;            &cb;,            /*            * This method ensures, that everywhere on the page value of cookie will be the same.            * It's important in case of cookie, which value can change across the page.            */            getPersistentCookieValue: function(name) &ob;                if (typeof persistentValues[name] === 'undefined') &ob;                    persistentValues[name] = this.getCookieValue(name);                    // after reading value, cookie has to be removed                    this.setCookie(name, null, -1);                &cb;                return persistentValues[name];            &cb;        &cb;    &cb;();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     /*jslint browser: true */    var UrlHelper = function() &ob;        var COOKIE_DOMAIN_THESAURUS     = '.thesaurus.com';        var COOKIE_DOMAIN_DICTIONARY    = '.dictionary.com';        var COOKIE_DOMAIN_REFERENCE     = '.reference.com';        var domain = null;        var currentURL = null;        var spanidsUrl = null;        function getSpanidsUrl(bid, sid, currentDomain) &ob;            var url     = 'http://';            var source  = '';            if(currentDomain == COOKIE_DOMAIN_DICTIONARY) &ob;                url += 'spanids.reference.com/?';                source = 'd';            &cb; else if (currentDomain == COOKIE_DOMAIN_REFERENCE)&ob;                url += 'spanids.dictionary.com/?';                source = 'r';            &cb; else &ob;                url += 'spanids.dictionary.com/?';                source = 't';            &cb;            url += 'bid=' + bid + '&asid=' + sid + '&bidnew=1&asidnew=1&source=' + source + '&site=app';            return url;        &cb;        function getCurrentDomain() &ob;            var host = window.location.host;            var value = "";            if(host.indexOf(COOKIE_DOMAIN_THESAURUS) > -1) &ob;                value = COOKIE_DOMAIN_THESAURUS;            &cb; else if(host.indexOf(COOKIE_DOMAIN_DICTIONARY) > -1) &ob;                value = COOKIE_DOMAIN_DICTIONARY;            &cb; else if(host.indexOf(COOKIE_DOMAIN_REFERENCE) > -1)&ob;                value = COOKIE_DOMAIN_REFERENCE;            &cb;            return value;        &cb;        return &ob;            getCurrentDomain : function() &ob;                if(domain === null) &ob;                    domain = getCurrentDomain();                &cb;                return domain;            &cb;,            getCurrentDomainFromRequest : function() &ob;                return window.location.host;            &cb;,            getCurrentUrl : function() &ob;                if(currentURL === null) &ob;                    currentURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname;                &cb;                return currentURL;            &cb;,            getSpanidsUrl : function(bid, sid, domain) &ob;                if(spanidsUrl === null) &ob;                    spanidsUrl = getSpanidsUrl(bid, sid, domain);                &cb;                return spanidsUrl;            &cb;        &cb;    &cb;();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var BidSidGenerator = (function () &ob;        'use strict';        var COOKIE_NAME_BID = 'bid',            COOKIE_NAME_SID = 'sid',            COOKIE_NAME_SPANIDS = 'spanids',            COOKIE_BID_EXPIRES = 17520, //two years            COOKIE_SID_EXPIRES = 0.5, //half an hour            bidCookieValue = null,            sidCookieValue = null,            bidCookieCreated = false,            sidCookieCreated = false,            spanIdsCookiePresent = false;        // generates value of bid/sid cookie        function generateCookieValue() &ob;            var max = 999999,                min = 100000,                rand = Math.floor(Math.random() * (max - min)) + min,                time = new Date().getTime();            return rand + "-" + time;        &cb;        // sets value of spanIdsCookiePresent attribute to true and delete spanids cookie,        // if cookie exist and have appropriate value        function processSpanIdsCookie() &ob;            var spanIdsValue = cookiesManager.getCookieValue(COOKIE_NAME_SPANIDS);            if(spanIdsValue === '1') &ob;                cookiesManager.setCookie(COOKIE_NAME_SPANIDS, 0, -1); //removes spanids cookie                spanIdsCookiePresent = true;            &cb;            return false;        &cb;        return &ob;            init: function () &ob;                bidCookieValue  = cookiesManager.getCookieValue(COOKIE_NAME_BID);                sidCookieValue  = cookiesManager.getCookieValue(COOKIE_NAME_SID);                if (bidCookieValue == null || bidCookieValue.length == 0) &ob;                    bidCookieValue = generateCookieValue();                    cookiesManager.setCookie(COOKIE_NAME_BID, bidCookieValue, COOKIE_BID_EXPIRES);                    bidCookieCreated = true;                &cb;                if (sidCookieValue == null || sidCookieValue.length == 0) &ob;                    sidCookieValue = generateCookieValue();                    sidCookieCreated = true;                &cb;                processSpanIdsCookie();                cookiesManager.setCookie(COOKIE_NAME_SID, sidCookieValue, COOKIE_SID_EXPIRES);            &cb;,            propagateCookies: function() &ob;                if (bidCookieCreated || sidCookieCreated || spanIdsCookiePresent) &ob;                    var url = UrlHelper.getSpanidsUrl(bidCookieValue, sidCookieValue, UrlHelper.getCurrentDomain()),                        iFrame = '
+
+tag = iframe
+slash = 
+param = id="spanids" style="width:1px;height:1px;margin-left:-1;position:absolute;border:none;" src="' + url + '"
+text = 
+
+tag = iframe
+slash = /
+param = 
+text = ';                    document.write(iFrame);                &cb;            &cb;,            touchSidCookie: function () &ob;                sidCookieValue  = cookiesManager.getCookieValue(COOKIE_NAME_SID);                if (sidCookieValue == null || sidCookieValue.length == 0) &ob;                    sidCookieValue = generateCookieValue();                    sidCookieCreated = true;                &cb;                cookiesManager.setCookie(COOKIE_NAME_SID, sidCookieValue, COOKIE_SID_EXPIRES);            &cb;,            isSidCookieCreated: function () &ob;                return sidCookieCreated;            &cb;,            isSpanIdsCookiePresent: function () &ob;                return spanIdsCookiePresent;            &cb;        &cb;;    &cb;());    BidSidGenerator.init();    BidSidGenerator.propagateCookies();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     /*    This partial is used only on DCOM SERP. It's responsible for read "searchOrgQuery" cookie, which is set during redirection    for Index Divorce project and only then. After read this cookie, cookie is deleted, but value is still accessible via SOQR api.     */    var DARCI = DARCI || &ob;&cb;;    DARCI.OQR = (function()&ob;        'use strict';        var COOKIE_NAME = 'OriginalQuery',            value = -1;        function setValue() &ob;            value = cookiesManager.getCookieValue(COOKIE_NAME);            if (value !== null) &ob;                value = decodeURIComponent(value);            &cb;        &cb;        function deleteCookie() &ob;            cookiesManager.setCookie(COOKIE_NAME, null, -1);        &cb;        function init() &ob;            setValue();            deleteCookie();        &cb;        return &ob;            getValue: function() &ob;                if (value === -1) &ob;                    init();                &cb;                return value;            &cb;        &cb;    &cb;)();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     var DARCI = DARCI || &ob;&cb;,        u = "http://track.dictionary.com/main.gif?ev=ps&qr=%25%25QUERY%25%25&rf_qr=%25%25REFQUERY%25%25&pn=dic&st=dict&ab=&dc=desktop",        s = location.search.match(new RegExp('[\?\&]s=([^\&]*)(\&?)', 'i')),        ms = (typeof ms === 'undefined') ? cookiesManager.getCookieValue('mseg') || "" : ms,        /**         * Because this file is added only in case when CSL is enabled,         * we can be sure cookieManager will be available.         */        refQuery = cookiesManager.getPersistentCookieValue('ReferrerQuery'),        query, orgQuery;    DARCI.SearchBoxClickLinkId = '59wn52';            orgQuery = typeof DARCI.OQR !== 'undefined' ? DARCI.OQR.getValue() : null;        query =  orgQuery !== null ? orgQuery : "listened";        u = u.replace('%25%25QUERY%25%25', query);        if (s != null && s[1]) &ob;        if (s[1] == 't' || s[1] == 'ts' || s[1] == 'tn') &ob;            var ev = u.indexOf('ev=');            if (ev !== -1) &ob;                ev = ev + 3;                u = u.slice(0, ev) + 'c' + u.slice(ev) + '&cl=59wn52&sc=1';                u = u.replace('%25%25REFQUERY%25%25', refQuery);            &cb;        &cb;    &cb;    new Image().src = u + "&ms=" + ms + "&rf=" + encodeURIComponent(document.referrer) + "&cb=" + Math.floor((Math.random() * 899999999) + 100000000);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//static.sfdict.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//pixel.quantserve.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//partner.googleadservices.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//pubads.g.doubleclick.net" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//pagead2.googlesyndication.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//pr.ybp.yahoo.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//ads.yahoo.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//u.openx.net" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//ib.adnxs.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="//ox-d.bstk.servedbyopenx.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="https://ad.doubleclick.net" /
+text = 
+
+tag = script
+slash = 
+param = 
+text =     /**     * The module is responsible for setting/incrementing the value of sc cookie which contains "sessionCount,pageviewCount" values.     *     * init: sets the cookie with default values or increments; actions performed are based on condition whether the     *          sid cookie was created or already existed. The default expiration time for sc cookie is 0.5 year     *     * global BidSidGenerator     * global cookiesManager     * global UrlHelper     */    var SCCookie = function () &ob;        var COOKIE_NAME_SC = "sc",            DELIMITER = ",",            sessionCountValue = 0,            pageviewCountValue  = 0,            cookieExpiration  = 180 * 24; // half a year        /**         * Reads "sc" cookie and parses the value into appropriate variables.         * @returns &ob;boolean&cb; Was the cookie present?         */        function readCookie()        &ob;            var cookieValue = cookiesManager.getCookieValue(COOKIE_NAME_SC),                cookieValuesArray,                cookieSessionCountValue,                cookiePageviewCountValue;            if (cookieValue == null) &ob;                return false;            &cb;            cookieValuesArray = cookieValue.split(DELIMITER);            cookieSessionCountValue = parseInt(cookieValuesArray[0], 10);            cookiePageviewCountValue = parseInt(cookieValuesArray[1], 10);            if (cookieSessionCountValue > 0) &ob;                sessionCountValue = cookieSessionCountValue;            &cb;            if (cookiePageviewCountValue > 0) &ob;                pageviewCountValue = cookiePageviewCountValue;            &cb;            return true;        &cb;        /**         * Writes current variable values into the "sc" cookie.         */        function writeCookie()        &ob;            cookiesManager.setCookie(COOKIE_NAME_SC, sessionCountValue + DELIMITER + pageviewCountValue, cookieExpiration, UrlHelper.getCurrentDomainFromRequest());        &cb;        return &ob;            init: function () &ob;                if (typeof BidSidGenerator !== 'undefined') &ob;                    var cookiePresent = readCookie();                    if (!cookiePresent) &ob;                        sessionCountValue = 1;                        pageviewCountValue = 1;                    &cb; else &ob;                        if (BidSidGenerator.isSidCookieCreated() || BidSidGenerator.isSpanIdsCookiePresent()) &ob;                            pageviewCountValue = 1;                            sessionCountValue++;                        &cb; else &ob;                            pageviewCountValue++;                        &cb;                    &cb;                    writeCookie();                &cb;            &cb;,            getPageViewCount: function () &ob;                return pageviewCountValue;            &cb;,            getSessionCount: function () &ob;                return sessionCountValue;            &cb;        &cb;    &cb;();    SCCookie.init();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var src = null;                        var retina = window.devicePixelRatio > 1;            if(retina) &ob;                new Image().src = 'http://www.dictionary.com/drc/img/responsive/serp-highdpi-3146e.png';            &cb; else &ob;                new Image().src = 'http://www.dictionary.com/drc/img/responsive/serp-lowdpi-6c95e.png';            &cb;            
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = meta
+slash = 
+param = property="fb:admins" content="100000304287730;109125464873" /
+text = 
+
+tag = meta
+slash = 
+param = property="og:site_name" content="Dictionary.com" /
+text = 
+
+tag = meta
+slash = 
+param = property="og:image" content="http://static.sfdict.com/dcom/img/social_logo-b8e2f.png" /
+text = 
+
+tag = meta
+slash = 
+param = property="fb:app_id" content="127444090629600" /
+text = 
+
+tag = meta
+slash = 
+param = name="msvalidate.01" content="DF5542D7723770377E9ABFF59AC1DC97" /
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="imagetoolbar" content="no" /
+text = 
+
+tag = meta
+slash = 
+param = name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /
+text = 
+
+tag = meta
+slash = 
+param = name="keywords" content="listened, online dictionary, English dictionary, listened definition, define listened, definition of listened,
+        listened pronunciation, listened meaning, listened origin, listened examples" /
+text = 
+
+tag = meta
+slash = 
+param = property="og:title" content="the definition of listened" /
+text = 
+
+tag = meta
+slash = 
+param = name="description" content="Listened definition, to give attention with the ear; attend closely for the purpose of hearing; give ear. See more." /
+text = 
+
+tag = meta
+slash = 
+param = property="og:url" content="http://www.dictionary.com/browse/listened" /
+text = 
+
+tag = link
+slash = 
+param = rel="shortcut icon" href="http://static.sfdict.com/dcom/favicon.ico" /
+text = 
+
+tag = link
+slash = 
+param = rel="search" type="application/opensearchdescription+xml" href="http://www.dictionary.com/opensearch_desc.xml" title="Dictionary.com" /
+text = 
+
+tag = link
+slash = 
+param = rel="publisher" href="https://plus.google.com/117428481782081853923" /
+text = 
+
+tag = link
+slash = 
+param = rel="canonical" href="http://www.dictionary.com/browse/listened" /
+text = 
+
+tag = link
+slash = 
+param = rel="stylesheet" href="http://www.dictionary.com/drc/css/combinedSerp-d65d9.css" type="text/css" media="all" /
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var searchURL = "http://www.dictionary.com/browse/%40%40queryText%40%40?s=t";var pageName = "dic";
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var UserController = function() &ob;        var USER_STATUS_LOGGED_IN = 'L';        var USER_STATUS_NOT_LOGGED = 'N';        var USER_UNDER_13 = 'Y';        var USER_OVER_13 = 'N';        var COOKIE_NAME_SESS = 'sess';        var COOKIE_NAME_FAV = 'fav';        var COOKIE_NAME_SUPERSESS = 'ss';        var PREMIUM_STATUS_VALUE = 9;        var FAV_COOKIE_PREMIUM_STATUS_KEY = 0;        var FAV_COOKIE_FAV_COUNT_KEY = 1;        var FAV_COOKIE_USER_UNDER_13_KEY = 2;        var isLoggedIn = null;        var isPremium = null;        var isSuperSess = null;        var favNumber = null;        var isUnder13 = null;        var displayAds = null;        /**         * Checking if user is under 13 using value from fav cookie         * @returns &ob;boolean&cb;         */        function checkIsUserUnder13() &ob;            if (isLoggedIn !== true) &ob;                return false;            &cb;            var isUnder13 = USER_OVER_13;            var favCookieValue = cookiesManager.getCookieValue(COOKIE_NAME_FAV);            if(favCookieValue != null) &ob;                favCookieValue = decodeURIComponent(favCookieValue);                isUnder13 = favCookieValue.split('|')[FAV_COOKIE_USER_UNDER_13_KEY];            &cb;            return isUnder13 === USER_UNDER_13;        &cb;        function checkIsUserLoggedIn() &ob;            var userStatus = USER_STATUS_NOT_LOGGED;            var sessCookieValue = cookiesManager.getCookieValue(COOKIE_NAME_SESS);            if(sessCookieValue != null) &ob;                userStatus = sessCookieValue.charAt(0);            &cb;            return userStatus === USER_STATUS_LOGGED_IN;        &cb;        function checkIfUserIsPremium() &ob;            var premiumStatus = null;            var favCookieValue = cookiesManager.getCookieValue(COOKIE_NAME_FAV);            if(favCookieValue != null) &ob;                favCookieValue = decodeURIComponent(favCookieValue);                premiumStatus = favCookieValue.split('|')[FAV_COOKIE_PREMIUM_STATUS_KEY];            &cb;            return premiumStatus == PREMIUM_STATUS_VALUE;        &cb;        function getFavNum() &ob;            var count = 0;            var favCookieValue = cookiesManager.getCookieValue(COOKIE_NAME_FAV);            if(favCookieValue != null) &ob;                favCookieValue = decodeURIComponent(favCookieValue);                count = favCookieValue.split('|')[FAV_COOKIE_FAV_COUNT_KEY];            &cb;            return count;        &cb;        /**         * Checking super session cookie and calling ajax endpoint if cookie exists         * @returns &ob;boolean&cb;         */        function checkIfUserHasSuperSession() &ob;            // get ss cookie value            var superSessionCookieValue = cookiesManager.getCookieValue(COOKIE_NAME_SUPERSESS);            // if there is ss cookie then make ajax (cors) call to check ss cookie and get response on callback            if(superSessionCookieValue !== null)&ob;                var xhr = createCORSRequest('GET', 'http://app.dictionary.com/supersession/check/' + superSessionCookieValue);                if (xhr)&ob;                    // Define a callback function                    xhr.onload = function()&ob;                        var responseData = xhr.responseText;                        var data = JSON.parse(responseData);                        // process the response.                        // if response is null then do nothing                        if(data == null) &ob;                            // do nothing                        &cb; else &ob;                            // otherwise set the session cookie                            cookiesManager.setCookie("sess", data['sessionCookie']);                            // change header appropriately                            changeBodyClassNameForUser();                        &cb;                    &cb;;                    // Send request                    xhr.send();                &cb;                return true;            &cb; else &ob;                return false;            &cb;        &cb;        /**         * A method to create cors request         * @param method         * @param url         * @returns &ob;XMLHttpRequest&cb;         */        function createCORSRequest(method, url) &ob;            var xhr = new XMLHttpRequest();            if ("withCredentials" in xhr) &ob;                // Check if the XMLHttpRequest object has a "withCredentials" property.                // "withCredentials" only exists on XMLHTTPRequest2 objects.                xhr.open(method, url, true);            &cb; else if (typeof XDomainRequest != "undefined") &ob;                // Otherwise, check if XDomainRequest.                // XDomainRequest only exists in IE, and is IE's way of making CORS requests.                xhr = new XDomainRequest();                xhr.open(method, url);            &cb; else &ob;                // Otherwise, CORS is not supported by the browser.                xhr = null;            &cb;            return xhr;        &cb;        /**         * Checking user status and setting correct body className for user         */        function changeBodyClassNameForUser() &ob;            if(isPremium)                document.body.className+=' premium';            if(isLoggedIn)                document.body.className+=' loggedin';            if(isUnder13)                document.body.className+=' isUnder13';        &cb;        return &ob;            initHead: function() &ob;                isLoggedIn = checkIsUserLoggedIn();                isPremium = checkIfUserIsPremium();                isUnder13 = checkIsUserUnder13();            &cb;,            initBody: function()&ob;                // on initialization check user status and change append body class name accordingly                changeBodyClassNameForUser();                // if the user is not logged in then check to see if the user has an ss cookie                if(isLoggedIn !== true) &ob;                    // call function responsible for checking ss cookie and calling ajax endpoint                    isSuperSess = checkIfUserHasSuperSession();                &cb;            &cb;,            isLoggedIn : function() &ob;                return isLoggedIn;            &cb;,            isPremium : function() &ob;                return isPremium            &cb;,            getFavNumber : function() &ob;                if(favNumber === null) &ob;                    favNumber = getFavNum();                &cb;                return favNumber;            &cb;,            isUnder13 : function() &ob;                return isUnder13;            &cb;,            shouldDisplayAds: function() &ob;                if(displayAds === null) &ob;                    displayAds = !isPremium && !checkIsUserUnder13();                &cb;                return displayAds;            &cb;        &cb;    &cb;();    UserController.initHead();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     !function(o)&ob;function n(e)&ob;if(t[e])return t[e].exports;var i=t[e]=&ob;exports:&ob;&cb;,id:e,loaded:!1&cb;;return o[e].call(i.exports,i,i.exports,n),i.loaded=!0,i.exports&cb;var t=&ob;&cb;;return n.m=o,n.c=t,n.p="",n(0)&cb;(&ob;0:function(o,n,t)&ob;"use strict";function e(o)&ob;return o&&o.__esModule?o:&ob;"default":o&cb;&cb;function i()&ob;if(!j)&ob;j=!0,window._sp_=window._sp_||&ob;&cb;,H=window._sp_.config=window._sp_.config||&ob;&cb;,K=H.content_control_callback||window._sp_lock,N=H.account_id||H.client_id||window.sp_cid;for(var o in H)T[o]=H[o]&cb;&cb;function r(o,n)&ob;var t=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"",e=new Image;e.src="//"+E+"/cct?v="+encodeURIComponent(x)+"&ct=1&cid="+encodeURIComponent(N)+"&l="+encodeURIComponent(o.toString())+"&rc="+encodeURIComponent(n)+"&d0="+encodeURIComponent(t)&cb;function c(o,n,t,e)&ob;var i=arguments.length>4&&void 0!==arguments[4]?arguments[4]:&ob;&cb;,r=arguments.length>5&&void 0!==arguments[5]&&arguments[5],d=function()&ob;return c(o,n,t,e,i,!0)&cb;,a=r?t:d;o(n,a,e,i)&cb;function d(o,n,t,e)&ob;var i=document.createElement("script");i.src=o,i.onload=function()&ob;try&ob;if(window._sp_&&window._sp_.bootstrap===p&&window.spBootstrap===u&&window._sp_.config===H)&ob;for(var o in T)if(T[o]!==H[o])&ob;m&&m();break&cb;&cb;else m&&m()&cb;catch(n)&ob;m&&m()&cb;e.onLoad&&e.onLoad()&cb;,i.onerror=function()&ob;function i(o,n)&ob;t(o,n),e.onError&&e.onError(n)&cb;function r(o)&ob;return c.indexOf(o)>-1&cb;var c=(navigator.userAgent||navigator.vendor||window.opera).toLowerCase();r("mobi")||r("ipad")||r("android")||r("iphone")?i(R):r("exabot")?i(D):r("bingbot")||r("bingpreview")?i(k):r("googlebot")||r("adsbot-google")||r("mediapartners-google")?i(L):r("googleweblight")?i(I):window.location.host===g?i(S):window.location.host.indexOf(h)>-1?i(M):r("msie 10")||r("msie 9")||r("msie 8")?i(U):a(o,n,i)&cb;,document.head.appendChild(i),document.querySelector('script[src="'+o+'"]')||window.location.host.indexOf(h)!==-1||n(O,o)&cb;function a(o,n,t)&ob;(0,v["default"])(o,function(e,i,r,c)&ob;var d=e||i?n:t;d(c,o+"::"+r)&cb;)&cb;function s(o,n)&ob;return A?void w(B+"::"+o,n):(r(y,o,n),void(K&&setTimeout(function()&ob;K()&cb;,250)))&cb;function w(o,n)&ob;r(C,o,n)&cb;function u(o,n)&ob;i(),n&&(K=window._sp_lock=n),c(d,o,s,w)&cb;function p(o,n)&ob;i(),c(d,o,s,w,n)&cb;var f=t(333),l=e(f),_=t(79),v=e(_),g=["w","e","b","c","a","c","h","e",".","g","o","o","g","l","e","u","s","e","r","c","o","n","t","e","n","t",".","c","o","m"].join(""),h=["o","p","t","i","m","i","z","e","l","y","p","r","e","v","i","e","w",".","c","o","m"].join(""),m=void 0;try&ob;m=window._sp_&&window._sp_.config&&window._sp_.config.spid_control_callback&cb;catch(b)&ob;&cb;var E=l["default"].be.join(""),x=l["default"].bv,C=0,y=1,O="s",R="m",L="g",S="gw",I="gl",U="i",k="b",D="e",B="n",M="o",T=&ob;&cb;,j=!1,A=!1,H=void 0,K=void 0,N=void 0;window.addEventListener("beforeunload",function()&ob;A=!0&cb;);try&ob;window._sp_=window._sp_||&ob;&cb;,window._sp_.bootstrap=p,window.spBootstrap=u,window._sp_.bootstrap===p&&window.spBootstrap===u||m&&m()&cb;catch(b)&ob;m&&m()&cb;&cb;,79:function(o,n)&ob;"use strict";function t(o,n)&ob;function t()&ob;try&ob;return window.performance.now()&cb;catch(o)&ob;return Date.now()&cb;&cb;var a=document.createElement("a");if(a.href=o,"https:"===window.location.protocol&&a.protocol!==window.location.protocol)return void n(!1,!1,a.protocol,d);var s=new XMLHttpRequest;try&ob;s.open("GET",o)&cb;catch(w)&ob;return void n(!0,!1,w.toString(),r)&cb;var u=void 0,p=void 0;s.onloadstart=function()&ob;u=t()&cb;,s.onreadystatechange=function()&ob;if(4===this.readyState)&ob;p=t()-u;var o=0===this.status,r="2"===this.status.toString()[0],c=r?i:e;return void n(o,r,this.status+"::"+p,c)&cb;&cb;;try&ob;s.send()&cb;catch(w)&ob;return void n(!0,!1,w.toString(),c)&cb;&cb;Object.defineProperty(n,"__esModule",&ob;value:!0&cb;),n["default"]=t;var e=n.NETWORK_FAILURE="n",i=n.XHR_SUCCEEDED="nx",r=n.OPEN_BLOCKED="xo",c=n.SEND_BLOCKED="xs",d=n.PROTOCOL_MISMATCH="p"&cb;,333:function(o,n)&ob;"use strict";o.exports=&ob;be:["w","w","w",".","c","r","a","s","h","f","o","o","t","w","o","r","k",".","c","o","m"],bv:"1.7.444"&cb;&cb;&cb;);//# sourceMappingURL=https://s3.amazonaws.com/d3jlsadfjkuern/1.7.444/Ym9vdHN0cmFwLmpz.map    (function () &ob;        window.DARCI = window.DARCI || &ob;&cb;;window.DARCI.gptLoadedCallback = function () &ob;window.gptLoaded = true;resetAndLoadGPTRecovery();&cb;;function resetAndLoadGPTRecovery() &ob;if (gptLoaded && isBlocking) &ob;resetGpt();window._sp_.dfp.loadGPT();&cb;&cb;function resetGpt () &ob;googletag.cmd.push(function () &ob;googletag.destroySlots();&cb;);if(typeof spots_deferred !== 'undefined') &ob;for(var i in spots_deferred) spots_deferred[i].code = spots_deferred[i].code_sp;&cb;window.googletag = &ob;&cb;;window.googletag.cmd = [];window.googletag.slots = &ob;&cb;;googletag.cmd.push(function () &ob;googletag.slots["dcom-serp-lb-728x90"] = googletag.defineSlot("/23219321/iac.dict.dictry.dw/dic/short-serp_0_y", [[728,90],[970,90],[970,250]], "dcom-serp-lb-728x90").addService(googletag.pubads()).setTargeting("pos", "top").setTargeting("pos2", "728x90_1").setTargeting("tx1", "results").setTargeting("tx2", "short-serp_0_y").setTargeting("ptype", "content").setTargeting("spe", "y");googletag.slots["dcom-serp-a-top-300x250"] = googletag.defineSlot("/23219321/iac.dict.dictry.dw/dic/short-serp_0_y", [[300,250],[300,600]], "dcom-serp-a-top-300x250").addService(googletag.pubads()).setTargeting("pos", "top").setTargeting("pos2", "300x250_1").setTargeting("tx1", "results").setTargeting("tx2", "short-serp_0_y").setTargeting("ptype", "content").setTargeting("spe", "y");googletag.slots["dcom-serp-a-mid-300x250"] = googletag.defineSlot("/23219321/iac.dict.dictry.dw/dic/short-serp_0_y/sticky", [300,250], "dcom-serp-a-mid-300x250").addService(googletag.pubads()).setTargeting("pos", "mid").setTargeting("pos2", "300x250_2").setTargeting("tx1", "results").setTargeting("tx2", "short-serp_0_y").setTargeting("ptype", "content").setTargeting("spe", "y");googletag.slots["dcom-serp-bottom-lb-728x90"] = googletag.defineSlot("/23219321/iac.dict.dictry.dw/dic/short-serp_0_y", [728,90], "dcom-serp-bottom-lb-728x90").addService(googletag.pubads()).setTargeting("pos", "bot").setTargeting("pos2", "728x90_2").setTargeting("tx1", "results").setTargeting("tx2", "short-serp_0_y").setTargeting("ptype", "content").setTargeting("spe", "y");adStatus.renderedAdsCount = 0;adStatus.spotsCount = 4;googletag.pubads().addEventListener('slotRenderEnded', handleSlotRender);googletag.pubads().enableSingleRequest();googletag.enableServices();for(var i = 0; i < adStatus.displayedSpots.length; i++)    googletag.display(adStatus.displayedSpots[i]);&cb;);&cb;        window._sp_ = window._sp_ || &ob;&cb;;window._sp_.config = window._sp_.config || &ob;&cb;;window._sp_.config.account_id = 294;window._sp_.config.publisher_base = '//spa.dictionary.com/proxy';window._sp_.config.gpt_auto_load = false;window._sp_.config.enable_rid = true;window._sp_.config.content_control_callback = function () &ob;    window.location.href = "http://www.dictionary.com/why-am-i-seeing-ads";&cb;;window._sp_.config.enable_vid= true;window._sp_.config.vid_control_callback = function() &ob;    console.log("VID Triggered!");&cb;;document.addEventListener('sp.blocking', function (e) &ob;isBlocking = true;resetAndLoadGPTRecovery();&cb;);        window._sp_.bootstrap('http://www.dictionary.com/js/sp.js');    &cb;)();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = var get_request_identifier = (function () &ob; return Math.random().toString(36).substr(2) &cb;()),    get_modified_page_url = (function () &ob;        sep = window.location.search.length >= 0 && window.location.href.indexOf("?") !== -1 ? "&" : "?";        return window.location.href + sep + "rquid=" + get_request_identifier    &cb;)();var ad_config = &ob;    pageTargeting: &ob;        ref: window.document.referrer.search("dictionary.com|thesaurus.com|reference.com") > -1 ? "organic" : "direct",        lang: window.navigator.userLanguage || window.navigator.language,        rpv: Math.floor((Math.random() * 100) + 1).toString(),        dc_ref: encodeURIComponent(get_modified_page_url),        loc: 'US',        ld: '0',        dow: new Date().getDay().toString(),        page_url: get_modified_page_url,        rquid: get_request_identifier,    &cb;&cb;;ad_config.pageTargeting.tx1 = 'results';ad_config.pageTargeting.tx2 = 'short-serp_0_n';ad_config.pageTargeting.ptype = 'content';ad_config.pageTargeting.spe = 'n';ad_config.pageTargeting.pv = typeof SCCookie !== 'undefined' ? SCCookie.getPageViewCount() + '' : '';ad_config.slots = [&ob;"placement":"dcom-serp-lb-728x90","code":"\/23219321\/iac.dict.dictry.dw\/dic\/short-serp_0_n","ad_uuid":"728x90_top","targeting":&ob;"pos":"top","pos2":"728x90_1"&cb;,"sizes":[[728,90],[970,90],[970,250]]&cb;,&ob;"placement":"dcom-serp-a-top-300x250","code":"\/23219321\/iac.dict.dictry.dw\/dic\/short-serp_0_n","ad_uuid":"300x250_top","targeting":&ob;"pos":"top","pos2":"300x250_1"&cb;,"sizes":[[300,250],[300,600]]&cb;,&ob;"placement":"dcom-serp-a-mid-300x250","code":"\/23219321\/iac.dict.dictry.dw\/dic\/short-serp_0_n\/sticky","ad_uuid":"300x250_mid","targeting":&ob;"pos":"mid","pos2":"300x250_2"&cb;,"sizes":[[300,250]]&cb;,&ob;"placement":"dcom-serp-bottom-lb-728x90","code":"\/23219321\/iac.dict.dictry.dw\/dic\/short-serp_0_n","ad_uuid":"728x90_bot","targeting":&ob;"pos":"bot","pos2":"728x90_2"&cb;,"sizes":[[728,90]]&cb;];
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = var adStatus = &ob;    spotsCount: 4,    renderedSpots: [],    renderedSpotsCount: 0,    displayedSpots: [],    set: function(name, size) &ob;        this.renderedSpots[name] = &ob;            size: size        &cb;;    &cb;,    get: function(name) &ob;        return this.renderedSpots[name];    &cb;,    getSlotKey: function(slot) &ob;        var slotKey;        for (slotKey in googletag.slots) &ob;            if(googletag.slots[slotKey] == slot) &ob;                break;            &cb;        &cb;        return slotKey;    &cb;,    adsLoaded: function() &ob;        return this.renderedSpotsCount >= this.spotsCount;    &cb;&cb;;adStatus.dispatchLoadedEvent = function () &ob;    if(adStatus.adsLoaded()) &ob;        if (document.createEvent) &ob;            var event = new CustomEvent('gptAdsLoaded');            document.dispatchEvent(event);        &cb; else &ob;            var event = document.createEventObject();            event.eventType = "gptAdsLoaded";            document.fireEvent("ongptAdsLoaded", event);        &cb;    &cb;&cb;;var handleSlotRender = function(data) &ob;    var key = adStatus.getSlotKey(data.slot);    adStatus.set(key, data.size);    adStatus.renderedSpotsCount += 1;        adStatus.dispatchLoadedEvent();    &cb;;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var googletag = googletag || &ob;&cb;;    googletag.cmd = googletag.cmd || [];    googletag.slots = googletag.slots || &ob;&cb;;    var iacjs = iacjs || &ob;&cb;;    iacjs.que = iacjs.que || [];    var gptLoaded = false, isBlocking = false;    CONTAINER_TIMEOUT = 1500;    iacjs.asynLoader = function(scriptInfo, callback) &ob;        var p, tag = document.createElement("script"),            node = document.getElementsByTagName("script")[0];        tag.async = true;        tag.onload = tag.onerror = function() &ob;            typeof callback === 'function' && callback()        &cb;;        for (p in scriptInfo) &ob;            if (scriptInfo.hasOwnProperty(p)) &ob;                tag[p] = scriptInfo[p];            &cb;        &cb;        node.parentNode.insertBefore(tag, node);    &cb;;    function initAdServer() &ob;        if (iacjs.initAdserverSet) return;        iacjs.asynLoader(&ob;            src: "//www.googletagservices.com/tag/js/gpt.js"        &cb;, function () &ob;            if (typeof window.DARCI !== 'undefined' && typeof window.DARCI.gptLoadedCallback === 'function')                window.DARCI.gptLoadedCallback();        &cb;);        iacjs.initAdserverSet = true;    &cb;    iacjs.asynLoader(&ob;        src: "http://www.iacpublish.com/iacpublisher.min-dictionary.js"    &cb;);    iacjs.que.push(function() &ob;        iacjs.pageTargeting = ad_config.pageTargeting;                iacjs.addAdUnits(ad_config.slots);        iacjs.requestBids(&ob;            bidsBackHandler: function() &ob;                window.initAdServer();            &cb;        &cb;);            &cb;);    (function() &ob;        var slots = ad_config.slots || [];        var outofpageslots = ad_config.outofpageslots || []; //for virool spots on mweb        var index, pageTarget;        var pageTargeting = ad_config.pageTargeting || &ob;&cb;;        iacjs.setSlotTargeting = function (slot, googletag) &ob;         for (var target in slot.targeting) &ob;             if (slot.targeting.hasOwnProperty(target)) &ob;                 googletag.slots[slot.placement].setTargeting(target, slot.targeting[target])             &cb;         &cb;       &cb;;        var defineSlot = function(slot) &ob;            if (typeof slot === 'object') &ob;                (function(slot) &ob;                    googletag.cmd.push(function() &ob;                        googletag.slots[slot.placement] = googletag.defineSlot(slot.code, slot.sizes, slot.placement).addService(googletag.pubads());                        for (target in slot.targeting) &ob;                            if (slot.targeting.hasOwnProperty(target)) &ob;                                googletag.slots[slot.placement].setTargeting(target, slot.targeting[target])                            &cb;                        &cb;                        if (typeof(slot.sizeMapping) === 'function') &ob;                            googletag.slots[slot.placement].defineSizeMapping(slot.sizeMapping(googletag))                        &cb;                    &cb;)                &cb;)(slot)            &cb; else &ob;                log.error('slot not defined', slot)            &cb;        &cb;;        var defineOutOfPageSlot = function (slot) &ob;         if (typeof slot === 'object') &ob;             (function (slot) &ob;                 googletag.cmd.push(function () &ob;                     googletag.slots[slot.placement] = googletag.defineOutOfPageSlot(slot.code, slot.placement).addService(googletag.pubads());                     iacjs.setSlotTargeting(slot, googletag);                 &cb;)               &cb;)(slot);         &cb;       &cb;;        var setRefreshPageTargeting = function(page_level_targeting) &ob;            var pageTargeting = page_level_targeting || &ob;&cb;;            for (pageTarget in pageTargeting) &ob;                if (pageTargeting.hasOwnProperty(pageTarget)) &ob;                    (function(key, value) &ob;                        googletag.cmd.push(function() &ob;                            googletag.pubads().setTargeting(key, value)                        &cb;)                    &cb;)(pageTarget, pageTargeting[pageTarget])                &cb;            &cb;        &cb;        window.defineSlot = defineSlot;        window.setRefreshPageTargeting = setRefreshPageTargeting;                for (index = 0; index < slots.length; index++) &ob;            defineSlot(slots[index]);        &cb;                        setRefreshPageTargeting(pageTargeting);        googletag.cmd.push(function() &ob;            googletag.pubads().enableSingleRequest();            googletag.enableServices();        &cb;);                googletag.cmd.push(function() &ob;            iacjs.que.push(function() &ob;                iacjs.setTargetingForGPTAsync();            &cb;);        &cb;);                iacjs.timeout = window.setTimeout(initAdServer, CONTAINER_TIMEOUT);    &cb;)();    iacjs.createNewSlot = function(slot) &ob;        if (typeof slot === "object" && typeof slot.placement === "string") &ob;            adStatus.displayedSpots.push(slot.placement);            googletag.cmd.push(function() &ob;                defineSlot(slot);                if (typeof iacjs.libLoaded !== "undefined") &ob;                    iacjs.que.push(function() &ob;                        iacjs.addAdUnits(slot);                        iacjs.requestBids(&ob;                            adUnitCodes: [slot.placement],                            bidsBackHandler: function() &ob;                                iacjs.setTargetingForGPTAsync(&ob;                                    adUnitCodes: [slot.placement]                                &cb;);                                googletag.display(slot.placement);                            &cb;                        &cb;);                    &cb;);                &cb; else &ob;                    iacjs.setTargetingForGPTAsync(&ob;                        adUnitCodes: [slot.placement]                    &cb;);                    googletag.display(slot.placement);                &cb;            &cb;);        &cb;    &cb;;    iacjs.refreshAd = function(valid_ad_units, slots) &ob;        if (typeof iacjs.libLoaded !== "undefined") &ob;            iacjs.que.push(function() &ob;                if (valid_ad_units.length > 0) &ob;                    iacjs.requestBids(&ob;                        timeout: CONTAINER_TIMEOUT,                        adUnitCodes: valid_ad_units,                        bidsBackHandler: function() &ob;                            iacjs.setTargetingForGPTAsync(&ob;                                adUnitCodes: valid_ad_units                            &cb;);                            googletag.pubads().refresh(slots)                        &cb;                    &cb;);                &cb; else &ob;                    iacjs.requestBids(&ob;                        timeout: CONTAINER_TIMEOUT,                        bidsBackHandler: function() &ob;                            iacjs.setTargetingForGPTAsync();                            googletag.pubads().refresh()                        &cb;                    &cb;);                &cb;            &cb;);        &cb; else &ob;            if (valid_ad_units.length > 0) &ob;                googletag.pubads().refresh(slots)            &cb; else &ob;                googletag.pubads().refresh()            &cb;        &cb;    &cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = var spots_deferred = [];
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     googletag.cmd.push(function () &ob;                googletag.pubads().enableSingleRequest();                        googletag.pubads().enableAsyncRendering();                        googletag.pubads().addEventListener('slotRenderEnded', handleSlotRender);        googletag.enableServices();    &cb;);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type='text/javascript'
+text =     window.dataLayer = window.dataLayer || [];    dataLayer.push(&ob;        'event': 'pageview',        'device': 'Desktop',        'pageName': 'dic',        'LDid': '0',        'mseg': cookiesManager.getCookieValue("mseg"),        'sessionId': cookiesManager.getCookieValue("sid"),        'browserId': cookiesManager.getCookieValue("bid")    &cb;);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =      var _qevents = _qevents || [];  (function() &ob;   var elem = document.createElement('script');   elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";   elem.async = true;   elem.type = "text/javascript";   var scpt = document.getElementsByTagName('script')[0];   scpt.parentNode.insertBefore(elem, scpt);    &cb;)();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = if(typeof UserController === "undefined" || !UserController.isUnder13()) &ob;    var _comscore = _comscore || [];    _comscore.push(&ob;c1: "2", c2: "6034776", c3: "", c4: (new String(window.location)).replace(/\?.*$/, "")&cb;);    (function () &ob;        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];        s.async = true;        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";        el.parentNode.insertBefore(s, el);    &cb;)();&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = 
+param = 
+text =     
+
+tag = img
+slash = 
+param = src="http://b.scorecardresearch.com/p?c1=2&c2=6034776&cv=2.0&cj=1" /
+text = 
+
+tag = noscript
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="application/ld+json"
+text = &ob;    "@context": "http://schema.org",    "@type": "WebPage",    "@id": "http://www.dictionary.com/browse/listened",    "potentialAction":    &ob; "@type": "ViewAction", "target": "android-app://com.dictionary/http/www.dictionary.com/browse/listened" &cb;&cb;
+
+tag = script
+slash = /
+param = 
+text =     
+
+tag = head
+slash = /
+param = 
+text =     
+
+tag = body
+slash = 
+param = 
+text =             
+
+tag = script
+slash = 
+param = 
+text =     document.body.className += ' js-on';
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = 
+param = 
+text =     
+
+tag = iframe
+slash = 
+param = src="//www.googletagmanager.com/ns.html?id=GTM-TXC5GP" height="0" width="0" style="display:none;visibility:hidden"
+text =     
+
+tag = iframe
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     (function(w,d,s,l,i)&ob;w[l]=w[l]||[];w[l].push(&ob;'gtm.start':        new Date().getTime(),event:'gtm.js'&cb;);var f=d.getElementsByTagName(s)[0],        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;        j.src= '//www.googletagmanager.com/gtm.js?id='+i+dl;        f.parentNode.insertBefore(j, f);    &cb;)(window,document,'script','dataLayer','GTM-TXC5GP');
+
+tag = script
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = id="fb-root"
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     UserController.initBody();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =         /**     * Redirects user to address from parameter     *     * @param url     * @returns &ob;boolean&cb;     */    function submitForm(url) &ob;        var queryText = document.getElementById('q').value || 'search';        queryText = encodeURIComponent(queryText);        url = url.replace('%40%40queryText%40%40', queryText);                location.href = url;        return false;    &cb;    function prepareSearchBox(el) &ob;        var dataTerm = el.getAttribute('data-term');        var value = el.value;        if (!(/(iPad|iPhone|iPod)/g.test(navigator.userAgent))) &ob;            el.focus();            if (dataTerm == value) &ob;                el.select();            &cb;        &cb;    &cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = 
+param = class="ham-nav dictionary-nav"
+text =     
+
+tag = ul
+slash = 
+param = 
+text =         
+
+tag = li
+slash = 
+param = class="ham-main-menu"
+text = 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/" data-linkid="lxabec" 
+text = Dictionary.com
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =         
+
+tag = li
+slash = 
+param = 
+text =             
+
+tag = ul
+slash = 
+param = class="ham-submenu"
+text =                 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/wordoftheday/" data-linkid="1498ik" 
+text = Word 
+
+tag = i
+slash = 
+param = class="wotd-italic"
+text = of the
+
+tag = i
+slash = /
+param = 
+text =   Day
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://translate.reference.com/" data-linkid="au3zd1" 
+text = Translate
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/fun" data-linkid="yp2k17" 
+text = Games
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/" data-linkid="t6ehki" 
+text = Blog
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = ul
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = 
+param = class="ham-main-menu"
+text = 
+
+tag = a
+slash = 
+param = href="http://www.thesaurus.com/" data-linkid="c1drjk" 
+text = Thesaurus.com
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="ham-main-menu"
+text =             
+
+tag = a
+slash = 
+param = href="http://app.dictionary.com/favorites"
+text = Favorites                
+
+tag = span
+slash = 
+param = class="dicticon-header-favourites-star"
+text = 
+
+tag = span
+slash = /
+param = 
+text =                 
+
+tag = span
+slash = 
+param = class="ham-favourites-number"
+text = 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =     
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = /
+param = 
+text = 
+
+tag = button
+slash = 
+param = class="dicticon-hamburger-menu slide-element"
+text = 
+
+tag = button
+slash = /
+param = 
+text = 
+
+tag = header
+slash = 
+param = class="js-header dictionary-header"
+text =     
+
+tag = div
+slash = 
+param = class="header-nav-row"
+text =         
+
+tag = ul
+slash = 
+param = class="header-main-nav"
+text =                             
+
+tag = li
+slash = 
+param = class="nav-active"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/" data-linkid="tqks0v" 
+text = Dictionary.com
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.thesaurus.com/" data-linkid="qxnxzj" 
+text = Thesaurus.com
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = ul
+slash = /
+param = 
+text =         
+
+tag = ul
+slash = 
+param = class="header-login-nav"
+text =                             
+
+tag = li
+slash = 
+param = class="user-logged-in account"
+text = 
+
+tag = a
+slash = 
+param = href="http://app.dictionary.com/users/settings"
+text = My Account
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="user-logged-in"
+text = 
+
+tag = a
+slash = 
+param = href="http://app.dictionary.com/logout?logindest=http%3A%2F%2Fwww.dictionary.com%2Fbrowse%2Flistened"
+text = Log Out
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="user-logged-out"
+text = 
+
+tag = a
+slash = 
+param = rel="nofollow" href="http://app.dictionary.com/login?source=header_core&amp;logindest=http%3A%2F%2Fwww.dictionary.com%2Fbrowse%2Flistened"
+text = Log In
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = ul
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="header-social-links"
+text =             
+
+tag = span
+slash = 
+param = class="dicticon-header-social-facebook"
+text = 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="dicticon-header-social-twitter"
+text = 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="dicticon-header-social-instagram"
+text = 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="dicticon-header-social-googleplus"
+text = 
+
+tag = span
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/apps"  class="header-apps-links" data-linkid="dbvvdc" 
+text =         
+
+tag = span
+slash = 
+param = class="dicticon-header-app-android"
+text = 
+
+tag = span
+slash = /
+param = 
+text =         
+
+tag = span
+slash = 
+param = class="dicticon-header-app-ios"
+text = 
+
+tag = span
+slash = /
+param = 
+text =         Try Our Apps        
+
+tag = a
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="header-search-row"
+text =         
+
+tag = div
+slash = 
+param = class="header-wrapper-row"
+text =             
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/" data-linkid="yg487x" 
+text =             
+
+tag = img
+slash = 
+param = src="http://www.dictionary.com/drc/img/responsive/dcom-logo-8f31c.png" alt='Dictionary.com'/
+text =             
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = form
+slash = 
+param = id="main_search" class="header-search-form" action="http://www.dictionary.com/dic"
+text =                 
+
+tag = div
+slash = 
+param = class="header-search-wrapper"
+text =                     
+
+tag = div
+slash = 
+param = class="search-filter-nav"
+text =                         
+
+tag = span
+slash = 
+param = class="dicticon-filter"
+text = 
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="filter-item-active" data-filter-action="http://www.dictionary.com/browse/%40%40queryText%40%40"
+text = definitions
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = input
+slash = 
+param = type="text"
+                           value="listened"
+                           autoComplete="off"
+                           autocapitalize="off"
+                           autocorrect="off"
+                           name="q"
+                           class="search-input transparent-text"
+                           id="q"
+                           data-term="listened"
+text =                     
+
+tag = script
+slash = 
+param = 
+text =     (function() &ob;        var searchInput = document.getElementById('q');        if (searchInput !== null) &ob;            if (DARCI.OQR.getValue() !== null) &ob;                searchInput.value = DARCI.OQR.getValue();                searchInput.select();            &cb;            searchInput.className = searchInput.className.replace('transparent-text', '');        &cb;    &cb;)();
+
+tag = script
+slash = /
+param = 
+text =                     
+
+tag = input
+slash = 
+param = type="hidden" name="s" value="t"/
+text =                     
+
+tag = button
+slash = 
+param = type="submit" id="search-submit" class="dicticon-search-submit" value=""
+text = 
+
+tag = button
+slash = /
+param = 
+text =                     
+
+tag = ul
+slash = 
+param = class="filter-list filter-hidden"
+text =                                                     
+
+tag = li
+slash = 
+param = class="filter-hidden" data-filter="http://www.dictionary.com/browse/%40%40queryText%40%40"
+text = definitions
+
+tag = li
+slash = /
+param = 
+text =                                                     
+
+tag = li
+slash = 
+param = class="" data-filter="http://www.thesaurus.com/browse/%40%40queryText%40%40"
+text = synonyms
+
+tag = li
+slash = /
+param = 
+text =                                                     
+
+tag = li
+slash = 
+param = class="" data-filter="http://translate.reference.com/?query=%40%40queryText%40%40"
+text = translations
+
+tag = li
+slash = /
+param = 
+text =                                             
+
+tag = ul
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = form
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="social-follow-module"
+text =     
+
+tag = ul
+slash = 
+param = class="social-follow-btns"
+text =         
+
+tag = li
+slash = 
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="fb-like-wrapper"
+text =                 
+
+tag = div
+slash = 
+param = class="fb-like" data-href="https://www.facebook.com/dictionarycom" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =         
+
+tag = li
+slash = 
+param = 
+text =             
+
+tag = a
+slash = 
+param = class="twitter-follow-button" href="https://twitter.com/dictionarycom" data-show-screen-name="false"
+text = Follow @dictionarycom
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =         
+
+tag = li
+slash = 
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="ig-follow" data-id="17031a6e93" data-handle="igfbdotcom" data-count="true" data-size="medium" data-username="false"
+text = 
+
+tag = span
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =         
+
+tag = li
+slash = 
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="g-follow" data-annotation="bubble" data-height="20" data-href="https://plus.google.com/117428481782081853923" data-rel="publisher"
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = li
+slash = /
+param = 
+text =     
+
+tag = ul
+slash = /
+param = 
+text =     
+
+tag = p
+slash = 
+param = 
+text = follow Dictionary.com
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = header
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     var DARCI = DARCI || &ob;&cb;;    DARCI.searchedTerm = typeof DARCI.OQR !== 'undefined' ? DARCI.OQR.getValue() : null;    DARCI.searchedTerm = DARCI.searchedTerm !== null ? DARCI.searchedTerm : 'listened';    document.getElementById('main_search').onsubmit = function(e, url) &ob;        // if url parameter wasn't passed submitFrom() is called with default parameter, which is searchURL        // searchURL is defined and added as a global js option in controller        return submitForm(url || searchURL);    &cb;    prepareSearchBox(document.getElementById('q'));    cookiesManager.setCookie('ReferrerQuery', DARCI.searchedTerm);
+
+tag = script
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = id="header-lb-container"
+text =         
+
+tag = div
+slash = 
+param = class="lb-container"
+text =             
+
+tag = div
+slash = 
+param = id="dcom-serp-lb-728x90"
+text =     
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =         if (typeof UserController !== "undefined" && !UserController.shouldDisplayAds()) &ob;            document.getElementById("dcom-serp-lb-728x90").parentNode.removeChild(document.getElementById(""));        &cb; else &ob;            adStatus.displayedSpots.push("dcom-serp-lb-728x90");            googletag.cmd.push(function () &ob;                googletag.display("dcom-serp-lb-728x90");            &cb;);        &cb;    
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = id="fly-out" class="fly-out fly-out-desktop" style=""
+text =         
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/slideshows/usage-tips"  style="display:block;" data-linkid="xvyja2" 
+text =             
+
+tag = div
+slash = 
+param = class="text"
+text =                 Is irregardless a word?            
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = button
+slash = 
+param = type="button" class="fly-out-close-icon"
+text = 
+
+tag = button
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="content-container main-area"
+text =     
+
+tag = div
+slash = 
+param = class="row"
+text =         
+
+tag = div
+slash = 
+param = class="left-rail-container"
+text =             
+
+tag = div
+slash = 
+param = class="left-nav-sticky"
+text =     
+
+tag = div
+slash = 
+param = class="left-nav-wrapper"
+text =         
+
+tag = ul
+slash = 
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="left-nav-fav"
+text =                 
+
+tag = button
+slash = 
+param = class="favorite-button"
+text = Favorite Button
+
+tag = button
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="left-nav-cite"
+text =                 
+
+tag = a
+slash = 
+param = href="#" id="cite-source-link" rel="nofollow"
+text = CITE
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="left-nav-trans"
+text =                 
+
+tag = a
+slash = 
+param = href="http://translate.reference.com/translate?query=listened" data-linkid="qnmgro" 
+text = Translate
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="social-share-facebook"
+text =                 
+
+tag = a
+slash = 
+param = id="left-nav-button-fb"
+text = Facebook
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="share"
+text = Share
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="social-share-twitter"
+text =                 
+
+tag = a
+slash = 
+param = id="left-nav-button-twitter" href="https://twitter.com/share?url=http%3A%2F%2Fwww.dictionary.com%2Fbrowse%2Flistened&text=Listened definition, to give attention with the ear; attend closely for the purpose of hea...&via=dictionarycom" target="_blank"
+text = Twitter
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="share"
+text = Tweet
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = li
+slash = 
+param = class="social-share-google"
+text =                 
+
+tag = a
+slash = 
+param = id="left-nav-button-gp" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.dictionary.com%2Fbrowse%2Flistened"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600');return false"
+text = Google+
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="share"
+text = Share
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =         
+
+tag = ul
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="center-well-container"  data-linkid='nn1ov4' data-cts='&ob;"linkId":"nn1ov4","infix":"","domain":"dictionary.com","clkpage":"dic","clkmod":"1clk","clksite":"dict","clkld":0&cb;' data-href='http://www.dictionary.com/browse/'
+text =             
+
+tag = section
+slash = 
+param = id="source-luna" data-pm-btn-target=".source-box, .source-meta" class="source-wrapper source-luna is-pm-btn-show pm-btn-spot"
+text =             
+
+tag = div
+slash = 
+param = class="source-box oneClick-area"
+text =             
+
+tag = section
+slash = 
+param = class="luna-box"
+text =     
+
+tag = header
+slash = 
+param = class="main-header oneClick-disabled cts-disabled head-big"
+text =     
+
+tag = div
+slash = 
+param = class="waypoint-wrapper header-row header-first-row" data-href="source-luna"
+text =                     
+
+tag = h1
+slash = 
+param = class="head-entry"
+text = 
+
+tag = span
+slash = 
+param = class="me" data-syllable="lis·ten"
+text = listen
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h1
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="audio-wrapper cts-disabled"
+text =  
+
+tag = audio
+slash = 
+param = 
+text =  
+
+tag = source
+slash = 
+param = src="http://static.sfdict.com/staticrep/dictaudio/lunawav/L02/L0295000.ogg" type="audio/ogg"
+text =  
+
+tag = source
+slash = 
+param = src="http://static.sfdict.com/staticrep/dictaudio/L02/L0295000.mp3" type="audio/mpeg"
+text =  
+
+tag = audio
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = class="speaker"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = h3
+slash = 
+param = class="head-entry-variants"
+text = 
+
+tag = h3
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="header-row header-extras pronounce pronset"
+text =     
+
+tag = div
+slash = 
+param = 
+text =                     
+
+tag = span
+slash = 
+param = class="pron spellpron"
+text = [
+
+tag = span
+slash = 
+param = class="dbox-bold"
+text = lis
+
+tag = span
+slash = /
+param = 
+text = -
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = uh
+
+tag = span
+slash = /
+param = 
+text =  n] 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="pron ipapron"
+text = /ˈlɪs ən/ 
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="pre-def-data"
+text =  
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = 
+text =             
+
+tag = button
+slash = 
+param = class="prontoggle pronounce-button pronounce-Spell-button"
+text = Spell
+
+tag = button
+slash = /
+param = 
+text =             
+
+tag = button
+slash = 
+param = class="syllable-button syllable-button-off" data-header="1"
+text = Syllables
+
+tag = button
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="header-row"
+text =         
+
+tag = ul
+slash = 
+param = class="headword-bar-list"
+text =                             
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = data-navigation-href="source-synonyms"
+text =                         Synonyms                    
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = data-navigation-href="source-example-sentences"
+text =                         Examples                    
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = data-navigation-href="source-word-origin"
+text =                         Word Origin                    
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = ul
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = header
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="deep-link-synonyms"
+text =     
+
+tag = a
+slash = 
+param = href="http://www.thesaurus.com/browse/listen" data-linkid="oowy0r" 
+text = See more synonyms on Thesaurus.com
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="source-data"
+text =         
+
+tag = div
+slash = 
+param = class="def-list"
+text =                                         
+
+tag = section
+slash = 
+param = class="def-pbk ce-spot" data-collapse-expand='&ob;"target": ".def-set", "type": "def"&cb;'
+text =                     
+
+tag = header
+slash = 
+param = class="luna-data-header"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = verb (used without object)
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = header
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 1.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         to give attention with the ear; attend closely for the purpose of hearing; give ear.    
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 2.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         to pay attention; heed; obey (often followed by 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = to
+
+tag = span
+slash = /
+param = 
+text = ):                 
+
+tag = div
+slash = 
+param = class="def-block def-inline-example"
+text = 
+
+tag = span
+slash = 
+param = class="dbox-example"
+text = Children don't always listen to their parents.
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 3.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         to wait attentively for a sound (usually followed by 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = for
+
+tag = span
+slash = /
+param = 
+text = ):                 
+
+tag = div
+slash = 
+param = class="def-block def-inline-example"
+text = 
+
+tag = span
+slash = 
+param = class="dbox-example"
+text = to listen for sounds of their return.
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 4.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = Informal. 
+
+tag = span
+slash = /
+param = 
+text = to convey a particular impression to the hearer; sound:                 
+
+tag = div
+slash = 
+param = class="def-block def-inline-example"
+text = 
+
+tag = span
+slash = 
+param = class="dbox-example"
+text = The new recording doesn't listen as well as the old one.
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = section
+slash = /
+param = 
+text =                             
+
+tag = section
+slash = 
+param = class="def-pbk ce-spot" data-collapse-expand='&ob;"target": ".def-set", "type": "def"&cb;'
+text =                     
+
+tag = header
+slash = 
+param = class="luna-data-header"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = verb (used with object)
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = header
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 5.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = Archaic. 
+
+tag = span
+slash = /
+param = 
+text = to give ear to; hear.    
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = section
+slash = /
+param = 
+text =                             
+
+tag = section
+slash = 
+param = class="def-pbk ce-spot" data-collapse-expand='&ob;"target": ".def-set", "type": "def"&cb;'
+text =                     
+
+tag = header
+slash = 
+param = class="luna-data-header"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = Verb phrases
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = header
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 6.
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="def-content"
+text =         
+
+tag = span
+slash = 
+param = class="dbox-bold"
+text = listen in, 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = ol
+slash = 
+param = class="def-sub-list"
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         to listen to a radio or television broadcast:                             
+
+tag = div
+slash = 
+param = class="def-block def-inline-example"
+text = 
+
+tag = span
+slash = 
+param = class="dbox-example"
+text = Listen in tomorrow for the names of the lottery winners.
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         to overhear a conversation or communication, especially by telephone; eavesdrop:                             
+
+tag = div
+slash = 
+param = class="def-block def-inline-example"
+text = 
+
+tag = span
+slash = 
+param = class="dbox-example"
+text = Someone was listening in to his private calls.
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = ol
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = section
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="tail-wrapper"
+text =     
+
+tag = div
+slash = 
+param = class="tail-box tail-type-origin pm-btn-spot" data-pm-btn-target=".tail-content" 
+text =     
+
+tag = div
+slash = 
+param = class="tail-header waypoint-wrapper oneClick-disabled" id="source-word-origin"
+text =         Origin of 
+
+tag = span
+slash = 
+param = class="me" data-syllable="lis·ten"
+text = listen
+
+tag = span
+slash = /
+param = 
+text =         
+
+tag = button
+slash = 
+param = class="button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="tail-content "
+         
+text =                      
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                 
+
+tag = div
+slash = 
+param = class="map-origin"
+text =     
+
+tag = div
+slash = 
+param = class="map-area"
+text =             
+
+tag = div
+slash = 
+param = class="map-origin-language" style="right: 54.477777777778%;top: 31.911111111111%;"
+text =             
+
+tag = div
+slash = 
+param = class="dot dot-right dot-top "
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="language-name oneClick-disabled"
+text =                             
+
+tag = a
+slash = 
+param = class="language-name" href="http://www.dictionary.com/browse/middle-english"
+text = Middle English
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="map-origin-language" style="left: 45.8%;top: 31.355555555556%;"
+text =             
+
+tag = div
+slash = 
+param = class="dot dot-left dot-top "
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="language-name oneClick-disabled"
+text =                             
+
+tag = a
+slash = 
+param = class="language-name" href="http://www.dictionary.com/browse/old-english"
+text = Old English
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="timeline oneClick-disabled"
+text =         
+
+tag = div
+slash = 
+param = class="span" style="left:0% ; width:24.752475247525% ;"
+text =                             
+
+tag = span
+slash = 
+param = class="date end-date"
+text = 950
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-roman"
+text = before 950;
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-roman"
+text = Middle English
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = lis
+
+tag = span
+slash = /
+param = 
+text = (
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = t
+
+tag = span
+slash = /
+param = 
+text = )
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = nen,
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-roman"
+text = Old English
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlysnan;
+
+tag = span
+slash = /
+param = 
+text =  cognate with 
+
+tag = span
+slash = 
+param = class="dbox-roman"
+text = Middle High German
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = lüsenen,
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-roman"
+text = Swedish
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = lyssna;
+
+tag = span
+slash = /
+param = 
+text =  akin to 
+
+tag = a
+slash = 
+param = class="dbox-xref dbox-roman" href="http://www.dictionary.com/browse/list"
+text = list
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-hn"
+text = 
+
+tag = sup
+slash = 
+param = 
+text = 5
+
+tag = sup
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="tail-box tail-type-relf pm-btn-spot" data-pm-btn-target=".tail-content" 
+text =     
+
+tag = div
+slash = 
+param = class="tail-header " 
+text =         Related forms        
+
+tag = button
+slash = 
+param = class="button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="tail-content ce-spot"
+         data-collapse-expand='&ob;"target": ".tail-elements", "type": "supEntry"&cb;'
+text =                              
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-bold" data-syllable="lis·ten·er, "
+text = listener, 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = noun
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-bold" data-syllable="re·lis·ten, "
+text = relisten, 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = verb
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-bold" data-syllable="un·lis·ten·ing, "
+text = unlistening, 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = adjective
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                             
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="tail-box tail-type-synonyms pm-btn-spot" data-pm-btn-target=".tail-content" 
+text =     
+
+tag = div
+slash = 
+param = class="tail-header waypoint-wrapper" id="source-synonyms"
+text =         Synonyms        
+
+tag = button
+slash = 
+param = class="button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="deep-link-synonyms"
+text =     
+
+tag = a
+slash = 
+param = href="http://www.thesaurus.com/browse/listen" data-linkid="oowy0r" 
+text = See more synonyms on Thesaurus.com
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="tail-content ce-spot"
+         data-collapse-expand='&ob;"target": ".tail-elements", "type": "supText"&cb;'
+text =                      
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                 
+
+tag = span
+slash = 
+param = class="dbox-bold"
+text = 1. 
+
+tag = span
+slash = /
+param = 
+text = See 
+
+tag = a
+slash = 
+param = class="dbox-xref dbox-roman" href="http://www.dictionary.com/browse/hear"
+text = hear
+
+tag = a
+slash = /
+param = 
+text = .             
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-meta"
+text =             Dictionary.com Unabridged
+
+tag = br
+slash = 
+param = /
+text = Based on the Random House Dictionary, © Random House, Inc. 2016.
+
+tag = br/
+slash = 
+param = 
+text =             
+
+tag = a
+slash = 
+param = href="#" class="source-cite" rel="nofollow" data-term="listened"
+               data-source="luna"
+text = Cite This Source
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = id="source-example-sentences" class="source-wrapper source-example-sentences is-pm-btn-show pm-btn-spot" data-pm-btn-target=".source-box"
+text =     
+
+tag = div
+slash = 
+param = class="source-title"
+text =         Examples from the Web for 
+
+tag = span
+slash = 
+param = class="u-headword"
+text = listened
+
+tag = span
+slash = /
+param = 
+text =         
+
+tag = button
+slash = 
+param = class="js-button-source button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="sent-wrap ce-spot" data-collapse-expand='&ob;"target": ".source-box", "type": "sentences_list"&cb;'
+text =             
+
+tag = div
+slash = 
+param = class="source-box oneClick-area" data-cts='&ob;"linkId":"k4otco","infix":"","domain":"dictionary.com","clkpage":"dic","clkmod":"1clkesp","clksite":"dict","clkld":0&cb;' data-href='http://www.dictionary.com/browse/' data-imp="k4otco"
+text =                             
+
+tag = div
+slash = 
+param = class="source-subtitle oneClick-disabled"
+text = Contemporary Examples
+
+tag = div
+slash = /
+param = 
+text =                         
+
+tag = ul
+slash = 
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             Would the war in Gaza still be happening if we'd 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  to George Bush?                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='fboxke'
+text =                             
+
+tag = a
+slash = 
+param = class="partner-example-logo" href="http://www.thedailybeast.com?source=dictionary" target="_blank" rel="nofollow"
+text = 
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/articles/2009/01/13/defending-the-bush-doctrine.html?source=dictionary" target="_blank" rel="nofollow"
+text = Mission Accomplished: He Was Right
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/contributors/reza-aslan.html?source=dictionary" target="_blank" rel="nofollow"
+text = Reza Aslan
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                                 January 12, 2009                            
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             Growing up in the 1990s, I watched Free to Be on VHS and 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  to the songs on a cassette tape over and over again.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='fboxke'
+text =                             
+
+tag = a
+slash = 
+param = class="partner-example-logo" href="http://www.thedailybeast.com?source=dictionary" target="_blank" rel="nofollow"
+text = 
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/articles/2014/03/11/free-to-be-you-and-me-did-not-emasculate-men.html?source=dictionary" target="_blank" rel="nofollow"
+text = ‘Free to Be…You and Me’ Did Not Emasculate Men
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/contributors/emily-shire.html?source=dictionary" target="_blank" rel="nofollow"
+text = Emily Shire
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                                 March 10, 2014                            
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             But I 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  to it, and I thought: this is what I want to do.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='fboxke'
+text =                             
+
+tag = a
+slash = 
+param = class="partner-example-logo" href="http://www.thedailybeast.com?source=dictionary" target="_blank" rel="nofollow"
+text = 
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/articles/2013/09/19/there-s-something-about-mary-lambert.html?source=dictionary" target="_blank" rel="nofollow"
+text = There’s Something About Mary Lambert
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/contributors/abby-haglage.html?source=dictionary" target="_blank" rel="nofollow"
+text = Abby Haglage
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                                 September 18, 2013                            
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             As Osborne spoke, Roubini sat and 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text = , intermittently nodding his head and crossing and uncrossing his arms across his chest.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='fboxke'
+text =                             
+
+tag = a
+slash = 
+param = class="partner-example-logo" href="http://www.thedailybeast.com?source=dictionary" target="_blank" rel="nofollow"
+text = 
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/articles/2010/12/17/george-osborne-britains-timothy-geithner-on-tax-cuts-and-austerity.html?source=dictionary" target="_blank" rel="nofollow"
+text = Meet Britain's Austerity Chief
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/contributors/rm-schneiderman.html?source=dictionary" target="_blank" rel="nofollow"
+text = R.M. Schneiderman
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                                 December 16, 2010                            
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             When President Obama finished, the half-dozen diehards that 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  to the entire speech share their mixed reactions.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='fboxke'
+text =                             
+
+tag = a
+slash = 
+param = class="partner-example-logo" href="http://www.thedailybeast.com?source=dictionary" target="_blank" rel="nofollow"
+text = 
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/articles/2010/06/16/bp-oil-spill-locals-respond-to-obamas-oval-office-speech.html?source=dictionary" target="_blank" rel="nofollow"
+text = How It Played in the Gulf
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = 
+text =                                 
+
+tag = a
+slash = 
+param = href="http://www.thedailybeast.com/contributors/rick-outzen.html?source=dictionary" target="_blank" rel="nofollow"
+text = Rick Outzen
+
+tag = a
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = /
+param = 
+text =                             
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                                 June 15, 2010                            
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = ul
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-box oneClick-area" data-cts='&ob;"linkId":"ixxth0","infix":"","domain":"dictionary.com","clkpage":"dic","clkmod":"1clkesp","clksite":"dict","clkld":0&cb;' data-href='http://www.dictionary.com/browse/' data-imp="ixxth0"
+text =                             
+
+tag = div
+slash = 
+param = class="source-subtitle oneClick-disabled"
+text = Historical Examples
+
+tag = div
+slash = /
+param = 
+text =                         
+
+tag = ul
+slash = 
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             As I dressed I 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  for a sound from the adjoining room.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='sl8bq9'
+text =                         
+
+tag = span
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = href="http://www.gutenberg.org/files/14597/14597-h/14597-h.htm" target="_blank" rel="nofollow"
+text = The Woman Thou Gavest Me
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                             Hall Caine                        
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             So he induced these men to talk to him and 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text = , wondering at the deeps he touched.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='sl8bq9'
+text =                         
+
+tag = span
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = href="http://www.gutenberg.org/files/24458/24458-h/24458-h.htm" target="_blank" rel="nofollow"
+text = Still Jim
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                             Honor Willsie Morrow                        
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             He 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text = , ventured an opinion, was heard respectfully and then combated mercilessly.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='sl8bq9'
+text =                         
+
+tag = span
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = href="http://www.gutenberg.org/files/20419/20419-h/20419-h.htm" target="_blank" rel="nofollow"
+text = Gigolo
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                             Edna Ferber                        
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             She thought she heard voices, and stopping at the door, 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text = .                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='sl8bq9'
+text =                         
+
+tag = span
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = href="http://www.gutenberg.org/files/24767/24767-h/24767-h.htm" target="_blank" rel="nofollow"
+text = Jack O' Judgment
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                             Edgar Wallace                        
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                                     
+
+tag = li
+slash = 
+param = 
+text =                         
+
+tag = p
+slash = 
+param = class="partner-example-text"
+text =                             He had 
+
+tag = em
+slash = 
+param = 
+text = listened
+
+tag = em
+slash = /
+param = 
+text =  in vain; not the faintest sound did his ear detect.                        
+
+tag = p
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="partner-example-credentials"  data-linkid='sl8bq9'
+text =                         
+
+tag = span
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = href="http://www.gutenberg.org/files/287/287-h/287-h.htm" target="_blank" rel="nofollow"
+text = Remember the Alamo
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = span
+slash = 
+param = class="oneClick-disabled"
+text =                             Amelia E. Barr                        
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = ul
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = id="source-ced2" data-pm-btn-target=".source-box, .source-meta" class="source-wrapper source-ced2 is-pm-btn-show pm-btn-spot"
+text =             
+
+tag = div
+slash = 
+param = class="source-title"
+text =             British Dictionary definitions for 
+
+tag = span
+slash = 
+param = class="u-headword"
+text = listened
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = button
+slash = 
+param = class="button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-box oneClick-area"
+text =             
+
+tag = header
+slash = 
+param = class="main-header oneClick-disabled cts-disabled head-big"
+text =     
+
+tag = div
+slash = 
+param = class="header-row header-first-row"
+text =                     
+
+tag = h2
+slash = 
+param = class="head-entry"
+text = 
+
+tag = span
+slash = 
+param = class="me"
+text = listen
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h2
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="header-row header-middle-row"
+text =             
+
+tag = div
+slash = 
+param = class="pronounce"
+text =                 
+
+tag = span
+slash = 
+param = class="pronset"
+text =                     
+
+tag = span
+slash = 
+param = class="pron ipapron" 
+text = /
+
+tag = span
+slash = 
+param = class="dbox-pron"
+text = ˈlɪs
+
+tag = span
+slash = 
+param = class="dbox-sup"
+text = ə
+
+tag = span
+slash = /
+param = 
+text = n
+
+tag = span
+slash = /
+param = 
+text = / 
+
+tag = span
+slash = /
+param = 
+text =                 
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source-data ce-spot"
+                        data-collapse-expand='&ob;"target": ".def-coll", "type": "collins"&cb;'
+text =     
+
+tag = div
+slash = 
+param = class="def-coll"
+text =         
+
+tag = div
+slash = 
+param = class="def-list"
+text =             
+
+tag = div
+slash = 
+param = class="def-pbk"
+text =             
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = verb 
+
+tag = span
+slash = /
+param = 
+text = (
+
+tag = span
+slash = 
+param = class="dbox-bold"
+text = intransitive
+
+tag = span
+slash = /
+param = 
+text = )                            
+
+tag = div
+slash = 
+param = class="def-set"
+text =                     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 1.
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="def-content"
+text =                         to concentrate on hearing something                    
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text =                                             
+
+tag = div
+slash = 
+param = class="def-set"
+text =                     
+
+tag = span
+slash = 
+param = class="def-number"
+text = 2.
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="def-content"
+text =                         to take heed; pay attention: 
+
+tag = span
+slash = 
+param = class="dbox-ex"
+text = I told you many times but you wouldn't listen
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text =                                     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="tail-wrapper"
+text =             
+
+tag = div
+slash = 
+param = class="tail-box tail-type-relf"
+text =                             
+
+tag = div
+slash = 
+param = class="tail-header"
+text =                     Derived Forms                
+
+tag = div
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="tail-content"
+text =                                     
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                         
+
+tag = span
+slash = 
+param = class="dbox-bold" data-syllable="ˈlistener, "
+text = listener, 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="dbox-pg"
+text = noun
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                             
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="tail-box tail-type-origin"
+text =                             
+
+tag = div
+slash = 
+param = class="tail-header"
+text =                     Word Origin                
+
+tag = div
+slash = /
+param = 
+text =                         
+
+tag = div
+slash = 
+param = class="tail-content"
+text =                                     
+
+tag = div
+slash = 
+param = class="tail-elements"
+text =                         Old English 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlysnan;
+
+tag = span
+slash = /
+param = 
+text =  related to Old High German 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = lūstrēn
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                             
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-meta"
+text =             Collins English Dictionary - Complete & Unabridged 2012 Digital Edition
+
+tag = br
+slash = 
+param = /
+text =  © William Collins Sons & Co. Ltd. 1979, 1986 © HarperCollins
+
+tag = br
+slash = 
+param = /
+text = Publishers 1998, 2000, 2003, 2005, 2006, 2007, 2009, 2012
+
+tag = br/
+slash = 
+param = 
+text =             
+
+tag = a
+slash = 
+param = href="#" class="source-cite" rel="nofollow" data-term="listened"
+               data-source="ced2"
+text = Cite This Source
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = id="source-etymon2" data-pm-btn-target=".source-box, .source-meta" class="source-wrapper source-etymon2 is-pm-btn-show pm-btn-spot"
+text =             
+
+tag = div
+slash = 
+param = class="source-title"
+text =             Word Origin and History for 
+
+tag = span
+slash = 
+param = class="u-headword"
+text = listened
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = button
+slash = 
+param = class="button-source" type="button"
+text = Expand
+
+tag = button
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-box oneClick-area"
+text =                 
+
+tag = header
+slash = 
+param = class="main-header oneClick-disabled cts-disabled head-big"
+text =         
+
+tag = div
+slash = 
+param = class="header-row header-first-row"
+text =                             
+
+tag = h2
+slash = 
+param = class="head-entry"
+text = 
+
+tag = span
+slash = 
+param = class="me"
+text = listen
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h2
+slash = /
+param = 
+text =                                 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source-data"
+text =         
+
+tag = div
+slash = 
+param = class="def-list"
+text =                     
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = v.
+
+tag = span
+slash = /
+param = 
+text =                         
+
+tag = section
+slash = 
+param = class="def-pbk"
+text =                                     
+
+tag = div
+slash = 
+param = class="def-set"
+text =                             
+
+tag = p
+slash = 
+param = 
+text = Old English 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlysnan
+
+tag = span
+slash = /
+param = 
+text =  "to listen," from Proto-Germanic 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = *khlusinon
+
+tag = span
+slash = /
+param = 
+text =  (cf. Dutch 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = luisteren
+
+tag = span
+slash = /
+param = 
+text = , Old High German 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlosen
+
+tag = span
+slash = /
+param = 
+text =  "to listen," German 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = lauschen
+
+tag = span
+slash = /
+param = 
+text =  "to listen"), from PIE root 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = *kleu-
+
+tag = span
+slash = /
+param = 
+text =  "hearing, to hear" (cf. Sanskrit 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = srnoti
+
+tag = span
+slash = /
+param = 
+text =  "hears," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = srosati
+
+tag = span
+slash = /
+param = 
+text =  "hears, obeys;" Avestan 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = sraothra
+
+tag = span
+slash = /
+param = 
+text =  "ear;" Middle Persian 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = srod
+
+tag = span
+slash = /
+param = 
+text =  "hearing, sound;" Lithuanian 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = klausau
+
+tag = span
+slash = /
+param = 
+text =  "to hear," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = slove
+
+tag = span
+slash = /
+param = 
+text =  "splendor, honor;" Old Church Slavonic 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = slusati
+
+tag = span
+slash = /
+param = 
+text =  "to hear," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = slava
+
+tag = span
+slash = /
+param = 
+text =  "fame, glory," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = slovo
+
+tag = span
+slash = /
+param = 
+text =  "word;" Greek 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = klyo
+
+tag = span
+slash = /
+param = 
+text =  "hear, be called," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = kleos
+
+tag = span
+slash = /
+param = 
+text =  "report, rumor, fame glory," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = kleio
+
+tag = span
+slash = /
+param = 
+text =  "make famous;" Latin 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = cluere
+
+tag = span
+slash = /
+param = 
+text =  "to hear oneself called, be spoken of;" Old Irish 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = ro-clui-nethar
+
+tag = span
+slash = /
+param = 
+text =  "hears," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = clunim
+
+tag = span
+slash = /
+param = 
+text =  "I hear," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = clu
+
+tag = span
+slash = /
+param = 
+text =  "fame, glory," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = cluada
+
+tag = span
+slash = /
+param = 
+text =  "ears;" Welsh 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = clywaf
+
+tag = span
+slash = /
+param = 
+text =  "I hear;" Old English 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlud
+
+tag = span
+slash = /
+param = 
+text =  "loud," 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hleoðor
+
+tag = span
+slash = /
+param = 
+text =  "tone, tune;" Old High German 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlut
+
+tag = span
+slash = /
+param = 
+text =  "sound;" Gothic 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hiluþ
+
+tag = span
+slash = /
+param = 
+text =  "listening, attention"). The 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = -t-
+
+tag = span
+slash = /
+param = 
+text =  probably is by influence of Old English 
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = hlystan
+
+tag = span
+slash = /
+param = 
+text =  (see 
+
+tag = a
+slash = 
+param = class="dbox-xref" href="/browse/list"
+text = list
+
+tag = a
+slash = /
+param = 
+text =  (v.2)). For vowel evolution, see 
+
+tag = a
+slash = 
+param = class="dbox-xref" href="/browse/bury"
+text = bury
+
+tag = a
+slash = /
+param = 
+text = . As a noun from 1788 (
+
+tag = span
+slash = 
+param = class="dbox-italic"
+text = on the listen
+
+tag = span
+slash = /
+param = 
+text =  "alert").
+
+tag = p
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                             
+
+tag = section
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="source-meta"
+text =             Online Etymology Dictionary, © 2010 Douglas Harper
+
+tag = br/
+slash = 
+param = 
+text =             
+
+tag = a
+slash = 
+param = href="#" class="source-cite" rel="nofollow" data-term="listened"
+               data-source="etymon2"
+text = Cite This Source
+
+tag = a
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = section
+slash = /
+param = 
+text =                             
+
+tag = div
+slash = 
+param = class="hidden-xs"
+text =                     
+
+tag = div
+slash = 
+param = class="slideshows short-serp-slideshow"
+         data-imp="nqdc8q" data-linkid='nqdc8q' 
+text =     
+
+tag = h3
+slash = 
+param = 
+text = Discover our greatest slideshows
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = ul
+slash = 
+param = class="carousel"
+text =                         
+
+tag = li
+slash = 
+param = class="slide"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/slideshows/offbeat-literary-genres"
+text =                         
+
+tag = img
+slash = 
+param = width="130" height="140" id="slideImg1" src="http://static.sfdict.com/assets/3182-2139660-0.jpg" 
+text =                     
+
+tag = a
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="title-wrapper"
+text =                         
+
+tag = h3
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = class="title-link" href="http://www.dictionary.com/slideshows/offbeat-literary-genres"
+text = 8 Offbeat Literary Genres to Get...
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = h3
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="slide"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/slideshows/portmanteau"
+text =                         
+
+tag = img
+slash = 
+param = width="130" height="140" id="slideImg2" src="http://static.sfdict.com/assets/1191-3825792-9.jpg" 
+text =                     
+
+tag = a
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="title-wrapper"
+text =                         
+
+tag = h3
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = class="title-link" href="http://www.dictionary.com/slideshows/portmanteau"
+text = Decode the pieces of our favorite...
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = h3
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="u-clear"
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="slide"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/slideshows/hard-confusable"
+text =                         
+
+tag = img
+slash = 
+param = width="130" height="140" id="slideImg3" src="http://static.sfdict.com/assets/1268-5516557-15.jpg" 
+text =                     
+
+tag = a
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="title-wrapper"
+text =                         
+
+tag = h3
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = class="title-link" href="http://www.dictionary.com/slideshows/hard-confusable"
+text = Know These 9 Commonly Confused...
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = h3
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="slide"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/slideshows/punctuation"
+text =                         
+
+tag = img
+slash = 
+param = width="130" height="140" id="slideImg4" src="http://static.sfdict.com/assets/1663-7193724-1.jpg" 
+text =                     
+
+tag = a
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="title-wrapper"
+text =                         
+
+tag = h3
+slash = 
+param = 
+text =                             
+
+tag = a
+slash = 
+param = class="title-link" href="http://www.dictionary.com/slideshows/punctuation"
+text = Uncover the mysteries of the marks...
+
+tag = a
+slash = /
+param = 
+text =                         
+
+tag = h3
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="u-clear"
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = 
+param = class="blog-container"  data-linkid='mzyvyk'  data-imp="mzyvyk"
+text =     
+
+tag = h3
+slash = 
+param = 
+text = Browse more topics on our blog
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = ul
+slash = 
+param = 
+text =                     
+
+tag = li
+slash = 
+param = 
+text =                 
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/discreet-and-discrete"
+text = What Is the Difference Between Discreet and Discrete?
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="text"
+text = Learn the correct uses of these two commonly confused homophones.
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = 
+param = 
+text =                 
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/ampersand"
+text = What Character Was Removed from the Alphabet?
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="text"
+text = What mistaken pronunciation gave this character its name? 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = 
+param = 
+text =                 
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/apostrophes-101"
+text = Apostrophes 101
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="text"
+text = This small mark has two primary uses: to signify possession or omitted letters.
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                     
+
+tag = li
+slash = 
+param = 
+text =                 
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/getting-words-into-dictionaries"
+text = How Do I Get a Word into the Dictionary?
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="text"
+text = People invent new words all the time, but which ones actually make it?
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="right-rail-container"
+text =             
+
+tag = div
+slash = 
+param = class="constant-content"
+text =             
+
+tag = section
+slash = 
+param = id="wotd-text" class="wotd-module"
+text =     
+
+tag = header
+slash = 
+param = 
+text =         
+
+tag = h3
+slash = 
+param = class="title icon-wotd"
+text = Word of the Day
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="content"
+text =             
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="dcom-serp-a-top-300x250"
+text =     
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =         if (typeof UserController !== "undefined" && !UserController.shouldDisplayAds()) &ob;            document.getElementById("dcom-serp-a-top-300x250").parentNode.removeChild(document.getElementById(""));        &cb; else &ob;            adStatus.displayedSpots.push("dcom-serp-a-top-300x250");            googletag.cmd.push(function () &ob;                googletag.display("dcom-serp-a-top-300x250");            &cb;);        &cb;    
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = id="difficulty-box" data-difficulty="18"  data-imp="6ta766"
+text =     
+
+tag = header
+slash = 
+param = 
+text =         
+
+tag = h3
+slash = 
+param = class="title icon-glasses"
+text = Difficulty index for 
+
+tag = span
+slash = 
+param = class="u-headword"
+text = listen
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="content"
+text =         
+
+tag = div
+slash = 
+param = class="difficulty-bar"
+text =             
+
+tag = div
+slash = 
+param = class="difficulty-indicator"
+text = 
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =               
+
+tag = span
+slash = 
+param = class="subtext"
+text = Most English speakers likely know this word
+
+tag = span
+slash = /
+param = 
+text =     
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = id="tile-value-box"
+text =     
+
+tag = header
+slash = 
+param = 
+text =         
+
+tag = h3
+slash = 
+param = class="title icon-cup"
+text = Word Value for 
+
+tag = span
+slash = 
+param = class="u-headword"
+text = listened
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="content"
+text =         
+
+tag = div
+slash = 
+param = class="row"
+text =             
+
+tag = div
+slash = 
+param = class="game-scrabble"
+text = 
+
+tag = span
+slash = 
+param = 
+text = 9
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="game-wwf"
+text = 
+
+tag = span
+slash = 
+param = 
+text = 11
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = 
+param = class="row"
+text =             
+
+tag = span
+slash = 
+param = class="descr_scrabble"
+text = Scrabble
+
+tag = span
+slash = /
+param = 
+text =             
+
+tag = span
+slash = 
+param = class="descr_wwf"
+text = Words With Friends
+
+tag = span
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =   
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = class="related-words-box"  data-imp="2ksc1p|5"
+text =     
+
+tag = header
+slash = 
+param = 
+text =         
+
+tag = h3
+slash = 
+param = class="title"
+text = Related Words
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = header
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="content"  data-linkid='2ksc1p' data-ordinal='1' data-item='1'
+text =     
+
+tag = ul
+slash = 
+param = class="list-vertical"
+text =                 
+
+tag = li
+slash = 
+param = class="size-1"
+text =                 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/auscultation"
+text = auscultation
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="size-2"
+text =                 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/bleat"
+text = bleat
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="size-3"
+text =                 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/incomprehension"
+text = incomprehension
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="size-4"
+text =                 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/unattended"
+text = unattended
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="size-4"
+text =                 
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/unlistenable"
+text = unlistenable
+
+tag = a
+slash = /
+param = 
+text =             
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = ul
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text =             
+
+tag = div
+slash = /
+param = 
+text =                             
+
+tag = div
+slash = 
+param = class="right-rail-sticky-box"
+text =                     
+
+tag = div
+slash = 
+param = class="right-rail-middle-box"
+text = 
+
+tag = div
+slash = 
+param = id="dcom-serp-a-mid-300x250"
+text =     
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =         if (typeof UserController !== "undefined" && !UserController.shouldDisplayAds()) &ob;            document.getElementById("dcom-serp-a-mid-300x250").parentNode.removeChild(document.getElementById(""));        &cb; else &ob;            adStatus.displayedSpots.push("dcom-serp-a-mid-300x250");            googletag.cmd.push(function () &ob;                googletag.display("dcom-serp-a-mid-300x250");            &cb;);        &cb;    
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = /
+param = 
+text =                 
+
+tag = section
+slash = 
+param = class="right-rail-nearby-words"
+text =     
+
+tag = h3
+slash = 
+param = class="title"
+text = Nearby words for listened
+
+tag = h3
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="nearby-words-outer-box"
+text =         
+
+tag = div
+slash = 
+param = class="nearby-words-inner-box"  data-linkid='lno2pu' data-ordinal='1' data-item='1'
+text =             
+
+tag = ul
+slash = 
+param = class="list-vertical"
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listen-to-reason"
+text = listen to reason
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listen-up"
+text = listen up
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listen-in"
+text = listen-in
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listenability"
+text = listenability
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listenable"
+text = listenable
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = class="query-word"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listened"
+text = listened
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listener"
+text = listener
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listenership"
+text = listenership
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listening"
+text = listening
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/listening-post"
+text = listening post
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                                 
+
+tag = li
+slash = 
+param = 
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/browse/lister"
+text = lister
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                             
+
+tag = ul
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text =                 
+
+tag = div
+slash = 
+param = class="rightRailBottomAd"
+text = 
+
+tag = div
+slash = /
+param = 
+text =                     
+
+tag = div
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="survey"  data-imp="4b238x"
+text =         
+
+tag = a
+slash = 
+param = href="http://blog.dictionary.com/catch-the-real-words-in-this-pokemon-quiz/"  class="link"  target="_blank" data-linkid="4b238x" 
+text = Pokémon Words
+
+tag = a
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = 
+param = class="row"
+text =         
+
+tag = div
+slash = 
+param = id="dcom-serp-bottom-lb-728x90"
+text =     
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =         if (typeof UserController !== "undefined" && !UserController.shouldDisplayAds()) &ob;            document.getElementById("dcom-serp-bottom-lb-728x90").parentNode.removeChild(document.getElementById(""));        &cb; else &ob;            adStatus.displayedSpots.push("dcom-serp-bottom-lb-728x90");            googletag.cmd.push(function () &ob;                googletag.display("dcom-serp-bottom-lb-728x90");            &cb;);        &cb;    
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = footer
+slash = 
+param = class="footer-thin"
+text =     
+
+tag = div
+slash = 
+param = class="footer-container"  data-linkid='gy27eg'
+text =         
+
+tag = div
+slash = 
+param = 
+text =             
+
+tag = ul
+slash = 
+param = class="footer-navbar"
+text =                 
+
+tag = li
+slash = 
+param = class="footer-navbar-list"
+text =                     
+
+tag = a
+slash = 
+param = href="http://content.dictionary.com/"
+text = About
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = 
+param = class="footer-navbar-list"
+text =                     
+
+tag = a
+slash = 
+param = href="http://www.dictionary.com/terms"
+text = Terms & Privacy
+
+tag = a
+slash = /
+param = 
+text =                 
+
+tag = li
+slash = /
+param = 
+text =             
+
+tag = ul
+slash = /
+param = 
+text =             
+
+tag = div
+slash = 
+param = class="footer-copyright"
+text =                 &copy;&nbsp;2016 Dictionary.com, LLC.            
+
+tag = div
+slash = /
+param = 
+text =         
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = footer
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript" src="http://app.dictionary.com/js/advertisement.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     if (typeof window.canRunAds === 'undefined') &ob;        var img = new Image(),        url = 'http://track.dictionary.com/main.gif?ev=a&ms=%40%40MSEG%40%40&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=dic&st=dict&ab=&dc=desktop';        url = url.replace('%40%40REFERRER%40%40', encodeURIComponent(document.referrer))            .replace('%40%40CACHEBUSTER%40%40', Math.floor((Math.random() * 899999999) + 100000000))            .replace('%40%40MSEG%40%40', (cookiesManager.getCookieValue('mseg') || ''));        img.src = url;    &cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     /*     Below immediately function provide support for browsers, which do not support modern standards (https://dom.spec.whatwg.org/)     partially taken from: plainjs.com    */    (function (e) &ob;        'use strict';        e.matches = e.matches ||            e.matchesSelector ||            e.webkitMatchesSelector ||            e.msMatchesSelector ||            function (selector) &ob;                var node = this, nodes = (node.parentNode || node.document).querySelectorAll(selector), i = -1;                while (nodes[++i] && nodes[i] != node);                return !!nodes[i];            &cb;;        e.closest = e.closest || function (css) &ob;                var node = this;                while (node) &ob;                    if (node.matches(css)) return node;                    else node = node.parentElement;                &cb;                return null;            &cb;;        e.hasClass = e.hasClass || function (className) &ob;                var node = this;                return node.classList ? node.classList.contains(className) : new RegExp('&bsl;b' + className + '&bsl;b').test(node.className);            &cb;;        e.addClass = e.addClass || function (className) &ob;                var node = this;                if (node.classList) node.classList.add(className);                else if (!node.hasClass(node, className)) node.className += ' ' + className;            &cb;;        e.removeClass = e.removeClass || function(className) &ob;                var node = this;                if (node.classList) node.classList.remove(className);                else node.className = node.className.replace(new RegExp('&bsl;b' + className + '&bsl;b', 'g'), '');            &cb;;        e.on = e.on || function (event, selector, callback, context) &ob;                var el = context || document;                el.addEventListener(event, function (e) &ob;                    var found, el = e.target || e.srcElement;                    while (el && el.matches && el !== context && !(found = el.matches(selector))) el = el.parentElement;                    if (found) callback.call(this, el, e);                &cb;);            &cb;;    &cb;(Element.prototype));
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = if (typeof UserController === "undefined" || !UserController.isUnder13()) &ob;    _qevents.push(&ob;qacct: "p-51zXP5Cc9sxvQ"&cb;);&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = style="display: none;"
+text = 
+
+tag = img
+slash = 
+param = src="//pixel.quantserve.com/pixel/p-51zXP5Cc9sxvQ.gif" height="1" width="1" alt="Quantcast"/
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     /*global $, pageName, window */    var BCT = (function () &ob;        'use strict';        var webTrackURL = 'http://track.dictionary.com/main.gif?ev=c&cl=%40%40LINKIDS%40%40&ci=%40%40ITEM%40%40&co=%40%40ORDINAL%40%40&ms=%40%40MSEG%40%40&ds=%40%40DESTINATION%40%40&qr=%25%25QUERY%25%25&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=%40%40PAGENAME%40%40&st=dict&ab=&dc=desktop',            query, originalQuery;                    originalQuery = typeof DARCI.OQR !== 'undefined' ? DARCI.OQR.getValue() : null;            query =  originalQuery !== null ? originalQuery : "listened";            webTrackURL = webTrackURL.replace('%25%25QUERY%25%25', query);                /**         * Returns data, which will be logged.         *         * NOTE:         * Possible, that empty array will be returned.         */        function getData(target) &ob;            var ctsData,                closestLinkIDElement,                data = &ob;&cb;;            ctsData = JSON.parse(target.getAttribute('data-cts'));            if (ctsData !== null) &ob;                data.linkId = ctsData.linkId;                data.item = "";                data.ordinal = ctsData.ordinal;            &cb; else &ob;                closestLinkIDElement = target.closest('[data-linkid]');                if (null !== closestLinkIDElement && null === target.closest('[data-type]')) &ob;                    data.linkId = closestLinkIDElement.getAttribute('data-linkid');                    data.item = getItem(target);                    data.ordinal = getOrdinal(target, closestLinkIDElement);                &cb;            &cb;            return data;        &cb;        function getItem(target) &ob;            var closestWithItem = target.closest('[data-item]'),                item = '';            if (null !== closestWithItem) &ob;                item = target.textContent.trim();            &cb;            return item;        &cb;        function getOrdinal(target, dataItem) &ob;            var closestWithOrdinal,                value = '';            if (dataItem !== target) &ob; // if element with linkid is not the anchor itself we are going deeper                closestWithOrdinal = target.closest('[data-ordinal]');                if (null !== closestWithOrdinal) &ob;                    var links = closestWithOrdinal.querySelectorAll("a"),                        len = links.length;                    for (var i = 0; i < len; i++) &ob;                        if (target === links[i]) &ob;                            value = i + 1;                        &cb;                    &cb;                &cb;            &cb;            return value;        &cb;        /**         * Returns data, which are generated always in the same way         */        function getCommonData(destination) &ob;            var data = &ob;&cb;;            data.cacheBuster = Math.floor((Math.random() * 899999999) + 100000000);            data.pageName = pageName;            data.mseg = getMsegValue();            data.destination = encodeURIComponent(destination);            return data;        &cb;        /**         * Redirects user to destination         */        function redirectToDest(location) &ob;            window.location = location;        &cb;        /**         * Returns value of cookie based on name         */        function getCookieByName(name) &ob;            var value = null,                cookies = document.cookie,                searchedCookie = cookies.indexOf(" " + name + "=");            // it's worth to check, if cookie is not first cookie            if (searchedCookie === -1) &ob;                var checkFirstCookie = cookies.indexOf(name + "=");                searchedCookie = checkFirstCookie === 0 ? 0 : -1;            &cb;            if (searchedCookie > -1) &ob;                var startPositionOfValue = cookies.indexOf("=", searchedCookie) + 1,                    endPositionOfValue = cookies.indexOf(";", searchedCookie);                if (endPositionOfValue === -1) &ob;                    endPositionOfValue = searchedCookie.length;                &cb;                value = cookies.substring(startPositionOfValue,endPositionOfValue);            &cb;            return value;        &cb;        /**         * Returns value of mseg cookie         */        function getMsegValue() &ob;            var msegVal;            if (typeof cookiesManager !== "undefined") &ob;                msegVal = cookiesManager.getCookieValue("mseg");            &cb; else &ob;                msegVal = getCookieByName("mseg");            &cb;            return msegVal || "";        &cb;        /**         * Renders WebTrack URL         */        function renderWebTrackURL(data, destination) &ob;            var commonData = getCommonData(destination);            return webTrackURL.replace('%40%40REFERRER%40%40', encodeURIComponent(document.referrer))                .replace('%40%40LINKIDS%40%40', data.linkId || "")                .replace('%40%40ITEM%40%40', encodeURIComponent(data.item) || "")                .replace('%40%40ORDINAL%40%40', data.ordinal || "")                .replace('%40%40CACHEBUSTER%40%40', commonData.cacheBuster || "")                .replace('%40%40PAGENAME%40%40', commonData.pageName || "")                .replace('%40%40MSEG%40%40', commonData.mseg || "")                .replace('%40%40DESTINATION%40%40', commonData.destination || "");        &cb;        function logAndRedirect(data, destination) &ob;            var logURL = renderWebTrackURL(data, destination),                image = new Image(),                timeout;            timeout = setTimeout(                function()&ob;                    redirectToDest(destination);                &cb;,                2000            );            image.onload = image.onerror = function () &ob;                clearTimeout(timeout);                redirectToDest(destination);            &cb;;            image.src = logURL;            return false;        &cb;        /**         * Registers click event handler to body so it receives every click on anchor.         */        function attachHandler() &ob;            var bodyTag = document.getElementsByTagName('body')[0];            bodyTag.on("click", 'a', function (elem, event) &ob;                var target = event.target,                    enabled = target.closest('.cts-enabled'),                    disabled = target.closest('.cts-disabled'),                    destination = elem.getAttribute('href'),                    dataToLog;                if (typeof destination === "undefined") &ob;                    return true;                &cb;                if (target.hasClass('cts-clicked')) &ob;                    return false;                &cb;                //ACE-1060                if (disabled !== null && (enabled === null || disabled.childNodes.length < enabled.childNodes.length)) &ob; return true &cb;                dataToLog = getData(target);                // if object has no id it means that link shouldn't be tracked - follow the link                if (typeof dataToLog.linkId === "undefined") &ob;                    return true;                &cb;                event.preventDefault();                // mark this link as already clicked                target.addClass('cts-clicked');                return logAndRedirect(dataToLog, destination);            &cb;);        &cb;        return &ob;            attachHandler: attachHandler,            /**             * ::redirect() method is method used by oneClick module             */            redirect: function (ctsData, destinationHref, item) &ob;                var data = &ob;&cb;;                data.linkId = ctsData.linkId || ctsData.linkid;                data.item = item;                data.ordinal = '';                return logAndRedirect(data, destinationHref);            &cb;        &cb;;    &cb;());    /** Do the initial attachment to 
+
+tag = body
+slash = 
+param = 
+text =  links */    BCT.attachHandler();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript" src="http://static.sfdict.com/app/js/require-37278.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text =     requirejs.config(&ob;            waitSeconds: 60,            baseUrl: "http://static.sfdict.com/dcom/js",            paths: &ob;"appcore":"http:\/\/static.sfdict.com\/app\/js","options":"http:\/\/static.sfdict.com\/app\/js\/options-b826f","facebook":"http:\/\/connect.facebook.net\/en_US\/all","twitter":"https:\/\/platform.twitter.com\/widgets","instagram":"https:\/\/x.instagramfollowbutton.com\/follow","google-plus":"https:\/\/apis.google.com\/js\/platform","jquery":"http:\/\/static.sfdict.com\/app\/js\/jquery-1.11.3.min-cf872","page\/serp\/main":"page\/serp\/main-e9da9"&cb;,            shim: &ob;"facebook":&ob;"exports":"FB"&cb;,"twitter":&ob;"exports":"twttr"&cb;,"instagram":[],"google-plus":&ob;"exports":"googleplus"&cb;&cb;        &cb;);        define("runtime-options", function() &ob;        return &ob;"shortSerp":true,"definitionsLimit":5,"definitionsDisplayed":3,"wotdLink":"
+
+tag = a
+slash = 
+param = href=\"http:\/\/www.dictionary.com\/wordoftheday\/\"  class=\"word\"  id=\"wotd\" data-linkid=\"rpilnc\" 
+text = $$word$$
+
+tag = \/a
+slash = 
+param = 
+text = ","flashAudioPlayerPath":"http:\/\/static.sfdict.com\/app\/flash\/player-d6fab.swf","isFavoriteURL":"http:\/\/app.dictionary.com\/favorites\/api\/getfavorites","addFavoriteURL":"http:\/\/app.dictionary.com\/favorites\/api\/addword","searchTerm":"listened","loginPageURL":"http:\/\/app.dictionary.com\/login\/core","clientPlatform":"Desktop","interstitialDashRenderApi":"http:\/\/app.dictionary.com\/api\/dash\/render\/ipadInterstitial\/dict_serp_ipadInterstitial","canonicalURL":"http:\/\/www.dictionary.com\/browse\/listened","pageName":"","wotdApiUrl":"http:\/\/restapi.dictionary.com\/api\/wordoftheday","pageType":"serp-short","variant":false,"citeThisSourceAPIURL":"http:\/\/app.dictionary.com\/api\/citethissource.json?app=dictionary","collapseExpandSettings":&ob;"luna":&ob;"container":"#source-luna","types":&ob;"def":&ob;"name":"luna definitions","type":0,"desktop":&ob;"visibleEntries":7,"condition":7&cb;,"mobile":&ob;"visibleEntries":2,"condition":2&cb;&cb;,"supEntry":&ob;"name":"supplementary notes - entry-based elements","type":0,"desktop":&ob;"visibleEntries":5,"condition":5&cb;,"mobile":&ob;"visibleEntries":2,"condition":2&cb;&cb;,"supText":&ob;"name":"supplementary notes - textual elements","type":1,"desktop":&ob;"visibleLines":5,"condition":5&cb;,"mobile":&ob;"visibleLines":5,"condition":5&cb;&cb;,"usgAlert":&ob;"name":"usage alert - textual elements","type":1,"desktop":&ob;"visibleLines":3,"condition":3&cb;,"mobile":&ob;"visibleLines":3,"condition":3&cb;&cb;&cb;,"specCase":&ob;"name":"special collapse expand for Luna Mobile","type":0,"mobile":&ob;"visibleEntries":4,"condition":5&cb;&cb;&cb;,"idioms":&ob;"container":"#source-ahdi2","types":&ob;"cols":&ob;"name":"idioms dictionary 2 cols list and text","type":3,"desktop":&ob;"visibleLines":5,"condition":7&cb;&cb;,"list":&ob;"name":"idioms dictionary ordered list","type":4,"desktop":&ob;"visibleLines":5,"condition":7&cb;&cb;&cb;&cb;,"slang":&ob;"container":"#source-das","types":&ob;"def":&ob;"name":"slang dictionary text based","type":5,"desktop":&ob;"visibleLines":5,"condition":7&cb;&cb;&cb;&cb;,"21century":&ob;"container":"#source-dict21db","types":&ob;"cent21_entry":&ob;"name":"21st Century entry text","type":6,"desktop":&ob;"visibleLines":5,"condition":7&cb;&cb;&cb;&cb;,"abbreviations":&ob;"container":"#source-ahabb2","types":&ob;"abrreviations_entry":&ob;"name":"abbreviations unordered list","type":7,"desktop":&ob;"visibleEntries":3,"condition":5&cb;&cb;&cb;&cb;,"collins":&ob;"container":"#source-ced2","types":&ob;"collins":&ob;"name":"collins definitions","type":2,"desktop":&ob;"entries":&ob;"visibleEntries":3,"condition":5&cb;,"lines":&ob;"visibleLines":10,"condition":12&cb;&cb;&cb;&cb;&cb;,"sentences":&ob;"container":"#source-example-sentences","types":&ob;"sentences_list":&ob;"name":"example sentences list","type":8,"desktop":&ob;"visibleList":3,"condition":4&cb;,"mobile":&ob;"visibleList":10,"condition":11&cb;&cb;&cb;&cb;&cb;,"collapseExpandToggles":&ob;"luna_entry":0,"luna_text":1,"idioms_cols":3,"idioms_list":4,"slang_text":5,"cent21_entry":6,"col_number":2,"ahabb2_list":7,"sentences_list":8&cb;,"CTSParams":&ob;"infix":"","clkpage":"dic","clksite":"dict","clkld":0&cb;,"webTrack":&ob;"clickInner":"http:\/\/track.dictionary.com\/main.gif?ev=n&tg=%40%40TARGET%40%40&ar=%40%40ADREFRESH%40%40&ms=%40%40MSEG%40%40&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=%40%40PAGENAME%40%40&st=dict&ab=&dc=desktop","impressions":"http:\/\/track.dictionary.com\/main.gif?ev=i&lk=%40%40IMPRESSIONLINKIDS%40%40&ms=%40%40MSEG%40%40&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=%40%40PAGENAME%40%40&st=dict&ab=&dc=desktop","pageview":"http:\/\/track.dictionary.com\/main.gif?ev=p&ct=%40%40CONTENTTITLE%40%40&ms=%40%40MSEG%40%40&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=%40%40PAGENAME%40%40&st=dict&ab=&dc=desktop","click":"http:\/\/track.dictionary.com\/main.gif?ev=c&cl=%40%40LINKIDS%40%40&ci=%40%40ITEM%40%40&co=%40%40ORDINAL%40%40&ms=%40%40MSEG%40%40&ds=%40%40DESTINATION%40%40&qr=%25%25QUERY%25%25&rf=%40%40REFERRER%40%40&cb=%40%40CACHEBUSTER%40%40&pn=%40%40PAGENAME%40%40&st=dict&ab=&dc=desktop"&cb;,"socialEvent":"&ob;\"basePath\":\"http:&bsl;\/&bsl;\/track.dictionary.com&bsl;\/track&bsl;\/social\",\"attributes\":&ob;\"site\":\"dict\",\"pageName\":\"dic\",\"ldid\":0&cb;&cb;"&cb;;    &cb;);    require(["page\/serp\/main"])
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text =     (function (factory) &ob;        if (typeof require === 'function') &ob;            require(['jquery'], factory);        &cb; else &ob;            factory($);        &cb;    &cb;(function($) &ob;        var impressionLinkIds = &ob;&cb;;        $('[data-imp]').each(function () &ob;            if ($(this).is(':visible')) &ob;                var imp = $(this).data('imp').toString().split('|', 2);                if (impressionLinkIds[imp[0]] === undefined) &ob;                    impressionLinkIds[imp[0]] = 0;                &cb;                if (imp[1] !== undefined) &ob;                    impressionLinkIds[imp[0]] += parseInt(imp[1]);                &cb; else &ob;                    impressionLinkIds[imp[0]] += 1;                &cb;            &cb;        &cb;);        var lkValue = '';        for (var linkId in impressionLinkIds) &ob;            lkValue += linkId + (impressionLinkIds[linkId] > 1 ? '|' + impressionLinkIds[linkId] : '') + ','        &cb;        if (lkValue.slice(-1) === ',') &ob;            lkValue = lkValue.slice(0, -1);        &cb;        if (lkValue != '') &ob;            var ms = (typeof ms === 'undefined') ? cookiesManager.getCookieValue('mseg') || "" : ms;            new Image().src = "http://track.dictionary.com/main.gif?ev=i&pn=dic&st=dict&ab=&dc=desktop&lk=" + lkValue + "&ms=" + ms + "&rf=" + encodeURIComponent(document.referrer) + "&cb=" + Math.floor((Math.random()*899999999)+100000000);        &cb;    &cb;));
+
+tag = script
+slash = /
+param = 
+text =     
+
+tag = body
+slash = /
+param = 
+text =     
+
+tag = html
+slash = /
+param = 
+text = 
+
+tag = hmstart
+slash = /
+param = 
+text = 
+

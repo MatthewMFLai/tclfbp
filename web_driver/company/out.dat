@@ -1,0 +1,11974 @@
+tag = hmstart
+slash = 
+param = 
+text = 
+
+tag = html
+slash = 
+param = lang="en-ca" xmlns:fb="http://www.facebook.com/2008/fbml"
+text = 
+
+tag = head
+slash = 
+param = 
+text = 
+
+tag = title
+slash = 
+param = 
+text =  Stock Quote - The Globe and Mail
+
+tag = title
+slash = /
+param = 
+text = 
+
+tag = link
+slash = 
+param = rel="dns-prefetch" href="http://static.theglobeandmail.ca"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="content-type" content="text/html; charset=UTF-8"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="expires" content="0"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="pragma" content="no-cache"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="window-target" content="_top"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="Content-Language" content="en-ca"
+text = 
+
+tag = meta
+slash = 
+param = name="identifier-URL" content="http://www.theglobeandmail.com"
+text = 
+
+tag = meta
+slash = 
+param = name="viewport" content="width=device-width"
+text = 
+
+tag = meta
+slash = 
+param = name="location" content="Canada"
+text = 
+
+tag = meta
+slash = 
+param = name="robots" content="noarchive"
+text = 
+
+tag = meta
+slash = 
+param = name="website" content="http://www.theglobeandmail.com"
+text = 
+
+tag = meta
+slash = 
+param = name="application-artifactId" content="gam-webapp"
+text = 
+
+tag = meta
+slash = 
+param = name="application-version" content="14.0.299-HOTFIX-0"
+text = 
+
+tag = meta
+slash = 
+param = name="application-contextName" content="globeandmail"
+text = 
+
+tag = meta
+slash = 
+param = name="last-modified" content="2012-02-23 11:18:06 EST"
+text = 
+
+tag = meta
+slash = 
+param = name="description" content="The Globe and Mail offers the most authoritative news in Canada, featuring national and international news"
+text = 
+
+tag = meta
+slash = 
+param = name="keywords" content="canadian news, national newspaper, daily news, breaking news, political news, world news, canadian business news, canadian newspapers online, international news, report on business, national news, canadian sports, travel information, globe and mail, globe & mail"
+text = 
+
+tag = meta
+slash = 
+param = property="fb:app_id" content="126045934076200"
+text = 
+
+tag = meta
+slash = 
+param = property="og:site_name" content="The Globe and Mail"
+text = 
+
+tag = meta
+slash = 
+param = property="og:title" content="The Globe and Mail - Stock Quote"
+text = 
+
+tag = meta
+slash = 
+param = property="og:url" content="http://www.theglobeandmail.com/globe-investor/markets/stocks/summary/"
+text = 
+
+tag = meta
+slash = 
+param = property="og:description" content="The Globe and Mail offers the most authoritative news in Canada, featuring national and international news"
+text = 
+
+tag = meta
+slash = 
+param = property="og:type" content="website"
+text = 
+
+tag = meta
+slash = 
+param = property="og:image" content="http://beta.images.theglobeandmail.com/media/www/images/flag/gam-square.png"
+text = 
+
+tag = meta
+slash = 
+param = property="twitter:account_id" content="1512948019"/
+text = 
+
+tag = link
+slash = 
+param = rel="publisher" href="https://plus.google.com/+globeandmail"/
+text = 
+
+tag = link
+slash = 
+param = rel="shortcut icon" type="image/x-icon" href="http://beta.images.theglobeandmail.com/media/www/images/flag/favicon.ico"
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon-precomposed" sizes="76x76" media="screen and (-webkit-min-resolution: 132ppi) and (-webkit-max-resolution: 163ppi)" href="http://beta.images.theglobeandmail.com/media/mobile/images/apple@1x.png"
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon-precomposed" sizes="120x120" media="screen and (-webkit-resolution: 326ppi)" href="http://beta.images.theglobeandmail.com/media/mobile/images/apple@2x.png"
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon-precomposed" sizes="152x152" media="screen and (-webkit-resolution: 264ppi)" href="http://beta.images.theglobeandmail.com/media/mobile/images/apple@2x.152.png"
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon-precomposed" sizes="180x180" media="screen and (-webkit-resolution: 401ppi)" href="http://beta.images.theglobeandmail.com/media/mobile/images/apple@3x.png"
+text = 
+
+tag = link
+slash = 
+param = rel="stylesheet" type="text/css" media="screen" href="http://beta.images.theglobeandmail.com/bundle-css/gzip_1310642384/www-css-core-composite-section.css" /
+text = 
+
+tag = link
+slash = 
+param = rel="alternate" type="application/rss+xml" title="Stock Quote RSS feed - The Globe and Mail"
+href="http://www.theglobeandmail.com/globe-investor/markets/stocks/summary/?service=rss"/
+text = 
+
+tag = script
+slash = 
+param = 
+text = var $g_conf = &ob;publicationUrl : 'http://www.theglobeandmail.com/',mediaUrl:'http://beta.images.theglobeandmail.com',watchlistUrl: 'http://www.theglobeandmail.com/globe-investor/my-watchlist/',securePubUrl: 'https://sec.theglobeandmail.com',secureMediaUrl: 'https://sec.images.theglobeandmail.com',mct: ["news","blog","column","csv","poll","recipe","review","textgallery","audioarticle","infographic","embeddable","asf"],exmct: 'picture,media,embeddable,video,vmevideo,videobinary,gallery,textgallery,infographic,audioarticle,link,audio,factbox',servicesHost: 'gamservices.theglobeandmail.com',stocks: &ob;summary: &ob;name:'Stock Quote',uniquename:'stocksummary',url:'http://www.theglobeandmail.com/globe-investor/markets/stocks/summary/'&cb;,news: &ob;name:'News',uniquename:'stocknews',url:'http://www.theglobeandmail.com/globe-investor/markets/stocks/news/'&cb;,chart: &ob;name:'Chart',uniquename:'stockchart',url:'http://www.theglobeandmail.com/globe-investor/markets/stocks/chart/'&cb;&cb;,funds: &ob;summary: &ob;name:'Fund Quote',uniquename:'fundsummary',url:'http://www.theglobeandmail.com/globe-investor/funds-and-etfs/funds/summary/'&cb;&cb;,indexes: &ob;summary: &ob;name:'Index Quote',uniquename:'indexsummary',url:'http://www.theglobeandmail.com/globe-investor/markets/indexes/summary/'&cb;,news: &ob;name:'News',uniquename:'indexnews',url:'http://www.theglobeandmail.com/globe-investor/markets/indexes/news/'&cb;,chart: &ob;name:'Chart',uniquename:'indexchart',url:'http://www.theglobeandmail.com/globe-investor/markets/indexes/chart/'&cb;&cb;&cb;;$g_conf.current = &ob; articleId: "", sectionId: "681" &cb;;var adv = &ob;__config: &ob;mobi:false,env:'production',async:false,mode:'page'&cb;&cb;;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript" src="http://beta.images.theglobeandmail.com/bundle-js/gzip_N380073454/www-js-core.js" 
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = src='http://beta.images.theglobeandmail.com/media/www/js/plugins/media.voice.js'
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = style
+slash = 
+param = id="chartbeat-flicker-control-style" type='text/css'
+text = body &ob; visibility: hidden !important; &cb;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type='text/javascript'
+text = var _sf_async_config = _sf_async_config || &ob;&cb;;_sf_async_config.uid = 15880;_sf_async_config.domain = 'theglobeandmail.com';_sf_async_config.path = window.location.pathname.replace(/;jsessionid=(.*)$/, '');/** CUSTOM METRICS START **/var _cbq = window._cbq || [];if (TGAMD.analytics.user.role() == 'Premium User') &ob;_acct = 'paid';&cb; else if (TGAMD.analytics.user.role() == 'Registered User') &ob;_acct = 'lgdin';&cb; else &ob;_acct = 'anon';&cb;_cbq.push(['_acct',_acct]);// _cbq.push([â_demoâ,âa=30,b=finance,c=nyâ]);/** CUSTOM METRICS END **/var _sf_startpt = (new Date()).getTime();// Set a timeout event for 1 second that will remove the body hiding// tag from the document if it has not already been removed. This// gives the MAB Tester script a total of 1 second to load and run to limit// the potential for flicker of headlines.// The one second time limit can be adjusted to client preferences.window.setTimeout(function() &ob;var hider = document.getElementById('chartbeat-flicker-control-style');if (hider) &ob;hider.parentNode.removeChild(hider);&cb;&cb;, 1000);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = async src = "//static.chartbeat.com/js/chartbeat_mab.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = class="kxct" data-id="I3G0xgk0" data-timing="async" data-version="1.9"
+text = window.Krux || (( Krux=function()&ob; Krux.q.push(arguments)&cb;).q=[] );util.loadScript("cdn.krxd.net/controltag?confid=I3G0xgk0", true, "krux-plugin");
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = function retrieve(n)&ob;var m, k='kx'+n;if (window.localStorage) &ob;return window.localStorage[k] || "";&cb; else if (navigator.cookieEnabled) &ob;m = document.cookie.match(k+'=([^;]*)');return (m && unescape(m[1])) || "";&cb; else &ob;return '';&cb;&cb;Krux.user = retrieve('user');Krux.segments = retrieve('segs') ? retrieve('segs').split(',') : [];var dfpp = [];if (Krux.user) &ob;dfpp.push('kuid=' + Krux.user);&cb;for (var i = 0; i < Krux.segments.length; i++ ) &ob;dfpp.push('ksg=' + Krux.segments[i]);&cb;Krux.dfppKeyValues = dfpp.length ? dfpp.join(';') + ';' : '';
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = TGAMD.user.set('referrer','');TGAMD.user.set('lang',function _lang()&ob;return ''.split(',')[0];&cb;);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = (function(u)&ob;u.set(&ob;country:'',guid:'',postal:'',birthYear:'',gender:'',industry:'',position:'',incomeRange:'',newsletters:'',watchlist:'',prizm:''&cb;);&cb;)(TGAMD.user);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = // set default data layer values for anonymous uservar ensightenLayer = &ob;userID: "",userAccountType: "Anonymous User",kruxID: "",loggedIn: "false",postalCode: "",prizmCode: "",birthYear: "",gender: "",industry: "",position: "",incomeRange: "",newsletter: "",articleID: "",headline: "",byline: "",articleType: "section",creditline: "",topics: "",keywords: "",articleColour:"",siteSectionPageName: "ece_frontpage|globeinvestor|markets|stocks|stocksummary",environment: "production",mobile: "false"&cb;;// if user is logged in, update data layer values with MT login-defined propertiesif (TGAMD.user.is.anonymous == false) &ob;ensightenLayer.userAccountType = TGAMD.analytics.user.role();ensightenLayer.loggedIn = "true";ensightenLayer.userID = TGAMD.user.get('guid');ensightenLayer.postalCode = TGAMD.user.get('postal').substring(0, 3);ensightenLayer.prizmc2 = TGAMD.user.get('prizm');ensightenLayer.kruxID = TGAMD.user.get('kuser');ensightenLayer.birthYear = (TGAMD.user.get('birthYear') === '0' ? '0' : '1');ensightenLayer.gender = (TGAMD.user.get('gender') === '' ? '0' : '1');ensightenLayer.industry = (TGAMD.user.get('industry') === '' ? '0' : '1');ensightenLayer.position = (TGAMD.user.get('position') === '' ? '0' : '1');ensightenLayer.incomeRange = (TGAMD.user.get('incomeRange') === '' ? '0' : '1');ensightenLayer.newsletter = TGAMD.user.get('newsletter');&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"src="//nexus.ensighten.com/globeandmail/prod/Bootstrap.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = adv.site = "globeinvestor.com";adv.vertical = "globeinvestor";adv.region = "";adv.zone = "stocksummary";adv.crumb = "-pubRoot-globeinvestor-markets-stocks-stocksummary";adv.loc = "sec";adv.adpg = "stocksummary";adv.reg.postal = TGAMD.user.get('postal');adv.reg.watchlist = TGAMD.user.get('watchlist');adv.reg.pz = TGAMD.user.get('prizm');if ($g.getCookie("BRIEFCASE_VIEW") != null) &ob;adv.reg.dv = $g.getCookie("BRIEFCASE_VIEW") == "hidden" ? '0' : '1';&cb;adv.reg.cg = TGAMD.user.get('role');util.store('gmn_lsec', "stocksummary");adv.lastSection = "stocksummary";adv.search.skw = "FTS-T";
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = head
+slash = /
+param = 
+text = 
+
+tag = body
+slash = 
+param = id="default_layout" class="globeinvestor"
+text = 
+
+tag = div
+slash = 
+param = id="page"
+text = 
+
+tag = div
+slash = 
+param = id="adv_ldbd_top"
+text = 
+
+tag = div
+slash = 
+param = class="widget_ad ldbd" id="ldbd-sec-1"
+text = 
+
+tag = script
+slash = 
+param = 
+text = aPs="ldbd";var ldbdAC=fnTkt('a'+'ai',728,90,ai,'j',nc);document.write(ldbdAC);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = header
+slash = 
+param = id="masthead"
+text = 
+
+tag = h1
+slash = 
+param = 
+text = The Globe and Mail
+
+tag = h1
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = id="gohome" onclick="s_objectID='global_navigation|gam_logo_home';" name="&lpos=Global Navigation&lid=GAM Logo Home" title="Go to the Globe and Mail homepage" href="http://www.theglobeandmail.com/"
+text = 
+
+tag = img
+slash = 
+param = src="http://beta.images.theglobeandmail.com/media/www/images/flag/gam-masthead.png" title="Go to the Globe and Mail homepage" alt="Go to the Globe and Mail homepage" width="310" height="36" /
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class="access"
+text = 
+
+tag = a
+slash = 
+param = href="#primary_nav"
+text = Jump to main navigation
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="#content"
+text = Jump to main content
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="global_search"
+text = 
+
+tag = div
+slash = 
+param = id="sNews_masthead" class="state_show"
+text = 
+
+tag = form
+slash = 
+param = id="searchForm_gam_masthead" class="live_search" method="get" action="http://www.theglobeandmail.com/search/"
+text = 
+
+tag = fieldset
+slash = 
+param = 
+text = 
+
+tag = legend
+slash = 
+param = 
+text = News Search
+
+tag = legend
+slash = /
+param = 
+text = 
+
+tag = label
+slash = 
+param = for="news_search_masthead"
+text = News
+
+tag = label
+slash = /
+param = 
+text = 
+
+tag = input
+slash = 
+param = type="search" autosave="news_searchsave_masthead" results="5" autocomplete="off" id="news_search_masthead" name="q" placeholder="Enter a term, stock symbol or company name" onkeypress="return event.keyCode!=13" /
+text = 
+
+tag = input
+slash = 
+param = type="submit" value="Search" class="btn btn_lighter" /
+text = 
+
+tag = fieldset
+slash = /
+param = 
+text = 
+
+tag = form
+slash = /
+param = 
+text = 
+
+tag = dl
+slash = 
+param = id="menu_popup"
+text = 
+
+tag = dl
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="sJobs_masthead"
+text = 
+
+tag = div
+slash = 
+param = class="provider"
+text = by 
+
+tag = a
+slash = 
+param = href="http://www.eluta.ca"
+text = eluta.ca
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = form
+slash = 
+param = onsubmit="elutaValidateHeader()" id="searchJobs_masthead" method="get" action="http://www.eluta.ca/search"
+text = 
+
+tag = fieldset
+slash = 
+param = 
+text = 
+
+tag = legend
+slash = 
+param = 
+text = Search Jobs at eluta.ca
+
+tag = legend
+slash = /
+param = 
+text = 
+
+tag = label
+slash = 
+param = for="jobsInput_masthead"
+text = Jobs
+
+tag = label
+slash = /
+param = 
+text = 
+
+tag = input
+slash = 
+param = type="hidden" value="si" name="type"
+text = 
+
+tag = input
+slash = 
+param = type="hidden" value="7" name="advanced"
+text = 
+
+tag = input
+slash = 
+param = type="text" placeholder="Enter job" class="two_search" id="jobsInput_masthead" name="q" /
+text = 
+
+tag = input
+slash = 
+param = type="text" placeholder="Enter location" class="two_search" id="locationInput_masthead" name="l" /
+text = 
+
+tag = input
+slash = 
+param = type="submit" value="Search" class="btn btn_light" /
+text = 
+
+tag = fieldset
+slash = /
+param = 
+text = 
+
+tag = form
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="global_utility"
+text = 
+
+tag = div
+slash = 
+param = id="util_user_account"
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation|login';" name="&amp;lpos=Global Navigation&amp;lid=Login" rel="login" href="https://sec.theglobeandmail.com/login/" target="_top"
+text = Login
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="util_user_action"
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation|register';" name="&amp;lpos=Global Navigation&amp;lid=Register" href="https://sec.theglobeandmail.com/register/" rel="" target="_top"
+text = Register
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="util_weather"
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/weather/?locationid=" id="weather-icon" title="Globe and Mail Weather" name="&amp;lpos=Global Navigation&amp;lid=Weather Logo" onclick="s_objectID='global_navigation|weather_logo';"
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = id="weather_list"
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="weather-info2" style="display:none;"
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation|weather_logo';" name="&amp;lpos=Global Navigation&amp;lid=Weather Logo" title="View full forecast for Toronto" id="weather-icon" href="http://www.theglobeandmail.com/weather/?locationid=CAON0696" class="selected-weather"
+text = 
+
+tag = img
+slash = 
+param = src="http://beta.images.theglobeandmail.com/media/mobile/images/weather/20/b.png"
+text = 
+
+tag = span
+slash = 
+param = class="temp serif large"
+text = 18
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="degrees"
+text = &nbsp;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = title="Toronto" class="weather-select closed weather-control" id="select-city" href="http://www.theglobeandmail.com/weather/?locationid=CAON0696"
+text = Toronto
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = $g_user.renderMastLinks();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="util_user_tools"
+text = 
+
+tag = a
+slash = 
+param = class="btn btn_hifi js-masthead-subscribe-button" href="http://www.theglobeandmail.com/globeproducts/globe-subscriptions/"
+text = Subscribe
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="btn btn_light" onclick="s_objectID='global_navigation|help';" name="&amp;lpos=Global Navigation&amp;lid=Help" href="http://www.theglobeandmail.com/help/"
+text = Help
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = header
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = id="_bapw-link" href="#" target="_blank" title="Globe and Mail user ad preferences"
+text = 
+
+tag = img
+slash = 
+param = id="_bapw-icon"/
+text = 
+
+tag = span
+slash = 
+param = 
+text = AdChoices
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = 
+param = id="primary_nav"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.1:_home'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.1:Home" href="http://www.theglobeandmail.com/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bg"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Home
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.2:_news'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.2:News" href="http://www.theglobeandmail.com/news/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgnews"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  News
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.3:_opinion'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.3:Opinion" href="http://www.theglobeandmail.com/opinion/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgcommentary"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Opinion
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.4:_business'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.4:Business" href="http://www.theglobeandmail.com/report-on-business/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgbusiness"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Business
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.5:_investing'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.5:Investing" href="http://www.theglobeandmail.com/globe-investor/" class="selected"
+text = 
+
+tag = span
+slash = 
+param = class="hg"
+text = 
+
+tag = span
+slash = 
+param = class="mk bgglobeinvestor"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Investing
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="arrowUp"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.6:_sports'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.6:Sports" href="http://www.theglobeandmail.com/sports/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgsports"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Sports
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.7:_life'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.7:Life" href="http://www.theglobeandmail.com/life/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bglife"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Life
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.8:_arts'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.8:Arts" href="http://www.theglobeandmail.com/arts/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgarts"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Arts
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.9:_technology'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.9:Technology" href="http://www.theglobeandmail.com/technology/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgtechnology"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Technology
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.10:_drive'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.10:Drive" href="http://www.theglobeandmail.com/globe-drive/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgglobedrive"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Drive
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t1.11:_video'" name="&amp;lpos=Global Navigation Header&amp;lid=T1.11:Video" href="http://www.theglobeandmail.com/video/" 
+text = 
+
+tag = span
+slash = 
+param = class="mk bgvideo"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  Video
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = 
+param = id="secondary_nav"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.1:_portfolio'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.1:Portfolio" href="http://www.theglobeandmail.com/globe-investor/portfolio-and-tools/"
+class=""
+text = Portfolio
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.2:_watchlist'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.2:Watchlist" href="http://www.theglobeandmail.com/globe-investor/my-watchlist/"
+class=""
+text = Watchlist
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.3:_markets'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.3:Markets" href="http://www.theglobeandmail.com/globe-investor/markets/"
+class="selected"
+text = Markets
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="arrow arrowUp"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.4:_inside the market'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.4:Inside the Market" href="http://www.theglobeandmail.com/globe-investor/inside-the-market/"
+class=""
+text = Inside the Market
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.5:_funds & etfs'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.5:Funds & ETFs" href="http://www.theglobeandmail.com/globe-investor/funds-and-etfs/funds/"
+class=""
+text = Funds & ETFs
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.6:_investment ideas'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.6:Investment Ideas" href="http://www.theglobeandmail.com/globe-investor/investment-ideas/"
+class=""
+text = Investment Ideas
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.7:_personal finance'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.7:Personal Finance" href="http://www.theglobeandmail.com/globe-investor/personal-finance/"
+class=""
+text = Personal Finance
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_header|t2.8:_retirement'" name="&amp;lpos=Global Navigation Header&amp;lid=T2.8:Retirement" href="http://www.theglobeandmail.com/globe-investor/retirement/"
+class=""
+text = Retirement
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = /
+param = 
+text = 
+
+tag = nav
+slash = 
+param = id="tertiary_nav"
+text = 
+
+tag = nav
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="attic"
+text = 
+
+tag = div
+slash = 
+param = id="feature_nav"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text =  
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_feature|tf.1:_intro and how-to videos';" name="&lpos=Global Navigation Feature &lid=tf.1:intro and how-to videos" href="http://www.theglobeandmail.com/globe-investor/globe-investor-blog/globe-unlimited-for-business-investors/article15191180/"
+text = intro and how-to videos
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = &bull; 
+
+tag = a
+slash = 
+param = onclick="s_objectID='global_navigation_feature|tf.2:_download user guide (pdf)';" name="&lpos=Global Navigation Feature &lid=tf.2:download user guide (pdf)" href="http://www.theglobeandmail.com/incoming/article13256626.ece/binary/Globe%20Unlimited%20Investing%20Tools.pdf"
+text = download user guide (pdf)
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="x620x300 clearfix"
+text = 
+
+tag = div
+slash = 
+param = class="column-1 gridcol"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/"
+text = Home
+
+tag = a
+slash = /
+param = 
+text = &#187;
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globe-investor/"
+text = Globe Investor
+
+tag = a
+slash = /
+param = 
+text = &#187;
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globe-investor/markets/"
+text = Markets
+
+tag = a
+slash = /
+param = 
+text = &#187;
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globe-investor/markets/stocks/"
+text = Stocks
+
+tag = a
+slash = /
+param = 
+text = &#187;
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globe-investor/markets/stocks/summary/"
+text = Stock Quote
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="column-2 gridcol"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="top_full_width"
+text = 
+
+tag = link
+slash = 
+param = rel="stylesheet" type="text/css" href="http://data.theglobeandmail.com/Research/ResourceManager/mGhZYFY8RyYupVA4I6uuAw2/d/c/c/0/KwjSSWrpyXEvO3st2T5G8Q2/$VVNUUS4rKQ2.css" /
+text = 
+
+tag = script
+slash = 
+param = src="http://data.theglobeandmail.com/Research/ResourceManager/5KBgtBvNnTK1EdwajV9vIA2/d/c/j/0/8PwbK34hSvbVOgLpXIAMgw2/$GRo9PkE8QElKQ0ZCREgYTyYfHAsoHgUGISUE0.js" type="text/javascript"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = Mod.TGAMProxyPath = 'http://www.theglobeandmail.com/template/ajax/proxy.jsp';window._MODBasePath = "http://data.theglobeandmail.com/Research/";String.prototype.resolveUrl = function() &ob; var baseUrl = _MODBasePath; var newUrl = this; if (!!newUrl && newUrl.charAt(0) == '~') &ob; newUrl = newUrl.replace('~/', baseUrl); &cb; return newUrl; &cb;;Mod.$(document).ready(function() &ob;MOD_SYMBOL = 'FTS'; MOD_STOCK_TWITS_SYMBOL = 'FTS.CA'; Mod.Company.Init();var tooltips = new Mod.Tooltips();tooltips.init();Mod.Company._setIssueId('113342'); Mod.News.Init();var chartSize = new Mod.ChartSizeSelector();chartSize.Init();&cb;);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = style="margin-top: 20px;margin-bottom: -15px;"
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyModule" class="CompanyModule MOD-App full contain MOD CompanyModule lite railed" id="MOD-company"
+text = 
+
+tag = div
+slash = 
+param = class="CompanyModule CompanyOverviewModule" id="mod-overview"
+text = 
+
+tag = div
+slash = 
+param = class="sticky"
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyOverviewQuoteModule" class="CompanyOverviewQuoteModule MOD-App full"
+text = 
+
+tag = div
+slash = 
+param = class="full-header relative"
+text = 
+
+tag = table
+slash = 
+param = class="full"
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title index-name"
+text = 
+
+tag = span
+slash = 
+param = class="symbol"
+text = Toronto Stock Exchange: FTS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title last-price realTime"
+text = Delayed quote
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title todays-change"
+text = Today's change
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title price-earnings"
+text = P/E
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title market-cap"
+text = Market cap
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title fifty-two-week-range"
+text = 52-week range
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value company-name"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Fortis Inc
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value last-price"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = $37.46
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value todays-change"
+text = 
+
+tag = span
+slash = 
+param = class="change-container"
+text = 
+
+tag = span
+slash = 
+param = class="neg color "
+text = -0.96
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="neg color "
+text = -2.50%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value price-earnings"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = 14.642
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value market-cap"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = 10.55B
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value fifty-two-week-range"
+text = 
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/uploadhandler/z03c3110az13826588913e42eea0d4472f7a8f99ec.png"/
+text = 
+
+tag = div
+slash = 
+param = class="disclaimer"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="small-header contain relative"
+text = 
+
+tag = div
+slash = 
+param = class="bottom-texture"
+text = &nbsp;
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = table
+slash = 
+param = class="full"
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="company-name" rowspan="0"
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Fortis Inc
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="symbol"
+text = TSX: FTS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="values"
+text = 
+
+tag = span
+slash = 
+param = class="info-title last-price realTime"
+text = Delayed quote
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="info-value last-price"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = $37.46
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="info-title todays-change"
+text = Today's change
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="change-container"
+text = 
+
+tag = span
+slash = 
+param = class="neg color "
+text = -0.96
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="neg color "
+text = -2.50%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="disclaimer"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="wideAd1" class="ad triple"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyOverviewQuoteModule" class="CompanyOverviewQuoteModule MOD-App full"
+text = 
+
+tag = div
+slash = 
+param = class="full-header relative"
+text = 
+
+tag = table
+slash = 
+param = class="full"
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title index-name"
+text = 
+
+tag = span
+slash = 
+param = class="symbol"
+text = Toronto Stock Exchange: FTS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title last-price realTime"
+text = Delayed quote
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title todays-change"
+text = Today's change
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title price-earnings"
+text = P/E
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title market-cap"
+text = Market cap
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-title fifty-two-week-range"
+text = 52-week range
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value company-name"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Fortis Inc
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value last-price"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = $37.46
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value todays-change"
+text = 
+
+tag = span
+slash = 
+param = class="change-container"
+text = 
+
+tag = span
+slash = 
+param = class="neg color "
+text = -0.96
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="neg color "
+text = -2.50%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value price-earnings"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = 14.642
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value market-cap"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = 10.55B
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="info-value fifty-two-week-range"
+text = 
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/uploadhandler/z03c3110az13826588913e42eea0d4472f7a8f99ec.png"/
+text = 
+
+tag = div
+slash = 
+param = class="disclaimer"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="small-header contain relative"
+text = 
+
+tag = div
+slash = 
+param = class="bottom-texture"
+text = &nbsp;
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = table
+slash = 
+param = class="full"
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="company-name" rowspan="0"
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Fortis Inc
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="symbol"
+text = TSX: FTS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="values"
+text = 
+
+tag = span
+slash = 
+param = class="info-title last-price realTime"
+text = Delayed quote
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="info-value last-price"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = $37.46
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="info-title todays-change"
+text = Today's change
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="change-container"
+text = 
+
+tag = span
+slash = 
+param = class="neg color "
+text = -0.96
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class="neg color "
+text = -2.50%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="disclaimer"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyStocksAndInvestmentsModule" class="CompanyStocksAndInvestmentsModule MOD-App company-module" id="mod-stocksinvestments"
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyStocksPerformanceModule" class="CompanyStocksPerformanceModule MOD-App full" id="mod-stocksperformancemodule"
+text = 
+
+tag = div
+slash = 
+param = class="chart large SmallChartModule "
+text = 
+
+tag = div
+slash = 
+param = class="main-controls"
+text = 
+
+tag = div
+slash = 
+param = class="title"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Five Day Performance
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="timestamp"
+text = February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;&nbsp;EST.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="ChartSizeToggleModule" class="ChartSizeToggleModule main-controls"
+text = 
+
+tag = ul
+slash = 
+param = class="view contain"
+text = 
+
+tag = li
+slash = 
+param = data-size="small" class="selected"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-view-small"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-size="medium"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-view-medium"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = View full-width interactive chart
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="premium" _tooltip="View full-screen interactive chart" data-size="full"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-view-fullscreen"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = View full-screen interactive chart
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="lite"
+text = 
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-view-fullscreen"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to Globe Unlimited
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Full-screen interactive charts are an Investor Tool exclusive to Globe Unlimited subscribers. Company Pages are complimentary with a Globe Unlimited subscription. Click or tap now to try it today for just 99&#162;*
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class="legal"
+text = *99&#162; (plus applicable taxes) for the first month after which the rate will automatically increase to the regular subscription rate of $19.99 (plus applicable taxes).
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="TimeframeDropdown" class="TimeframeDropdown"
+text = 
+
+tag = ul
+slash = 
+param = class="dropdown-nav contain" id="timeframe-dropdown"
+text = 
+
+tag = li
+slash = 
+param = class="select-element"
+text = 
+
+tag = span
+slash = 
+param = 
+text = 5 days
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="dropdown-contents"
+text = 
+
+tag = li
+slash = 
+param = data-days="1" data-interval="5" data-period="Minute"
+text = 1 day
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="selected" data-days="5" data-interval="1" data-period="Hour"
+text = 5 days
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="10" data-interval="1" data-period="Hour"
+text = 10 days
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="30" data-interval="1" data-period="Day"
+text = 1 month
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="90" data-interval="1" data-period="Day"
+text = 3 months
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="180" data-interval="1" data-period="Day"
+text = 6 months
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="270" data-interval="1" data-period="Day"
+text = 9 months
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="-1" data-interval="1" data-period="Day"
+text = YTD
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="365" data-interval="1" data-period="Week"
+text = 1 year
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="1095" data-interval="1" data-period="Week"
+text = 3 years
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="1825" data-interval="1" data-period="Week"
+text = 5 years
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="3650" data-interval="1" data-period="Month"
+text = 10 years
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = data-days="-2" data-interval="1" data-period="Month"
+text = max
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="custom-range disabled last"
+text = custom range
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/uploadhandler/z03c3110az109138f5514a411e9621802aa3f0d805.png"/
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="smart-text small"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Fortis Inc crosses below 125-day moving average
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="quote-bar"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="value small"
+text = Fortis Inc closed sharply lower Friday, dropping $0.96 or 2.50% to $37.46 and crossing below its 125-day moving average. Shares have lost 2.12% over the last five days, but are unchanged over the last year to date. This security has outperformed the S&P TSX by 12.30% during the last year.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyStockColumnedQuoteModule" class="CompanyStockColumnedQuoteModule MOD-App ExpandedQuoteModule contain"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Key company metrics
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="first"
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Open
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.73
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Previous close
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.42
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = High
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.73
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Low
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $37.43
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 
+
+tag = span
+slash = 
+param = 
+text = Bid / Ask
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = $37.46 / $37.47
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = YTD % change
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = +0.13%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 
+
+tag = span
+slash = 
+param = 
+text = Volume
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = 1,548,328
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (10-day)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 2,100,956
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (1-month)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1,608,733
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (3-month)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1,010,011
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 52-week range
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = $34.16
+
+tag = span
+slash = 
+param = class='light'
+text =  to 
+
+tag = span
+slash = /
+param = 
+text = $41.58
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Beta
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 0.08
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="last"
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Trailing P/E
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 14.64&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = P/E 1 year forward
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 17.26&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Forward PEG
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1.24&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Indicated annual dividend
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $1.50
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Dividend yield
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 4.00%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Trailing EPS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $2.56
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="timestamp"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="border"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="mod-flowArea"
+text = 
+
+tag = div
+slash = 
+param = id="wideAd2" class="ad triple"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="sidebar small"
+text = 
+
+tag = div
+slash = 
+param = class="widget_ad boxr ad railed" id="boxr-art-1"
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = window.fnTkt = window.fnTkt || function()&ob;&cb;;try&ob;aPs="boxr";var boxrAC=fnTkt('a'+'ai',300,250,ai,'j',nc);document.write(boxrAC);adv_railH_maxReset="4200";&cb;catch(e)&ob;&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyStockColumnedQuoteModule" class="CompanyStockColumnedQuoteModule MOD-App ExpandedQuoteModule contain"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Key company metrics
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="first"
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Open
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.73
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Previous close
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.42
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = High
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $38.73
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Low
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $37.43
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 
+
+tag = span
+slash = 
+param = 
+text = Bid / Ask
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = $37.46 / $37.47
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = YTD % change
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = +0.13%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 
+
+tag = span
+slash = 
+param = 
+text = Volume
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/"
+text = 
+
+tag = span
+slash = 
+param = class="icon info"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to real-time stock quotes
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = New for 2014, price data for companies listed on the TSX and TSX Venture is updated in real time for Globe Unlimited subscribers. Click or tap now to learn more about Globe Unlimited.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = 1,548,328
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (10-day)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 2,100,956
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (1-month)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1,608,733
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="last"
+text = 
+
+tag = li
+slash = 
+param = class="medium-chart"
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Average volume (3-month)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1,010,011
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = 52-week range
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 
+
+tag = span
+slash = 
+param = 
+text = $34.16
+
+tag = span
+slash = 
+param = class='light'
+text =  to 
+
+tag = span
+slash = /
+param = 
+text = $41.58
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Beta
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 0.08
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Trailing P/E
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 14.64&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = P/E 1 year forward
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 17.26&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Forward PEG
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 1.24&times;
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Indicated annual dividend
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $1.50
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Dividend yield
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = 4.00%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="label"
+text = Trailing EPS
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="value"
+text = $2.56
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="timestamp"
+text = Updated&nbsp;February&nbsp;26&nbsp;4:00&nbsp;PM&nbsp;EST.&nbsp;Delayed by at least 15 minutes.
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyOverviewInfoModule" class="CompanyOverviewInfoModule MOD-App small"
+text = 
+
+tag = div
+slash = 
+param = class="company-info-section about-company"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = About
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="expandable-content"
+text = 
+
+tag = span
+slash = 
+param = class="first"
+text = Fortis Inc. (Fortis) is a Canada-based electric and gas utility company. The Company serves more than three million customers across Canada, the United States and the Caribbean.
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = class="read-more-link"
+text = Continue reading
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/Content/images/red-arrow.png"/
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="hidden-content" style="display: none;"
+text =  Fortis owns non-regulated hydroelectric generation assets in Canada, Belize and Upstate New York. Its non-utility investment is comprised of hotels and commercial real estate in Canada. It operates in two segments: non-regulated generation and non-utility assets. Its Regulated Electric &amp; Gas Utilities in the United States comprise of Tucson Electric Power Company, UNS Electric, Inc., UNS Gas, Inc. and Central Hudson Gas &amp; Electric Corporation. Its Regulated Gas Utilities in Canada include FortisBC Energy Inc.), FortisBC Energy (Vancouver Island) Inc. and FortisBC Energy (Whistler) Inc. Its Regulated Electric Utilities in Canada include FortisAlberta, FortisBC Electric and Eastern Canadian. Its Regulated Electric Utilities in the Caribbean include Caribbean Utilities Company, Ltd. and Fortis Turks and Caicos. 
+
+tag = div
+slash = 
+param = class="read-less-link"
+text = Hide
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/Content/images/red-up-arrow.png"/
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-info-section"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Full-Time Employees
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 6,941
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-info-section"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Incorporated
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = August 28, 1987
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="widget_ad halfpager ad railed" id="halfpager-art-1"
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript"
+text = try&ob;window.fnTkt = window.fnTkt || function()&ob;&cb;;aPs="halfpager";var halfpagerAC=fnTkt('a'+'ai',300,600,ai,'j',nc);document.write(halfpagerAC);&cb;catch(e)&ob;&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-info-section officers"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Officers
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = David Norris
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Independent Chairman of the Board
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = Barry Perry
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = President, Chief Executive Officer, Director
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = Karl Smith
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Executive Vice President, Chief Financial Officer
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = Earl Ludlow
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Executive Vice President - Eastern Canadian and Caribbean Operations
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = John Walker
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Executive Vice President - Western Canadian Operations
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = David Bennett
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Vice President, Chief Legal Officer and Corporate Secretary
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = Jamie Roberts
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Controller
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-officer"
+text = 
+
+tag = span
+slash = 
+param = class="officer-name"
+text = James Spinney
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="officer-position"
+text = Treasurer
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="company-info-section headquarters"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Headquarters
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Fortis Place, 5 Springdale St Suite 1100
+
+tag = br/
+slash = 
+param = 
+text = St. Johns, NL
+
+tag = br/
+slash = 
+param = 
+text = Canada
+
+tag = br/
+slash = 
+param = 
+text = Phone: +1 709 737-2800
+
+tag = br/
+slash = 
+param = 
+text = Fax: +1 709 737-5307
+
+tag = br/
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://www.fortisinc.com" target="_blank"
+text = https://www.fortisinc.com
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyOverviewSnapshotModule" class="CompanyOverviewSnapshotModule MOD-App large"
+text = 
+
+tag = div
+slash = 
+param = class="company-snippets"
+text = 
+
+tag = div
+slash = 
+param = class="snippet earnings"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Earnings
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="graphic-wrapper"
+text = 
+
+tag = div
+slash = 
+param = class="graphic"
+text = 
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/uploadhandler/z03c3110az2e27f1b2719d4feb99fb664bf67b8d64.png"/
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Net income grew by 8.82%, year over year, to $0.47 per share during the most recently completed quarter. This was among the strongest growth seen by any company in this industry. 
+
+tag = br/
+slash = 
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="with-arrow hasTip" href="https://sec.theglobeandmail.com/subscription/"
+text = Events Calendar
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/Content/images/red-arrow.png"/
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to Globe Unlimited
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Events Calendar is an Investor Tool exclusive to Globe Unlimited subscribers. Company Pages are complimentary with a Globe Unlimited subscription. Click or tap now to try it today for just 99&#162;*
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class="legal"
+text = *99&#162; (plus applicable taxes) for the first month after which the rate will automatically increase to the regular subscription rate of $19.99 (plus applicable taxes).
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="snippet ratings"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Average Rating
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="graphic-wrapper"
+text = 
+
+tag = div
+slash = 
+param = class="graphic buy"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Of the eight analysts surveyed by Reuters Estimates that cover Fortis Inc, the consensus rating is a buy. The rating changed on February 10, 2016 when it was upgraded from a hold. 
+
+tag = br/
+slash = 
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="with-arrow hasTip" href="https://sec.theglobeandmail.com/subscription/"
+text = Opinions & Forecasts
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/Content/images/red-arrow.png"/
+text = 
+
+tag = span
+slash = 
+param = class="hasTooltip"
+text = 
+
+tag = div
+slash = 
+param = class="toolTip" style="display:none;"
+text = 
+
+tag = h3
+slash = 
+param = 
+text = Upgrade to Globe Unlimited
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Opinions &amp; Forecasts is an Investor Tool exclusive to Globe Unlimited subscribers. Company Pages are complimentary with a Globe Unlimited subscription. Click or tap now to try it today for just 99&#162;*
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class="legal"
+text = *99&#162; (plus applicable taxes) for the first month after which the rate will automatically increase to the regular subscription rate of $19.99 (plus applicable taxes).
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-selected"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="snippet net-income"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Profit
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="graphic-wrapper"
+text = 
+
+tag = div
+slash = 
+param = class="graphic"
+text = 
+
+tag = div
+slash = 
+param = class="label"
+text = Net Profit (TTM)
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="value"
+text = 
+
+tag = div
+slash = 
+param = class="big-text"
+text = +12.49%
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Based on its net profit margin of 12.49%, Fortis Inc is among the more effective companies in its industry at turning revenues into bottom line profit. 
+
+tag = br/
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="with-arrow" href="#mod-thecompanybooks"
+text = Company Books
+
+tag = img
+slash = 
+param = src="http://data.theglobeandmail.com/Research/Content/images/red-arrow.png"/
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="industry-bar"
+text = 
+
+tag = div
+slash = 
+param = class="border"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = table
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="index index-label label"
+text = S&amp;P TSX
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="index index-value value"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-pos-arrow"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="pos color "
+text = 0.35%
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="sector sector-label label"
+text = Sector:
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="sector sector-value value"
+text = Utilities
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="industry industry-label label"
+text = Industry:
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="industry industry-value value"
+text = Utilities - Electric
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="border"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyOverviewNewsModule" class="CompanyOverviewNewsModule MOD-App large"
+text = 
+
+tag = div
+slash = 
+param = class="main-news"
+text = 
+
+tag = div
+slash = 
+param = class="main-article article"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Latest Company News
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article-list"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 3 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-company-news&amp;lid=Position.1" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.1';s.prop39='sec-stocksummary-company-news';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" _articleId="28880611"
+text = These 20 Canadian stocks have just beaten analysts' expectations
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = GLOBE AND MAIL UPDATE
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 11 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-company-news&amp;lid=Position.2" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.2';s.prop39='sec-stocksummary-company-news';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" _articleId="28775795"
+text = The silver lining to Fortis’s slumping stock
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = GLOBE AND MAIL UPDATE
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 17 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-company-news&amp;lid=Position.3" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.3';s.prop39='sec-stocksummary-company-news';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" _articleId="28695038"
+text = Wednesday's analyst upgrades and downgrades
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = GLOBE AND MAIL UPDATE
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 18 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-company-news&amp;lid=Position.4" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.4';s.prop39='sec-stocksummary-company-news';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" _articleId="28677719"
+text = Most actively traded companies on the TSX
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = THE CANADIAN PRESS
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 18 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-company-news&amp;lid=Position.5" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.5';s.prop39='sec-stocksummary-company-news';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" _articleId="28676605"
+text = Algonquin Power to buy Empire District for $1.49-billion
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = BLOOMBERG NEWS
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="load-more-button" data-numResults="5" data-compId="113342"
+text = View more News
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyPressReleaseModule" class="CompanyPressReleaseModule MOD-App large"
+text = 
+
+tag = div
+slash = 
+param = class="main-news"
+text = 
+
+tag = div
+slash = 
+param = class="main-article article press-release"
+text = 
+
+tag = h2
+slash = 
+param = 
+text = Latest Press Releases
+
+tag = h2
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article-list"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article press-release clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 1 day ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-press-release&amp;lid=Position.1" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.1';s.prop39='sec-stocksummary-press-release';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" href="http://www.theglobeandmail.com/feeds/press-releases/pr-newswire/?pr=600-201602261257PR_NEWS_USPRX____DC33438-1"
+text = WeissLaw LLP: ITC Holdings Corp.'s Board May Not Be Acting In The Best Interests of ITC Shareholders
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = PR NEWSWIRE
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="article press-release clearfix"
+text = 
+
+tag = span
+slash = 
+param = class="time-ago"
+text = 9 days ago
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="article-link" name="&amp;lpos=sec-stocksummary-press-release&amp;lid=Position.2" onclick=" s=s_gi('$bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35,events';s.linkTrackEvents='event46':s.prop38='Position.2';s.prop39='sec-stocksummary-press-release';s.eVar34='business story';s.eVar35='stock ticker';s.events='event46';s.tl(this,'o','business story');" href="http://www.theglobeandmail.com/feeds/press-releases/marketwire---canada/?pr=600-201602181601CCNMATHWCANADAPR_1043630001-1"
+text = Fortis Inc. Files 2015 Year-End Disclosure Documents
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="source"
+text = MARKETWIRE - CANADA
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="load-more-button" data-numResults="2" data-compId="113342"
+text = View more Press Releases
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="CompanyBooksModule" class="CompanyBooksModule MOD-App full company-module" id="mod-thecompanybooks"
+text = 
+
+tag = div
+slash = 
+param = class="lite-section-break"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = data-module-name="FinancialsToggleModule" class="FinancialsToggleModule MOD-App large"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = _type="IncomeStatement" class="selected"
+text = 
+
+tag = div
+slash = 
+param = class="left-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="label"
+text = Income Statement
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="right-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = _type="BalanceSheet"
+text = 
+
+tag = div
+slash = 
+param = class="left-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="label"
+text = Balance Sheet
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="right-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = _type="CashFlow"
+text = 
+
+tag = div
+slash = 
+param = class="left-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="label"
+text = Cash Flow
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="right-side"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="mod-financials-table" _type="IncomeStatement" _perType="Q" _symbol="FTS" _exchange="T"
+text = 
+
+tag = div
+slash = 
+param = data-module-name="IncomeStatement" class="IncomeStatement MOD-App FinancialsTable"
+text = 
+
+tag = table
+slash = 
+param = 
+text = 
+
+tag = thead
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = 
+
+tag = div
+slash = 
+param = class="period-toggle"
+text = 
+
+tag = span
+slash = 
+param = class="period selected" _perType="Q"
+text = Quarter
+
+tag = span
+slash = /
+param = 
+text =  | 
+
+tag = span
+slash = 
+param = class="period" _perType="A"
+text = Annual
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = Q4/2015
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = Q3/2015
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = Q2/2015
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = Q1/2015
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="period-end"
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Fiscal Quarter End
+
+tag = span
+slash = 
+param = class="value-expression"
+text = values in $ millions unless otherwise noted
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value longdate"
+text = 
+
+tag = span
+slash = 
+param = class="longdate"
+text = Dec 31, 2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="shortdate"
+text = 12/31/2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value longdate"
+text = 
+
+tag = span
+slash = 
+param = class="longdate"
+text = Sep 30, 2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="shortdate"
+text = 09/30/2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value longdate"
+text = 
+
+tag = span
+slash = 
+param = class="longdate"
+text = Jun 30, 2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="shortdate"
+text = 06/30/2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value longdate"
+text = 
+
+tag = span
+slash = 
+param = class="longdate"
+text = Mar 31, 2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="shortdate"
+text = 03/31/2015
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = thead
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Total revenue
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,708
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,566
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,538
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,915
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Revenue
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 1,708
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 1,566
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 1,538
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 1,915
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Other revenue, total
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Cost of revenue, total
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 664
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 533
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 531
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 833
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Total operating expense
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,347
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,222
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,227
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 1,521
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Fuel expense
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Operations &amp; maintenance
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Selling / general / administrative
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Research &amp; development
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Depreciation / amortization
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 221
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 217
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 220
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 215
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Interest expense (income), net operating
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Unusual expense (income)
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -10
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 11
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 18
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Other operating expenses, total
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Operating income
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 361
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 344
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 311
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 394
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Income before tax
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 213
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 219
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 354
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 277
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Interest income (expense), net non-operating
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Gain (loss) on sale of assets
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -20
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 5
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 180
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Allowance for funds used during construction
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Other, net
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 8
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 3
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 3
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 10
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Income after tax
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 163
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 179
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 278
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 220
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Income tax, total
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 50
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 40
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 76
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 57
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Net income
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 154
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 170
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 263
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 218
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Total adjustments to net income
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -19
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -19
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -19
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -20
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Net income before extra. items
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 154
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 170
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 263
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 218
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Minority interest
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -9
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -9
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -15
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = -2
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Equity in affiliates
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = U.S. GAAP adjustment
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = --
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Inc. avail. to common excl. extra. items
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 135
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 151
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 244
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 198
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Inc. avail. to common incl. extra. items
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 135
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 151
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 244
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 198
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = 
+param = 
+text = 
+
+tag = tr
+slash = 
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="label"
+text = Diluted net income
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 135
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 151
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 244
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = th
+slash = 
+param = class="value"
+text = 198
+
+tag = th
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Dilution adjustment
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Diluted weighted average shares
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 287
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 285
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 284
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 283
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Diluted EPS excluding extraordinary items
+
+tag = span
+slash = 
+param = class="value-expression"
+text = value per share
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.47
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.53
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.86
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.70
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="even"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Dividends per share
+
+tag = span
+slash = 
+param = class="value-expression"
+text = value per share
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.37
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.38
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.34
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.34
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = 
+param = class="odd"
+text = 
+
+tag = td
+slash = 
+param = class="label"
+text = Diluted normalized EPS
+
+tag = span
+slash = 
+param = class="value-expression"
+text = value per share
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.50
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.55
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.41
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = td
+slash = 
+param = class="value"
+text = 0.70
+
+tag = td
+slash = /
+param = 
+text = 
+
+tag = tr
+slash = /
+param = 
+text = 
+
+tag = tbody
+slash = /
+param = 
+text = 
+
+tag = table
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="wideAd3" class="ad"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="content" class="content--sec "
+text = 
+
+tag = div
+slash = 
+param = class="primary s8of12"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="secondary s4of12"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="tertiary"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = footer
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="strip"
+text = 
+
+tag = span
+slash = 
+param = class="bgglobeinvestor"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="footer_socialmedia"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="fb"
+text =  
+
+tag = a
+slash = 
+param = href="https://www.facebook.com/theglobeandmail"
+text = 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="twitter"
+text =  
+
+tag = a
+slash = 
+param = href="https://twitter.com/globeandmail"
+text = 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="youtube"
+text =  
+
+tag = a
+slash = 
+param = href="http://www.youtube.com/user/TheGlobeandMail"
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="connect"
+text =  connect with us 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="googleplus"
+text =  
+
+tag = a
+slash = 
+param = href="https://plus.google.com/+globeandmail"
+text = 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="linkedin"
+text =  
+
+tag = a
+slash = 
+param = href="http://www.linkedin.com/company/the-globe-and-mail"
+text = 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="instagram"
+text =  
+
+tag = a
+slash = 
+param = href="http://instagram.com/globeandmail"
+text = 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="footernav" 
+text = 
+
+tag = section
+slash = 
+param = class="lrgColumn"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Products
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="borderBtm"
+text = 
+
+tag = span
+slash = 
+param = class="productPrint"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="productDesc"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = The Globe and Mail Newspaper
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Newspaper delivered to your doorstep.
+
+tag = a
+slash = 
+param = href="https://customer.globeandmail.ca/HD/Start.aspx"
+text = Subscribe to the newspaper
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="borderBtm"
+text = 
+
+tag = span
+slash = 
+param = class="productUnlimited"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="productDesc"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Globe Unlimited
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Digital all access pass across devices.
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/subscription/?intcmp=GAMunlimited_sub"
+text = Subscribe to Globe Unlimited
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="borderBtm"
+text = 
+
+tag = span
+slash = 
+param = class="globe2go"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="productDesc"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Globe2Go
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = The digital replica of our newspaper.
+
+tag = a
+slash = 
+param = href="http://globe2go.newspaperdirect.com/epaper/viewer.aspx"
+text = Subscribe to Globe2Go
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="borderBtm"
+text = 
+
+tag = span
+slash = 
+param = class="ebook" 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="productDesc"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = Globe eBooks
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = A collection of articles by the Globe.
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/static/globeproducts/globe-ebooks.html"
+text = View the library
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = class="mdmColumn"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Advertise with us
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="borderBtm"
+text = 
+
+tag = h6
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/"
+text = GlobeLink.ca
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h6
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Your number one partner for reaching Canada's Influential Achievers.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="noBorder"
+text = 
+
+tag = li
+slash = 
+param = class="greyLnk"
+text = Or go directly to:
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/newspaper/?source=gamnewspaper"
+text = Newspaper
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/magazines/?source=gammagazines"
+text = Magazine
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href=" http://www.globelink.ca/digital/about/?source=gamonline"
+text = Digital
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/digital/alliance/?source=gamftr"
+text = Globe Alliance: extend your reach
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/globeedge/?source=gammsg"
+text = Globe Edge: custom content
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/classified/?source=gamclass"
+text = Classifieds
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = h5
+slash = 
+param = 
+text = The Globe at your Workplace
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="noBorder"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globeproducts/globe-corporate-sales/"
+text = Globe Corporate Sales
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Globe Unlimited digital edition and Globe2Go e-paper group discounts available.
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globeproducts/globe-corporate-sales/"
+text = Learn more
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Corporate financial data and content licensing for your organization.
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globeproducts/globe-corporate-sales/"
+text = Learn more
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="noBorder"
+text = 
+
+tag = li
+slash = 
+param = class="greyLnk"
+text = Or go directly to:
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://datastore.theglobeandmail.com/collections/top-1000-and-350-research-and-sales-prospecting-packages"
+text = Report On Business Top 1000
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/static/globeproducts/globe-datastore.html"
+text = DataStore essential business intelligence
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = class="smlColumn"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Our Company
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.globelink.ca/newspaper/?source=gamnewspaper"
+text = About us
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/work-at-the-globe/"
+text = Work at The Globe
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/contact-paper#reporters"
+text = Staff
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Secure Services
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/securedrop"
+text = Secure Drop
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/pgp/"
+text = Staff PGP Directory
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Customer Service
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/contact-us/"
+text = Contact Us
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/login"
+text = Customer Preference Center
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help"
+text = FAQs
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://customer.globeandmail.ca/"
+text = Customer Care website
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://sec.theglobeandmail.com/edit-account/"
+text = Digital subscription services
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://customer.globeandmail.ca/"
+text = Print subscription services
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://customer.globeandmail.ca/circcsNewAddress.asp"
+text = Change your delivery address
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://customer.globeandmail.ca/circcsSuspend.asp"
+text = Vacation Stops
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = h6
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://globerecognition.net/" 
+text = Globe Recognition
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h6
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Special Globe events and offers for subscribers
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = section
+slash = 
+param = class="smlColumn lastSection"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Mobile Apps
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="mobNews"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/globeproducts/globe-mobile/" id="tooltipMobNews"
+text = News
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id='toolTipNews' class='tools-Tips'
+text = 
+
+tag = a
+slash = 
+param = class="close" href="#"
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="mobNewBg"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = h5
+slash = 
+param = 
+text = NEWS APP
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="toolTipBox"
+text = 
+
+tag = ul
+slash = 
+param = class="toolTipList"
+text = 
+
+tag = li
+slash = 
+param = class="lightbg"
+text = 
+
+tag = span
+slash = 
+param = 
+text = Available for download on the following devices
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="darkbg"
+text = 
+
+tag = a
+slash = 
+param = href="https://itunes.apple.com/ca/app/the-globe-and-mail-news/id429228415?mt=8"
+text = iPhone
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="lightbg"
+text = 
+
+tag = a
+slash = 
+param = href="https://itunes.apple.com/ca/app/the-globe-and-mail-news/id429228415?mt=8"
+text = iPad
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="darkbg"
+text = 
+
+tag = a
+slash = 
+param = href="https://play.google.com/store/apps/details?id=com.theglobeandmail.headliner&hl=en"
+text = Android
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="lightbg"
+text = 
+
+tag = a
+slash = 
+param = href="http://appworld.blackberry.com/webstore/content/39629?lang=en"
+text = Blackberry
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Other Sections
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/partners/advappointmentnotices/"
+text = Appointments
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://artstore.globeandmail.ca/"
+text = Art Store
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://v1.theglobeandmail.com/life/birthsandannouncements/"
+text = Births &amp; Announcements
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="mailto:community@globeandmail.com"
+text = Corrections
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://v1.theglobeandmail.com/classifieds/"
+text = Classifieds
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://globeclassroom.ca/"
+text = Classroom Edition
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://v1.theglobeandmail.com/life/deaths/"
+text = Deaths
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/marketplace/newspaper-ads/"
+text = Newspaper Ads
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/real-estate/"
+text = Real Estate
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/special-reports/"
+text = Special Reports
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/site-map/"
+text = Site Map
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = section
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="footer_legalInfo"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/terms-and-conditions/"
+text = Terms &amp; Conditions
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/privacy-policy/"
+text = Privacy Policy
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/disclaimer/"
+text = Disclaimer
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/accessibility-policy/" 
+text = Accessibility Policy
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/help/community-guidelines/article4229672"
+text = Community Guidelines
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/news/the-globe-and-mail-mandate-for-sustainable-paper-choices/article551236"
+text = Globe sustainability
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://www.theglobeandmail.com/incoming/article10200488.ece/BINARY/Editorial+Code+Book+External.pdf"
+text = Editorial Code of Conduct
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="sponsor"
+text = 
+
+tag = div
+slash = 
+param = id="tooltip"
+text = 
+
+tag = div
+slash = 
+param = class="closetip"
+text = 
+
+tag = div
+slash = 
+param = class="icon icon-remove"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="tooltipText"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Restrictions
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class="lt"
+text = &copy; Thomson Reuters 2012.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = All rights reserved. Republication or redistribution of Thomson Reuters content, including by framing or similar means, is prohibited without the prior written consent of Thomson Reuters. Thomson Reuters is not liable for any errors or delays in Thomson Reuters content, or for any actions taken in reliance on such content. ‘Thomson Reuters’ and the Thomson Reuters logo are trademarks of Thomson Reuters and its affiliated companies.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="speakbox"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = id="sectionsponsor"
+text = Globe Investor is part of The Globe and Mail's Report on 
+
+tag = span
+slash = 
+param = class="colorbusiness"
+text = Business
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = 
+text = Selected data supplied by Thomson Reuters.&copy; Thomson Reuters Limited. 
+
+tag = span
+slash = 
+param = class="clicktip"
+text = Click for Restrictions
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = a
+slash = 
+param = href="http://www.reuters.com" class="data-provider"
+text = 
+
+tag = span
+slash = 
+param = class="icon icon-reuters"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = .
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="footer_companyInfo"
+text = 
+
+tag = p
+slash = 
+param = 
+text = Copyright 2016 The Globe and Mail Inc. All Rights Reserved.
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = address
+slash = 
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="org adr"
+text = 
+
+tag = span
+slash = 
+param = class="org street-address"
+text = 444 Front&nbsp;
+
+tag = abbr
+slash = 
+param = title="Street"
+text = St.
+
+tag = abbr
+slash = /
+param = 
+text = &nbsp;
+
+tag = abbr
+slash = 
+param = title="West"
+text = W.
+
+tag = abbr
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = ,
+
+tag = span
+slash = 
+param = class="org locality"
+text = Toronto
+
+tag = span
+slash = /
+param = 
+text = ,&nbsp;
+
+tag = abbr
+slash = 
+param = class="org region" title="Ontario"
+text = ON
+
+tag = abbr
+slash = /
+param = 
+text = &nbsp;
+
+tag = span
+slash = 
+param = class="org country-name"
+text = Canada
+
+tag = span
+slash = /
+param = 
+text = &nbsp;
+
+tag = span
+slash = 
+param = class="org postal-code"
+text = M5V 2S9
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = br
+slash = 
+param = /
+text = Phillip Crawley, Publisher
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = address
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = var s_account = "bellgmpnewprod";
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = src="http://beta.images.theglobeandmail.com/media/www/js/omniture/AppMeasurement.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = var tlu = &ob;"name":'tgam_limited_user', "val":util.getStoredValue('tgam_limited_user')&cb;;function omniSubscribeSuccess() &ob;var start = util.getStoredIndex(tlu.name, 2);var stamp = util.getStoredIndex(tlu.name, 0);var omni_start = new Date(start), omni_stamp = new Date(stamp);var omni_end = new Date(util.getStoredIndex(tlu.name, 3, '|'));if (start == 'na' && stamp != 'na') &ob;omni_start = omni_stamp;&cb;var one_day = 1000 * 60 * 60 * 24;return Math.ceil((omni_end.getTime() - omni_start.getTime()) / (one_day));&cb;s.prop25 = TGAMD.user.get('prizm');s.prop65 = TGAMD.user.get('kuser');// set event4 for login events, remove local storage flagif (s.Util.getQueryParam('ord') == "0" || s.Util.getQueryParam('ord') == "1") &ob;s.events = s.apl(s.events, 'event4', ',', 1);&cb;if ( !TGAMD.analytics.user.is.anonymous ) &ob;s.prop2 = s.getAndPersistValue("Logged In", "s_user_login_status");s.prop4 = s.getAndPersistValue(TGAMD.user.get('country'), "s_user_country", (365 * 5));s.prop9 = TGAMD.user.get('guid');s.eVar9 = "D=c9";&cb; else &ob;s.prop2 = s.getAndPersistValue("Not Logged In", "s_user_login_status");s.prop4 = s.getAndPersistValue("Not Set", "s_user_country", (365 * 5));&cb;s.eVar3 = "D=c2";s.eVar4 = "D=c4";s.prop10 = TGAMD.analytics.user.role();s.eVar10 = "D=c10";s.eVar53 = TGAMD.analytics.referrer(TGAMD.user.get('referrer')).short;s.eVar54 = TGAMD.analytics.referrer(TGAMD.user.get('referrer')).original;s.eVar5 = "D=c5";s.eVar6 = "D=c6";s.prop15 = "http://www.theglobeandmail.com/globe-investor/markets/stocks/summary/";s.eVar42 = "D=c42";s.prop37 = "";s.prop36 = "sec";s.pageName = "investor:markets:stocks:stocksummary:section";s.eVar33 = "D=c37";s.prop1 = "Single Page View - No Pagination";s.prop23 = "investor:markets:stocks:stocksummary";s.prop50 = "Weekend";s.prop22 = "investor:markets:stocks:stocksummary";s.prop44 = "investor:markets";s.eVar61 = "+1";s.prop43 = "investor";s.prop42 = "gi detail : summary";s.prop48 = "Saturday";s.prop47 = "investor:markets:stocks:stocksummary";s.prop46 = "investor:markets:stocks:stocksummary";s.prop45 = "investor:markets:stocks";s.prop5 = " (:)";s.account = "bellgmpnewprod";s.prop6 = "";s.prop49 = "11:02PM";s.channel = "investor";if (tlu.val == undefined) &ob;util.store(tlu.name, "na|" + new Date() + "|na|na|na|na");&cb;if (tlu.val != undefined) &ob;var omni_paystatus = util.getStoredIndex(tlu.name, 5, '|');if (omni_paystatus != 'na') &ob;s.prop20 = omni_paystatus;s.eVar20 = "D=c20";&cb;&cb;function omni_subscription(e, msg, trigger) &ob;switch (trigger) &ob;case 2:s.events = "event4";s.linkTrackEvents = s.events;s.tl(this, 'o', 'login');break;case 3:s.events = "event47";s.linkTrackEvents = s.events;s.tl(this, 'o', 'create account success');break;case 4:s.events = "event48";s.linkTrackEvents = s.events;s.linkTrackVars = 'eVar62,eVar63';s.tl(this, 'o', 'subscription success');util.storeIndexValue(tlu.name, 3, new Date(), '|');if (tlu.val != undefined) &ob;var omni_hitpaywall = util.getStoredIndex(tlu.name, 2, '|');if (omni_hitpaywall != 'na') &ob;s.eVar62 = "unlimited upsell complete with paywall";s.eVar63 = s.eVar62;&cb; else &ob;s.eVar62 = "unlimited upsell complete without paywall";s.eVar63 = s.eVar62;&cb;&cb;//clearLinkVars();break;case 5:s.events = "event49";s.linkTrackEvents = s.events;s.tl(this, 'o', 'Email Verification');//clearLinkVars();break;case 7:s.events = "event51";s.linkTrackEvents = s.events;s.linkTrackVars = 'eVar21';s.eVar21 = msg;s.tl(this, 'o', 'Error');//clearLinkVars();break;//default:&cb;&cb;(function(global)&ob;var g = global.TGAMD || false; return g && g.analytics ? g.analytics.bootstrap() : false&cb;)(window);/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/var s_code = s.t();if (s_code)document.write(s_code);//
+
+tag = //</script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = (function(s)&ob;var k_acc = 'omniData';var k_cookie = s.c_r('s_vi');// Date_Time Variable extraction: 2015-01-22 05:20:23var k_d = new Date();var k_yyyy = k_d.getFullYear().toString();var k_mm = (k_d.getMonth()+1).toString();var k_dd = k_d.getDate().toString();var k_HH = k_d.getHours().toString();var k_MM = k_d.getMinutes().toString();var k_SS = k_d.getSeconds().toString();var k_datetime = k_yyyy+'-'+(k_mm[1]?k_mm:"0"+k_mm[0])+'-'+(k_dd[1]?k_dd:"0"+k_dd[0])+' '+(k_HH[1]?k_HH:"0"+k_HH[0])+':'+(k_MM[1]?k_MM:"0"+k_MM[0])+':'+(k_SS[1]?k_SS:"0"+k_SS[0]);// Some Other variablesvar k_pageurl = s.pageURL;var k_pagename = s.pageName;var k_referrer = s.referrer;var k_browser_height = s.browserHeight;var k_browser_width = s.browserWidth;var k_event_list = s.events;var k_resolution = s.resolution;var k_ua = navigator.userAgent;// Props and Evar Concatenationvar k_props = s.prop1+"&bsl;t"+s.prop2+"&bsl;t"+s.prop3+"&bsl;t"+s.prop4+"&bsl;t"+s.prop5+"&bsl;t"+s.prop6+"&bsl;t"+s.prop7+"&bsl;t"+s.prop8+"&bsl;t"+s.prop9+"&bsl;t"+s.prop10+"&bsl;t"+s.prop11+"&bsl;t"+s.prop12+"&bsl;t"+s.prop13+"&bsl;t"+s.prop14+"&bsl;t"+s.prop15+"&bsl;t"+s.prop16+"&bsl;t"+s.prop17+"&bsl;t"+s.prop18+"&bsl;t"+s.prop19+"&bsl;t"+s.prop20+"&bsl;t"+s.prop21+"&bsl;t"+s.prop22+"&bsl;t"+s.prop23+"&bsl;t"+s.prop24+"&bsl;t"+s.prop25+"&bsl;t"+s.prop26+"&bsl;t"+s.prop27+"&bsl;t"+s.prop28+"&bsl;t"+s.prop29+"&bsl;t"+s.prop30+"&bsl;t"+s.prop31+"&bsl;t"+s.prop32+"&bsl;t"+s.prop33+"&bsl;t"+s.prop34+"&bsl;t"+s.prop35+"&bsl;t"+s.prop36+"&bsl;t"+s.prop37+"&bsl;t"+s.prop38+"&bsl;t"+s.prop39+"&bsl;t"+s.prop40+"&bsl;t"+s.prop41+"&bsl;t"+s.prop42+"&bsl;t"+s.prop43+"&bsl;t"+s.prop44+"&bsl;t"+s.prop45+"&bsl;t"+s.prop46+"&bsl;t"+s.prop47+"&bsl;t"+s.prop48+"&bsl;t"+s.prop49+"&bsl;t"+s.prop50+"&bsl;t"+s.prop51+"&bsl;t"+s.prop52+"&bsl;t"+s.prop53+"&bsl;t"+s.prop54+"&bsl;t"+s.prop55+"&bsl;t"+s.prop56+"&bsl;t"+s.prop57+"&bsl;t"+s.prop58+"&bsl;t"+s.prop59+"&bsl;t"+s.prop60+"&bsl;t"+s.prop61+"&bsl;t"+s.prop62+"&bsl;t"+s.prop63+"&bsl;t"+s.prop64+"&bsl;t"+s.prop65+"&bsl;t"+s.prop66+"&bsl;t"+s.prop67+"&bsl;t"+s.prop68+"&bsl;t"+s.prop69+"&bsl;t"+s.prop70+"&bsl;t"+s.prop71+"&bsl;t"+s.prop72+"&bsl;t"+s.prop73+"&bsl;t"+s.prop74+"&bsl;t"+s.prop75;var k_eVars = s.eVar1+"&bsl;t"+s.eVar2+"&bsl;t"+s.eVar3+"&bsl;t"+s.eVar4+"&bsl;t"+s.eVar5+"&bsl;t"+s.eVar6+"&bsl;t"+s.eVar7+"&bsl;t"+s.eVar8+"&bsl;t"+s.eVar9+"&bsl;t"+s.eVar10+"&bsl;t"+s.eVar11+"&bsl;t"+s.eVar12+"&bsl;t"+s.eVar13+"&bsl;t"+s.eVar14+"&bsl;t"+s.eVar15+"&bsl;t"+s.eVar16+"&bsl;t"+s.eVar17+"&bsl;t"+s.eVar18+"&bsl;t"+s.eVar19+"&bsl;t"+s.eVar20+"&bsl;t"+s.eVar21+"&bsl;t"+s.eVar22+"&bsl;t"+s.eVar23+"&bsl;t"+s.eVar24+"&bsl;t"+s.eVar25+"&bsl;t"+s.eVar26+"&bsl;t"+s.eVar27+"&bsl;t"+s.eVar28+"&bsl;t"+s.eVar29+"&bsl;t"+s.eVar30+"&bsl;t"+s.eVar31+"&bsl;t"+s.eVar32+"&bsl;t"+s.eVar33+"&bsl;t"+s.eVar34+"&bsl;t"+s.eVar35+"&bsl;t"+s.eVar36+"&bsl;t"+s.eVar37+"&bsl;t"+s.eVar38+"&bsl;t"+s.eVar39+"&bsl;t"+s.eVar40+"&bsl;t"+s.eVar41+"&bsl;t"+s.eVar42+"&bsl;t"+s.eVar43+"&bsl;t"+s.eVar44+"&bsl;t"+s.eVar45+"&bsl;t"+s.eVar46+"&bsl;t"+s.eVar47+"&bsl;t"+s.eVar48+"&bsl;t"+s.eVar49+"&bsl;t"+s.eVar50+"&bsl;t"+s.eVar51+"&bsl;t"+s.eVar52+"&bsl;t"+s.eVar53+"&bsl;t"+s.eVar54+"&bsl;t"+s.eVar55+"&bsl;t"+s.eVar56+"&bsl;t"+s.eVar57+"&bsl;t"+s.eVar58+"&bsl;t"+s.eVar59+"&bsl;t"+s.eVar60+"&bsl;t"+s.eVar61+"&bsl;t"+s.eVar62+"&bsl;t"+s.eVar63+"&bsl;t"+s.eVar64+"&bsl;t"+s.eVar65+"&bsl;t"+s.eVar66+"&bsl;t"+s.eVar67+"&bsl;t"+s.eVar68+"&bsl;t"+s.eVar69+"&bsl;t"+s.eVar70+"&bsl;t"+s.eVar71+"&bsl;t"+s.eVar72+"&bsl;t"+s.eVar73+"&bsl;t"+s.eVar74+"&bsl;t"+s.eVar75;// schema:var k_data = k_acc+"&bsl;t"+k_cookie+"&bsl;t"+k_datetime+"&bsl;t"+k_pageurl+"&bsl;t"+k_pagename+"&bsl;t"+k_referrer+"&bsl;t"+k_browser_height+"&bsl;t"+k_browser_width+"&bsl;t"+k_event_list+"&bsl;t"+k_resolution+"&bsl;t"+k_ua+"&bsl;t"+k_props+"&bsl;t"+k_eVars;var beacon_src = '//elbstreambeacon01.theglobeandmail.com/swu.gif?';var beacon_d = document;var beacon_i = beacon_d.createElement('img');var beacon_qs = k_data;beacon_i.id = 'kinesisBeacon';beacon_i.width = 1;beacon_i.height = 1;beacon_i.src = beacon_src + encodeURIComponent(beacon_qs);beacon_i.setAttribute('style','display:block');beacon_d.getElementsByTagName('body')[0].appendChild(beacon_i);&cb;)(s);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = language="JavaScript" type="text/javascript"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = (function(root, $, util) &ob;root.bm_website_code = '85251E4B22C44CBD';$(function()&ob;util.loadScript('asset.pagefair.com/measure.min.js');util.loadScript('asset.pagefair.net/ads.min.js');&cb;);&cb;)(this,jQuery,util);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = footer
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="watchlist-briefcase-add" style="display: none"
+text = 
+
+tag = div
+slash = 
+param = class="point"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="watchlist-briefcase-inner"
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-addto"
+text = 
+
+tag = span
+slash = 
+param = class="button watchlist"
+text = 
+
+tag = a
+slash = 
+param = href="#" class="toWatchlist"
+text = 
+
+tag = span
+slash = 
+param = class="img"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = 
+text = Add to Watchlist
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-watchlist"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = Add to Watchlist
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = form
+slash = 
+param = class="selectStock" action="" method="get" accept-charset="utf-8"
+text = 
+
+tag = span
+slash = 
+param = class="button"
+text = 
+
+tag = input
+slash = 
+param = type="checkbox" /
+text = 
+
+tag = span
+slash = 
+param = class="stockSymbol"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="companyName"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="styled_select"
+text = 
+
+tag = select
+slash = 
+param = id="copy-watchlist" name="watchlistID"
+text = 
+
+tag = select
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = input
+slash = 
+param = class="button submitButton" type="submit" value="Add to Watchlist" /
+text = 
+
+tag = form
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-failed"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = 
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="failWrapper"
+text = 
+
+tag = span
+slash = 
+param = class="failIcon"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = 
+param = 
+text = We've run into a glitch. Please try again later.
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-success"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = 
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="passWrapper"
+text = 
+
+tag = span
+slash = 
+param = class="passIcon"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = 
+param = 
+text = We've run into a glitch. Please try again later.
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-mixed"
+text = 
+
+tag = h5
+slash = 
+param = 
+text = 
+
+tag = h5
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="cautionWrapper"
+text = 
+
+tag = span
+slash = 
+param = class="cautionIcon"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="button"
+text = 
+
+tag = span
+slash = 
+param = class="errorIcon"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = class="companyName"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = 
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="watchlist-briefcase-inner-loader"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = var ltData = [&ob;"name": "unlimited tout - top banner","ltname": "unlimited_tout_-_top_banner","view": "pencil","wId": "#topSubscribeBanner"&cb;];$.each(ltData,function(i) &ob;$('div'+ ltData[i].wId).find('a[name^="lt_"],button[name^="lt_"],input[name^="lt_"]').each(function(e,elm)&ob;var title = $(this).text(), ltTitle = title.replace(title,'_'+title).toLowerCase(),clk,nam,artId;var namAttr = $(this).attr('name').slice(3),gaqIndex = $(this).attr('name').replace('lt_','');var dname = ltData[i].name.replace("'","\'"), dltname = ltData[i].ltname.replace("'","\'");/*console.log("dname ="+dname);console.log("dltname ="+dltname);*/if($(this).attr('href')!=undefined && $(this).attr('href').substring(1,0)!="#")&ob;var urlArr = $(this).attr('href').split("/");$.each(urlArr,function(o,no)&ob;if(no.indexOf("article") != -1)&ob;artId = no.replace('article','');&cb;&cb;);&cb;if($(this).attr('href')==undefined && $(this).attr('title')) &ob;urlArr = $(this).attr('title').split("/");$.each(urlArr,function(o,no)&ob;if(no.indexOf("article") != -1)&ob;artId = no.replace('article','');&cb;&cb;);&cb;if(artId==undefined&&ltData[i].view !='feature')&ob;if(ltData[i].view =='topbar'|| dname =='growl' || dname =='paywall')&ob;clk="var s=s_gi('bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35';s.prop38='"+namAttr+"';s.prop39='"+dname+"';s.eVar34='"+namAttr+"';s.eVar35='"+dname+"';s.tl(this,'o','"+namAttr+"');";nam="&lpos="+dname+"&lid="+namAttr;&cb;else&ob;clk="s_objectID='"+dltname+"|"+namAttr.toLowerCase()+":"+ltTitle+"'";nam="&lpos="+dname+"&lid="+namAttr+":"+title;&cb;&cb;else&ob;clk="s_objectID='"+artId+"-"+dltname+"';";nam='&lpos=sec-stocksummary'+'-'+dname +'-'+ ltData[i].view + '&lid='+namAttr;&cb;$(this).attr('onclick',clk).attr('name',nam);&cb;);$('aside'+ ltData[i].wId).find('a[name^="lt_"],button[name^="lt_"],input[name^="lt_"]').each(function(e,elm)&ob;var title = $(this).text(), ltTitle = title.replace(title,'_'+title).toLowerCase(),clk,nam,artId;var namAttr = $(this).attr('name').slice(3),gaqIndex = $(this).attr('name').replace('lt_','');var dname = ltData[i].name.replace("'","\'"), dltname = ltData[i].ltname.replace("'","\'");/* console.log("111");console.log("dname ="+dname);console.log("dltname ="+dltname); */if($(this).attr('href')!=undefined && $(this).attr('href').substring(1,0)!="#")&ob;var urlArr = $(this).attr('href').split("/");$.each(urlArr,function(o,no)&ob;if(no.indexOf("article") != -1)&ob;artId = no.replace('article','');&cb;&cb;);&cb;if(artId==undefined&&ltData[i].view !='feature')&ob;if(ltData[i].view =='topbar'|| dname =='growl' || dname =='paywall')&ob;clk="var s=s_gi('bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35';s.prop38='"+namAttr+"';s.prop39='"+dname+"';s.eVar34='"+namAttr+"';s.eVar35='"+dname+"';s.tl(this,'o','"+namAttr+"');";nam="&lpos="+dname+"&lid="+namAttr;&cb;else&ob;clk="s_objectID='"+dltname+"|"+namAttr.toLowerCase()+":"+ltTitle+"'";nam="&lpos="+dname+"&lid="+namAttr+":"+title;&cb;&cb;else&ob;clk="s_objectID='"+artId+"-"+dltname+"';";nam='&lpos=sec-stocksummary'+'-'+dname +'-'+ ltData[i].view + '&lid='+namAttr;&cb;$(this).attr('onclick',clk).attr('name',nam);&cb;);&cb;);
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = window.__gigyaConf = &ob; connectWithoutLoginBehavior: 'alwaysLogin' &cb;;try &ob; util.mobile_redirect() &cb; catch(e) &ob;&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = src='https://cdns.gigya.com/js/socialize.js?apiKey=2_oNjjtSC8Qc250slf83cZSd4sbCzOF4cCiqGIBF8__5dWzOJY_MLAoZvds76cHeQD'
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = (function() &ob; var ev = document.createElement('script'); ev.type = 'text/javascript'; ev.async = true; ev.setAttribute('data-ev-tag-pid',3796);ev.setAttribute('data-ev-tag-ocid',3480); ev.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'c.betrad.com/pub/tag.js'; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ev, s);&cb;)();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type='text/javascript'
+text = var _sf_async_config = &ob;&cb;;_sf_async_config.uid = 15880;_sf_async_config.domain = 'theglobeandmail.com';_sf_async_config.path = window.location.pathname.replace(/;jsessionid=(.*)$/, '');/** CUSTOM METRICS START **/var _cbq = window._cbq || [];if (TGAMD.analytics.user.role() == 'Premium User') &ob;_acct = 'paid';&cb; else if (TGAMD.analytics.user.role() == 'Registered User') &ob;_acct = 'lgdin';&cb; else &ob;_acct = 'anon';&cb;_cbq.push(['_acct',_acct]);// _cbq.push([â_demoâ,âa=30,b=finance,c=nyâ]);/** CUSTOM METRICS END **//** CONFIGURATION END **/(function()&ob;function loadChartbeat()&ob; window._sf_endpt=(new Date()).getTime(); var e = document.createElement('script'); e.setAttribute('language', 'javascript'); e.setAttribute('type', 'text/javascript'); e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js'); document.body.appendChild(e); &cb;var oldonload = window.onload;window.onload = (typeof window.onload != 'function') ?loadChartbeat : function()&ob; oldonload(); loadChartbeat(); &cb;;&cb;)();
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = type="text/javascript" src="http://beta.images.theglobeandmail.com/bundle-js/gzip_N1010255999/www-js-global.js" 
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = globe.gigya.comments.articleInfo('Production','sec','');$(document).ready(function() &ob;window.TGAMLS = new GlobeLiveSuggest(jQuery, 'http://www.theglobeandmail.com/template/search/livesuggest.jsp?news=10&stocks=5&keywords=0&authors=3&sections=0&showHidden=false&q=');window.TGAMLS.addHandlers();&cb;);(function( root )&ob;if ( !root.TGAMD ) return;if ( TGAMD.user.is.premium ) &ob;$('.js-masthead-subscribe-button').remove();&cb;&cb;)( this );(function(p) &ob;var cfg = &ob;persist: false,txt:'Try Globe Unlimited - 1 month for just 99&cent;',url:'https://sec.theglobeandmail.com/subscription/',img:'',buttonTxt:'See my options!',advPencil: true,advSponsorship: false,advRemovePencil: typeof advRemovePencil == 'undefined' ? false : true,advStopPencil: typeof advStopPencil == 'undefined' ? false : true,replaceAsset: false&cb;;p.init(cfg);&cb;)( TGAMD.pencilAd );$(document).ready(function($) &ob;$('.lt_track').each(function(index) &ob;$(this).find('a[name^="lt_"],button[name^="lt_"],input[name^="lt_"]').each(function(e, elm) &ob;var $link = $(this);$link.on("click", &ob; link: $link &cb;, clickTrack);&cb;);&cb;);&cb;);function clickTrack(e) &ob;//e.preventDefault();var $clickedLink = e.data.link;var title = $.trim($clickedLink.text());var name = $.trim($clickedLink.attr('name'));var ltTitle = "_"+title.toLowerCase();var clk, nam, artId;var namAttr = name.slice(3);var gaqIndex = name.replace('lt_', '');var ltview = $.trim($clickedLink.attr('ltview'));var ltname = $.trim($clickedLink.attr('ltname'));var dltname = ltname.replace(/'/g, "\'");var dname = dltname.replace(/_/g, " ");if ($clickedLink.attr('href') != undefined && $clickedLink.attr('href').substring(1, 0) != "#") &ob;var urlArr = $clickedLink.attr('href').split("/");$.each(urlArr, function(o, no) &ob;if (no.indexOf("article") != -1) &ob; artId = no.replace('article', ''); &cb;&cb;);&cb;if (artId == undefined && ltview != 'feature') &ob;if (ltview == 'topbar' || dname == 'growl' || dname == 'paywall' || dname == 'upsellFooter') &ob;clk = "var s=s_gi('bellgmpnewprod');s.linkTrackVars='prop38,prop39,eVar34,eVar35';s.prop38='" + namAttr + "';s.prop39='" + dname + "';s.eVar34='" + namAttr + "';s.eVar35='" + dname + "';s.tl(this,'o','" + namAttr + "');";nam = "&lpos=" + dname + "&lid=" + namAttr;&cb; else &ob;clk = "s_objectID='" + dltname + "|" + namAttr.toLowerCase() + ":" + ltTitle + "'";nam = "&lpos=" + dname + "&lid=" + namAttr + ":" + title;&cb;&cb; else &ob;clk="s_objectID='"+artId+"-"+dltname+"';";nam='&lpos=sec-stocksummary'+'-'+dname +'-'+ ltview + '&lid='+namAttr;&cb;$clickedLink.attr('name',nam);eval(clk);&cb;
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = body
+slash = /
+param = 
+text = 
+
+tag = html
+slash = /
+param = 
+text = 
+
+tag = hmstart
+slash = /
+param = 
+text = 
+

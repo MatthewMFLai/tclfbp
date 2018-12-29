@@ -1,0 +1,45 @@
+# contents of .c
+draw rectangle 138.0 47.0 186.0 99.0 -fill {light cyan} -tags {system7835 mv}
+draw rectangle 404.0 102.0 438.0 132.0 -fill {light cyan} -tags {system7628 mv}
+draw rectangle 337.0 48.0 385.0 80.0 -fill {light cyan} -tags {system9213 mv}
+draw rectangle 227.0 46.0 291.0 98.0 -fill {light cyan} -tags {system8167 mv}
+draw rectangle 18.0 50.0 103.0 82.0 -fill {light cyan} -tags {system2176 mv}
+draw text 21.0 50.0 -anchor nw -font fontBold -tags {system2176 BLOCK mv} -text text_source
+draw text 21.0 65.0 -anchor nw -fill red -font fontNormal -tags {system2176 system2176:INPORT:1 PORT mv} -text {1     }
+draw text 55.0 65.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system2176 system2176:OUTPORT:1 PORT mv} -text 1
+draw line 18.0 65.0 103.0 65.0 -tags {system2176 mv}
+draw text 230.0 46.0 -anchor nw -font fontBold -tags {system8167 BLOCK mv} -text common
+draw text 230.0 61.0 -anchor nw -fill red -font fontNormal -tags {system8167 system8167:INPORT:1 PORT mv} -text {1     }
+draw text 264.0 61.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system8167 system8167:OUTPORT:1 PORT mv} -text 1
+draw text 264.0 81.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system8167 system8167:OUTPORT:2 PORT mv} -text 2
+draw line 227.0 61.0 291.0 61.0 -tags {system8167 mv}
+draw text 340.0 48.0 -anchor nw -font fontBold -tags {system9213 BLOCK mv} -text tracer
+draw text 340.0 63.0 -anchor nw -fill red -font fontNormal -tags {system9213 system9213:INPORT:1 PORT mv} -text {1     }
+draw text 374.0 63.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system9213 system9213:OUTPORT:1 PORT mv} -text 1
+draw line 337.0 63.0 385.0 63.0 -tags {system9213 mv}
+draw text 407.0 102.0 -anchor nw -font fontBold -tags {system7628 BLOCK mv} -text sink
+draw text 407.0 117.0 -anchor nw -fill red -font fontNormal -tags {system7628 system7628:INPORT:1 PORT mv} -text {1     }
+draw line 404.0 117.0 438.0 117.0 -tags {system7628 mv}
+draw text 141.0 47.0 -anchor nw -font fontBold -tags {system7835 BLOCK mv} -text cloner
+draw text 141.0 62.0 -anchor nw -fill red -font fontNormal -tags {system7835 system7835:INPORT:1 PORT mv} -text {1     }
+draw text 175.0 62.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system7835 system7835:OUTPORT:1 PORT mv} -text 1
+draw text 175.0 82.0 -anchor nw -fill blue -font fontNormal -justify right -tags {system7835 system7835:OUTPORT:2 PORT mv} -text 2
+draw line 138.0 62.0 186.0 62.0 -tags {system7835 mv}
+draw line 383.0 70.5 406.0 124.5 -tags {edge system9213:OUTPORT:1%system7628:INPORT:1}
+draw line 395.0 120.0 406.0 124.5 410.0 113.0 -tags {deco edge system9213:OUTPORT:1%system7628:INPORT:1}
+draw line 184.0 89.5 203.0 90.0 204.0 121.0 7.0 121.0 7.0 73.0 20.0 72.5 -tags {edge system7835:OUTPORT:2%system2176:INPORT:1}
+draw line 12.0 81.0 20.0 72.5 11.0 64.0 -tags {deco edge system7835:OUTPORT:2%system2176:INPORT:1}
+draw line 64.0 72.5 140.0 69.5 -tags {edge system2176:OUTPORT:1%system7835:INPORT:1}
+draw line 132.0 78.0 140.0 69.5 131.0 61.0 -tags {deco edge system2176:OUTPORT:1%system7835:INPORT:1}
+draw polygon 206.0 90.0 203.0 87.0 200.0 90.0 203.0 93.0 -fill {} -tags bendtag
+draw polygon 207.0 121.0 204.0 118.0 201.0 121.0 204.0 124.0 -fill {} -tags bendtag
+draw polygon 10.0 121.0 7.0 118.0 4.0 121.0 7.0 124.0 -fill {} -tags bendtag
+draw polygon 10.0 73.0 7.0 70.0 4.0 73.0 7.0 76.0 -fill {} -tags bendtag
+draw line 273.0 68.5 339.0 70.5 -tags {edge system8167:OUTPORT:1%system9213:INPORT:1}
+draw line 330.0 79.0 339.0 70.5 331.0 62.0 -tags {deco edge system8167:OUTPORT:1%system9213:INPORT:1}
+draw line 273.0 88.5 406.0 124.5 -tags {edge system8167:OUTPORT:2%system7628:INPORT:1}
+draw line 396.0 130.0 406.0 124.5 400.0 114.0 -tags {deco edge system8167:OUTPORT:2%system7628:INPORT:1}
+draw line 184.0 69.5 229.0 68.5 -tags {edge system7835:OUTPORT:1%system8167:INPORT:1}
+draw line 221.0 77.0 229.0 68.5 220.0 60.0 -tags {deco edge system7835:OUTPORT:1%system8167:INPORT:1}
+
+array set m_block "system7835,outports {1 2} system8167,portset {} system2176,timeout 0 system8167,filename common system7835,portset {} system7835,kicker {} system7628,filename sink system9213,filename tracer system2176,filename text_source system2176,portset {} system7835,init {} system8167,filepath {\$env(DISK2)/component/stock/common} system7835,ipaddr localhost system7628,filepath {\$env(DISK2)/component/basic/sink} system9213,filepath {\$env(DISK2)/component/basic/tracer} system8167,inports 1 system2176,filepath {\$env(DISK2)/component/basic/source} system7835,inports 1 system7628,timeout 0 system9213,timeout 0 system8167,outports {1 2} system7628,outports {} system9213,outports 1 system8167,kicker {} system2176,inports 1 system7835,filename cloner system7628,portset {} system7628,kicker {} system9213,portset {} system9213,kicker {} system2176,outports 1 system2176,kicker red-ball system8167,ipaddr localhost system8167,init {5 logfile=B1_1.log NORMAL {freedict {url.template} {}}} system7628,ipaddr localhost system7628,init {} system9213,ipaddr localhost system9213,init {} system7835,filepath {\$env(DISK2)/component/basic/cloner} system2176,init /media/S3A4886D002/disk2/vread/scripts/BrazilianCat_vocab.txt system2176,ipaddr localhost system8167,timeout 0 system7835,timeout 0 system7628,inports 1 system9213,inports 1"

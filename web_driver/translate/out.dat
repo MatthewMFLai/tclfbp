@@ -1,0 +1,3010 @@
+tag = hmstart
+slash = 
+param = 
+text = 
+
+tag = !doctype
+slash = 
+param = html
+text = 
+
+tag = html
+slash = 
+param = id="Stencil" class="NoJs" lang="zh-Hant-TW"
+text = 
+
+tag = head
+slash = 
+param = 
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="x-dns-prefetch-control" content="on"
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="content-type" content="text/html; charset=UTF-8"
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon" sizes="72x72" href="https://s.yimg.com/pv/static/img/yahoo_purple_icon_ipad_76.png" 
+text = 
+
+tag = link
+slash = /
+param = 
+text = 
+
+tag = link
+slash = 
+param = rel="apple-touch-icon" sizes="144x144" href="https://s.yimg.com/pv/static/img/yahoo_purple_icon_ipad_152.png" 
+text = 
+
+tag = link
+slash = /
+param = 
+text = 
+
+tag = meta
+slash = 
+param = name="viewport" content="width=device-width, initial-scale=1.0"
+text = 
+
+tag = meta
+slash = 
+param = name="oath:guce:consent-host" content="guce.yahoo.com"
+text = 
+
+tag = meta
+slash = /
+param = 
+text = 
+
+tag = noscript
+slash = 
+param = 
+text = 
+
+tag = meta
+slash = 
+param = http-equiv="refresh" content="0;url=https://tw.dictionary.search.yahoo.com/search?p=cesspool&ei=UTF-8&nojs=1"
+text = 
+
+tag = noscript
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = (function()&#123;var o=window,m=document,q,f,i;var h=2,g="&#92;x03",e="&#92;x04",a="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._-";function c(w)&#123;if(!w)&#123;return null&#125;w._r=h;var x=[],t=0,s;for(s in w)&#123;var d=w[s];if(typeof d!=="string")&#123;d=String(d);w[s]=d&#125;if(s.length
+
+tag = 1)&#123;return
+slash = 
+param = null&#125;if(s.length
+text = 8)&#123;return null&#125;if(s.indexOf(" ")!==-1)&#123;return null&#125;if(n(s)||n(d))&#123;return null&#125;x[t++]=s&#125;x=x.sort();var u=[];for(t=0;t
+
+tag = x.length;t++)&#123;u[t]=x[t]+g+w[x[t]]&#125;u=u.join(e);if(u.length<1||u.length
+slash = 
+param = 
+text = 1024)&#123;return null&#125;return r(u)&#125;function n(t)&#123;var d=0;for(;d
+
+tag = t.length;d++)&#123;if(t.charCodeAt(d)<32)&#123;return
+slash = 
+param = true&#125;&#125;return false&#125;function r(t)&#123;var d="";var A,y,w="";var z,x,v,u="";var s=0;do&#123;A=t.charCodeAt(s++);y=t.charCodeAt(s++);w=t.charCodeAt(s++);z=A
+text = >2;x=((A&3)
+
+tag = <4)|(y
+slash = 
+param = 
+text = >4);v=((y&15)
+
+tag = <2)|(w
+slash = 
+param = 
+text = >6);u=w&63;if(isNaN(y))&#123;v=u=64&#125;else&#123;if(isNaN(w))&#123;u=64&#125;&#125;d=d+a.charAt(z)+a.charAt(x)+a.charAt(v)+a.charAt(u);A=y=w="";z=x=v=u=""&#125;while(s
+
+tag = t.length);return
+slash = 
+param = d&#125;function j(d)&#123;return !!(d.tagName&&d.tagName.toLowerCase()==="a"&&typeof d.getAttribute==="function"&&d.getAttribute("href"))&#125;var b=/(;?)(_ylt=[0-9a-zA-Z&#92;._&#92;-]+)(;_ylu=[0-9a-zA-Z&#92;._&#92;-]+)?(;_ylc=[0-9a-zA-Z&#92;._&#92;-]+)?/;function p(s,d)&#123;var t=c(d);if(!b.test(s)||!t)&#123;return s&#125;s=s.replace(b,"$1$2$3;_ylc="+t);return s&#125;function k(s)&#123;var t=s.target;while(t)&#123;if(j(t))&#123;var d=t.getAttribute("href");if(i.test(d))&#123;d=p(d,f.ylcParam);t.setAttribute("href",d)&#125;break&#125;t=t.parentNode&#125;return true&#125;function l()&#123;&#125;l.prototype=&#123;mdeh:function(d)&#123;return k(d)&#125;,init:function(d)&#123;f=d;this.injectYlc=p;if(f.cbclk_regexp)&#123;i=new RegExp(f.cbclk_regexp)&#125;if(f.ylcParam)&#123;if(o.addEventListener)&#123;o.addEventListener("mousedown",this.mdeh)&#125;else&#123;if(o.attachEvent)&#123;o.attachEvent("onmousedown",this.mdeh)&#125;&#125;&#125;&#125;,updateUrl:function(d)&#123;if(f&&f.ylcParam&&i&&i.test(d))&#123;d=p(d,f.ylcParam)&#125;return d&#125;&#125;;window.cwh=new l()&#125;)();window.cwh.init(&#123;"cbclk_regexp":"(qa-r|qa-ri|r|ri)&#92;&#92;.search&#92;&#92;.yahoo&#92;&#92;.com&#92;&#92;&#92;/(cbclk2|cbclk)(&#92;&#92;&#92;/.+&#92;&#92;&#92;/RU=([^&#92;&#92;&#92;/]+)&#92;&#92;&#92;/.+?)(;_ylc=[0-9a-zA-Z&#92;&#92;._&#92;&#92;-]+)?$","ylcParam":&#123;"rt":1&#125;&#125;);(function()&#123;var a=window;var c;var d=function(f)&#123;if(c)&#123;a.navigator.sendBeacon(f)&#125;else&#123;var e=new Image();e.onload=e.onerror=function()&#123;e.onload=e.onerror=null;e=null&#125;;e.src=f&#125;&#125;;var b=function(e)&#123;c=a.navigator&&(typeof a.navigator.sendBeacon==="function");if(!e)&#123;return false&#125;if(c)&#123;d(e)&#125;else&#123;if(a.addEventListener)&#123;a.addEventListener("load",function()&#123;d(e)&#125;)&#125;else&#123;if(a.attachEvent)&#123;a.attachEvent("onload",function()&#123;d(e)&#125;)&#125;else&#123;d(e)&#125;&#125;&#125;return true&#125;;a.bkbeacon=b&#125;)();window.bkbeacon("https://www.bing.com/aclick/RLinkPing.htm?iguid=0aed5c6ee1a2408081000000003a13df");(function()&#123;var h=document.documentElement;h.className+=" js";(new Image()).src='https://s.yimg.com/pv/static/img/srp-sprite-201311141711.png';&#125;)();</script
+text = 
+
+tag = title
+slash = 
+param = 
+text = cesspool - Yahoo奇摩字典 搜尋結果
+
+tag = title
+slash = /
+param = 
+text = 
+
+tag = link
+slash = 
+param = rel="stylesheet" type="text/css" href="https://s.yimg.com/zz/combo?kx/yucs/uh3/uh/1138/css/uh_non_mail-min.css&kx/yucs/uh3s/atomic/88/css/atomic-min.css&kx/yucs/uh_common/meta/3/css/meta-min.css&kx/yucs/uh3/uh/1132/css/uh_ssl-min.css&pv/static/lib/tw_srp-header-css-magical-tw_0e44f4a1dfcbaca90b0734856a191106.css&pv/static/lib/tw_srp-core-css-light-dictionary-tw_a57bdab4f94fd3b233d84ce04c983fc0.css&pv/static/lib/master-atomic-desktop_a711a704d24354c848d3cb01675ea3a6.css" class="inline"
+text = 
+
+tag = link
+slash = 
+param = rel="search" type="application/opensearchdescription+xml" href="https://tw.search.yahoo.com/opensearch.xml" title="享受 Yahoo奇摩的最佳網路體驗" 
+text = 
+
+tag = style
+slash = 
+param = type="text/css"
+text = s,#at-tog,.ssbang,.sschk,.ssochk,.ssbx,#ss a.ss-remove,.ads a.pp-l,.news-nph,.stars-sm span,.stars-lg span,.thmbplay,.sc-promo-img,.sc-close,#att_icon,#verizon_icon .ico,.sprite&#123;background-image:url(https://s.yimg.com/pv/static/img/srp-sprite-201311141711.png);&#125;#att-tab&#123;height:13px;position:relative;width:49px;z-index:4&#125;#att_icon&#123;background-position:-160px -124px;display:block;font-size:0;height:18px;line-height:0;margin-right:3px;overflow:hidden;width:40px&#125;#att-tab .menu-link&#123;border:1px solid transparent;_border:1px solid #F5F8F9;bottom:6px;_bottom:3px;height:18px;left:-16px;_left:0;padding:3px 10px;width:auto;max-width:100px&#125;#att-tab a.m-active&#123;border:1px solid #C6C9CB;_height:16px&#125;#att-tab a:hover&#123;cursor:pointer;text-decoration:none&#125;#att-tab a.menu-link s&#123;right:-14px;_right:0;top:10px&#125;#att-menu.cobrand&#123;height:60px;left:-6.7em;*left:-6.5em;_left:-4.75em;top:2.1em;width:135px&#125;#att-menu.cobrand ul&#123;float:left;width:35%&#125;#att-menu.cobrand ul.first&#123;width:64%&#125;#uh .menu-bd.cobrand ul li&#123;border:none;padding:0&#125;.menu-bd.cobrand ul.first li&#123;padding-right:0&#125;.menu-bd.cobrand ul li a&#123;font-size:116%&#125;#uh .menu-bd.cobrand ul li a:hover&#123;color:#FFF;text-decoration:none&#125;#verizon-link&#123;height:15px&#125;#verizon_icon&#123;display:block;overflow:hidden;padding-left:20px&#125;#verizon_icon .ico&#123;background-position:-185px -124px;border:none;height:15px;left:0;margin-right:3px;padding:0;top:0;width:15px&#125;#verizon-link s&#123;top:5px&#125;#verizon-tab&#123;position:relative;_width:11em;z-index:5&#125;#verizon-menu.menu-bd&#123;left:1.5em;top:1.75em;min-width:100px;_left:0;_z-index:3&#125;#verizon-menu.cobrand ul.first&#123;width:100%&#125;.menu-link #verizon_icon s&#123;-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);filter:none&#125;#rogers-link&#123;padding-right:0&#125;#rogers_icon .ico&#123;display:none&#125;ul li#partner-tab&#123;height:13px;position:relative;width:auto;_width:0;white-space:nowrap;max-width:200px;z-index:4&#125;#partner-link #partner_icon&#123;position:relative;top:-2px;display:inline;font-size:0;line-height:0;margin-right:5px;overflow:hidden;vertical-align:middle&#125;#partner-link #partner_logo_caption&#123;position:relative;margin-left:2px&#125;#partner_caption&#123;position:relative;top:2px&#125;#partner-tab .menu-link&#123;border:1px solid transparent;*border:1px solid white;_border:1px solid white;top:-1px;height:18px;left:0;_left:0;padding:0 6px 5px 0;width:auto;_width:auto;max-width:200px;_max-width:200px&#125;#partner-tab a.m-active&#123;border:1px solid #C6C9CB;_height:16px&#125;#partner-tab a:hover&#123;cursor:pointer;text-decoration:none&#125;#partner-tab a.menu-link s&#123;right:-2px;*right:-2px;_right:-2px;margin-right:0;top:5px;border:none;:&#125;#partner-menu.cobrand&#123;left:.5em;*left:.5em;_left:.5em;top:2.1em;width:100%&#125;#partner-menu.cobrand ul&#123;float:left&#125;#partner-menu.cobrand ul.first&#123;width:100%&#125;#partner-menu.menu-bd&#123;min-width:4em;width:auto;right:5px;*right:5px;_right:5px;left:auto&#125;#partner-menu.menu-bd.cobrand ul li&#123;border:none;padding:0 10px;display:block;clear:both&#125;#partner-menu.menu-bd.cobrand ul.first li&#123;height:50%&#125;.menu-bd.cobrand ul li a&#123;font-size:116%&#125;#uh .menu-bd.cobrand ul li a:hover&#123;color:#FFF;text-decoration:none&#125;#logo&#123;height:40px;width:350px;top: 0;left: 0;margin: 0;display: block;overflow: hidden;text-indent: -9999px;background-repeat:no-repeat;outline: none;&#125;#logo&#123; background-image:url(https://s.yimg.com/rz/d/yahoo_zh-Hant-TW_f_p_350x40.png);*background-image:url(https://s.yimg.com/rz/d/yahoo_zh-Hant-TW_f_p_350x40.gif);&#125;@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) &#123;#logo&#123;background-image:url(https://s.yimg.com/rz/d/yahoo_zh-Hant-TW_f_p_350x40_2x.png); background-size: 350px&#125;&#125;#main #web .dd .title a&#123;text-decoration: none&#125;#main #web b,#main #web .cite&#123;font-weight: normal&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = src="https://consent.cmp.oath.com/cmp.js"
+text = 
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = meta
+slash = 
+param = name="google-site-verification" content="OdROXZf_oCS0y1lODH89kqOp4kSGwUeDWsSHdHwNEk0" 
+text = 
+
+tag = meta
+slash = /
+param = 
+text = 
+
+tag = head
+slash = /
+param = 
+text = 
+
+tag = body
+slash = 
+param = id="ysch" class="  linux v"
+text = 
+
+tag = div
+slash = 
+param = id="doc" class="uh3-p uh3lite lg-l"
+text = 
+
+tag = h1
+slash = 
+param = class="off-left"
+text = Yahoo奇摩字典 網頁搜尋
+
+tag = h1
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="sticky-hd"
+text = 
+
+tag = style
+slash = 
+param = 
+text = #yucs&#123;padding:0&#125;#yucs .yucs-avatar&#123;width:22px;height:22px&#125;#yucs a#yucs-mail_link_id&#123;_width:30px;_text-indent:0;_background-position:0 -4352px&#125;#yucs-profile&#123;_margin-right:-10px;_width:75px&#125;#yucs #yucs-profile_text .yuhead-name-greeting&#123;display:none&#125;#yucs #yucs-profile_text .yuhead-name&#123;top:0;max-width:65px;_width:40px&#125;#yucs-profile_text&#123;max-width:65px&#125;#yucs #yucs-nav .yucs-menu ul li a:hover,#yucs #yucs-help .yucs-menu ul li a:hover,#yucs .yucs-profile-items-panel a:hover&#123;background-color:transparent;text-decoration:underline&#125;#yucs-top-inner&#123;margin-left:0&#125;#doc.uh3-p #yucsHead #yucs-top-home&#123;margin-top:2px !important&#125;#yucs .yucs-noscript .yucs-no_menu .yucs-signout:link&#123;left:30px;top:10px;position:absolute;*left:0&#125;#yucsHead&#123;background-color:#fafafc&#125;#yucs #yucs-profile_inner.yucs-nv3 .yucs-profile-items-panel li a&#123;white-space:normal&#125;
+
+tag = style
+slash = /
+param = 
+text =   
+
+tag = div
+slash = 
+param = id="yucsHead" class="yucs-srp yucs-zh-hant-tw  yucs-standard yucs-fcb-"
+text = 
+
+tag = div
+slash = 
+param = id="yucs-meta" data-authstate="signedout" data-cobrand="standard" data-crumb="" data-mc-crumb="" data-msrc="mdbm" data-gta="" data-device="desktop" data-experience="uh3" data-firstname="" data-style="" data-flight="1542547191" data-forcecobrand="standard" data-guid="" data-host="tw.dictionary.search.yahoo.com" data-https="1" data-languagetag="zh-hant-tw" data-property="srp" data-protocol="https" data-shortfirstname="" data-shortuserid="" data-status="active" data-spaceid="1351200381" data-test_id="" data-userid="" data-stickyheader="true" data-headercollapse="" data-uh-test="" data-beacon="0" 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="yucs-disclaimer" class="yucs-disclaimer yucs-activate yucs-hide yucs-property-srp yucs-fcb- " data-cobrand="standard" data-cu = "0" data-dsstext="想要享受更好的搜尋體驗嗎？ &#123;dssLink&#125;將您的搜尋設為 Yahoo奇摩&#123;linkEnd&#125;" data-dsstext-mobile="更少的搜尋動作，更多的搜尋結果" data-dsstext-mobile-ok="確定" data-dsstext-mobile-set-search="將您的搜尋設定為 Yahoo。" data-dssstbtext="Yahoo is the preferred search engine for Firefox. Switch now." data-dssstb-ok="Yes" data-dssstb-no="Not Now" data-ylt-link="https://tw.search.yahoo.com/searchset;_ylt=AwrtXG73ZvFbv1QAAwB9rolQ?pn=" data-ylt-dssbarclose="/;_ylt=AwrtXG73ZvFbv1QABAB9rolQ" data-ylt-dssbaropen="/;_ylt=AwrtXG73ZvFbv1QABQB9rolQ" data-ylt-dssstb-link="https://downloads.yahoo.com/sp-firefox;_ylt=AwrtXG73ZvFbv1QABgB9rolQ" data-ylt-dssstbbarclose="/;_ylt=AwrtXG73ZvFbv1QABwB9rolQ" data-ylt-dssstbbaropen="/;_ylt=AwrtXG73ZvFbv1QACAB9rolQ" data-ylt-dssCookieCleanedSuccess="/;_ylt=AwrtXG73ZvFbv1QACQB9rolQ" data-ylt-dssCookieCleanedFailed="/;_ylt=AwrtXG73ZvFbv1QACgB9rolQ" data-linktarget="_top" data-lang="zh-hant-tw" data-property="srp" data-device="Desktop" data-close-txt="關閉此視窗" data-maybelater-txt = "稍後再說" data-killswitch = "0" data-host="tw.dictionary.search.yahoo.com" data-spaceid="1351200381" data-pn="" data-dss-cookie-cleanup="" data-pn-en-ca-mobile-frontpage="" data-pn-de-de-mobile-frontpage="" data-pn-es-es-mobile-frontpage="" data-pn-fr-fr-mobile-frontpage="" data-pn-en-in-mobile-frontpage="" data-pn-it-it-mobile-frontpage="" data-pn-en-us-mobile-frontpage="" data-pn-en-sg-mobile-frontpage="" data-pn-en-gb-mobile-frontpage="" data-pn-en-us-mobile-mail="" data-pn-en-ca-mobile-mail="" data-pn-de-de-mobile-mail="" data-pn-es-es-mobile-mail="" data-pn-fr-fr-mobile-mail="" data-pn-en-in-mobile-mail="" data-pn-it-it-mobile-mail="" data-pn-en-sg-mobile-mail="" data-pn-en-gb-mobile-mail="" data-pn-pt-br-mobile-mail="" data-pn-en-us-tablet-frontpage="" data-pn-en-us-tablet-mail="" data-pn-en-ca-tablet-mail="" data-pn-de-de-tablet-mail="" data-pn-es-es-tablet-mail="" data-pn-fr-fr-tablet-mail="" data-pn-en-in-tablet-mail="" data-pn-it-it-tablet-mail="" data-pn-en-sg-tablet-mail="" data-pn-en-gb-tablet-mail="" data-pn-pt-br-tablet-mail="" data-news-search-yahoo-com="" data-answers-search-yahoo-com="" data-finance-search-yahoo-com="" data-images-search-yahoo-com="" data-video-search-yahoo-com="" data-sports-search-yahoo-com="" data-shopping-search-yahoo-com="" data-shopping-yahoo-com="" data-us-qa-trunk-news-search-yahoo-com ="" data-dss=""
+text = 
+
+tag = div
+slash = /
+param = 
+text =   
+
+tag = div
+slash = 
+param = id="yucs" class="yucs yucs-mc  yog-grid" data-lang="zh-hant-tw" data-property="srp" data-flight="1542547191" data-linktarget="_top" data-uhvc="/;_ylt=AwrtXG73ZvFbv1QACwB9rolQ"
+text =  
+
+tag = div
+slash = 
+param = class="yucs-fl-left yog-cp"
+text =      
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="yucs-fl-right"
+text =  
+
+tag = div
+slash = 
+param = id="yucs-profile" class="yucs-profile yucs-signedout"
+text =  
+
+tag = a
+slash = 
+param = id="yucs-menu_link_profile_signed_out" href="https://login.yahoo.com/config/login;_ylt=AwrtXG73ZvFbv1QADAB9rolQ?.src=&.intl=tw&.lang=zh-Hant-TW&.done=https://tw.dictionary.search.yahoo.com/search%3fp=cesspool%26fr2=sb-top-tw.dictionary.search%26fr=sfp" target="_top" rel="nofollow" class="sp yucs-fc" aria-label="社交名片"
+text =  
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = id="yucs-profile_text" class="yucs-fc"
+text =  
+
+tag = a
+slash = 
+param = id="yucs-login_signIn" href="https://login.yahoo.com/config/login;_ylt=AwrtXG73ZvFbv1QADQB9rolQ?.src=&.intl=tw&.lang=zh-Hant-TW&.done=https://tw.dictionary.search.yahoo.com/search%3fp=cesspool%26fr2=sb-top-tw.dictionary.search%26fr=sfp" target="_top" rel="nofollow" class="yucs-fc"
+text =  登入 
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="yucs-mail_link yucs-mailpreview-ancestor"
+text = 
+
+tag = a
+slash = 
+param = id="yucs-mail_link_id" class="sp yltasis yucs-fc" href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QADgB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.mail.yahoo.com%2f%3f.intl%3dtw%26.lang%3dzh-Hant-TW/RK=2/RS=Uo9OvCeCObElKsRKD6rCSJg7VBE-" rel="nofollow" target="_top"
+text =  信箱 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="yucs-mail-preview-panel yucs-menu yucs-hide" data-mail-txt="信箱" data-uri-scheme="http" data-uri-path="ucs.query.yahoo.com/v1/console/yql" data-mail-view="檢視所有 Yahoo 信件" data-mail-help-txt="服務說明" data-mail-help-url="http://help.cc.tw.yahoo.com/help_cp.html?product=29" data-mail-loading-txt="載入中..." data-languagetag="zh-hant-tw" data-mrd-crumb="" data-authstate="signedout" data-middleauth-signin-text="點選這裡檢視您的信件" data-popup-login-url="https://login.yahoo.com/config/login_verify2?.pd=c%3DOIVaOGq62e5hAP8Tv..nr5E3&.src=sc" data-middleauthtext="你有 &#123;count&#125; 封新信。" data-yltmessage-link="https://mrd.mail.yahoo.com/msg;_ylt=AwrtXG73ZvFbv1QADwB9rolQ?mid=&#123;msgID&#125;&fid=Inbox&src=uh&.crumb=" data-yltviewall-link="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAEAB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.mail.yahoo.com%2f/RK=2/RS=u6S5Y0Ay3.T1y.JqSikMNaVhHw8-" data-yltpanelshown="/;_ylt=AwrtXG73ZvFbv1QAEQB9rolQ" data-ylterror="/;_ylt=AwrtXG73ZvFbv1QAEgB9rolQ" data-ylttimeout="/;_ylt=AwrtXG73ZvFbv1QAEwB9rolQ" data-generic-error="無法預覽您的信件。<br
+text = 前往電子信箱。" data-nosubject="[無主旨]" data-timestamp='short'>
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = id="yucs-help" class="yucs-activate yucs-help yucs-menu_nav"
+text =  
+
+tag = a
+slash = 
+param = id="yucs-help_button" class="sp yltasis" href="javascript:void(0);" aria-label="服務說明" rel="nofollow"
+text =  
+
+tag = em
+slash = 
+param = class="yucs-hide yucs-menu_anchor"
+text = 服務說明
+
+tag = em
+slash = /
+param = 
+text =  
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = id="yucs-help_inner" class="yucs-hide yucs-menu yucs-hm-activate" data-yltmenushown="/;_ylt=AwrtXG73ZvFbv1QAFAB9rolQ"
+text =  
+
+tag = span
+slash = 
+param = class="sp yucs-dock"
+text = 
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = class="yucs-yql_loading"
+text =  
+
+tag = ul
+slash = 
+param = id="yuhead-help-panel"
+text =  
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class="yucs-acct-link" href="https://login.yahoo.com/account/personalinfo;_ylt=AwrtXG73ZvFbv1QAFQB9rolQ?.intl=tw&.lang=zh-Hant-TW&.done=https://tw.dictionary.search.yahoo.com/search%3fp=cesspool%26fr2=sb-top-tw.dictionary.search%26fr=sfp&amp;.src=&amp;.intl=tw&amp;.lang=zh-Hant-TW" target="_top"
+text = 帳號資料
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text =   
+
+tag = ul
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text =          
+
+tag = div
+slash = /
+param = 
+text =     
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = id="yUnivHead" class="yucs-hide"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="yucs-apps-overlay"
+text = 
+
+tag = div
+slash = 
+param = id="yucs-apps" class="yucs-help yucs-menu_nav"
+text = 
+
+tag = a
+slash = 
+param = id="yucs-apps_button" class="yltasis yucs-fc" href="https://tw.search.yahoo.com/preferences/preferences;_ylt=AwrtXG73ZvFbv1QAGQB9rolQ?pref_done=https%3A%2F%2Ftw.dictionary.search.yahoo.com%2Fsearch%3Fp%3Dcesspool%26ei%3DUTF-8&.bcrumb=7kiFDHzB0.U" aria-label="設定" rel="nofollow" data-mad="true" role="button" data-beacon="https://geo.yahoo.com/t;_ylt=AwrtXG73ZvFbv1QAGgB9rolQ" aria-haspopup="true"
+text = 設定
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="yucs-apps_inner" class="yucs-hide" role="menu" tabindex="-1"
+text = 
+
+tag = div
+slash = 
+param = id="yucs-apps_inner_grid" class="yucs-menu"
+text = 
+
+tag = div
+slash = 
+param = id="mask"
+text = 
+
+tag = span
+slash = 
+param = id="tip"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="yucs-apps-cntr"
+text = 
+
+tag = ul
+slash = 
+param = class="yucs-app-list"
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAGwB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.yahoo.com%2f/RK=2/RS=FykjFQ9ow4W9JdU0J38CVJoC1j8-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-home"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 首頁
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAHAB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.news.yahoo.com%2f/RK=2/RS=ZXKkOk5fvps2Maw_hz5AomYNNGY-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-news"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 新聞
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAHQB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.stock.yahoo.com%2f/RK=2/RS=..HWwQkmRe52UiSbiie0_2J3vM8-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-stock"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 股市
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAHgB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.buy.yahoo.com%2f/RK=2/RS=Uu1vVMD74mOikf9sRTh_8DGba4A-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-shopping"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 購物中心
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAHwB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2fmail.yahoo.com.tw%2f/RK=2/RS=Fk6WUlQIlcH59ZSvHqY8YAtgs5M-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-mall"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 超級商城
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://tw.bid.yahoo.com/;_ylt=AwrtXG73ZvFbv1QAIAB9rolQ" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-auction"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 拍賣
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAIQB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.video.yahoo.com%2f/RK=2/RS=qyp9N5iZRRHel0SXx46wyzP06Yk-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-tv"
+text = 
+
+tag = span
+slash = /
+param = 
+text = TV
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAIgB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2ftw.sports.yahoo.com%2f/RK=2/RS=zNpb64gOmhZj.D7gh8mVtgNH6Kw-" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-sports"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 運動
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="https://tw.search.yahoo.com/preferences/preferences;_ylt=AwrtXG73ZvFbv1QAGQB9rolQ?pref_done=https%3A%2F%2Ftw.dictionary.search.yahoo.com%2Fsearch%3Fp%3Dcesspool%26ei%3DUTF-8&.bcrumb=7kiFDHzB0.U" class="app-item"
+text = 
+
+tag = span
+slash = 
+param = class="uha-ico uha-settings"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 設定
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="hd" class="clr"
+text = 
+
+tag = a
+slash = 
+param = id="logo" target="_top" href="https://tw.dictionary.search.yahoo.com/;_ylt=AwrtXG73ZvFbv1QAIwB9rolQ"
+text = Yahoo奇摩字典
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="sbx"
+text = 
+
+tag = form
+slash = 
+param = method="get" name="s" id="sf" role="search" action="https://tw.dictionary.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAJAB9rolQ"accept-charset="utf-8"
+text = 
+
+tag = label
+slash = 
+param = for="yschsp" class="off-left"
+text = 查詢詞
+
+tag = label
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="sbq-wrap" class="sbq-w"
+text = 
+
+tag = input
+slash = 
+param = type="text" class="sbq" id="yschsp" name="p" value="cesspool" autocomplete="off" tabindex="1"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = button
+slash = 
+param = id="sbq-clear" type="button" class="sbq-x"
+text = 
+
+tag = span
+slash = 
+param = class="sprite"
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = button
+slash = /
+param = 
+text = 
+
+tag = input
+slash = 
+param = type="submit" class="sbb" value="搜尋" tabindex="2"
+text = 
+
+tag = input
+slash = 
+param = type="hidden" name="fr2" value="sb-top"
+text = 
+
+tag = input
+slash = 
+param = type="hidden" name="fr" value="sfp"
+text = 
+
+tag = div
+slash = 
+param = class="pphw-container"
+text = 
+
+tag = input
+slash = 
+param = id="pphw-triggerbtn" type="button" 
+text = 
+
+tag = input
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="pphw-content"
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = style
+slash = 
+param = type="text/css"
+text = .pphw-panel,#pphw-label-left,#pphw-undobtn,#pphw-cleanbtn,#pphw-closebtn,#pphw-qmarkbtn   &#123; background: url("https://sp.yimg.com/mq/i/home/pphw_sprites_20101019.png") no-repeat; &#125;#pphw-triggerbtn &#123; background: url("https://sp.yimg.com/mq/i/home/pphw_sprites_20101019.png") no-repeat -101px 0; &#125;.yui3-pphw-overlay-hidden&#123;display:none&#125;.pphw-panel&#123;overflow:hidden;width:256px;height:263px;background-position:0 -34px&#125;.pphw-panel .yui3-widget-hd&#123;height:29px;overflow:hidden&#125;.pphw-panel #pphw-hd-label&#123;color:#999&#125;.pphw-panel .yui3-widget-hd span&#123;display:block;margin:4px 0 0 60px;line-height:25px;font-size:12px&#125;.pphw-panel .yui3-widget-bd&#123;overflow:hidden;height:205px&#125;.pphw-panel .btn-wrapper button&#123;margin:0;padding:0;background-color:#FFF;border:0 none;cursor:pointer;position:absolute&#125;.pphw-panel .pp-gf&#123;width:27%;margin:0 0 0 4px;height:205px;overflow:hidden&#125;.pphw-panel .pp-gf button&#123;width:31px;height:31px;text-align:center;border:1px double #D0D0D0;color:#333;top:29px;left:14px;font-size:16px;z-index:1&#125;.pphw-panel .pp-gf #pphw-cbtn2&#123;top:59px&#125;.pphw-panel .pp-gf #pphw-cbtn3&#123;top:89px&#125;.pphw-panel .pp-gf #pphw-cbtn4&#123;top:119px&#125;.pphw-panel .pp-gf #pphw-cbtn5&#123;top:149px&#125;.pphw-panel .pp-gf #pphw-cbtn6&#123;top:179px&#125;.pphw-panel .pp-gf .hover button&#123;color:#000;border:2px solid #666;font-size:21px;z-index:2&#125;.pphw-panel .pp-gf #pphw-label-left&#123;position:absolute;top:115px;left:49px;width:6px;height:9px;margin:0;padding:0;border:none;background-position:0 0&#125;.pphw-panel .pp-u&#123;width:73%;border:none;margin:0 4px 0 0;float:right;height:205px;overflow:hidden&#125;.pphw-panel .pp-u #pphw-writepad-loading&#123;position:absolute;top:110px;left:141px&#125;.pphw-panel .pp-u #pphw-writepad-iframe&#123;position:absolute;width:180px;height:180px;top:29px;left:60px;border:1px solid #666;box-sizing:border-box&#125;.pphw-panel .pp-u #pphw-qmarkbtn&#123;top:10px;left:209px;width:8px;height:11px;background-position:-209px 0&#125;.pphw-panel .pp-u .hover #pphw-qmarkbtn&#123;background-position:-191px 0&#125;.pphw-panel .pp-u .active #pphw-qmarkbtn&#123;background-position:-227px 0&#125;.pphw-panel .pp-u #pphw-closebtn&#123;top:11px;left:234px;width:9px;height:9px;font-size:0;background-position:-63px 0&#125;.pphw-panel .pp-u .hover #pphw-closebtn&#123;background-position:-44px 0&#125;.pphw-panel .pp-u .active #pphw-closebtn&#123;background-position:-82px 0&#125;.pphw-panel .pp-u #pphw-undobtn&#123;width:50px;height:17px;text-align:center;color:#FFF;top:212px;left:81px;font-size:12px;background-position:-258px -134px&#125;.pphw-panel .pp-u .hover #pphw-undobtn&#123;background-position:-258px -114px&#125;.pphw-panel .pp-u .active #pphw-undobtn&#123;background-position:-258px -134px&#125;.pphw-panel .pp-u .disabled #pphw-undobtn&#123;background-position:-258px -94px;cursor:default&#125;.pphw-panel .pp-u #pphw-cleanbtn&#123;width:50px;height:17px;text-align:center;color:#FFF;top:212px;left:171px;font-size:12px;background-position:-258px -74px&#125;.pphw-panel .pp-u .hover #pphw-cleanbtn&#123;background-position:-258px -54px&#125;.pphw-panel .pp-u .active #pphw-cleanbtn&#123;background-position:-258px -74px&#125;.pphw-panel .pp-u .disabled #pphw-cleanbtn&#123;background-position:-258px -34px;cursor:default&#125;.pphw-panel .yui3-widget-ft&#123;top:233px;height:29px;width:256px;font-size:12px;margin:0;color:#0F0;padding:0;overflow:hidden;border:none;text-align:right;position:absolute&#125;.pphw-panel .yui3-widget-ft a:link,.pphw-panel .yui3-widget-ft a:visited&#123;color:#059&#125;.pphw-panel .yui3-widget-ft #pphw-bl-link&#123;color:#CCC;left:169px;top:9px;overflow:visible;font-size:12px;position:absolute;cursor:pointer&#125;.pphw-panel .yui3-widget-ft .hover #pphw-bl-link&#123;color:#039;text-decoration:underline&#125;#pphw-triggerbtn&#123;width:26px;height:31px;overflow:visible;margin-top:12px;padding:0;display:none;border:none;cursor:pointer&#125;#pphw-triggerbtn:hover&#123;background-position:-161px 0;overflow:hidden&#125;#pphw-triggerbtn.clicked&#123;background-color:#FFF;background-position:-131px 0;cursor:default&#125;.ie.v6_0 #pphw-triggerbtn&#123;margin-top:5px&#125;.uh3-p #so&#123;left:748px&#125;.pphw-container&#123;position:absolute;top:0;left:633px&#125;#pphw-content&#123;position:relative&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = form
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="ys"
+text = 
+
+tag = div
+slash = 
+param = id="horizontal-bar" class="ys-grid ys-hmenu"
+text = 
+
+tag = div
+slash = 
+param = id="sprTp"
+text = 
+
+tag = style
+slash = 
+param = 
+text = .sys_northalsotry .compTextList b &#123;color: #DD4D31; font-weight: normal !important;&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = 
+param = class=" reg searchSuperTop"
+text = 
+
+tag = li
+slash = 
+param = class="first last"
+text = 
+
+tag = div
+slash = 
+param = class="dd horizontal-pivots pt-2u ys-lgc fl-l  assist vrtPivots"
+text = 
+
+tag = div
+slash = 
+param = class="compList visible-pivots fl-l  " 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="p-3u mr-3u fl-l"
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h c-dgray" href="https://tw.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAJgB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 網頁
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="active bds-s bd-0 bdb-2 bdc-red p-3u mr-3u fl-l last"
+text = 
+
+tag = span
+slash = 
+param = class=" t1 c-black-h td-n td-n-h c-dgray"
+text = 字典
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList more-pivots hidden z-4 bgc-white bd-1 bds-s bdc-lgray1 bs-type1 pt-1u pb-1u c-dgray" 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.knowledge.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAJwB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 知識+
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.images.search.yahoo.com/search/images;_ylt=AwrtXG73ZvFbv1QAKAB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 圖片
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.video.search.yahoo.com/search/video;_ylt=AwrtXG73ZvFbv1QAKQB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 影片
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.news.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAKgB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 新聞
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.shopping.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAKwB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 購物
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class=" last"
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h bgc-lgray4-h d-b pl-3u pr-3u pt-1u pb-1u c-dgray" href="https://tw.local.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QALAB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz?p=cesspool&fr2=piv-web&fr=sfp"
+text = 在地生活
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compJsToggle more-pivots-toggle p-3u mr-2u fl-l"
+text = 
+
+tag = a
+slash = 
+param = class=" t1 c-black-h td-n td-n-h drop_down_black_on_hover c-dgray" data-beacon="https://geo.yahoo.com/t;_ylt=AwrtXG73ZvFbv1QALQB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz" href="#" target="_blank"
+text = 更多
+
+tag = span
+slash = 
+param = class='ml-1u mb-1 ico down-arrow-gray-thin'
+text = 
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="bd" role="document"
+text = 
+
+tag = div
+slash = 
+param = id="sidebar"
+text = 
+
+tag = div
+slash = 
+param = class="bd"
+text = 
+
+tag = ol
+slash = 
+param = class=" reg searchLeftTop"
+text = 
+
+tag = li
+slash = 
+param = class="first last"
+text = 
+
+tag = div
+slash = 
+param = class="dd fl-l pt-2u langFilter"
+text = 
+
+tag = div
+slash = 
+param = class="compTitle"
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 dict-fc-4a"
+text = 依語言
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList w-75" 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="fw-xl mt-20 pr-3"
+text = 
+
+tag = span
+slash = 
+param = class=" fl-r w-10 h-10 lessthan-icon"
+text =  
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class=" fz-20 fl-l c-black"
+text = 英漢
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="mt-20 pr-3 last"
+text = 
+
+tag = a
+slash = 
+param = class=" fz-20 fl-l c-black" href="https://tw.dictionary.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QALgB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--?p=cesspool&ei=UTF-8&context=gsmcontext%3A%3Alimlangpair%3A%3Aen_en&fr=sfp"
+text = 英英
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="results"
+text = 
+
+tag = style
+slash = 
+param = type="text/css"
+text = .compList ul&#123;vertical-align:top&#125;.compList li&#123;overflow:hidden&#125;.compList li.active&#123;font-weight:bold;color:#3f3f3f&#125;.compList img&#123;vertical-align:middle&#125;.compList ul li p&#123;font-size:13px;line-height:17px&#125;.compJsToggle .ico&#123;display:inline-block;*display:inline;*margin-top:10px&#125;.compJsToggle.bb-0&#123;border-bottom:0&#125;@media(max-width:1179px)&#123;#right .lrrLocal .hooarrow&#123;float:right;margin-top:-30px;z-index:1&#125;&#125;#results .compJsToggle.fg-trigger a&#123;color:#262626;text-decoration:none!important&#125;#algo-bd ol.reg&#123;margin:0;padding:0;list-style-type:none&#125;.preld.ico, .dd-overlay .ico, .dd .ico, .ico &#123; background-image: url("https://s.yimg.com/pv/static/img/cosmos_sprite1x-1530171294381.min.png");&#125; @media    only screen and (-webkit-min-device-pixel-ratio: 2),   only screen and (   min--moz-device-pixel-ratio: 2),   only screen and (     -o-min-device-pixel-ratio: 2/1),   only screen and (        min-device-pixel-ratio: 2),   only screen and (                min-resolution: 192dpi),   only screen and (                min-resolution: 2dppx) &#123;.preld.ico, .dd-overlay .ico, .dd .ico, .ico &#123; background-image: url("https://s.yimg.com/pv/static/img/cosmos_sprite2x-1530171294381.min.png");&#125;&#125;.compTitle .title&#123;display:inline-block&#125;.compTitle&#123;overflow:hidden;position:relative&#125;.ie.v6_0 .compTitle .title,.ie.v7_0 .compTitle .title,.ie.v6_0 .compTitle .ttl-img,.ie.v7_0 .compTitle .ttl-img&#123;display:inline&#125;.compTitle label&#123;font-size:85%;margin-right:4px&#125;.compTitle .time&#123;margin-left:10px&#125;.compTitle .title.d-inline&#123;display:inline&#125;.compTitle .metered_call_number&#123;padding-right:10px;color:#3F3F3F&#125;.compTitle .sponsored a&#123;float:right;color:#5F5F5F&#125;.compText.summary .attr a&#123;color:#757575;margin-left:5px&#125;.compText.summary .attr a:hover&#123;text-decoration:underline&#125;.compText.sc-more&#123;margin-top:15px&#125;.compText .play-video-big&#123;vertical-align:middle&#125;.compText.rt-align&#123;color:#757575;font-size:11px;line-height:22px;padding-right:10px;text-align:right;border-left:1px solid #E2E2E6;border-right:1px solid #E2E2E6&#125;.compText.rt-align-nb&#123;color:#757575;font-size:11px;line-height:22px;padding-right:10px;text-align:right&#125;.compTabsControl&#123;width:100%;height:50px;background-color:#fafafc;display:block;box-sizing:border-box&#125;.compTabsControl .tab-control-item&#123;position:relative;width:150px;height:53px;line-height:53px;display:inline-block;text-align:center;cursor:pointer;box-sizing:border-box;z-index:1&#125;.compTabsControl .tab-control-item span&#123;text-align:center;font-size:17px;font-weight:500;color:#74747B&#125;.compTabsControl .tab-control .active&#123;border-bottom:solid 3px #006bb7;z-index:5&#125;.compTabsControl .tab-control-item.active span&#123;color:#006bb7;font-weight:bold&#125;.compTabsControl .tab-control-item:not(.active):hover span&#123;color:#000;font-weight:bold&#125;.compTabsControl .tab-control-item:not(.active):hover&#123;background-color:#f1f1f1;border-bottom:solid 3px #949494;z-index:5&#125;.compArticleList li&#123;position:relative;margin-top:10px;overflow:auto;zoom:1&#125;.ie.v6_0 .compArticleList li&#123;zoom:1&#125;.compArticleList .poa-rt&#123;position:absolute;top:0;right:0&#125;.compArticleList .subline .csub a&#123;padding-right:1em&#125;.compArticleList .subline a&#123;display:inline&#125;.compArticleList .cite&#123;margin-right:10px;font-weight:normal;color:#1e7d83&#125;.compArticleList .cite-co&#123;color:#1e7d83&#125;.compArticleList .thmb&#123;float:left;margin:2px 10px 0 0&#125;.compArticleList .thmb.fright&#123;float:right&#125;.compArticleList .fst&#123;margin-top:0&#125;.compArticleList .subline&#123;overflow:hidden;zoom:1&#125;.compArticleList .capwrap&#123;float:left;position:relative&#125;.compArticleList noscript img,.js .compArticleList img,.yui3-js-enabled .compArticleList img&#123;display:block&#125;.compArticleList li.bdb&#123;border-bottom:1px solid #EAEAEA;padding-bottom:10px&#125;.compArticleList li.lst.bdb&#123;border-bottom:none&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="cols"
+text = 
+
+tag = div
+slash = 
+param = id="left"
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="main"
+text = 
+
+tag = div
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="web"
+text = 
+
+tag = style
+slash = 
+param = 
+text = #web .algo .aAbs b,#web .algo .aTitle b,#web .algo.SrQkLnk .compList b,#web .bing_dd .compText b,#web .dd .compArticleList b,#web .dd .compCardList b,#web .dd .compImageList b,#web .dd .compLocalList .title b,#web .dd .compText a b,#web .dd .compTextList b,#web .dd .compTitle b,#web .dd .sc-more b&#123;color:#DD4D31;font-weight:400!important&#125;#web .algo .aUrl,#web .algo .aUrl b,#web .algo .cite,#web .algo .cite b,#web .harmony .aUrl,#web .harmony .aUrl b&#123;font-weight:400!important;color:#1E7D83!important&#125;#web .harmony .aAbs b,#web .harmony .aTitle b,#web .harmony .compText b&#123;color:#DD4D31;font-weight:400!important&#125;#web .algo.algo-sr&#123;position:static&#125;#web .algo.algo-sr .title&#123;max-width:95%&#125;#web .algo.algo-sr .title a&#123;width:100%&#125;#web .algo ul.compDlink.algo-options&#123;margin-left:10px&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = 
+param = class="mb-15 reg searchCenterMiddle"
+text = 
+
+tag = li
+slash = 
+param = class="first"
+text = 
+
+tag = div
+slash = 
+param = class="dd cardDesign dictionaryWordCard sys_dict_word_card"
+text = 
+
+tag = div
+slash = 
+param = class="compTitle fl-r mt-12 mr-12 h-20 ov-v"
+text = 
+
+tag = label
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" d-ib dr_eye" href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QALwB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2fproduct.dreye.com.tw%2f/RK=2/RS=zMgegUP2_ad97W_s2ajubH5Z7x8-" target="_blank"
+text =  
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = label
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = a
+slash = 
+param = class=" fz-13 lh-20 va-mid fc-source" href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAMAB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2fproduct.dreye.com.tw%2f/RK=2/RS=zMgegUP2_ad97W_s2ajubH5Z7x8-" target="_blank"
+text = Dr.eye 譯典通
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compTitle mt-25 ml-25 mb-10"
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-24 fw-500 c-black lh-24"
+text = cesspool
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList ml-25 d-ib" 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="d-ib mr-10 va-top"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-14"
+text = KK[ˋsɛs͵pul]
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="d-ib mr-10 va-top last"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-14"
+text = DJ[ˋses͵pu:l]
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText ml-10 d-ib" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 fc-2nd"
+text = 美式
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class=" d-ib dict-sound va-mid audio-0"
+text =  
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList mb-25 ml-25 p-rel" 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="lh-22 mh-22 mt-12 mb-12 mr-25 last"
+text = 
+
+tag = div
+slash = 
+param = class=" pos_button fz-14 fl-l mr-12"
+text = n.
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = div
+slash = 
+param = class=" fz-16 fl-l dictionaryExplanation"
+text = 汙水坑；糞坑；汙穢場所
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="dd cardDesign sys_dict_disambiguation"
+text = 
+
+tag = div
+slash = 
+param = class="layoutTop" 
+text = 
+
+tag = div
+slash = 
+param = class='compTabsControl '
+text = 
+
+tag = ul
+slash = 
+param = class='tab-control'
+text = 
+
+tag = li
+slash = 
+param = class='tab-control-item active' data-target='grp-tab-content-1'
+text = 
+
+tag = span
+slash = 
+param = 
+text = 更多解釋
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="layoutCenter" 
+text = 
+
+tag = div
+slash = 
+param = class="grp grp-tab-content-1 tabsContent-s tab-content-1 tabActived"
+text = 
+
+tag = div
+slash = 
+param = class="compTitle mt-24"
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = a
+slash = 
+param = class=" fz-18 td-u" href="https://tw.dictionary.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAMQB9rolQ;_ylu=X3oDMTBvbXNzbjYyBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzcg--?p=cesspool&ei=UTF-8&context=gsmcontext%3A%3Adocid%3A%3AZW5fZW5fY2Vzc3Bvb2xfVUtDTV9VTkFCMUFfYi1lbi16aF9oYW5zMDAwNTYzNw%3D%3D%7Cgsmcontext%3A%3Asource_lang%3A%3Aen%7Cgsmcontext%3A%3Atarget_lang%3A%3Azh-Hant&b=_UNSET_&fr=sfp"
+text = cesspool
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList mt-5 mr-10 d-ib" 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="d-ib mr-10 va-top last"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-14"
+text = IPA[&#712;sespu&#720;l]
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText mr-10 d-ib" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 fc-2nd fw-xl"
+text = 美式
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class=" d-ib dict-sound va-mid audio-0-0"
+text =  
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText mr-10 d-ib" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 fc-2nd fw-xl"
+text = 英式
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class=" d-ib dict-sound va-mid audio-0-1"
+text =  
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList mt-5 " 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="ml-50 mt-5 last"
+text = 
+
+tag = div
+slash = 
+param = class=" tabs-pos_type fz-14"
+text = n.
+
+tag = div
+slash = /
+param = 
+text =  
+
+tag = span
+slash = 
+param = class=" fz-14 d-i"
+text = 地下污水池; 糞池
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText mt-5" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = a
+slash = 
+param = class=" fc-source fz-14" href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAMgB9rolQ;_ylu=X3oDMTBvbXNzbjYyBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2fwww.oxforddictionaries.com%2f/RK=2/RS=qbAgN2jULyjp_EJvR_pRChT2mk0-" target="_blank"
+text = Powered by Oxford Chinese Dictionary
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compTitle mt-24"
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = a
+slash = 
+param = class=" fz-18 td-u" href="https://tw.dictionary.search.yahoo.com/search;_ylt=AwrtXG73ZvFbv1QAMwB9rolQ;_ylu=X3oDMTBvbXNzbjYyBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzcg--?p=cesspool&ei=UTF-8&context=gsmcontext%3A%3Adocid%3A%3AJwUr98W730wcbh5KdCQxQQ%7Cgsmcontext%3A%3Asource_lang%3A%3Aen%7Cgsmcontext%3A%3Atarget_lang%3A%3Azh-hant&b=_UNSET_&fr=sfp"
+text = cesspool
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compList mt-5 " 
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class=" mt-5 last"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-14 d-i"
+text = 污水坑,化糞池
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText mt-5" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = a
+slash = 
+param = class=" fc-source fz-14" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QANAB9rolQ;_ylu=X3oDMTBvbXNzbjYyBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.help.yahoo.com%2fkb%2fsearch%2fSLN9032.html%3fimpressions%3dtrue/RK=2/RS=Tvf095XH_JXL15ihgXoDQExPM9Q-" target="_blank"
+text = Powered by PyDict
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="last"
+text = 
+
+tag = div
+slash = 
+param = class="dd cardDesign sys_dict_k_plus"
+text = 
+
+tag = div
+slash = 
+param = class="compTitle h-50 lh-50 pl-25 bb-1-e5"
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-16 ff-1st va-mid"
+text = 知識+
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="compArticleList mt-20 ml-40 mr-40 mb-20"
+text = 
+
+tag = li
+slash = 
+param = class="ov-a fstlst mt-20 ov-h"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QANQB9rolQ;_ylu=X3oDMTBvNmpsOHU4BGNvbG8DBHBvcwMyBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.answers.yahoo.com%2fquestion%2findex%3fqid%3d20080303000015KK10735/RK=2/RS=gT6MEPdMQ0XiELR7VUD.fjMj0Q0-" target="_blank"
+text = 我要外國水肥公司的網頁，知道的人幫幫我吧
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = 水肥公司 - 
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text =  service, septic service or sewer service  污水坑,化糞池 - septic tank, 
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text =     Long... - many companies listed here:  http://www.longislandexchange.com/business/
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text = .html    Aarow Septic &amp; Sewer   http://www.arrowseptic.com/
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="ov-a  mt-20 ov-h"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QANgB9rolQ;_ylu=X3oDMTBvNmpsOHU4BGNvbG8DBHBvcwMyBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.answers.yahoo.com%2fquestion%2findex%3fqid%3d20050325000010KK07510/RK=2/RS=ldDdxum3zGujRdu5zMuW29EHk1s-" target="_blank"
+text = 請問「水肥車」的英文？
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = 水肥車  
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text =  cleaner truck
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="ov-a  mt-20 ov-h"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QANwB9rolQ;_ylu=X3oDMTBvNmpsOHU4BGNvbG8DBHBvcwMyBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.answers.yahoo.com%2fquestion%2findex%3fqid%3d20080907000015KK04816/RK=2/RS=XKRA.So0_lF2tov6R5DG2REOl9c-" target="_blank"
+text = ool字尾的英文字母有哪些?
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = ...http://www.morewords.com/ends-with/ool/    babool  barstool  befool  carpool  
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text =   closestool  cool  dewool  drool  faldstool  fool  footstool  homeschool  interschool  linalool  minischool...
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="compText h-50 lh-50 pl-25 bt-2" 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = a
+slash = 
+param = class=" fz-14 va-mid" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAOAB9rolQ;_ylu=X3oDMTBvNmpsOHU4BGNvbG8DBHBvcwMyBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.answers.search.yahoo.com%2fsearch%3fp%3dcesspool%26flt%3dcat%253A%25e8%25aa%259e%25e8%25a8%2580%26fr%3dsfp/RK=2/RS=VmzmgOg9JuSVXObYJK6ZJWonbRE-" target="_blank"
+text = 查看更多 
+
+tag = b
+slash = 
+param = 
+text = cesspool
+
+tag = b
+slash = /
+param = 
+text =  知識+相關結果 &gt;
+
+tag = a
+slash = /
+param = 
+text =  
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = 
+param = class=" reg searchCenterBottom"
+text = 
+
+tag = li
+slash = 
+param = class="first last"
+text = 
+
+tag = div
+slash = 
+param = class="dd cardDesign  sys_dict_native_ads"
+text = 
+
+tag = div
+slash = 
+param = class="compTitle h-50 lh-50 pl-25 bb-1-e5"
+text = 
+
+tag = label
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" nativeAdsIcon" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAOQB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.emarketing.yahoo.com%2fysmacq%2fproject.html/RK=2/RS=5N7YcVkPd25sNEZiv2OAJQWP5tA-" target="_blank"
+text =  
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = label
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = 
+param = class="title"
+text = 
+
+tag = span
+slash = 
+param = class=" fz-16 ff-1st va-mid"
+text = 贊助
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = h3
+slash = /
+param = 
+text =  
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = 
+param = class="compArticleList mt-20 ml-40 mr-40 mb-20"
+text = 
+
+tag = li
+slash = 
+param = class="ov-a fstlst mt-20 ov-h nativeAdsTracking"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAOgB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2fbeap.gemini.yahoo.com%2fmbclk%3fbv%3d1.0.0%26es%3d0UF6U.EGIS_1B6DQ0Vxl.tJI49S0NKmy8oIyWHMpBU1D7fyL2ktB78LqmYw_1dSprCgZM0Q5jEXfFZppu8zfhtU_kCXq8FUj_Wh9TqrdwR9rFU.zU1oo_qoWHtZMt4bVqWE7BDOUuCDA148ybcRdOtvRbK4pn.deRBbN_31QJySJYkukJkOT9dqdbkt3BqFh7dAbuDBQ_LtuoeLTtIw6vZ4RIM0NPyLWWFEtNypqq35PsEQkX9O.BexygczDFMdkStK4dWtoXVQw1JcwG8VIOY6sulPB7VUB1euHcyi6oJwRan27g5uy.hYZWp2_Aqd0LRFAQvY9dVevJlrx5cB18hokIF.nO8G_adi1AC2fcUo9S_jYdBPb79cW8hp80h2Vu_G9duGy7VvwnfTSgY3UPfnmFji5DPtnPdmuj.11.NrxJ5MJ0OjRBqpL2BU2Cj.rJY8ZGD1AzAzQ3vIOtqQ2BeUo8YqUmwQY3REHoPSZAk.pU6ZqzWzONU.unRIjkcReByqgoe8-%2526lp%3d/RK=2/RS=49JMXfqMLasHnWABJtxrXFPtH7g-" target="_blank"
+text = New Customers Get 15% Off.
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = Affordable Everclear Contacts for Everyone. Daily, Weekly & Monthly Varieties. Shop Now!
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = a
+slash = 
+param = class="fc-2nd fz-13 d-b mt-1 source" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAOwB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.help.yahoo.com%2fkb%2fsearch%2fYahoo%25E6%2590%259C%25E5%25B0%258B%25E8%2588%2587%25E7%259B%25B8%25E9%2597%259C%25E5%25BB%25A3%25E5%2591%258A-sln2244.html/RK=2/RS=L5Ej0aGlMMYmQOo3O.AZQfdVo5M-" target="_blank"
+text = Clearly Sponsored
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="ov-a  mt-20 ov-h nativeAdsTracking"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAPAB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2fbeap.gemini.yahoo.com%2fmbclk%3fbv%3d1.0.0%26es%3d3_BnbBEGIS9_FtA215DyLA0KuYOkemeyH2JuO7zG03r7Muf8JWxPuLCfuNqFyJM923t42wJb.Ck2d6mfQou9nx7tUJ05HRBkggvdF.tpi42Hm.GqL4cGwTCrhy8lE5ZOadZVn4tKhQO_UYrP8f2LjA2X64kiy5M8lEu3G4B.tkz57JizCLAxEZ4LyMYAjqecozxPl0z_LIVT0RA6CiSOClpR5c0n.HLT2ayLTLjj5OOzwGPcT3Dd_AW0rKneLUclN7t2GdiQFi4yn1NG.7XpFHmTP3SAhM6IoDSg31uVIUEM64fcdDoe9tTgKv9oNVTjgukAwlYsMDvN_K9ijDE8qxTE2g5BywBS_8kvUqL6fZzkDFHF2jUUKrtO7akPbmczrF6R3FV0C2GCzpBIrcdP8PmrWY0lV1EwQH.l9mSH92WpLsduCj5Tgpu3lLeenpFVc.bOtpla.d.Ku8Rrkqn6gYmbNs3Hsf0x_bz1o59aqJ3Jfjl163.o_xiRQqCHdcVDovLZ%2526lp%3d/RK=2/RS=tzH_GXhk4FKjpG1.4SRXu0BgunY-" target="_blank"
+text = Save Upto 80% on select luggage sets
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = These deals won&#39;t last long. 3 days to be exact. So hurry!
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = a
+slash = 
+param = class="fc-2nd fz-13 d-b mt-1 source" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAPQB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.help.yahoo.com%2fkb%2fsearch%2fYahoo%25E6%2590%259C%25E5%25B0%258B%25E8%2588%2587%25E7%259B%25B8%25E9%2597%259C%25E5%25BB%25A3%25E5%2591%258A-sln2244.html/RK=2/RS=L5Ej0aGlMMYmQOo3O.AZQfdVo5M-" target="_blank"
+text = BestBuy Canada Sponsored
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="ov-a  mt-20 ov-h nativeAdsTracking"
+text = 
+
+tag = h4
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = class=" fz-16 d-b td-u" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAPgB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2fbeap.gemini.yahoo.com%2fmbclk%3fbv%3d1.0.0%26es%3dm1W7S5UGIS806Hk7i7AF2jR8NcTtoJRJ8R1aH_J.MKiLMTcNWbX7va6UmsKOW8Q7dGGjADTVPVb7mnAxGJpt0NKXDigvlzSbkGLZIM5IcOLPQ8Vy0FJBzMqABV8QJn8JOU_UG_Qe2hUwC1mYxaBbMObhswGeckbcPZKbuuz_Ivg7ycU.LG2nR_r3hwj5yy_NcR6QhytNWllHXmBv6PGix0166UOo9q6XgY5IZEgS..nvfIVOWoFJCc39Uyaq81HInzo8s2UAfe5kYXdGbJy5.jiup_nYv_oiPk8FnJN_U2QZfW1zJS.Rm2gUq1.pwNxLocyrsxuM9BzZAGBuM6bOTvOpiL4BkjU3g9L8XMVQdRR0r8MorHoTFDbcinEIGHg.KHBhDIcE3feyV4XmC1rNgJcaWYoGfNokz4az5PzbmDYTsELVlMjPFRgRd1CG8xTJhdCENPX8ruOd4lvkyY4ZAy1OZjXRXOK7KhupIufv0HX5H67D8m3SWWSjme2KYcUAN.NcD6h9zjvQmJTA6YIdsWReJChxWrgB2BEehoksMVc2m4VtgNoCfxN6ASADLCGYYfd4EL1bmvelKWM9rnzzGTxsmajrUopCX95Z07haJw_jOiBCdyA_w.AzVNwRrc1a9FVMZy7Aszcb6rLzbqohlHaDWI_ezYPy.QTSeJ6j7J0OWeAHOykZ07HF8g--%2526lp%3d/RK=2/RS=TqJ9ZIjvI6P355wdZIZoyXxcmmg-" target="_blank"
+text = Earn fast with TD.
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = h4
+slash = /
+param = 
+text = 
+
+tag = p
+slash = 
+param = class=""
+text = 
+
+tag = span
+slash = 
+param = class=" fz-13 d-b mt-1"
+text = With the TD Cash Back Visa Infinite* Card, earn cash back fast on gas, grocery & recurring bill payments. Conditions apply.
+
+tag = span
+slash = /
+param = 
+text =  
+
+tag = a
+slash = 
+param = class="fc-2nd fz-13 d-b mt-1 source" href="https://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAPwB9rolQ;_ylu=X3oDMTBvYjg4OHI4BGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNzYw--/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.help.yahoo.com%2fkb%2fsearch%2fYahoo%25E6%2590%259C%25E5%25B0%258B%25E8%2588%2587%25E7%259B%25B8%25E9%2597%259C%25E5%25BB%25A3%25E5%2591%258A-sln2244.html/RK=2/RS=L5Ej0aGlMMYmQOo3O.AZQfdVo5M-" target="_blank"
+text = TD Sponsored
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = p
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = id="right"
+text = 
+
+tag = style
+slash = 
+param = 
+text = .dd.trendingnow-srp .compTitle span.trending&#123;*position:relative;*top:-5px;&#125;
+
+tag = style
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = 
+param = class=" cardReg searchRightTop"
+text = 
+
+tag = li
+slash = 
+param = class="first last"
+text = 
+
+tag = div
+slash = 
+param = class="dd  sys_dict_lrec_ads"
+text = 
+
+tag = div
+slash = 
+param = class="compIFrame " style=""
+text = 
+
+tag = iframe
+slash = 
+param = id="ifm5bf166f7db175" data-src="https://global.adserver.yahoo.com/a?f=1351200381&amp;p=twsrcgspw&amp;l=LREC&amp;c=h&amp;bg=white" height="250" width="300" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0"
+text = 
+
+tag = iframe
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ol
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = 
+param = class="bdc"  
+text = 
+
+tag = div
+slash = 
+param = id="ft" role="contentinfo" referrer="unsafe-url"
+text = 
+
+tag = ul
+slash = 
+param = 
+text = 
+
+tag = li
+slash = 
+param = class="copyright"
+text = Yahoo 奇摩
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAQAB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.help.yahoo.com%2fkb%2fsearch/RK=2/RS=FXdTYUd4vVM.DTo35YvXJA4YkfY-"
+text = 服務中心
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAQQB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2fyahoo.uservoice.com%2fforums%2f232246/RK=2/RS=Ji1ayroX1LZR2m1DBfSV6A2bvgE-" id="usr-fdb-lnk" class="etl" data-url="https://s.yimg.com/pv/static/lib/uservoice-201705192047.js" data-timeout="2000" data-uv-lightbox="classic_widget" data-uv-mode="feedback" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf" data-uv-forum-id="232246"
+text = 建議
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAQgB9rolQ/RV=2/RE=1542575991/RO=10/RU=http%3a%2f%2finfo.yahoo.com%2fprivacy%2ftw%2fyahoo%2fsearch/RK=2/RS=_7GF_y74G4JskGdVZnHINXXPtSY-"
+text = 隱私權政策
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = style="color:#324FE1;font-weight:bold;padding-left:4px;"
+text = (更新版)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QAQwB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2finfo.yahoo.com%2flegal%2ftw%2fyahoo%2futos%2fzh-hant-tw%2f/RK=2/RS=GKueo16jl4oFLCD_ihyne_HD0N8-"
+text = 服務條款
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = span
+slash = 
+param = style="color:#324FE1;font-weight:bold;padding-left:4px;"
+text = (更新版)
+
+tag = span
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = li
+slash = 
+param = 
+text = 
+
+tag = a
+slash = 
+param = href="http://r.search.yahoo.com/_ylt=AwrtXG73ZvFbv1QARAB9rolQ/RV=2/RE=1542575991/RO=10/RU=https%3a%2f%2ftw.emarketing.yahoo.com%2fysmacq%2findex.html%3f_ycmp%3dad_sponsor/RK=2/RS=lswA3.PNWyTOZ1JJmlX7gPrmnx0-"
+text = 廣告
+
+tag = a
+slash = /
+param = 
+text = 
+
+tag = li
+slash = /
+param = 
+text = 
+
+tag = ul
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = div
+slash = /
+param = 
+text = 
+
+tag = script
+slash = 
+param = 
+text = YUI_config=&#123;"spaceid":"1351200381","pvid":"4aLwgDEwLjIrs_F3Sj_80wABNjkuMQAAAABBahPT","beacon":"https:&#92;/&#92;/geo.yahoo.com&#92;/t","testid":"","geo":[],"mtestid":"","fetchCSS":true,"nonpage_beacon":"&#92;/b.gif?t=1542547191&#92;u0026_ylp=AwrtXG73ZvFbv1QAAQB9rolQ"&#125;;(function()&#123;var e=window.location,d,b;function c(f)&#123;return decodeURIComponent(f.replace(/&#92;+/g," "))&#125;function a(j)&#123;var h=j.match(/([^&#92;?#&]+)=([^#&]*)/g)||[],l=&#123;&#125;,g,f,k;for(g=0,f=h.length;g
+
+tag = f;++g)&#123;k=h[g].split("=");l[c(k[0])]=c(k[1])&#125;return
+slash = 
+param = l&#125;if(window.navigator&&window.navigator.userAgent.match(/Gecko&#92;//))&#123;d=/#.*$/.exec(e.href);d=d&&d[0]?d[0]:""&#125;else&#123;d=e.hash&#125;b=a(d);if(b.sd)&#123;document.getElementById("yschsp").value=b.sd&#125;else&#123;if(b._sd)&#123;document.getElementById("yschsp").value=""&#125;&#125;&#125;)();(function()&#123;YUI=&#123;Env:&#123;mods:&#123;&#125;,add:function(n,m,l,d)&#123;if(n&&n.addEventListener)&#123;n.addEventListener(m,l,d)&#125;else&#123;if(n&&n.attachEvent)&#123;n.attachEvent("on"+m,l)&#125;&#125;&#125;,remove:function(o,n,m,d)&#123;if(o&&o.removeEventListener)&#123;try&#123;o.removeEventListener(n,m,d)&#125;catch(l)&#123;&#125;&#125;else&#123;if(o&&o.detachEvent)&#123;o.detachEvent("on"+n,m)&#125;&#125;&#125;&#125;,add:function(l,n,d,m)&#123;YUI.Env.mods[l]=&#123;name:l,fn:n,version:d,details:m||&#123;&#125;&#125;&#125;&#125;;Y=&#123;_pending:[],use:function()&#123;Y._pending.push(arguments)&#125;,Search:&#123;&#125;&#125;;var i=window,g=document,k=YUI.Env.add,f=YUI.Env.remove,b=(function()&#123;var d=[];function l()&#123;setTimeout(function()&#123;var n=0,m=d.length;for(;n<m;n++)&#123;d[n]()&#125;f(i,"load",l)&#125;,0)&#125;k(i,"load",l);return&#123;add:function(m)&#123;d.push(m)&#125;&#125;&#125;()),a=(function()&#123;var d=navigator.userAgent.match(/MSIE&#92;s([^;]*)/);if(d)&#123;return parseFloat(d[1])&#125;return 0&#125;());function c(d)&#123;return d.replace(/^&#92;s+|&#92;s+$/g,"")&#125;function e(m,d)&#123;var l=new RegExp("(&#92;&#92;s|^)"+d+"(&#92;&#92;s|$)");return m.className.match(l)&#125;function j(m,d)&#123;var l=new RegExp("(&#92;&#92;s|^)"+d+"(&#92;&#92;s|$)");m.className=c(m.className.replace(l," "))&#125;function h(l)&#123;var d=g.getElementById(l);if(d)&#123;d.reset()&#125;&#125;Y.Search.Loader=(function()&#123;var l=[],m=false;function o(q,p)&#123;var s=g.createElement(q),r,t;for(r in p)&#123;if(p.hasOwnProperty(r))&#123;t=p[r];s.setAttribute(r,t)&#125;&#125;return s&#125;function d()&#123;var r=0,p=l.length,s,t,q=g.getElementsByTagName("head")[0];for(;r<p;r++)&#123;s=l[r];if(s.type==="css")&#123;t=o("link",&#123;href:s.url,rel:"stylesheet",type:"text/css"&#125;)&#125;else&#123;if(s.type==="js")&#123;t=o("script",&#123;src:s.url&#125;)&#125;else&#123;continue&#125;&#125;q.appendChild(t)&#125;m=true;l=[]&#125;function n()&#123;var r=arguments[0],s=Array.prototype.slice.call(arguments,1),q=0,p=s.length;for(;q<p;q++)&#123;l.push(&#123;type:r,url:s[q]&#125;)&#125;if(m)&#123;d()&#125;&#125;b.add(d);return&#123;js:function()&#123;var p=Array.prototype.slice.call(arguments);n.apply(null,["js"].concat(p))&#125;,css:function()&#123;var p=Array.prototype.slice.call(arguments);n.apply(null,["css"].concat(p))&#125;&#125;&#125;());(function()&#123;var d=i.performance||i.webkitPerformance||i.msPerformance||i.mozPerformance||i.Performance;if(d)&#123;d.now=d.now||d.webkitNow||d.msNow||d.mozNow;if(typeof d.now==="function")&#123;Y.Search.performance=d&#125;&#125;&#125;());(function()&#123;var l=0;function o()&#123;if(--l===0&&typeof rt_AddTime==="function")&#123;rt_AddTime("t2")&#125;if(l===0&&typeof T!=="undefined")&#123;T.stamp("img")&#125;&#125;function p()&#123;var C=this,B=C.parentNode.parentNode,v,z,y,A,u;o();if(C.getAttribute("allowResize")==="true"||e(C,"sm-thumb"))&#123;j(B,"sm-hide");if(a&&e(B,"sm-media"))&#123;v=B.offsetWidth;z=B.offsetHeight;y=C.width;A=C.height;u=Math.max(y/v,A/z);if(u&&y&&A)&#123;C.style.width=(y/u)+"px";C.style.height=(A/u)+"px"&#125;&#125;&#125;&#125;function d()&#123;o();this.style.display="none"&#125;var m=[],s=[];function r(x)&#123;var u=i,w=x.getBoundingClientRect(),y=g.documentElement,v=g.getElementsByTagName("body")[0];while(w.height===0&&w.width===0&&x.parentNode&&typeof x.parentNode.getBoundingClientRect==="function")&#123;x=x.parentNode;w=x.getBoundingClientRect()&#125;return&#123;v:w.height&&w.width&&w.top&&w.left&&w.bottom<=(u.innerHeight||y.clientHeight||v.clientHeight)&&w.right<=(u.innerWidth||y.clientWidth||v.clientWidth),d:w.top*w.top+w.left*w.left,a:w.height&&w.width&#125;&#125;function q(u)&#123;if(window.devicePixelRatio
+text = 1&&u.hasAttribute("data-src2"))&#123;return u.getAttribute("data-src2")&#125;else&#123;return u.getAttribute("data-src")||u.getAttribute("__src")||u.getAttribute("_src")&#125;&#125;function t(u)&#123;var v=q(u);if(v)&#123;u.onload=p;u.onerror=d;u.setAttribute("src",v);u.removeAttribute("data-src2");u.removeAttribute("data-src");u.removeAttribute("__src");u.removeAttribute("_src");j(u,"hidden")&#125;&#125;function n()&#123;var u=g.images,x=u.length,y,z;for(var w=0;w
+
+tag = x;w++)&#123;y=u[w];z=q(y);if(z)&#123;var
+slash = 
+param = v=r(y);v.i=y;if(v.v)&#123;m.push(v)&#125;else&#123;s.push(v)&#125;&#125;&#125;m.sort(function(B,A)&#123;return B.d-A.d&#125;);s.sort(function(B,A)&#123;return B.d-A.d&#125;);atfCount=m.length;while(m.length)&#123;var v=m.shift();t(v.i)&#125;while(s.length)&#123;var v=s.shift();t(v.i)&#125;&#125;b.add(n)&#125;());b.add(function()&#123;var l=g.getElementById("yschsp"),d=/(^|&#92;s)sd(&#92;s|$)/;if(l&&d.test(l.parentNode.className))&#123;return&#125;if(a&&(!l||!l.getAttribute("dirty")))&#123;h("sf");h("sB")&#125;&#125;);(function()&#123;var q=g.getElementById("web"),l=g.getElementById("srp"),m=(q)?q.getElementsByTagName("a"):[],m=(l)?l.getElementsByTagName("a"):m,s=/(?:^|&#92;s+)yschttl(?:&#92;s+|$)/,o=m.length,n,r=(function()&#123;if(a&&a<7)&#123;return function(w,u)&#123;var v=new RegExp("^<a.*&#92;&#92;s"+u+'="([^"]*)"',"i"),t=v.exec(w.outerHTML);return t?t[1]:null&#125;&#125;else&#123;return function(u,t)&#123;return u.getAttribute(t)&#125;&#125;&#125;());function p(u)&#123;var x=u||i.event,v=x.target||x.srcElement,w;while(v)&#123;if(v.tagName&&v.tagName.toLowerCase()==="a"&&v.getAttribute("dirtyhref"))&#123;w=r(v,"dirtyhref");if(w)&#123;v.setAttribute("href",w)&#125;break&#125;v=v.parentNode&#125;&#125;k(g,"mousedown",p);k(g,"click",p);function d(w)&#123;var t,y,x,v,u;t=r(w,"href");if(!t)&#123;return&#125;y=r(w,"ourl");if(!y)&#123;x=t.match(/&#92;/RU=([^&#92;/]+)&#92;//);if(!x||!x[1])&#123;return&#125;y=decodeURIComponent(x[1])&#125;v=w.cloneNode(true);v.setAttribute("href",y);v.setAttribute("dirtyhref",t);if(a)&#123;u=v.innerHTML;t=r(v,"dirtyhref");v.setAttribute("href",t);if(v.innerHTML!==u)&#123;return&#125;v.setAttribute("href",y)&#125;w.parentNode.replaceChild(v,w)&#125;while(o--)&#123;n=m[o];if(s.test(n.className))&#123;d(n)&#125;&#125;&#125;())&#125;());Y.use("srp",function()&#123;Y.Search.SRP.init(&#123;"enable_sidebar_collapse":"","pvid":"4aLwgDEwLjIrs_F3Sj_80wABNjkuMQAAAABBahPT","url_img_progress":"https:&#92;/&#92;/s.yimg.com&#92;/pv&#92;/i&#92;/us&#92;/sch&#92;/gr4&#92;/sp-progress2.gif","tts":null&#125;,&#123;"aria_loading_results":"Retrieving search results. Please wait.","aria_results_loaded":"New search results have been retrieved. Press control shift and down arrow key to jump to the first search result. Press control shift and up arrow key to jump back to the search box.","common.expando.playvideo":"&#92;u5f71&#92;u97f3&#92;u64ad&#92;u653e","common.expando.closevideo":"&#92;u505c&#92;u6b62&#92;u64ad&#92;u653e","common.results.error":"&#92;u5f88&#92;u62b1&#92;u6b49&#92;uff0c&#92;u6211&#92;u5011&#92;u66ab&#92;u6642&#92;u672a&#92;u80fd&#92;u63d0&#92;u4f9b&#92;u641c&#92;u5c0b&#92;u7d50&#92;u679c&#92;uff0c&#92;u8acb&#92;u91cd&#92;u8a66&#92;u4e00&#92;u6b21&#92;u3002","common.results.loading":"&#92;u8cc7&#92;u6599&#92;u9023&#92;u63a5&#92;u4e2d...","srp.title":"%q - Yahoo&#92;u5947&#92;u6469&#92;u5b57&#92;u5178 &#92;u641c&#92;u5c0b&#92;u7d50&#92;u679c","common.more_dots":"&#92;u66f4&#92;u591a...","common.less":"&#92;u8f03&#92;u5c11"&#125;);&#125;);Y.use("srp-session-tracking", function()&#123;Y.Search.SRP.SessionTracking.init(&#123;"beaconUrl":"&#92;/ra&#92;/click","bcrumb":"7kiFDHzB0.U","skey":"hOiXNLWYcoFxmU_6zGYBng--"&#125;);&#125;);var groups=&#123;a:&#123;name:'a',combine:true,comboBase:'https://s.yimg.com/zz/combo?',ext:false,root:'pv/',modules:&#123;"srp-universal-header-uh3":&#123;"path":"static&#92;/lib&#92;/srp-universal-header-uh3_201311011448.js","requires":[]&#125;,"srp-util-dropdown":&#123;"path":"static&#92;/lib&#92;/srp-util-dropdown_870e0e8e1aba5e585095e101643e3ef8.js"&#125;,"pphw":&#123;"path":"static&#92;/lib&#92;/tw_pphw_html5_e26b6eed8441573ba242b150107d4b94.js","requires":["ult-linktrack","node-event-simulate","overlay"]&#125;,"cosmos-compJsAudio":&#123;"path":"static&#92;/lib&#92;/cosmos-compJsAudio_5e9ab6fb90b3a5ba37ac94a275695672.js","requires":["base","node","plugin","srp-lazy"]&#125;,"event-to-load":&#123;"path":"static&#92;/lib&#92;/event-to-load_94020bd4442d1f79f3b1ea2f08d43ed9.js","requires":["get","event","node"]&#125;,"cosmos-compJsToggle":&#123;"path":"static&#92;/lib&#92;/cosmos-compJsToggle_d43ee9af9c1a6c0460fc80febffb826b.js","requires":["base","node","plugin","event-mouseenter","srp-lazy"]&#125;,"cosmos-compTabsCard":&#123;"path":"static&#92;/lib&#92;/cosmos-compTabsCard_6b8e0fb47f0dbe735e7eb35a5de01e41.js","requires":["node","base","event","io","json-parse","ult-linktrack"]&#125;,"cosmos-view-beacon":&#123;"path":"static&#92;/lib&#92;/cosmos-view-beacon_1a433896f662aae252f218f3d110bc82.js","requires":["node","event","ult-linktrack","view-beacon","yui-later"]&#125;,"view-beacon":&#123;"path":"static&#92;/lib&#92;/view-beacon_948b89ececdd0ee3b316ac957fe45c84.js","requires":["node","event","ult-linktrack"]&#125;,"cosmos-compIFrame":&#123;"path":"static&#92;/lib&#92;/cosmos-compIFrame_6680a80233821727239c6e45a9a3a826.js","requires":["node","event"]&#125;&#125;&#125;&#125;;Y.use('loader','srp-lazy',function()&#123;Y.config=Y.mix(Y.config,&#123;bootstrap:true,combine:true,comboBase:'https://s.yimg.com/zz/combo?',ignore:['skin-sam-tabview'],root:'yui:3.10.0/build/',groups:groups&#125;,true,null,0,true);if(Y.Env&&Y.Env._loader)&#123;for(var k in groups) &#123;Y.Env._loader.addGroup(groups[k],k);&#125;&#125;Y.Search.use('node','node-focusmanager','event','substitute','cookie','event-resize','oop','event-custom','classnamemanager','querystring-stringify','lang/datatype-date','intl','srp-universal-header-uh3','srp-util-dropdown','pphw','ult-linktrack','node-event-simulate','overlay','cosmos-compJsAudio','base','plugin','srp-lazy','event-to-load','get','retina-identifier','cosmos-compJsToggle','event-mouseenter','cosmos-compTabsCard','io','json-parse','cosmos-view-beacon','view-beacon','yui-later','cosmos-compIFrame',function()&#123;(function()&#123;Y.Search.UniversalHeader.init(&#123;"js":"https:&#92;/&#92;/s.yimg.com&#92;/zz&#92;/combo?kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1078&#92;/js&#92;/uh-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1078&#92;/js&#92;/gallery-jsonp-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1134&#92;/js&#92;/menu_utils_v3-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1078&#92;/js&#92;/localeDateFormat-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1078&#92;/js&#92;/timestamp_library_v2-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/uh&#92;/1104&#92;/js&#92;/logo_debug-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/switch-theme&#92;/6&#92;/js&#92;/switch_theme-min.js&#92;u0026kx&#92;/eol&#92;/1&#92;/js&#92;/meta-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/disclaimer&#92;/388&#92;/js&#92;/disclaimer_seed-min.js&#92;u0026kx&#92;/yucs&#92;/uh3&#92;/help&#92;/83&#92;/js&#92;/help_menu_v3-min.js","sprite":"https:&#92;/&#92;/s.yimg.com&#92;/dh&#92;/ap&#92;/ap&#92;/default&#92;/120503&#92;/uh_sprite_2_16.png","menu":[&#123;"link":"Array?p=cesspool&#92;u0026ei=UTF-8&#92;u0026fr=sfp","title":"&#92;u9032&#92;u968e&#92;u641c&#92;u5c0b"&#125;,&#123;"link":"Array?pref_done=https%3A%2F%2Ftw.dictionary.search.yahoo.com%2Fsearch%3Fp%3Dcesspool%26ei%3DUTF-8%26fr%3Dsfp","title":"&#92;u4f7f&#92;u7528&#92;u504f&#92;u597d"&#125;,&#123;"link":"Array?pref_done=https%3A%2F%2Ftw.dictionary.search.yahoo.com%2Fsearch%3Fp%3Dcesspool%26ei%3DUTF-8","title":"&#92;u641c&#92;u5c0b&#92;u7d00&#92;u9304"&#125;,&#123;"link":"Array","title":"&#92;u8d0a&#92;u52a9&#92;u7db2&#92;u7ad9"&#125;,&#123;"link":"Array","title":"&#92;u670d&#92;u52d9&#92;u4e2d&#92;u5fc3"&#125;]&#125;);&#125;());(function()&#123;new YAHOO.Util.DropDown(&#123;"containerId":"yucs-apps","btnId":"yucs-apps_button","btnShowClass":"yucs-apps-select","menuId":"yucs-apps_inner","menuHideClass":"yucs-hide"&#125;);&#125;());(function()&#123;Y.use("ult-linktrack", "pphw", function(Y)&#123;Y.Search.PPHW.HandWriting.init(&#123;"srcNode":"#pphw-triggerbtn","container":"#pphw-content","inputNode":"#yschsp","title":"&#92;u624b&#92;u5beb&#92;u8f38&#92;u5165","sponsorText":"&#92;u8499&#92;u606c&#92;u79d1&#92;u6280&#92;u63d0&#92;u4f9b","sponsorLink":"http:&#92;/&#92;/www.penpower.net","helpLink":"http:&#92;/&#92;/tw.help.cc.yahoo.com&#92;/help_cp.html?product=40&#92;u0026catyname=%A4%E2%BCg%BF%E9%A4J","intl":"zh_TW","html5WritePadIframeUrl":"https:&#92;/&#92;/s.yimg.com&#92;/pv&#92;/hw-html5-iframe&#92;/index-20170907022622.html"&#125;)&#125;);&#125;());(function()&#123;var triggerNode = Y.one('.compText .audio-0'),attrs=&#123;"src":"https:&#92;/&#92;/s.yimg.com&#92;/bg&#92;/dict&#92;/dreye&#92;/live&#92;/m&#92;/cesspool.mp3"&#125;;if (triggerNode)&#123;triggerNode.plug(Y.CosmosPlugin.compJsAudio,attrs);&#125;&#125;());(function()&#123;var triggerNode = Y.one('.compText .audio-0-0'),attrs=&#123;"src":"https:&#92;/&#92;/s.yimg.com&#92;/bg&#92;/dict&#92;/ox&#92;/mp3&#92;/v1&#92;/cesspool@_us_1.mp3"&#125;;if (triggerNode)&#123;triggerNode.plug(Y.CosmosPlugin.compJsAudio,attrs);&#125;&#125;());(function()&#123;var triggerNode = Y.one('.compText .audio-0-1'),attrs=&#123;"src":"https:&#92;/&#92;/s.yimg.com&#92;/bg&#92;/dict&#92;/ox&#92;/mp3&#92;/v1&#92;/cesspool@_gb_1.mp3"&#125;;if (triggerNode)&#123;triggerNode.plug(Y.CosmosPlugin.compJsAudio,attrs);&#125;&#125;());(function()&#123;Y.use("event-to-load",function()&#123;Y.Search.EventTL.init(&#123;"enable_js":true,"url":"https:&#92;/&#92;/s.yimg.com&#92;/pv&#92;/static&#92;/lib&#92;/uservoice-201705192047.js","id":"usr-fdb-lnk","eventType":"click","className":"etl","timeout":2000,"href":"https:&#92;/&#92;/yahoo.uservoice.com&#92;/forums&#92;/232246","uvid":"232246"&#125;);&#125;);&#125;());(function()&#123;if(window.YAHOO && window.YAHOO.RetinaIdentifier)&#123;window.YAHOO.isRetina = new window.YAHOO.RetinaIdentifier();window.YAHOO.isRetina.init(&#123;"retina":false,"viewport":true,"cookieDomain":"search.yahoo.com"&#125;);&#125;&#125;());(function()&#123;var nodeList = Y.all('.vrtPivots');if (nodeList.size() 
+text =  0) &#123;nodeList.each( function(node) &#123;var compJsToggleAttrs=&#123;"action":"click","trigger":".more-pivots-toggle a","target":".more-pivots","beaconUrl":"https:&#92;/&#92;/geo.yahoo.com&#92;/t;_ylt=AwrtXG73ZvFbv1QARQB9rolQ;_ylu=X3oDMTBxNmt1MGpkBGNvbG8DBHBvcwMxBHZ0aWQDBHNlYwNwaXZz","enableReposition":"true","enableRepositionX":"-10","enableRepositionY":"25","collapseOnOutsideClick":"true","toggleType":"expand","offset":"0","triggerIconSelector":".ico","triggerIconAddCssClass":"down-arrow-dgray-thin","triggerIconRemoveCssClass":"down-arrow-gray-thin","enableTriggerIconHover":"true","cssClassforTriggered":"menu-active","it":"vrtPivots"&#125;;node.plug(&#123;fn: Y.CosmosPlugin.compJsToggle,cfg: compJsToggleAttrs&#125;)&#125;);&#125;&#125;());(function()&#123;Y.use('cosmos-compTabsCard', function(Y) &#123;            new Y.Cosmos.CompTabsCard(&#123;"it":"sys_dict_disambiguation","sec":"sr","rspns":"tab"&#125;)        &#125;);&#125;());(function()&#123;Y.use("cosmos-view-beacon",function(Y)&#123;Y.Search.CosmosViewBeacon.init(&#123;"beacon":&#123;"t2":"sys_dict_native_ads","it":"sys_dict_native_ads","pos":"1","sec":"sc","logOwnr":"cosmos","logVer":"GSP2L","t1pos":"CBottom","t2pos":"1","t3pos":"C","t4pos":"3","t4":"module","t5pos":"1","t5":"jsdata","rspns":"upd"&#125;,"selector":".compArticleList li.nativeAdsTracking:nth-of-type(1)","carouselContainer":".compArticleList li.nativeAdsTracking:nth-of-type(1)","data-key":"view-beacon","latency":"1000","vb":"[&#92;u0022https:&#92;/&#92;/tp2.beap.gemini.yahoo.com&#92;/mbcsc?bv=1.0.0&#92;u0026es=waebofwGIS.IVgc8QDoqrthx2HRoNJs40_QIzmkoK4Lk0z5yg5R2VVnWfNefK9ayV.CY9Xu85xUixFiacdYPrbnoDyIYt_kfXXyliLchXhX.zLMirM.2KJAEO4a0qPVRSc_Vj8kCUPNWH8zGqDasUGSxOSPDMdwBGOfKzDbtFpBOB9krKtSf1cWa53kEWicUn9JYZ7RmMlpXpFIR7oqn2lC.6rSmcG9gCGCiqOe1.1stGFA1.W638iH1RJjNanT1Oe6SFUhpivGEHVU7tcAI2EnMJkfM.0Xf9f03WqaxO1r5PA.N4UIQhk0uv1RMB6YRLUKHShatMvaFckMaZW5KT4uxqaltQj6_QIONivuq_NVxOxizeTgFiEAvq1PRoGTxebMhY0_Q_7DszNfpWFWTmEZEbs7Wkg0Gn2EHYtY.ER6_IGK5Vy75mVfcGw--&#92;u0026ap=$(AD_POSN)&#92;u0022,&#92;u0022https:&#92;/&#92;/ad.doubleclick.net&#92;/ddm&#92;/trackimp&#92;/N962703.2125501YAHOOGEMINI&#92;/B21769728.231181259;dc_trk_aid=429823695;dc_trk_cid=107649804;ord=1542547191;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?&#92;u0022]","boundry":&#123;"x":"50%","y":"50%"&#125;&#125;);&#125;);&#125;());(function()&#123;Y.use("cosmos-view-beacon",function(Y)&#123;Y.Search.CosmosViewBeacon.init(&#123;"beacon":&#123;"t2":"sys_dict_native_ads","it":"sys_dict_native_ads","pos":"1","sec":"sc","logOwnr":"cosmos","logVer":"GSP2L","t1pos":"CBottom","t2pos":"1","t3pos":"C","t4pos":"3","t4":"module","t5pos":"2","t5":"jsdata","rspns":"upd"&#125;,"selector":".compArticleList li.nativeAdsTracking:nth-of-type(2)","carouselContainer":".compArticleList li.nativeAdsTracking:nth-of-type(2)","data-key":"view-beacon","latency":"1000","vb":"[&#92;u0022https:&#92;/&#92;/tp2.beap.gemini.yahoo.com&#92;/mbcsc?bv=1.0.0&#92;u0026es=lPATLWoGIS8RUvXuccdsERUJ1QABEugPmuUK3tiltVULbjhtDFA2GeWrKI8GCjYxssySXX51H18c3K72h1XWOUrqoena8lBFxD4rz_rE6hnc6A1Xn68ywks37zWRIgrwHgmWYdr0Ic6LIYHGixvZInKZEqVShRuAp41iM0Cn3xCshr_7xVleZqpNbMqonoLrj7R5aOrS04NK769TiwtQeKtmVteYQ4iyEBHYyePtmufNEvi5qyeEnFnp9ApR2AZbWwE9Nz4kjuU3qiA8nKv5Ado9R4H9wmzLhyltLmqvUSNw0Ws4joOkF_QsKDK40FbvB.4KI6b85wqYX8y7ioET2wLnNL9qNz56B7IzjJbubXhW40ZJyKAKQdL2TqLsjhda28O0UphNBP_n9.4xb72Qcc7AXz7_KdfwjY19eZ0Y0CKQXsGr5QCz_QmDMw--&#92;u0026ap=$(AD_POSN)&#92;u0022,&#92;u0022https:&#92;/&#92;/voken.eyereturn.com&#92;/j4&#92;/pix?7028126&#92;u0022]","boundry":&#123;"x":"50%","y":"50%"&#125;&#125;);&#125;);&#125;());(function()&#123;Y.use("cosmos-view-beacon",function(Y)&#123;Y.Search.CosmosViewBeacon.init(&#123;"beacon":&#123;"t2":"sys_dict_native_ads","it":"sys_dict_native_ads","pos":"1","sec":"sc","logOwnr":"cosmos","logVer":"GSP2L","t1pos":"CBottom","t2pos":"1","t3pos":"C","t4pos":"3","t4":"module","t5pos":"3","t5":"jsdata","rspns":"upd"&#125;,"selector":".compArticleList li.nativeAdsTracking:nth-of-type(3)","carouselContainer":".compArticleList li.nativeAdsTracking:nth-of-type(3)","data-key":"view-beacon","latency":"1000","vb":"[&#92;u0022https:&#92;/&#92;/tp2.beap.gemini.yahoo.com&#92;/mbcsc?bv=1.0.0&#92;u0026es=KJvvku0GIS.g.DZ0JyfUfR810kPRIRUjFx0V7rRi6HT425s.NKJ0M7VpXQMzzW.kRfvp0GlcmxnbRcVLR_8G2y2CgJw6O4pd8vRYDSWlBdQ1xLyymwc8j4sySE0yu8QqfgZPXUolfWSw5P7Ijq6v51E13MTyv.z9nIKLvoEZUX2BXXRho4iXWLLiHqkECjsirCaBp6K9rGHEMTtOxtVsG_dpteDHVu.VAH.0IS_vHX37DYnVz1U2Rj1J9enM3_RDLHd848uPj2bO6RWYiiXtOvWbPMoPU_NALeVib_GotA3kNDVUg2Ob_0ZeB6ISjw56I8GQK6chR0d3O9OhSfv20okTGFNlIentHvZSDvXvTJQ2pj.805EUjlUPYCwXxgpJlUYJ2nhxd9Zm_S1j_ztB450DBvDhZxcky4zKMIeII9rqd75RS7lJWbcHSg--&#92;u0026ap=$(AD_POSN)&#92;u0022,&#92;u0022https:&#92;/&#92;/ad.doubleclick.net&#92;/ddm&#92;/trackimp&#92;/N307601.3020245OATH.COM&#92;/B21578279.228431765;dc_trk_aid=426702568;dc_trk_cid=105743458;ord=1542547191;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?&#92;u0022]","boundry":&#123;"x":"50%","y":"50%"&#125;&#125;);&#125;);&#125;());(function()&#123;Y.use('cosmos-compIFrame', function(Y) &#123;                Y.Cosmos.compIFrame.loadLazyIFrame('ifm5bf166f7db175');            &#125;);&#125;());&#125;);&#125;);Y.use("vertical-pivots",function()&#123;Y.Search.VerticalPivots.init(&#123;"more":"&#92;u7db2&#92;u9801","less":"&#92;u7db2&#92;u9801"&#125;);&#125;);Y.use("search-assist-client",function()&#123;new Y.SEARCHASSIST.CLIENT(&#123;"property":"dictionary","searchBox":"#yschsp","hostNodeToAttach":"#sbq-wrap","maxSuggests":10,"anyKeySearch":true,"enableTrending":false,"autoAlign":false,"cancelButton":true,"tcpPreConnect":false,"quietMode":false,"ariaPlug":true,"stream":false,"webHistory":&#123;"bcrumb":"7kiFDHzB0.U","crumb":"c8DzXV.U&#92;/ms","highlightHistory":false&#125;,"smw":false,"reverseHighlight":false,"subAssist":true,"device":&#123;"tablet":&#123;"skin":"desktop"&#125;&#125;,"dataSrc":&#123;"url":"https:&#92;/&#92;/tw.search.yahoo.com&#92;/sugg&#92;/gossip&#92;/gossip-tw-ura","supportsEmptyQuery":true&#125;,"lang":"zh-Hant-TW","translation":&#123;"TRENDING_NOW_TITLE":"&#92;u71b1&#92;u9580&#92;u641c&#92;u5c0b&#92;u95dc&#92;u9375&#92;u5b57","RELATED_TITLE":"&#92;u76f8&#92;u95dc&#92;u641c&#92;u5c0b"&#125;,"replaceQueryOnFocus":true,"backspaceBehaviorNative":true,"ult":&#123;"spaceId":"1351200381","csrcpvid":"4aLwgDEwLjIrs_F3Sj_80wABNjkuMQAAAABBahPT","vtestid":"","mtestid":""&#125;,"extraUltParams":&#123;"fr":"sfp","n_rslt":0&#125;,"yltCustom":"_ylt=AwrtXG73ZvFbv1QAAgB9rolQ","geo":[],"gossipParams":&#123;"f":1&#125;,"https":true&#125;);if(Y.Search && typeof Y.Search.performance !== "undefined")&#123;Y.SEARCHASSIST.latency=Y.Search.performance.now();&#125;&#125;);Y.Search.Loader.js('https://s.yimg.com/pv/static/lib/srp-core-js-purple-1_5714662b468f2502e4a90fe891abd7ea.js','https://s.yimg.com/pv/static/lib/srp-core-js-purple-2_fc61daf0f6415df8c0ee89b3af614249.js');
+
+tag = script
+slash = /
+param = 
+text = 
+
+tag = body
+slash = /
+param = 
+text = 
+
+tag = html
+slash = /
+param = 
+text = 
+
+tag = hmstart
+slash = /
+param = 
+text = 
+

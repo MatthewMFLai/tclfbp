@@ -1,0 +1,8 @@
+BLOCK s0:source3 INIT localhost:8009 IN-1 localhost:8017  OUT-1 localhost:8005 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0 TYPE TX
+BLOCK s0:source2 INIT localhost:8010 IN-1 localhost:8018  OUT-1 localhost:8003 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0 TYPE TX
+BLOCK s0:seq5sec INIT localhost:8011 IN-1 localhost:8019 IN-2 localhost:8020 IN-3 localhost:8021  PROGRAM $env(DISK2)/component/basic/sequencer/seq5sec.tcl TIMEOUT 0 PORTSET-2 { IN-2 PG1 OFF } PORTSET-3 { IN-3 PG1 OFF } PORTSET-1 { IN-1 PG1 ON } TYPE TX
+BLOCK s0:cloner3 INIT localhost:8012 IN-1 localhost:8022  OUT-1 localhost:8004 OUT-2 localhost:8008 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0 TYPE TX
+BLOCK s0:cloner1 INIT localhost:8013 IN-1 localhost:8023  OUT-1 localhost:8000 OUT-2 localhost:8006 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0 TYPE TX
+BLOCK s0:cloner2 INIT localhost:8014 IN-1 localhost:8024  OUT-1 localhost:8002 OUT-2 localhost:8007 PROGRAM $env(DISK2)/component/basic/cloner/cloner.tcl TIMEOUT 0 TYPE TX
+BLOCK s0:source1 INIT localhost:8015 IN-1 localhost:8025  OUT-1 localhost:8001 PROGRAM $env(DISK2)/component/basic/source/source.tcl DATA 100000 TESTDATA red TIMEOUT 0 TYPE TX
+BLOCK CONNECT INIT localhost:8016 IN-1-8009 8004 IN-1-8010 8002 IN-1-8011 8006 IN-1-8012 8005 IN-1-8013 8001 IN-1-8014 8003 IN-1-8015 8000 IN-2-8011 8007 IN-3-8011 8008 OUT-1-8009 8017 OUT-1-8010 8018 OUT-1-8011 8019 OUT-1-8012 8022 OUT-1-8013 8023 OUT-1-8014 8024 OUT-1-8015 8025 OUT-2-8011 8020 OUT-3-8011 8021 PORTGRP-PG1-8011 { IN-2-8011 PORT_QUIET IN-3-8011 PORT_QUIET IN-1-8011 PORT_ACTIVE } TYPE RX

@@ -1,0 +1,14 @@
+BEGIN simple CONTENT_HOME
+  byText text
+END
+
+BEGIN complex PATTERN_HOME
+  byTokens tree
+END
+
+BEGIN dynamic_type
+
+  Token byText init
+  Token byTokens init_node
+
+END

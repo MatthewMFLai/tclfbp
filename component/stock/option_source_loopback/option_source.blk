@@ -1,0 +1,6 @@
+name option_source
+filepath $env(DISK2)/component/stock/option_source_loopback
+init {http://www.m-x.ca/nego_liste_en.php}
+kicker red-ball
+inports {1}
+outports {0 1}

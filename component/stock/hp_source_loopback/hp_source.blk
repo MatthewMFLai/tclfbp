@@ -1,0 +1,5 @@
+name hp_source
+filepath $env(DISK2)/component/stock/hp_source_loopback
+init {T Nov 13 2012 Nov 13 2011}
+inports {1 2}
+outports {1 2}

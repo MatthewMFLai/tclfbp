@@ -1,0 +1,5 @@
+name collate 
+filepath $env(DISK2)/component/stock/collate
+init {stock_collate {.WT .DB}}
+inports {financial fundamental dividend options warrant debenture}
+outports {0}

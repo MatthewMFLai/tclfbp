@@ -1,0 +1,55 @@
+source fbp_mgr.tcl
+FbpMgr::Init 192.168.0 14000
+FbpMgr::Sweep 113 117
+set ipaddr 192.168.0.113
+FbpMgr::send_one_file task.split $ipaddr 14001
+set ipaddr 192.168.0.115
+FbpMgr::send_one_file task.split $ipaddr 14001
+set ipaddr 192.168.0.116
+FbpMgr::send_one_file task.split $ipaddr 14001
+
+set ipaddr 192.168.0.113 
+set fd [socket $ipaddr 14000]
+set ipaddr 192.168.0.115 
+set fd2 [socket $ipaddr 14000]
+set ipaddr 192.168.0.116
+set fd3 [socket $ipaddr 14000]
+
+puts $fd "CREATE task.split"
+flush $fd
+gets $fd resp
+puts "CREATE machine 1: $resp"
+puts $fd2 "CREATE task.split"
+flush $fd2
+gets $fd2 resp
+puts "CREATE machine 2: $resp"
+puts $fd3 "CREATE task.split"
+flush $fd3
+gets $fd3 resp
+puts "CREATE machine 3: $resp"
+
+puts $fd "ENABLE"
+flush $fd
+gets $fd resp
+puts "ENABLE machine 1: $resp"
+puts $fd2 "ENABLE"
+flush $fd2
+gets $fd2 resp
+puts "ENABLE machine 2: $resp"
+puts $fd3 "ENABLE"
+flush $fd3
+gets $fd3 resp
+puts "ENABLE machine 3: $resp"
+
+puts $fd "KICK"
+flush $fd
+gets $fd resp
+puts "KICK machine 1: $resp"
+puts $fd2 "KICK"
+flush $fd2
+gets $fd2 resp
+puts "KICK machine 2: $resp"
+puts $fd3 "KICK"
+flush $fd3
+gets $fd3 resp
+puts "KICK machine 3: $resp"

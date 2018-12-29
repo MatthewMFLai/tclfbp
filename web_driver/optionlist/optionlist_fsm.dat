@@ -1,0 +1,28 @@
+#Node section
+#Name process_proc
+BEGIN_STATE 
+FIND_TABLE optionlist_fsm::process_generic
+FIND_TABLE_AGAIN optionlist_fsm::process_generic
+FIND_TABLE_END optionlist_fsm::process_generic
+TERMINATE null 
+END_STATE
+
+#Link section
+#from_state to_state eval_proc action_proc
+BEGIN_LINK
+FIND_TABLE FIND_TABLE_AGAIN optionlist_fsm::eval_table_to_table_end null 
+FIND_TABLE_AGAIN FIND_TABLE_END optionlist_fsm::eval_table_to_table_end null 
+FIND_TABLE_END FIND_TABLE_END null optionlist_fsm::act_table_end_to_table_end
+FIND_TABLE_END TERMINATE optionlist_fsm::eval_table_end_to_terminate null
+
+END_LINK
+
+#Init section
+BEGIN_INIT
+proc = optionlist_fsm::init
+END_INIT
+
+#Default state section
+BEGIN_DEFAULT_STATE
+state = FIND_TABLE
+END_DEFAULT_STATE
