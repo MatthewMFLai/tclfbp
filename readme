@@ -1,0 +1,2 @@
+The master branch contains the tcp socket as link implementation.
+The sharedmem branch contains the shared memory segment as link implementation.
