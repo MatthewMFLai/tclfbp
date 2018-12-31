@@ -13,6 +13,11 @@ factory/
 *.raw
 graph_*.dat
 !Mk4tcl.so
+*.i
+!test.i
+test_wrap*
+*.s
+*.swp
 
 # Packages #
 ############
