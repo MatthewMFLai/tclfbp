@@ -33,7 +33,7 @@
 /*****************************************************************************
  * Static functions
  *****************************************************************************/
-#define RBUFF_ELEM_AT(p_rbuff, index) ((uint8_t*) ((uint8_t*) p_rbuff->elem_array) + (p_rbuff->elem_size) * (index))
+#define RBUFF_ELEM_AT(p_rbuff, index) ((uint8_t*) ((uint8_t*) p_rbuff + sizeof(rbuff_t)) + (p_rbuff->elem_size) * (index))
 #define RBUFF_IS_FULL(p_rbuff) (p_rbuff->tail + p_rbuff->array_len == p_rbuff->head)
 #define RBUFF_IS_EMPTY(p_rbuff) (p_rbuff->tail == p_rbuff->head)
 /*****************************************************************************

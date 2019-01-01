@@ -1,4 +1,5 @@
 proc runit {size} {
+    global p_output
     yield
     while {1} {
         set rc 1 
@@ -15,7 +16,7 @@ proc runit {size} {
 
 proc checkagain {} {
     checkit
-    after 5 checkagain
+    after 10 checkagain
 }
 
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
@@ -24,7 +25,7 @@ set key [lindex $argv 0]
 set len [lindex $argv 1]
 set size [lindex $argv 2]
 stub_init $key $len $size
-test_helper_int $size 
+test_helper_init $size 
 
 coroutine checkit runit $size
 
