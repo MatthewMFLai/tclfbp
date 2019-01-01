@@ -4,9 +4,7 @@
 #include <sys/shm.h>
 #include "shm.h"
 
-static int m_shmid;
-
-char *shm_init(size_t memsize, char *p_key)
+char *shm_init(size_t memsize, char *p_key, int *p_shmid)
 {
     key_t key;
     char *data;
@@ -19,13 +17,13 @@ char *shm_init(size_t memsize, char *p_key)
     }
 
     /* connect to (and possibly create) the segment: */
-    if ((m_shmid = shmget(key, memsize, 0644 | IPC_CREAT)) == -1) {
+    if ((*p_shmid = shmget(key, memsize, 0644 | IPC_CREAT)) == -1) {
         printf("shmget failure\n");
         return (data);
     }
 
     /* attach to the segment to get a pointer to it: */
-    data = shmat(m_shmid, (void *)0, 0);
+    data = shmat(*p_shmid, (void *)0, 0);
     if (data == (char *)(-1)) {
         printf("shmat failure\n");
         return (data);
@@ -33,7 +31,7 @@ char *shm_init(size_t memsize, char *p_key)
     return (data);
 }
 
-void shm_remove(void)
+void shm_remove(int shmid)
 {
-    shmctl(m_shmid, IPC_RMID, NULL);
+    shmctl(shmid, IPC_RMID, NULL);
 }

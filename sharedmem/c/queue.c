@@ -14,6 +14,7 @@
 #include "ringbuff.h"
 
 static uint8_t *m_p_csr;
+static int m_shmid;
 
 // Return 0 if write successful, else queue is full
 uint32_t sv_csr_write_wrapper(void *p_data)
@@ -40,7 +41,7 @@ uint32_t sv_csr_read_wrapper(void *p_data)
 // len = logical length of array. MUST be power of 2!!!
 void stub_init(char *p_key, uint32_t len, uint32_t size)
 {
-    m_p_csr = (uint8_t *)shm_init(sizeof(rbuff_t) + (len * size), p_key);
+    m_p_csr = (uint8_t *)shm_init(sizeof(rbuff_t) + (len * size), p_key, &m_shmid);
 }
 
 void stub_clear(uint32_t len, uint32_t size)
@@ -59,5 +60,5 @@ void stub_clear(uint32_t len, uint32_t size)
 
 void stub_cleanup(void)
 {
-    shm_remove();
+    shm_remove(m_shmid);
 }
