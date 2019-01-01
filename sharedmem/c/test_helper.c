@@ -22,7 +22,10 @@ void fill_input (uint8_t val, uint32_t size)
     uint32_t i;
 
     for (i = 0; i < size; i++)
-        *p_data++ = val++;
+    {
+        *p_data = val++;
+        p_data++;
+    }
 }
     
 void print_output (uint32_t size)

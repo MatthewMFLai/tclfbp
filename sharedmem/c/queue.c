@@ -36,6 +36,7 @@ uint32_t sv_csr_read_wrapper(void *p_data)
     rbuff_t *p_rbuff;
 
     sem_lock();
+    p_rbuff = (rbuff_t *)m_p_csr;
     rc = rbuff_pop(p_rbuff, p_data);
     sem_unlock();
     return (rc);
