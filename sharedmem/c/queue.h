@@ -1,15 +1,18 @@
-/* File: queue.h */
+#ifndef QUEUE_H 
+#define QUEUE_H
 #include <unistd.h>
+#include "tclfbp_def.h"
 
 #define LONG_SIZE sizeof(uint32_t)
 #define MEM_MAX 10240 
 
-typedef unsigned char uint8_t;
-typedef unsigned short int uint16_t;
-typedef unsigned int uint32_t;
-
-void stub_init(char *p_key);
-void stub_clear(void);
+// len = logical length of array. MUST be power of 2!!!
+void stub_init(char *p_key, uint32_t len, uint32_t size);
+void stub_clear(uint32_t len, uint32_t size);
 void stub_cleanup(void);
-void sv_csr_write_wrapper(uint32_t reg_addr, uint32_t val);
-uint32_t sv_csr_read_wrapper(uint32_t reg_addr);
+// Return 0 if write successful, else queue is full
+uint32_t sv_csr_write_wrapper(void *p_data);
+// Return 0 if read successful, else queue is empty 
+uint32_t sv_csr_read_wrapper(void *p_data);
+
+#endif /* QUEUE_H */

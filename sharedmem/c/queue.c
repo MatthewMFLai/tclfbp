@@ -12,35 +12,56 @@
 #include "queue.h"
 #include "sem.h"
 #include "shm.h"
+#include "ringbuff.h"
 
 static uint8_t *m_p_csr;
 
-void sv_csr_write_wrapper(uint32_t reg_addr, uint32_t val)
+// Return 0 if write successful, else queue is full
+uint32_t sv_csr_write_wrapper(void *p_data)
 {
+    enum RBUFF_RC rc;
+    rbuff_t *p_rbuff;
+
     sem_lock();
-    *(uint32_t *)(m_p_csr + reg_addr) = val;
+    p_rbuff = (rbuff_t *)m_p_csr;
+    rc = rbuff_push(p_rbuff, p_data);
     sem_unlock();
+    return (rc);
 }
 
-uint32_t sv_csr_read_wrapper(uint32_t reg_addr)
+// Return 0 if read successful, else queue is empty 
+uint32_t sv_csr_read_wrapper(void *p_data)
 {
-    uint32_t val;
+    enum RBUFF_RC rc;
+    rbuff_t *p_rbuff;
+
     sem_lock();
-    val = *(uint32_t *)(m_p_csr + reg_addr);
+    rc = rbuff_pop(p_rbuff, p_data);
     sem_unlock();
-    return (val);
+    return (rc);
 }
 
-void stub_init(char *p_key)
+// len = logical length of array. MUST be power of 2!!!
+void stub_init(char *p_key, uint32_t len, uint32_t size)
 {
     my_sem_init(p_key);
-    m_p_csr = (uint8_t *)shm_init(MEM_MAX, p_key);
+    m_p_csr = (uint8_t *)shm_init(sizeof(rbuff_t) + (len * size), p_key);
 }
 
-void stub_clear(void)
+void stub_clear(uint32_t len, uint32_t size)
 {
+    rbuff_t *p_rbuff;
+
     sem_lock();
-    memset(m_p_csr, 0, MEM_MAX);
+    memset(m_p_csr, 0, sizeof(rbuff_t) + (len * size));
+   
+    // set up rbuff_t
+    p_rbuff = (rbuff_t *)m_p_csr;
+    p_rbuff->array_len = len;
+    p_rbuff->elem_size = size;
+    p_rbuff->elem_array = m_p_csr + sizeof(rbuff_t);
+    rbuff_init(p_rbuff);
+ 
     sem_unlock();
 }
 
