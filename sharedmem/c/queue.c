@@ -12,28 +12,37 @@
 #include "queue.h"
 #include "shm.h"
 #include "ringbuff.h"
-
-static uint8_t *m_p_csr;
-static int m_shmid;
+#include "shm_mgr.h"
 
 // Return 0 if write successful, else queue is full
-uint32_t sv_csr_write_wrapper(void *p_data)
+uint32_t sv_csr_write_wrapper(char *p_key, void *p_data)
 {
     enum RBUFF_RC rc;
     rbuff_t *p_rbuff;
+    uint8_t *p_csr;
+   
+    p_csr = shm_mgr_get_addr(p_key);
+    if (p_csr == NULL)
+        return(3);
 
-    p_rbuff = (rbuff_t *)m_p_csr;
+    p_rbuff = (rbuff_t *)p_csr;
     rc = rbuff_push(p_rbuff, p_data);
     return (rc);
 }
 
 // Return 0 if read successful, else queue is empty 
-uint32_t sv_csr_read_wrapper(void *p_data)
+uint32_t sv_csr_read_wrapper(char *p_key, void *p_data)
 {
     enum RBUFF_RC rc;
     rbuff_t *p_rbuff;
+    uint8_t *p_csr;
+   
+    p_csr = shm_mgr_get_addr(p_key);
+    if (p_csr == NULL)
+        return(3);
 
-    p_rbuff = (rbuff_t *)m_p_csr;
+
+    p_rbuff = (rbuff_t *)p_csr;
     rc = rbuff_pop(p_rbuff, p_data);
     return (rc);
 }
@@ -41,24 +50,42 @@ uint32_t sv_csr_read_wrapper(void *p_data)
 // len = logical length of array. MUST be power of 2!!!
 void stub_init(char *p_key, uint32_t len, uint32_t size)
 {
-    m_p_csr = (uint8_t *)shm_init(sizeof(rbuff_t) + (len * size), p_key, &m_shmid);
+    uint8_t *p_csr;
+    int shmid;
+
+    if (!shm_mgr_check(p_key))
+    {
+        p_csr = (uint8_t *)shm_init(sizeof(rbuff_t) + (len * size), p_key, &shmid);
+        shm_mgr_add(p_key, shmid, p_csr);
+    }
 }
 
-void stub_clear(uint32_t len, uint32_t size)
+void stub_clear(char *p_key, uint32_t len, uint32_t size)
 {
     rbuff_t *p_rbuff;
-
-    memset(m_p_csr, 0, sizeof(rbuff_t) + (len * size));
+    uint8_t *p_csr;
+   
+    p_csr = shm_mgr_get_addr(p_key);
+    if (p_csr == NULL)
+        return;
+ 
+    memset(p_csr, 0, sizeof(rbuff_t) + (len * size));
    
     // set up rbuff_t
-    p_rbuff = (rbuff_t *)m_p_csr;
+    p_rbuff = (rbuff_t *)p_csr;
     p_rbuff->array_len = len;
     p_rbuff->elem_size = size;
-    p_rbuff->elem_array = m_p_csr + sizeof(rbuff_t);
     rbuff_init(p_rbuff);
 }
 
-void stub_cleanup(void)
+void stub_cleanup(char *p_key)
 {
-    shm_remove(m_shmid);
+    int shmid;
+   
+    shmid = shm_mgr_get_shmid(p_key);
+    if (shmid != -1)
+    {
+        shm_remove(shmid);
+        //shm_mgr_delete(p_key);
+    } 
 }

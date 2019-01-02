@@ -1,4 +1,4 @@
-proc runit {size} {
+proc runit {key size} {
     global p_input
     yield
     set val 0
@@ -6,7 +6,7 @@ proc runit {size} {
         fill_input $val $size
         set rc 1 
         while {$rc != 0} {
-            set rc [sv_csr_write_wrapper $p_input]
+            set rc [sv_csr_write_wrapper $key $p_input]
             if {$rc} {
                 yield
             }
@@ -32,7 +32,7 @@ set size [lindex $argv 2]
 stub_init $key $len $size
 test_helper_init $size 
 
-coroutine checkit runit $size
+coroutine checkit runit $key $size
 
 after idle checkagain
 

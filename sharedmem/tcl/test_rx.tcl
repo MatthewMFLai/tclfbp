@@ -1,10 +1,10 @@
-proc runit {size} {
+proc runit {key size} {
     global p_output
     yield
     while {1} {
         set rc 1 
         while {$rc != 0} {
-            set rc [sv_csr_read_wrapper $p_output]
+            set rc [sv_csr_read_wrapper $key $p_output]
             if {$rc} {
                 yield
             }
@@ -27,7 +27,7 @@ set size [lindex $argv 2]
 stub_init $key $len $size
 test_helper_init $size 
 
-coroutine checkit runit $size
+coroutine checkit runit $key $size
 
 after idle checkagain
 
