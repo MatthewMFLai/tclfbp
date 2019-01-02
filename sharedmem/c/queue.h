@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "tclfbp_def.h"
 
+void queue_init(void);
 // len = logical length of array. MUST be power of 2!!!
 void stub_init(char *p_key, uint32_t len, uint32_t size);
 void stub_clear(char *p_key, uint32_t len, uint32_t size);

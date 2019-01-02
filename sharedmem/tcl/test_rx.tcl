@@ -24,6 +24,7 @@ load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
 set key [lindex $argv 0]
 set len [lindex $argv 1]
 set size [lindex $argv 2]
+queue_init
 stub_init $key $len $size
 test_helper_init $size 
 

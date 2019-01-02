@@ -12,8 +12,7 @@
 #include "shm_mgr.h"
 
 static char setinel[] = "sentinel_dont_delete";
-static node_t sentinel_node = {NULL, setinel, NULL, -1}; 
-static node_t *m_p_head = &sentinel_node;
+static node_t *m_p_head = NULL;
 
 void shm_mgr_reset(void)
 {

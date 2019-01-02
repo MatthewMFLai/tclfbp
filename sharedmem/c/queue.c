@@ -47,6 +47,11 @@ uint32_t sv_csr_read_wrapper(char *p_key, void *p_data)
     return (rc);
 }
 
+void queue_init(void)
+{
+    shm_mgr_add("sentinel_dont_delete", -1, NULL);
+}
+
 // len = logical length of array. MUST be power of 2!!!
 void stub_init(char *p_key, uint32_t len, uint32_t size)
 {
