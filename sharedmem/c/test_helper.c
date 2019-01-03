@@ -36,4 +36,16 @@ void print_output (uint32_t size)
     for (i = 0; i < size; i++, p_data++)
         printf("%d ", *(uint8_t *)p_data);
     printf("\n");
-}    
+}
+
+void out_to_in(uint32_t size)
+{
+    memcpy(p_input, p_output, size);
+}
+
+void in_to_out(uint32_t size)
+{
+    memcpy(p_output, p_input, size);
+}
+
+    
