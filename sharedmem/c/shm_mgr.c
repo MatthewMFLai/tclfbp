@@ -7,12 +7,18 @@
 # define _CRT_SECURE_NO_DEPRECATE
 #endif
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "shm_mgr.h"
 
 static char setinel[] = "sentinel_dont_delete";
 static node_t *m_p_head = NULL;
+
+void shm_mgr_init(void)
+{
+    shm_mgr_add(setinel, -1, NULL);
+}
 
 void shm_mgr_reset(void)
 {
@@ -54,9 +60,8 @@ bool shm_mgr_delete(char *p_key)
             continue;
         }
         p_cur_next = p_cur->p_next;
+        free(p_cur->p_key);
         memcpy(p_cur, p_cur_next, sizeof(node_t));
-
-        free(p_cur_next->p_key);
         free(p_cur_next);
         return (true);
     }
@@ -112,3 +117,12 @@ bool shm_mgr_check(char *p_key)
     return (false);
 }
 
+void shm_mgr_dump(void)
+{
+    node_t *p_cur = m_p_head;
+    while (p_cur != NULL)
+    {
+        printf("%s %p %d\n", p_cur->p_key, p_cur->p_csr, p_cur->shmid);
+        p_cur = p_cur->p_next;
+    }
+}

@@ -10,11 +10,12 @@ typedef struct node {
     int shmid;
 } node_t; 
 
+void shm_mgr_init (void);
 void shm_mgr_reset(void);
 void shm_mgr_add(char *p_key, int shmid, uint8_t *p_csr);
 bool shm_mgr_delete(char *p_key);
 uint8_t *shm_mgr_get_addr(char *p_key);
 int shm_mgr_get_shmid(char *p_key);
 bool shm_mgr_check(char *p_key);
-
+void shm_mgr_dump(void);
 #endif /* SHM_MGR_H */

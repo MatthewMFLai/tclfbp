@@ -49,7 +49,7 @@ uint32_t sv_csr_read_wrapper(char *p_key, void *p_data)
 
 void queue_init(void)
 {
-    shm_mgr_add("sentinel_dont_delete", -1, NULL);
+    shm_mgr_init();
 }
 
 // len = logical length of array. MUST be power of 2!!!
@@ -91,6 +91,6 @@ void stub_cleanup(char *p_key)
     if (shmid != -1)
     {
         shm_remove(shmid);
-        //shm_mgr_delete(p_key);
+        shm_mgr_delete(p_key);
     } 
 }
