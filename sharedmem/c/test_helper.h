@@ -1,11 +1,29 @@
 #ifndef TEST_HELPER_H
 #define TEST_HELPER_H
-/* File: gcfsm2_helper.h */
+/* File: test_helper.h */
+#include <stdbool.h>
 #include "tclfbp_def.h"
-void test_helper_init(uint32_t size);
-void fill_input (uint8_t val, uint32_t size);
-void print_output (uint32_t size);
-void out_to_in(uint32_t size);
-void in_to_out(uint32_t size);
+
+typedef struct node {
+    struct node *p_next;
+    char *p_port;
+    char *p_shmkey;
+    char *p_buffer;
+    int size;
+} node_t; 
+
+void port_mgr_init (void);
+void port_mgr_reset(void);
+void port_mgr_add(char *p_port, int size, char *p_key);
+bool port_mgr_delete(char *p_port);
+char *port_mgr_get_shmkey(char *p_port);
+void *port_mgr_get_msg(char *p_port);
+int port_mgr_get_size(char *p_port);
+bool port_mgr_check(char *p_port);
+void port_mgr_dump(void);
+
+void port_mgr_msg_set(char *p_port, char *p_data, int offset);
+char *port_mgr_msg_get(char *p_port, int offset);
+
 
 #endif

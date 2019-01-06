@@ -5,47 +5,171 @@
 #include <string.h>
 #include "test_helper.h"
 
-void *p_input;
-void *p_output;
+static char setinel[] = "sentinel_dont_delete";
+static node_t *m_p_head = NULL;
 
-void test_helper_init(uint32_t size)
+void port_mgr_init(void)
 {
-    p_input = (char *)malloc(size);
-    p_output = (char *)malloc(size);
-    memset(p_input, 0, size);
-    memset(p_output, 0, size);
+    port_mgr_add(setinel, -1, NULL);
 }
 
-void fill_input (uint8_t val, uint32_t size)
+void port_mgr_reset(void)
 {
-    uint8_t *p_data = (uint8_t *)p_input;
-    uint32_t i;
-
-    for (i = 0; i < size; i++)
+    node_t *p_cur = m_p_head;
+    while (p_cur != NULL)
     {
-        *p_data = val++;
-        p_data++;
+        if (!(strcmp(p_cur->p_port, setinel)))
+            break;
+     
+        m_p_head = p_cur->p_next;
+        free(p_cur->p_port);
+        if (p_cur->size > 0)
+            free(p_cur->p_buffer);
+        if (p_cur->p_shmkey != NULL)
+            free(p_cur->p_shmkey);
+        free(p_cur);
+        p_cur = m_p_head;
     }
 }
-    
-void print_output (uint32_t size)
-{
-    uint8_t *p_data = (uint8_t *)p_output;
-    uint32_t i;
 
-    for (i = 0; i < size; i++, p_data++)
-        printf("%d ", *(uint8_t *)p_data);
-    printf("\n");
+void port_mgr_add(char *p_port, int size, char *p_key)
+{
+    node_t *p_cur = m_p_head;
+    p_cur = (node_t *)malloc(sizeof(node_t));
+    p_cur->p_port = (char *)malloc((strlen(p_port) + 1));
+    strcpy(p_cur->p_port, p_port);
+    p_cur->size = size;
+    if (size > 0)
+    {
+        p_cur->p_buffer = (char *)malloc(size);
+        memset(p_cur->p_buffer, 0, size);
+    }
+    if (p_key != NULL)
+    {
+        p_cur->p_shmkey = (char *)malloc((strlen(p_key) + 1));
+        strcpy(p_cur->p_shmkey, p_key);
+    }
+    else 
+        p_cur->p_shmkey = NULL;
+
+    p_cur->p_next = m_p_head;
+    m_p_head = p_cur; 
 }
 
-void out_to_in(uint32_t size)
+bool port_mgr_delete(char *p_port)
 {
-    memcpy(p_input, p_output, size);
+    node_t *p_cur_next;
+    node_t *p_cur = m_p_head;
+
+    while (p_cur != NULL)
+    {
+        if ((strcmp(p_cur->p_port, p_port)) != 0)
+        {
+            p_cur = p_cur->p_next;
+            continue;
+        }
+        p_cur_next = p_cur->p_next;
+        free(p_cur->p_port);
+        if (p_cur->size > 0)
+            free(p_cur->p_buffer);
+        if (p_cur->p_shmkey != NULL)
+            free(p_cur->p_shmkey);
+        memcpy(p_cur, p_cur_next, sizeof(node_t));
+        free(p_cur_next);
+        return (true);
+    }
+    return (false);
 }
 
-void in_to_out(uint32_t size)
+static node_t *port_mgr_get(char *p_port)
 {
-    memcpy(p_output, p_input, size);
+    node_t *p_cur = m_p_head;
+    while (p_cur != NULL)
+    {
+        if (!(strcmp(p_cur->p_port, p_port)))
+            return (p_cur);
+
+        p_cur = p_cur->p_next;
+    }
+    return (NULL);
 }
 
-    
+static char *port_mgr_get_buffer(char *p_port)
+{
+    char *p_buffer = NULL;
+
+    node_t *p_cur = port_mgr_get(p_port);
+    if (p_cur != NULL)
+        p_buffer = p_cur->p_buffer;
+
+    return (p_buffer);
+}
+
+void *port_mgr_get_msg(char *p_port)
+{
+    return ((void *)port_mgr_get_buffer(p_port));
+}
+
+char *port_mgr_get_shmkey(char *p_port)
+{
+    char *p_shmkey = NULL;
+
+    node_t *p_cur = port_mgr_get(p_port);
+    if (p_cur != NULL)
+        p_shmkey = p_cur->p_shmkey;
+
+    return (p_shmkey);
+}
+
+int port_mgr_get_size(char *p_port)
+{
+    int size  = -1;
+
+    node_t *p_cur = port_mgr_get(p_port);
+    if (p_cur != NULL)
+        size = p_cur->size;
+
+    return (size);
+
+}
+
+bool port_mgr_check(char *p_port)
+{
+    node_t *p_cur = m_p_head;
+    while (p_cur != NULL)
+    {
+        if (!(strcmp(p_cur->p_port, p_port)))
+            return (true);
+
+        p_cur = p_cur->p_next;
+    }
+    return (false);
+}
+
+void port_mgr_dump(void)
+{
+    node_t *p_cur = m_p_head;
+    while (p_cur != NULL)
+    {
+        printf("%s %s %p %d\n", p_cur->p_port, p_cur->p_shmkey, p_cur->p_buffer, p_cur->size);
+        p_cur = p_cur->p_next;
+    }
+}
+
+void port_mgr_msg_set(char *p_port, char *p_data, int offset)
+{
+    char *p_buffer = port_mgr_get_buffer(p_port);
+    if (p_buffer == NULL)
+        return;
+
+    strcpy(p_buffer + offset, p_data);
+}
+
+char *port_mgr_msg_get(char *p_port, int offset)
+{
+    char *p_buffer = port_mgr_get_buffer(p_port);
+    if (p_buffer == NULL)
+        return (NULL);
+
+    return (p_buffer + offset);
+}

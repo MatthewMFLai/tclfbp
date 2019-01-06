@@ -11,10 +11,6 @@
 #pragma SWIG nowarn=SWIGWARN_TYPEMAP_SWIGTYPELEAK
 
 /* Some helper functions to make it easier to test */
-%inline %{
-extern void *p_input;
-extern void *p_output;
-%}
 
 %include "queue.h"
 %include "test_helper.h"
