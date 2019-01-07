@@ -1,11 +1,10 @@
-proc runit {inport outport size} {
+proc runit {inport outport msgname} {
     yield
 
-    set parser(f1) 0
-    set parser(f2) 10
-    set parser(f3) 20
-    set parser(f4) 30
+    array set tmpdata {}
+    Msgdef::Get_Attr_Offset $msgname tmpdata
     set count 10
+
     while {1} {
         set rc 1 
         while {$rc != 0} {
@@ -16,13 +15,15 @@ proc runit {inport outport size} {
         }
 
         incr count -1
-        foreach idx [lsort [array names parser]] {
-            set data [port_mgr_msg_get $inport $parser($idx)]
+
+        foreach attr [array names tmpdata] {
+            set data [port_mgr_msg_get $inport $tmpdata($attr)]
             if {$count == 0} {
                 puts $data
             }
-            port_mgr_msg_set $outport $data $parser($idx)
+            port_mgr_msg_set $outport $data $tmpdata($attr)
         }
+
         if {$count == 0} {
             set count 10
         }
@@ -43,6 +44,9 @@ proc checkagain {} {
     after 10 checkagain
 }
 
+source msgdef.tcl
+Msgdef::Init
+
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
 
 set inport [lindex $argv 0]
@@ -50,14 +54,18 @@ set key1 [lindex $argv 1]
 set outport [lindex $argv 2]
 set key2 [lindex $argv 3]
 set len [lindex $argv 4]
-set size [lindex $argv 5]
+set msgfile [lindex $argv 5]
+
+set msgname [Msgdef::Parse $msgfile]
+set size [Msgdef::Get_Max_Size $msgname]
+
 queue_init
 stub_init $key1 $len $size
 stub_init $key2 $len $size
 port_mgr_init
 port_mgr_add $inport $size $key1
 port_mgr_add $outport $size $key2
-coroutine checkit runit $inport  $outport $size
+coroutine checkit runit $inport  $outport $msgname
 
 after idle checkagain
 
