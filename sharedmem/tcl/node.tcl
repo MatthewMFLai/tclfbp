@@ -1,6 +1,7 @@
-proc port_read {port msgname p_msgin} {
+proc port_read {port p_msgin} {
     upvar $p_msgin msgin
 
+    Portmgr::Get_Portmsgdef $port msgname
     set rc 1 
     while {$rc != 0} {
         set rc [sv_csr_read_wrapper [port_mgr_get_shmkey $port] [port_mgr_get_msg $port]]
@@ -16,9 +17,10 @@ proc port_read {port msgname p_msgin} {
     }
 }
 
-proc port_write {port msgname p_msgout} {
+proc port_write {port p_msgout} {
     upvar $p_msgout msgout
 
+    Portmgr::Get_Portmsgdef $port msgname
     array set tmpdata {}
     Msgdef::Get_Attr_Offset $msgname tmpdata
     foreach attr [array names tmpdata] {
@@ -37,14 +39,14 @@ proc port_write {port msgname p_msgout} {
     }
 }
 
-proc runit {inport outport msgname} {
+proc runit {inport outport} {
     yield
 
     set count 10
     while {1} {
 
         incr count -1
-        process $inport $outport $msgname $count
+        process $inport $outport $count
         if {$count == 0} {
             set count 10
         }
@@ -58,6 +60,8 @@ proc checkagain {} {
     after 10 checkagain
 }
 
+source portmgr.tcl
+Portmgr::Init
 source msgdef.tcl
 Msgdef::Init
 
@@ -76,13 +80,18 @@ source $appfile
 set msgname [Msgdef::Parse $msgfile]
 set size [Msgdef::Get_Max_Size $msgname]
 
+Portmgr::Add $inport IN $msgname
+Portmgr::Add_Shm $inport $key1 $len
+Portmgr::Add $outport OUT $msgname
+Portmgr::Add_Shm $outport $key2 $len
+
 queue_init
 stub_init $key1 $len $size
 stub_init $key2 $len $size
 port_mgr_init
 port_mgr_add $inport $size $key1
 port_mgr_add $outport $size $key2
-coroutine checkit runit $inport  $outport $msgname
+coroutine checkit runit $inport  $outport
 
 after idle checkagain
 

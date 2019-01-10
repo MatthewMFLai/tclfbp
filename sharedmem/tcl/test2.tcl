@@ -1,7 +1,7 @@
-proc process {inport outport msgname count} {
+proc process {inport outport count} {
 
     array set msgin {}
-    port_read $inport $msgname msgin 
+    port_read $inport msgin 
 
     if {$count == 0} {
         foreach idx [array names msgin] {
@@ -9,6 +9,6 @@ proc process {inport outport msgname count} {
         }
     }
 
-    port_write $outport $msgname msgin
+    port_write $outport msgin
     return
 }
