@@ -10,7 +10,7 @@ static node_t *m_p_head = NULL;
 
 void port_mgr_init(void)
 {
-    port_mgr_add(setinel, -1, NULL);
+    port_mgr_add(setinel, -1);
 }
 
 void port_mgr_reset(void)
@@ -25,14 +25,12 @@ void port_mgr_reset(void)
         free(p_cur->p_port);
         if (p_cur->size > 0)
             free(p_cur->p_buffer);
-        if (p_cur->p_shmkey != NULL)
-            free(p_cur->p_shmkey);
         free(p_cur);
         p_cur = m_p_head;
     }
 }
 
-void port_mgr_add(char *p_port, int size, char *p_key)
+void port_mgr_add(char *p_port, int size)
 {
     node_t *p_cur = m_p_head;
     p_cur = (node_t *)malloc(sizeof(node_t));
@@ -44,13 +42,6 @@ void port_mgr_add(char *p_port, int size, char *p_key)
         p_cur->p_buffer = (char *)malloc(size);
         memset(p_cur->p_buffer, 0, size);
     }
-    if (p_key != NULL)
-    {
-        p_cur->p_shmkey = (char *)malloc((strlen(p_key) + 1));
-        strcpy(p_cur->p_shmkey, p_key);
-    }
-    else 
-        p_cur->p_shmkey = NULL;
 
     p_cur->p_next = m_p_head;
     m_p_head = p_cur; 
@@ -72,8 +63,6 @@ bool port_mgr_delete(char *p_port)
         free(p_cur->p_port);
         if (p_cur->size > 0)
             free(p_cur->p_buffer);
-        if (p_cur->p_shmkey != NULL)
-            free(p_cur->p_shmkey);
         memcpy(p_cur, p_cur_next, sizeof(node_t));
         free(p_cur_next);
         return (true);
@@ -110,17 +99,6 @@ void *port_mgr_get_msg(char *p_port)
     return ((void *)port_mgr_get_buffer(p_port));
 }
 
-char *port_mgr_get_shmkey(char *p_port)
-{
-    char *p_shmkey = NULL;
-
-    node_t *p_cur = port_mgr_get(p_port);
-    if (p_cur != NULL)
-        p_shmkey = p_cur->p_shmkey;
-
-    return (p_shmkey);
-}
-
 int port_mgr_get_size(char *p_port)
 {
     int size  = -1;
@@ -151,7 +129,7 @@ void port_mgr_dump(void)
     node_t *p_cur = m_p_head;
     while (p_cur != NULL)
     {
-        printf("%s %s %p %d\n", p_cur->p_port, p_cur->p_shmkey, p_cur->p_buffer, p_cur->size);
+        printf("%s %p %d\n", p_cur->p_port, p_cur->p_buffer, p_cur->size);
         p_cur = p_cur->p_next;
     }
 }

@@ -2,9 +2,15 @@ proc port_read {port p_msgin} {
     upvar $p_msgin msgin
 
     Portmgr::Get_Portmsgdef $port msgname
+    Portmgr::Get_Shm $port keylist
     set rc 1 
     while {$rc != 0} {
-        set rc [sv_csr_read_wrapper [port_mgr_get_shmkey $port] [port_mgr_get_msg $port]]
+        foreach shmkey $keylist {
+            set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
+            if {$rc == 0} {
+                break
+            }
+        }
         if {$rc} {
             yield
         }
@@ -30,9 +36,15 @@ proc port_write {port p_msgout} {
         port_mgr_msg_set $port $msgout($attr) $tmpdata($attr)
     }
 
+    Portmgr::Get_Shm $port keylist
     set rc 1 
     while {$rc != 0} {
-        set rc [sv_csr_write_wrapper [port_mgr_get_shmkey $port] [port_mgr_get_msg $port]]
+        foreach shmkey $keylist {
+            set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
+            if {$rc == 0} {
+                break
+            }
+        }
         if {$rc} {
             yield
         }
@@ -89,8 +101,8 @@ queue_init
 stub_init $key1 $len $size
 stub_init $key2 $len $size
 port_mgr_init
-port_mgr_add $inport $size $key1
-port_mgr_add $outport $size $key2
+port_mgr_add $inport $size 
+port_mgr_add $outport $size
 coroutine checkit runit $inport  $outport
 
 after idle checkagain

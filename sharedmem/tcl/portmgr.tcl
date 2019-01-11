@@ -42,7 +42,7 @@ proc Add_Shm {portname shm_key len} {
     return "" 
 }
 
-# Return {{shm_key len} {shm_key len} ... }
+# Return {shm_key shm_key ... }
 proc Get_Shm {portname p_rclist} {
     upvar $p_rclist rclist
     variable m_port
@@ -51,7 +51,9 @@ proc Get_Shm {portname p_rclist} {
         return "$portname absent"
     }
 
-    set rclist $m_port($portname)
+    foreach token $m_port($portname) {
+        lappend rclist [lindex $token 0]
+    }
     return ""
 }
 
