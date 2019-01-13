@@ -51,14 +51,14 @@ proc port_write {port p_msgout} {
     }
 }
 
-proc runit {inport outport} {
+proc runit {} {
     yield
 
     set count 10
     while {1} {
 
         incr count -1
-        process $inport $outport $count
+        process $count
         if {$count == 0} {
             set count 10
         }
@@ -76,34 +76,42 @@ source portmgr.tcl
 Portmgr::Init
 source msgdef.tcl
 Msgdef::Init
-
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
+queue_init
+port_mgr_init
 
-set inport [lindex $argv 0]
-set key1 [lindex $argv 1]
-set outport [lindex $argv 2]
-set key2 [lindex $argv 3]
-set len [lindex $argv 4]
-set msgfile [lindex $argv 5]
-set appfile [lindex $argv 6]
+# argument data looks like this:
+# tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $MSGDEF_HOME/test/test0.msg:test_tx.tcl:4 OUT-1 $MSGDEF_HOME/test/test0.msg:test_rx.tcl:4 PROGRAM $DISK2/sharedmem/tcl/test2.tcl
+#
+# Each port data contains the following info pieces
+# <port name> <msgdef : sharedmem key : length : sharedmem key : length :...>
+array set argdata $argv 
 
+# All ports are prefixed by "IN-" and "OUT-"
+foreach porttype "IN OUT" {
+    foreach port [array names argdata "$porttype-*"] {
+        set tokens [split $argdata($port) ":"]
+
+        set msgfile [lindex $tokens 0]
+        set msgname [Msgdef::Parse $msgfile]
+        set size [Msgdef::Get_Max_Size $msgname]
+        Portmgr::Add $port $porttype $msgname
+        port_mgr_add $port $size
+
+        array set tmpdata [lrange $tokens 1 end]  
+        foreach shmkey [array names tmpdata] {
+            set len $tmpdata($shmkey)
+            Portmgr::Add_Shm $port $shmkey $len
+            stub_init $shmkey $len $size
+        }
+        unset tmpdata
+    }
+} 
+
+set appfile $argdata(PROGRAM)
 source $appfile
 
-set msgname [Msgdef::Parse $msgfile]
-set size [Msgdef::Get_Max_Size $msgname]
-
-Portmgr::Add $inport IN $msgname
-Portmgr::Add_Shm $inport $key1 $len
-Portmgr::Add $outport OUT $msgname
-Portmgr::Add_Shm $outport $key2 $len
-
-queue_init
-stub_init $key1 $len $size
-stub_init $key2 $len $size
-port_mgr_init
-port_mgr_add $inport $size 
-port_mgr_add $outport $size
-coroutine checkit runit $inport  $outport
+coroutine checkit runit
 
 after idle checkagain
 

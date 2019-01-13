@@ -88,8 +88,7 @@ proc Parse {filename} {
         return
     }
     if {[info exists m_max_size($msgname)]} {
-        puts "$msgdef already present!"
-        return
+        return $msgname
     }
     set m_max_size($msgname) $maxsize
     set m_attr_offset($msgname) $attr_offset_list
