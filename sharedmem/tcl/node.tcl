@@ -1,3 +1,55 @@
+#------------------------------------------------------------
+# Socket interface code section
+
+proc server_init {cid addr port} {
+    fileevent $cid readable "server_handle_init $cid"
+    fconfigure $cid -buffering line
+}
+
+proc server_handle_init {cid} {
+    if {[gets $cid request] < 0} {
+	global main-loop
+        close $cid
+	set main-loop 1
+    } else {
+        # Custom code to handle initialization.
+        #
+	set response ""
+        if {[initialize $request response]} {
+	    puts $cid $response
+	    flush $cid
+	}
+    }
+}
+
+proc initialize {request p_response} {
+    global g_running
+
+    upvar $p_response response
+    set response ""
+    set rc 0 
+
+    switch -- [lindex $request 0] {
+        ENABLE {
+            set g_running 1
+            set response "App ruuning"
+            set rc 1 
+        }
+        DISABLE {
+            set g_running 0 
+            set response "App stopped"
+            set rc 1 
+        }
+	default {
+            set response "$request not recognized"
+            set rc 1 
+        }
+    }
+    return $rc
+}
+# End Socket interface code section
+#-------------------------------------------------------------------
+
 proc port_read {port p_msgin} {
     upvar $p_msgin msgin
 
@@ -68,7 +120,11 @@ proc runit {} {
 }
 
 proc checkagain {} {
-    checkit
+    global g_running
+
+    if {$g_running} {
+        checkit
+    }
     after 10 checkagain
 }
 
@@ -111,8 +167,15 @@ foreach porttype "IN OUT" {
 set appfile $argdata(PROGRAM)
 source $appfile
 
+set g_running $argdata(RUNNING)
+
+set sd [socket -server server_init 0]
+puts "port number = [lindex [fconfigure $sd -sockname] 2]"
+
 coroutine checkit runit
 
 after idle checkagain
 
-vwait forever 
+vwait main-loop 
+
+exit
