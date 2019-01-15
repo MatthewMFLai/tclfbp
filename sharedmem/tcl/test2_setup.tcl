@@ -90,3 +90,12 @@ port_mgr_msg_set out2 test0 40
 port_mgr_msg_set out2 0.1 50
 
 sv_csr_write_wrapper test_rx.tcl [port_mgr_get_msg out2]
+
+# socket server section
+proc server_accept {cid addr port} {
+    global g_cids
+    puts "accepting $cid"
+    lappend g_cids $cid
+}
+
+set sd [socket -server server_accept 8000]

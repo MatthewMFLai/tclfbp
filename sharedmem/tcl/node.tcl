@@ -1,12 +1,12 @@
 #------------------------------------------------------------
 # Socket interface code section
 
-proc server_init {cid addr port} {
-    fileevent $cid readable "server_handle_init $cid"
+proc client_init {cid} {
+    fileevent $cid readable "client_handle $cid"
     fconfigure $cid -buffering line
 }
 
-proc server_handle_init {cid} {
+proc client_handle {cid} {
     if {[gets $cid request] < 0} {
 	global main-loop
         close $cid
@@ -169,8 +169,9 @@ source $appfile
 
 set g_running $argdata(RUNNING)
 
-set sd [socket -server server_init 0]
-puts "port number = [lindex [fconfigure $sd -sockname] 2]"
+set port [lindex [split $argdata(INIT) ":"] 1]
+set sd [socket localhost $port]
+client_init $sd
 
 coroutine checkit runit
 
