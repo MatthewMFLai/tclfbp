@@ -30,6 +30,10 @@ proc initialize {request p_response} {
     set rc 0 
 
     switch -- [lindex $request 0] {
+        INIT {
+            set response [app_init] 
+            set rc 1 
+        }
         ENABLE {
             set g_running 1
             set response "App ruuning"
@@ -38,6 +42,10 @@ proc initialize {request p_response} {
         DISABLE {
             set g_running 0 
             set response "App stopped"
+            set rc 1 
+        }
+        TEST {
+            set response [app_test] 
             set rc 1 
         }
 	default {

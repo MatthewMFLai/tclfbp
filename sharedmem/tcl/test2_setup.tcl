@@ -1,3 +1,13 @@
+proc sendnread {cmd} {
+    global g_cids
+    foreach sd $g_cids {
+        puts $sd $cmd 
+        flush $sd
+        gets $sd rc
+        puts $rc
+    }
+}
+
 source msgdef.tcl
 Msgdef::Init
 set msgfile $env(COMP_HOME)/msgdef/test/test0.msg
@@ -99,3 +109,29 @@ proc server_accept {cid addr port} {
 }
 
 set sd [socket -server server_accept 8000]
+
+exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:test_tx.tcl:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:test_rx.tcl:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+
+exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:test_rx.tcl:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:test_tx.tcl:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+
+after 1000 {
+    sendnread INIT
+    sendnread ENABLE
+}
+
+after 2000 {
+    sendnread DISABLE 
+    sendnread TEST
+
+    foreach sd $g_cids {
+        close $sd
+    }
+
+    stub_cleanup test_tx.tcl 
+    stub_cleanup test_rx.tcl
+
+    set forever 1
+}
+
+vwait forever
+exit 0
