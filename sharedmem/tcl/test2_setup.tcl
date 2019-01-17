@@ -8,9 +8,21 @@ proc sendnread {cmd} {
     }
 }
 
+# socket server section
+proc server_accept {cid addr port} {
+    global g_cids
+    puts "accepting $cid"
+    lappend g_cids $cid
+
+    if {[llength $g_cids] == 2} {
+        after idle runit
+    }
+}
+
 proc runit {} {
     global g_cids
     global forever
+    global g_result 
 
     sendnread INIT
     sendnread ENABLE
@@ -21,12 +33,16 @@ proc runit {} {
     foreach sd $g_cids {
         close $sd
     }
-
-    stub_cleanup test_tx.tcl 
-    stub_cleanup test_rx.tcl
-
     set forever 1
+    set g_result "pass" 
 }
+
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl
+
+test tc-1.1 {test 2 node setup} -setup {
 
 source msgdef.tcl
 Msgdef::Init
@@ -121,22 +137,23 @@ port_mgr_msg_set out2 0.1 50
 
 sv_csr_write_wrapper test_rx.tcl [port_mgr_get_msg out2]
 
-# socket server section
-proc server_accept {cid addr port} {
-    global g_cids
-    puts "accepting $cid"
-    lappend g_cids $cid
-
-    if {[llength $g_cids] == 2} {
-        after idle runit
-    }
-}
-
 set sd [socket -server server_accept 8000]
+
+} -body {
 
 exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:test_tx.tcl:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:test_rx.tcl:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
 
 exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:test_rx.tcl:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:test_tx.tcl:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
 
 vwait forever
-exit 0
+global g_result 
+set g_result 
+
+} -cleanup {
+
+    stub_cleanup test_tx.tcl 
+    stub_cleanup test_rx.tcl
+
+} -result {pass}
+
+cleanupTests
