@@ -1,0 +1,6 @@
+name test2 
+filepath $env(DISK2)/sharedmem/tcl
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 test0}
+outports {1 test0}
