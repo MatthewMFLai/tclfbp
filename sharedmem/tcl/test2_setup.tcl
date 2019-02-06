@@ -215,15 +215,12 @@ set sd [socket -server server_accept 8000]
 
 } -body {
 
-set cmd "exec tclsh node.tcl BLOCK n1 INIT localhost:8000 "
-append cmd [Blk_helper::Gen_str n1]
-append cmd " RUNNING 0 &"
-eval $cmd
-
-set cmd "exec tclsh node.tcl BLOCK n2 INIT localhost:8000 "
-append cmd [Blk_helper::Gen_str n2]
-append cmd " RUNNING 0 &"
-eval $cmd
+foreach node [Blk_helper::Get_nodes] {
+    set cmd "exec tclsh node.tcl BLOCK $node INIT localhost:8000 "
+    append cmd [Blk_helper::Gen_str $node]
+    append cmd " RUNNING 0 &"
+    eval $cmd
+}
 
 vwait forever
 global g_result 

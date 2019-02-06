@@ -271,6 +271,12 @@ proc Gen_str {nodename} {
     return $rc
 }
 
+proc Get_nodes {} {
+    variable m_node
+
+    return [array names m_node]
+}
+
 proc Dump {} {
     variable m_name
     variable m_filepath
