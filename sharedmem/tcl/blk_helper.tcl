@@ -24,6 +24,7 @@ proc Init {} {
 }
 
 proc Parse {blkfile} {
+    global env
     variable m_name
     variable m_filepath
     variable m_ports
@@ -52,19 +53,19 @@ proc Parse {blkfile} {
                 lappend m_name $compname
             }
             filepath {
-                set m_filepath($compname) [lindex $line 1]                
+                set m_filepath($compname) [subst [lindex $line 1]]
             }
             inports {
                 foreach token [lrange $line 1 end] {
                     set portname IN-[lindex $token 0]
-                    set msgdef [lindex $token 1]
+                    set msgdef [subst [lindex $token 1]]
                     set m_ports($compname,$portname) $msgdef 
                 }
             }
             outports {
                 foreach token [lrange $line 1 end] {
                     set portname OUT-[lindex $token 0]
-                    set msgdef [lindex $token 1]
+                    set msgdef [subst [lindex $token 1]]
                     set m_ports($compname,$portname) $msgdef 
                 }
             }
@@ -81,7 +82,6 @@ proc Parse {blkfile} {
 proc Add_node {nodename compname} {
     variable m_name
     variable m_filepath
-    variable m_ports
     variable m_node
     variable m_node_ports
 
@@ -214,6 +214,104 @@ proc Get_keys {} {
     variable m_keys
 
     return $m_keys
+}
+
+proc Gen_str {nodename} {
+# Generate inports, outports and app string that looks like these:
+#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+
+    variable m_name
+    variable m_filepath
+    variable m_ports
+    variable m_node
+    variable m_node_ports
+    variable m_keys
+
+    set rc ""
+    if {![info exists m_node($nodename)]} {
+        return $rc
+    } 
+    set compname $m_node($nodename)
+    
+    set inports ""
+    foreach idx [array names m_node_ports "$nodename,IN-*"] {
+        lappend inports [lindex [split $idx ","] 1]
+    }
+
+    set outports ""
+    foreach idx [array names m_node_ports "$nodename,OUT-*"] {
+        lappend outports [lindex [split $idx ","] 1]
+    }
+
+    foreach port $inports {
+        append rc $port
+        append rc " "
+        append rc $m_ports($compname,$port)
+        append rc ":"
+        set keydata [lindex $m_node_ports($nodename,$port) 0]
+        append rc [lindex $keydata 0]
+        append rc ":"
+        append rc [lindex $keydata 1]
+        append rc " "
+    }
+    foreach port $outports {
+        append rc $port
+        append rc " "
+        append rc $m_ports($compname,$port)
+        append rc ":"
+        set keydata [lindex $m_node_ports($nodename,$port) 0]
+        append rc [lindex $keydata 0]
+        append rc ":"
+        append rc [lindex $keydata 1]
+        append rc " "
+    }
+ 
+    append rc "PROGRAM $m_filepath($compname)/$compname.tcl" 
+    return $rc
+}
+
+proc Dump {} {
+    variable m_name
+    variable m_filepath
+    variable m_ports
+    variable m_node
+    variable m_node_ports
+    variable m_keys
+
+    puts "Components:"
+    puts $m_name
+    puts ""
+ 
+    puts "Component filepath:"
+    foreach idx [array names m_filepath] {
+        puts "$idx $m_filepath($idx)"
+    }
+    puts ""
+
+    puts "Ports:"
+    foreach idx [array names m_ports] {
+        puts "$idx $m_ports($idx)"
+    }
+    puts ""
+
+    puts "Nodes:"
+    foreach idx [array names m_node] {
+        puts "$idx $m_node($idx)"
+    }
+    puts ""
+
+    puts "Node ports:"
+    foreach idx [array names m_node_ports] {
+        puts "$idx $m_node_ports($idx)"
+    }
+    puts ""
+
+    puts "Keys:"
+    foreach token $m_keys {
+        puts "[lindex $token 0] [lindex $token 1] [lindex $token 2]"
+    }
+    return
 }
 
 }

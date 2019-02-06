@@ -44,6 +44,7 @@ workingDirectory $env(DISK2)/sharedmem/tcl
 
 test tc-1.1 {test 2 node setup} -setup {
 
+load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
 source msgdef.tcl
 source blk_helper.tcl
 source key_helper.tcl
@@ -53,7 +54,6 @@ Blk_helper::Init
 Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
-set msgdefdir $env(COMP_HOME)/msgdef/test
 set keys ""
 
 set fd [open $compdir/test2.node r]
@@ -81,8 +81,7 @@ while {[gets $fd line] > -1} {
         continue
     }
 
-    set msgfile $msgdefdir/$tomsgname.msg
-    set msgname [Msgdef::Parse $msgfile]
+    set msgname [Msgdef::Parse $tomsgname]
     set size [Msgdef::Get_Max_Size $msgname]
 
     set key [Key_helper::Create_key $line]
@@ -98,8 +97,6 @@ set key2 [lindex $keys 1]
 array set msgattr {}
 Msgdef::Get_Attr_Offset $msgname msgattr
 
-load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
-
 set size [Msgdef::Get_Max_Size $msgname] 
 set len 4 
 queue_init
@@ -108,8 +105,15 @@ port_mgr_init
 port_mgr_add out1 $size
 port_mgr_add out2 $size
 
-stub_init $key1 $len $size 
-stub_clear $key1 $len $size
+# Allocate the sharedmem with the key reference.
+foreach token [Blk_helper::Get_keys] {
+    set key [lindex $token 0]
+    set len [lindex $token 1]
+    set size [lindex $token 2]
+
+    stub_init $key $len $size 
+    stub_clear $key $len $size
+}
 
 array set msgdata {}
 Msgdef::Factory $msgname msgdata
@@ -158,9 +162,6 @@ foreach idx [array names msgdata] {
 unset msgdata
 
 sv_csr_write_wrapper $key1 [port_mgr_get_msg out1]
-
-stub_init $key2 $len $size 
-stub_clear $key2 $len $size
 
 array set msgdata {}
 Msgdef::Factory $msgname msgdata
@@ -214,9 +215,15 @@ set sd [socket -server server_accept 8000]
 
 } -body {
 
-exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+set cmd "exec tclsh node.tcl BLOCK n1 INIT localhost:8000 "
+append cmd [Blk_helper::Gen_str n1]
+append cmd " RUNNING 0 &"
+eval $cmd
 
-exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+set cmd "exec tclsh node.tcl BLOCK n2 INIT localhost:8000 "
+append cmd [Blk_helper::Gen_str n2]
+append cmd " RUNNING 0 &"
+eval $cmd
 
 vwait forever
 global g_result 
