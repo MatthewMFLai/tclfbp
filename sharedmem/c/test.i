@@ -6,6 +6,7 @@
 %{
 #include "queue.h"
 #include "test_helper.h"
+#include "sock_helper.h"
 %}
 
 #pragma SWIG nowarn=SWIGWARN_TYPEMAP_SWIGTYPELEAK
@@ -14,3 +15,4 @@
 
 %include "queue.h"
 %include "test_helper.h"
+%include "sock_helper.h"
