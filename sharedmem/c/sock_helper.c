@@ -206,7 +206,8 @@ int key_mgr_bcd_set(char *p_key, char *p_bcd)
             lsnibble = bcd_lo - 'A' + 10;
 
         *(p_buffer + j) = (msnibble << 4) | lsnibble;
-    } 
+    }
+    memset(p_bcd_buffer, 0, p_cur->size * 2 + 1);
     return (0);
 }
 
