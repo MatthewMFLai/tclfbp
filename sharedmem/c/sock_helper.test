@@ -1,0 +1,30 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/c
+
+test tc-1.1 {test sock helper c api} -setup {
+
+load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
+key_mgr_init
+key_mgr_add test1 20
+
+
+} -body {
+
+# test_bcd sets "hello\0\0\0\0\0world\0\0\0\0\0" in buffer
+# and constructs 68656C6C6F0000000000776F726C640000000000
+# in bcd_buffer
+
+test_bcd test1
+set rc [key_mgr_bcd_get test1]
+key_mgr_reset
+key_mgr_add test1 20
+key_mgr_bcd_set test1 $rc
+key_mgr_bcd_get test1
+
+} -cleanup {
+
+} -result {68656C6C6F0000000000776F726C640000000000}
+
+cleanupTests
