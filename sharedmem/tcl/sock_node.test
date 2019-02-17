@@ -60,10 +60,11 @@ while {[gets $fd line] > -1} {
 }
 close $fd
 
-set msgname test0 
+set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]
 set key [Key_helper::Create_key "test-key"]
-set len 3 
+puts "key = $key"
+set len 4 
 
 array set msgattr {}
 Msgdef::Get_Attr_Offset $msgname msgattr
@@ -123,7 +124,7 @@ foreach idx [array names msgdata] {
 unset msgdata
 
 
-vwait forever
+#vwait forever
 
-stub_cleanup $key
-Key_helper::Delete_all_keys
+#stub_cleanup $key
+#Key_helper::Delete_all_keys

@@ -72,12 +72,21 @@ proc Echo_Client {host port} {
 }
 
 proc Echo_Client_Handle {cid} {
+    global g_coroutines
+
     if {[gets $cid response] < 0} {
         close $cid
     } else {
-        # Custom code to handle initialization.
+        # Custom code to handle ack from remote sock node.
         #
-	puts $response
+        set co_name [array names g_coroutines "*-$cid"]
+        if {$co_name != ""} {
+            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
+                set g_coroutines($co_name) [$co_name $response]
+            } else {
+                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
+            } 
+        } 
     }
 }
 
@@ -166,10 +175,37 @@ proc initialize {request p_response} {
 }
 # End Socket interface code section
 #-------------------------------------------------------------------
-proc process {} {
+proc process {key} {
+    global g_coroutines
+    yield "WAIT_START"    
 
-    set bcd_msg [mem_read $key] 
-    sock_write $key $bcd_msg 
+    while {1} {
+        set response ""
+        set rc 1 
+        while {$rc != 0} {
+            set rc [sv_csr_read_wrapper $key [key_mgr_get_msg $key]]
+            if {$rc == 0} {
+                break
+            }
+            set response [yield "WAIT_MEM"] 
+        }
+        set bcd_msg [key_mgr_bcd_get $key]
+
+        set idx [array names g_coroutines $key-*]
+        set sd [lindex [split $idx "-"] end]
+        puts "Send: $bcd_msg"
+        puts $sd $bcd_msg
+        set rc 1 
+        while {$rc != 0} {
+            set response [yield "WAIT_SOCK"]
+            puts "Receive: $response"
+            if {$response != $bcd_msg} {
+                puts "Invalid response: $response"
+            } else {
+                set rc 0
+            }
+        }
+    }
     return
 }
 
@@ -186,19 +222,6 @@ proc app_init {} {
     return "OK"
 }
 #-------------------------------------------------------------------
-proc mem_read {key} {
-
-    set rc 1 
-    while {$rc != 0} {
-        set rc [sv_csr_read_wrapper $key [key_mgr_get_msg $key]]
-        if {$rc == 0} {
-            break
-        }
-        yield
-    }
-    return [key_mgr_bcd_get $key]
-}
-
 proc mem_write {key p_msgout} {
     upvar $p_msgout msgout
 
@@ -227,40 +250,17 @@ proc mem_write {key p_msgout} {
     }
 }
 
-proc sock_write {key bcd_msg} {
-    global g_coroutines
-
-    set idx [array names g_coroutines $key-*]
-    set sd [lindex [split $idx "-"] 1]
-    puts $sd $bcd_msg
-    set response [yield]
-    if {$response != "OK $bcd_msg"} {
-        puts "Invalid response: $response"
-    }
-    return 
-}
-
-proc runit {} {
-    yield
-
-    set count 10
-    while {1} {
-
-        incr count -1
-        process $count
-        if {$count == 0} {
-            set count 10
-        }
-    }
- 
-    return
-}
-
 proc checkagain {} {
     global g_running
+    global g_coroutines
 
     if {$g_running} {
-        checkit
+        foreach co_name [array names g_coroutines] {
+            if {$g_coroutines($co_name) != "WAIT_MEM"} {
+                continue
+            }
+            set g_coroutines($co_name) [$co_name "INVOKE_TIMER"]
+        }
     }
     after 10 checkagain
 }
@@ -273,33 +273,28 @@ queue_init
 key_mgr_init
 
 # argument data looks like this:
-# tclsh node_socif.tcl BLOCK s0:source0 INIT localhost:8000 KEYS-OUT {<key>:<size>:<len>:<ipaddr>:<port> <key>:<size>:<len>:<ipaddr>:<port> ... } KEYS-IN {<key>:<size>:<len> ... } 
+# tclsh node_socif.tcl BLOCK s0:source0 INIT localhost:8000 KEYS {<from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>:<key>:<size>:<len> ... }
 #
 array set argdata $argv 
 
-# All keys are suffixed by "IN-" and "OUT-"
-foreach keydata $argdata(KEYS-OUT) { 
+foreach keydata $argdata(KEYS) { 
     set tokens [split $keydata ":"]
-    set key [lindex $tokens 0]
-    set size [lindex $tokens 1]
-    set len [lindex $tokens 2]
-    set ipaddr [lindex $tokens 3]
-    set port [lindex $tokens 4]
+    set key [lindex $tokens 4]
+    set size [lindex $tokens 5]
+    set len [lindex $tokens 6]
+    set from_ipaddr [lindex $tokens 0]
+    set from_port [lindex $tokens 1]
+    set to_ipaddr [lindex $tokens 2]
+    set to_port [lindex $tokens 3]
 
     key_mgr_add $key $size
     stub_init $key $len $size
-    set sd [Echo_Client $ipaddr $port]
-    coroutine $key-$sd runit
-    set g_coroutines($key-$sd) $key-$sd 
+    set sd [Echo_Client $to_ipaddr $to_port]
+    coroutine $key-$sd process $key
+    set g_coroutines($key-$sd) "WAIT_MEM" 
 } 
 
-set g_running $argdata(RUNNING)
-
-set port [lindex [split $argdata(INIT) ":"] 1]
-set sd [socket localhost $port]
-client_init $sd
-
-coroutine checkit runit
+set g_running 1 
 
 after idle checkagain
 
