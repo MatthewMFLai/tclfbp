@@ -1,0 +1,129 @@
+proc sendnread {cmd} {
+    global g_cids
+    foreach sd $g_cids {
+        puts $sd $cmd 
+        flush $sd
+        gets $sd rc
+        puts $rc
+    }
+}
+
+# socket server section
+proc server_accept {cid addr port} {
+    global g_cids
+    puts "accepting $cid"
+    lappend g_cids $cid
+
+    if {[llength $g_cids] == 2} {
+        after idle runit
+    }
+}
+
+proc runit {} {
+    global g_cids
+    global forever
+    global g_result 
+
+    sendnread INIT
+    sendnread ENABLE
+    after 100
+    sendnread DISABLE 
+    sendnread TEST
+
+    foreach sd $g_cids {
+        close $sd
+    }
+    set forever 1
+    set g_result "pass" 
+}
+
+#--------------------------------------------------
+
+load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
+source msgdef.tcl
+source blk_helper.tcl
+source key_helper.tcl
+
+Msgdef::Init
+Blk_helper::Init
+Key_helper::Init /tmp
+
+set compdir $env(COMP_HOME)/test
+set keys ""
+
+set fd [open $compdir/test2.node r]
+while {[gets $fd line] > -1} {
+    set nodename [lindex $line 0]
+    set compfile [subst [lindex $line 1]]
+    set compname [Blk_helper::Parse $compfile]
+    Blk_helper::Add_node $nodename $compname
+}
+close $fd
+
+set msgname test0 
+set size [Msgdef::Get_Max_Size $msgname]
+set key [Key_helper::Create_key "test-key"]
+set len 3 
+
+array set msgattr {}
+Msgdef::Get_Attr_Offset $msgname msgattr
+
+queue_init
+port_mgr_init
+
+port_mgr_add out1 $size
+
+stub_init $key $len $size 
+stub_clear $key $len $size
+
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) 11111111
+set msgdata(f2) 22222222 
+set msgdata(f3) 33333333 
+set msgdata(f4) 44444444 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) eeeeeeee 
+set msgdata(f2) ffffffff 
+set msgdata(f3) gggggggg 
+set msgdata(f4) hhhhhhhh 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) 55555555 
+set msgdata(f2) 66666666 
+set msgdata(f3) 77777777 
+set msgdata(f4) 88888888 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out2 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+
+vwait forever
+
+stub_cleanup $key
+Key_helper::Delete_all_keys
