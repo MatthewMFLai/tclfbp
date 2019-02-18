@@ -185,7 +185,7 @@ proc process {key} {
         set response ""
         set rc 1 
         while {$rc != 0} {
-            set rc [sv_csr_read_wrapper $key [key_mgr_get_msg $key]]
+            set rc [sv_csr_peek_wrapper $key [key_mgr_get_msg $key]]
             if {$rc == 0} {
                 break
             }
@@ -206,6 +206,10 @@ proc process {key} {
             } else {
                 set rc 0
             }
+        }
+        if {[sv_csr_read_wrapper $key [key_mgr_get_msg $key]]} {
+            puts "ERR: pop failure"
+            while {1} {} 
         }
     }
     return

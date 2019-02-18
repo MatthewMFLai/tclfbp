@@ -12,5 +12,7 @@ void stub_cleanup(char *p_key);
 uint32_t sv_csr_write_wrapper(char *p_key, void *p_data);
 // Return 0 if read successful, else queue is empty 
 uint32_t sv_csr_read_wrapper(char *p_key, void *p_data);
+// Return 0 if peek successful, else queue is empty 
+uint32_t sv_csr_peek_wrapper(char *p_key, void *p_data);
 
 #endif /* QUEUE_H */
