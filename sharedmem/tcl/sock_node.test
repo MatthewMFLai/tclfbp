@@ -1,40 +1,103 @@
-proc sendnread {cmd} {
-    global g_cids
-    foreach sd $g_cids {
-        puts $sd $cmd 
-        flush $sd
-        gets $sd rc
-        puts $rc
-    }
+# Echo_Server --
+#	Open the server listening socket
+#	and enter the Tcl event loop
+#
+# Arguments:
+#	port	The server's port number
+
+proc Echo_Server {port} {
+    global g_count
+
+    set g_count 0
+    set s [socket -server EchoAccept $port]
+    #vwait forever
 }
 
-# socket server section
-proc server_accept {cid addr port} {
-    global g_cids
-    puts "accepting $cid"
-    lappend g_cids $cid
+# Echo_Accept --
+#	Accept a connection from a new client.
+#	This is called after a new socket connection
+#	has been created by Tcl.
+#
+# Arguments:
+#	sock	The new socket connection to the client
+#	addr	The client's IP address
+#	port	The client's port number
+	
+proc EchoAccept {sock addr port} {
+    global echo
 
-    if {[llength $g_cids] == 2} {
-        after idle runit
-    }
+    # Record the client's information
+
+    puts "Accept $sock from $addr port $port"
+    set echo(addr,$sock) [list $addr $port]
+
+    # Ensure that each "puts" by the server
+    # results in a network transmission
+
+    fconfigure $sock -buffering line
+
+    # Set up a callback for when the client sends data
+
+    fileevent $sock readable [list Echo $sock]
 }
 
-proc runit {} {
-    global g_cids
+# Echo --
+#	This procedure is called when the server
+#	can read data from the client
+#
+# Arguments:
+#	sock	The socket connection to the client
+
+proc Echo {sock} {
+    global echo
     global forever
-    global g_result 
+    global g_count
 
-    sendnread INIT
-    sendnread ENABLE
-    after 100
-    sendnread DISABLE 
-    sendnread TEST
+    # Check end of file or abnormal connection drop,
+    # then echo data back to the client.
 
-    foreach sd $g_cids {
-        close $sd
+    if {[eof $sock] || [catch {gets $sock line}]} {
+	close $sock
+	puts "Close $echo(addr,$sock)"
+	unset echo(addr,$sock)
+    } else {
+	puts $sock $line
+        incr g_count
+        if {$g_count == 3} {
+            puts "3 messages received"
+            set forever 1
+        }
     }
-    set forever 1
-    set g_result "pass" 
+}
+
+#
+# A client of the echo service.
+#
+
+proc Echo_Client {host port} {
+    set s [socket $host $port]
+    fconfigure $s -buffering line
+    fileevent $s readable "Echo_Client_Handle $s"
+    return $s
+}
+
+proc Echo_Client_Handle {cid} {
+    global g_coroutines
+
+    if {[gets $cid response] < 0} {
+        close $cid
+    } else {
+        # Custom code to handle ack from remote sock node.
+        #
+        set co_name [array names g_coroutines "*-$cid"]
+        if {$co_name != ""} {
+            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
+                set g_coroutines($co_name) [$co_name "INVOKE_SOCK"]
+            } else {
+                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
+            } 
+        } 
+    }
 }
 
 #--------------------------------------------------
@@ -77,6 +140,7 @@ port_mgr_add out1 $size
 stub_init $key $len $size 
 stub_clear $key $len $size
 
+after 2000 {
 array set msgdata {}
 Msgdef::Factory $msgname msgdata
 set msgdata(f1) 11111111
@@ -89,7 +153,9 @@ foreach idx [array names msgdata] {
 unset msgdata
 
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+}
 
+after 3000 {
 array set msgdata {}
 Msgdef::Factory $msgname msgdata
 set msgdata(f1) eeeeeeee 
@@ -102,7 +168,9 @@ foreach idx [array names msgdata] {
 unset msgdata
 
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+}
 
+after 4000 {
 array set msgdata {}
 Msgdef::Factory $msgname msgdata
 set msgdata(f1) 55555555 
@@ -115,16 +183,12 @@ foreach idx [array names msgdata] {
 unset msgdata
 
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out2 $msgdata($idx) $msgattr($idx)
 }
-unset msgdata
 
+Echo_Server 14000
+exec tclsh sock_node.tcl KEYS "localhost:0:localhost:14000:$key:60:4" &
+vwait forever
 
-#vwait forever
-
-#stub_cleanup $key
-#Key_helper::Delete_all_keys
+stub_cleanup $key
+Key_helper::Delete_all_keys
+exit 0

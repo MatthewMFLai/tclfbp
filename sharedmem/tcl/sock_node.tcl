@@ -76,6 +76,8 @@ proc Echo_Client_Handle {cid} {
 
     if {[gets $cid response] < 0} {
         close $cid
+        # Kludge: for testing only!!!
+        exit 0
     } else {
         # Custom code to handle ack from remote sock node.
         #
@@ -193,12 +195,12 @@ proc process {key} {
 
         set idx [array names g_coroutines $key-*]
         set sd [lindex [split $idx "-"] end]
-        puts "Send: $bcd_msg"
+        #puts "Tx: $bcd_msg"
         puts $sd $bcd_msg
         set rc 1 
         while {$rc != 0} {
             set response [yield "WAIT_SOCK"]
-            puts "Receive: $response"
+            #puts "Rx: $response"
             if {$response != $bcd_msg} {
                 puts "Invalid response: $response"
             } else {
