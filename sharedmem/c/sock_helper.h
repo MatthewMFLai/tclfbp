@@ -25,4 +25,5 @@ char *key_mgr_bcd_get(char *p_key);
 int key_mgr_bcd_set(char *p_key, char *p_bcd);
 
 void test_bcd(char *p_key);
+void key_mgr_set_buff(char *p_key, void *p_src);
 #endif

@@ -52,6 +52,7 @@ proc Echo {sock} {
     global echo
     global forever
     global g_count
+    global g_bcd_msg_list
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
@@ -61,45 +62,21 @@ proc Echo {sock} {
 	puts "Close $echo(addr,$sock)"
 	unset echo(addr,$sock)
     } else {
+        set src_line [lindex $g_bcd_msg_list $g_count]
+        if {$src_line == $line} {
+            puts "test msg $g_count matched"
+        } else {
+            puts "test msg $g_count not matched"
+            puts "src line: $src_line"
+            puts "rxd line: $line"
+        }
 	puts $sock $line
         incr g_count
         if {$g_count == 3} {
-            puts "3 messages received"
             set forever 1
         }
     }
 }
-
-#
-# A client of the echo service.
-#
-
-proc Echo_Client {host port} {
-    set s [socket $host $port]
-    fconfigure $s -buffering line
-    fileevent $s readable "Echo_Client_Handle $s"
-    return $s
-}
-
-proc Echo_Client_Handle {cid} {
-    global g_coroutines
-
-    if {[gets $cid response] < 0} {
-        close $cid
-    } else {
-        # Custom code to handle ack from remote sock node.
-        #
-        set co_name [array names g_coroutines "*-$cid"]
-        if {$co_name != ""} {
-            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
-                set g_coroutines($co_name) [$co_name "INVOKE_SOCK"]
-            } else {
-                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
-            } 
-        } 
-    }
-}
-
 #--------------------------------------------------
 
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
@@ -134,11 +111,15 @@ Msgdef::Get_Attr_Offset $msgname msgattr
 
 queue_init
 port_mgr_init
+key_mgr_init
 
+key_mgr_add $key $size
 port_mgr_add out1 $size
 
 stub_init $key $len $size 
 stub_clear $key $len $size
+
+set g_bcd_msg_list ""
 
 after 2000 {
 array set msgdata {}
@@ -152,7 +133,10 @@ foreach idx [array names msgdata] {
 }
 unset msgdata
 
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+
 }
 
 after 3000 {
@@ -167,6 +151,8 @@ foreach idx [array names msgdata] {
 }
 unset msgdata
 
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
 }
 
@@ -182,11 +168,13 @@ foreach idx [array names msgdata] {
 }
 unset msgdata
 
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
 }
 
 Echo_Server 14000
-exec tclsh sock_node.tcl KEYS "localhost:0:localhost:14000:$key:60:4" &
+exec tclsh sock_node.tcl KEYS "localhost:0:localhost:14000:$key:$size:4" &
 vwait forever
 
 stub_cleanup $key

@@ -64,7 +64,7 @@ proc Delete_all_keys {} {
     
 
     foreach key $m_keys { 
-        file delete -force $m_keys_dir/$key
+        file delete -force $key
     }
     set m_keys ""
     return

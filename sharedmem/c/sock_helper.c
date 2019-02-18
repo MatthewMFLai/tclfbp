@@ -227,3 +227,16 @@ void test_bcd (char *p_key)
     strcpy(p_buffer + 10, str2);
     return;
 }
+
+void key_mgr_set_buff(char *p_key, void *p_src)
+{
+    char *p_buffer;
+    keynode_t *p_cur = key_mgr_get(p_key);
+
+    if (p_cur == NULL)
+        return;
+    
+    p_buffer = p_cur->p_buffer;
+    memcpy(p_buffer, p_src, p_cur->size);
+    return;
+}
