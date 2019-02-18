@@ -76,8 +76,6 @@ proc Echo_Client_Handle {cid} {
 
     if {[gets $cid response] < 0} {
         close $cid
-        # Kludge: for testing only!!!
-        exit 0
     } else {
         # Custom code to handle ack from remote sock node.
         #
@@ -106,6 +104,8 @@ proc Admin_Client {host port} {
 proc Admin_Client_Handle {cid} {
     if {[gets $cid request] < 0} {
         close $cid
+        # Kludge: for testing only!!!
+        exit 0
     } else {
         # Custom code to handle request.
         #
@@ -282,6 +282,10 @@ key_mgr_init
 # tclsh node_socif.tcl BLOCK s0:source0 INIT localhost:8000 KEYS {<from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>:<key>:<size>:<len> ... }
 #
 array set argdata $argv 
+
+set initport [lindex [split $argdata(INIT) ":"] 1]
+set initaddr [lindex [split $argdata(INIT) ":"] 0]
+set init_sd [Admin_Client $initaddr $initport]
 
 foreach keydata $argdata(KEYS) { 
     set tokens [split $keydata ":"]

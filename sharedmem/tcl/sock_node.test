@@ -10,7 +10,6 @@ proc Echo_Server {port} {
 
     set g_count 0
     set s [socket -server EchoAccept $port]
-    #vwait forever
 }
 
 # Echo_Accept --
@@ -53,6 +52,7 @@ proc Echo {sock} {
     global forever
     global g_count
     global g_bcd_msg_list
+    global g_admin_sock 
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
@@ -73,8 +73,69 @@ proc Echo {sock} {
 	puts $sock $line
         incr g_count
         if {$g_count == 3} {
+            close $g_admin_sock
             set forever 1
         }
+    }
+}
+
+# Admin_Server --
+#	Open the server listening socket
+#	and enter the Tcl event loop
+#
+# Arguments:
+#	port	The server's port number
+
+proc Admin_Server {port} {
+    set s [socket -server Admin_Accept $port]
+}
+
+# Admin_Accept --
+#	Accept a connection from a new client.
+#	This is called after a new socket connection
+#	has been created by Tcl.
+#
+# Arguments:
+#	sock	The new socket connection to the client
+#	addr	The client's IP address
+#	port	The client's port number
+	
+proc Admin_Accept {sock addr port} {
+    global g_admin_sock 
+
+    # Record the client's information
+
+    puts "Accept $sock from $addr port $port"
+    set g_admin_sock $sock 
+
+    # Ensure that each "puts" by the server
+    # results in a network transmission
+
+    fconfigure $sock -buffering line
+
+    # Set up a callback for when the client sends data
+
+    fileevent $sock readable [list Admin_Handle $sock]
+}
+
+# Admin_Handle --
+#	This procedure is called when the server
+#	can read data from the client
+#
+# Arguments:
+#	sock	The socket connection to the client
+
+proc Admin_Handle {sock} {
+
+    # Check end of file or abnormal connection drop,
+    # then echo data back to the client.
+
+    if {[eof $sock] || [catch {gets $sock line}]} {
+	close $sock
+    } else {
+        #
+        #
+        #
     }
 }
 #--------------------------------------------------
@@ -173,8 +234,11 @@ lappend g_bcd_msg_list [key_mgr_bcd_get $key]
 sv_csr_write_wrapper $key [port_mgr_get_msg out1]
 }
 
-Echo_Server 14000
-exec tclsh sock_node.tcl KEYS "localhost:0:localhost:14000:$key:$size:4" &
+set hostport 13000
+set remoteport 14000
+Admin_Server $hostport 
+Echo_Server $remoteport 
+exec tclsh sock_node.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
 vwait forever
 
 stub_cleanup $key
