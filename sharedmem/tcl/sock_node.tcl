@@ -67,8 +67,12 @@ proc Echo {sock} {
 proc Echo_Client {host port} {
     set s [socket $host $port]
     fconfigure $s -buffering line
-    fileevent $s readable "Echo_Client_Handle $s"
     return $s
+}
+
+proc Echo_Client_Config {s} {
+    fileevent $s readable "Echo_Client_Handle $s"
+    return
 }
 
 proc Echo_Client_Handle {cid} {
@@ -300,6 +304,12 @@ foreach keydata $argdata(KEYS) {
     key_mgr_add $key $size
     stub_init $key $len $size
     set sd [Echo_Client $to_ipaddr $to_port]
+    puts $sd $key
+    gets $sd rc
+    if {$key != $rc} {
+        puts "$key mismatches $rc"
+    }
+    Echo_Client_Config $sd 
     coroutine $key-$sd process $key
     set g_coroutines($key-$sd) "WAIT_MEM" 
 } 

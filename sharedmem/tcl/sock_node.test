@@ -35,9 +35,32 @@ proc EchoAccept {sock addr port} {
 
     fconfigure $sock -buffering line
 
-    # Set up a callback for when the client sends data
+    # Set up a callback for when the client sends the shared
+    # memory key data. 
 
-    fileevent $sock readable [list Echo $sock]
+    fileevent $sock readable [list EchoMatchKey $sock]
+}
+
+# EchoMatchKey --
+#	This procedure is called when the server
+#	reads the very first data line from the client
+#       containing the shared memory key name.
+#
+# Arguments:
+#	sock	The socket connection to the client
+
+proc EchoMatchKey {sock} {
+
+    # Check end of file or abnormal connection drop,
+    # then echo data back to the client.
+
+    if {[eof $sock] || [catch {gets $sock line}]} {
+	close $sock
+    } else {
+        # Echo line back for now.
+        puts $sock $line
+        fileevent $sock readable [list Echo $sock]
+    }
 }
 
 # Echo --
