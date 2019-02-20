@@ -1,0 +1,205 @@
+#
+# A client of the echo service.
+#
+
+proc Echo_Client {host port} {
+    set s [socket $host $port]
+    fconfigure $s -buffering line
+    fileevent $s readable "Echo_Client_Handle $s"
+    return $s
+}
+
+proc Echo_Client_Handle {cid} {
+    global g_coroutines
+
+    if {[gets $cid response] < 0} {
+        close $cid
+    } else {
+        # Custom code to handle ack from remote sock node.
+        #
+        set co_name [array names g_coroutines "*-$cid"]
+        if {$co_name != ""} {
+            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
+                set g_coroutines($co_name) [$co_name "INVOKE_SOCK"]
+            } else {
+                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
+            } 
+        } 
+    }
+}
+# Admin_Server --
+#	Open the server listening socket
+#	and enter the Tcl event loop
+#
+# Arguments:
+#	port	The server's port number
+
+proc Admin_Server {port} {
+    set s [socket -server Admin_Accept $port]
+}
+
+# Admin_Accept --
+#	Accept a connection from a new client.
+#	This is called after a new socket connection
+#	has been created by Tcl.
+#
+# Arguments:
+#	sock	The new socket connection to the client
+#	addr	The client's IP address
+#	port	The client's port number
+	
+proc Admin_Accept {sock addr port} {
+    global g_admin_sock 
+
+    # Record the client's information
+
+    puts "Accept $sock from $addr port $port"
+    set g_admin_sock $sock 
+
+    # Ensure that each "puts" by the server
+    # results in a network transmission
+
+    fconfigure $sock -buffering line
+
+    # Set up a callback for when the client sends data
+
+    fileevent $sock readable [list Admin_Handle $sock]
+}
+
+# Admin_Handle --
+#	This procedure is called when the server
+#	can read data from the client
+#
+# Arguments:
+#	sock	The socket connection to the client
+
+proc Admin_Handle {sock} {
+
+    # Check end of file or abnormal connection drop,
+    # then echo data back to the client.
+
+    if {[eof $sock] || [catch {gets $sock line}]} {
+	close $sock
+    } else {
+        #
+        #
+        #
+    }
+}
+#--------------------------------------------------
+
+proc checkagain {} {
+    global g_admin_sock
+
+    if {$g_admin_sock != ""} {
+
+    }
+    after 10 checkagain
+}
+
+load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
+source msgdef.tcl
+source blk_helper.tcl
+source key_helper.tcl
+
+Msgdef::Init
+Blk_helper::Init
+Key_helper::Init /tmp
+
+set compdir $env(COMP_HOME)/test
+set keys ""
+
+set fd [open $compdir/test2.node r]
+while {[gets $fd line] > -1} {
+    set nodename [lindex $line 0]
+    set compfile [subst [lindex $line 1]]
+    set compname [Blk_helper::Parse $compfile]
+    Blk_helper::Add_node $nodename $compname
+}
+close $fd
+
+set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
+set size [Msgdef::Get_Max_Size $msgname]
+set key [Key_helper::Create_key "test-key"]
+puts "key = $key"
+set len 4 
+
+array set msgattr {}
+Msgdef::Get_Attr_Offset $msgname msgattr
+
+queue_init
+port_mgr_init
+key_mgr_init
+
+key_mgr_add $key $size
+port_mgr_add out1 $size
+
+stub_init $key $len $size 
+stub_clear $key $len $size
+
+set g_bcd_msg_list ""
+
+after 2000 {
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) 11111111
+set msgdata(f2) 22222222 
+set msgdata(f3) 33333333 
+set msgdata(f4) 44444444 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+
+}
+
+after 3000 {
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) eeeeeeee 
+set msgdata(f2) ffffffff 
+set msgdata(f3) gggggggg 
+set msgdata(f4) hhhhhhhh 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+}
+
+after 4000 {
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgdata(f1) 55555555 
+set msgdata(f2) 66666666 
+set msgdata(f3) 77777777 
+set msgdata(f4) 88888888 
+foreach idx [array names msgdata] {
+    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+}
+unset msgdata
+
+key_mgr_set_buff $key [port_mgr_get_msg out1]
+lappend g_bcd_msg_list [key_mgr_bcd_get $key]
+sv_csr_write_wrapper $key [port_mgr_get_msg out1]
+}
+
+set g_admin_sock ""
+set hostport 13000
+set remoteport 14000
+Admin_Server $hostport 
+Echo_Server $remoteport 
+exec tclsh sock_node_rx.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
+after idle checkagain
+vwait forever
+
+stub_cleanup $key
+Key_helper::Delete_all_keys
+exit 0
