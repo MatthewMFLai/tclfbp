@@ -55,6 +55,7 @@ proc EchoMatchKey {sock} {
     if {[eof $sock] || [catch {gets $sock key}]} {
 	close $sock
     } else {
+        puts $sock $key
         # Create coroutine if shared memory key is valid
         coroutine $key-$sock process $key
         set g_coroutines($key-$sock) "WAIT_SOCK" 

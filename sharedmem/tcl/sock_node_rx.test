@@ -5,28 +5,9 @@
 proc Echo_Client {host port} {
     set s [socket $host $port]
     fconfigure $s -buffering line
-    fileevent $s readable "Echo_Client_Handle $s"
     return $s
 }
 
-proc Echo_Client_Handle {cid} {
-    global g_coroutines
-
-    if {[gets $cid response] < 0} {
-        close $cid
-    } else {
-        # Custom code to handle ack from remote sock node.
-        #
-        set co_name [array names g_coroutines "*-$cid"]
-        if {$co_name != ""} {
-            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
-                set g_coroutines($co_name) [$co_name "INVOKE_SOCK"]
-            } else {
-                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
-            } 
-        } 
-    }
-}
 # Admin_Server --
 #	Open the server listening socket
 #	and enter the Tcl event loop
@@ -49,12 +30,12 @@ proc Admin_Server {port} {
 #	port	The client's port number
 	
 proc Admin_Accept {sock addr port} {
-    global g_admin_sock 
+    global g_data
 
     # Record the client's information
 
-    puts "Accept $sock from $addr port $port"
-    set g_admin_sock $sock 
+    puts "Admin: Accept $sock from $addr port $port"
+    set g_data(admin_sock) $sock 
 
     # Ensure that each "puts" by the server
     # results in a network transmission
@@ -89,12 +70,130 @@ proc Admin_Handle {sock} {
 #--------------------------------------------------
 
 proc checkagain {} {
-    global g_admin_sock
+    global g_data
+    global forever
 
-    if {$g_admin_sock != ""} {
+    array set msgattr {}
+    Msgdef::Get_Attr_Offset $g_data(msgname) msgattr
 
+    if {$g_data(check_state) == "CHECK_ADMIN_SOCK"} {
+        if {$g_data(admin_sock) != ""} {
+            set g_data(sd) [Echo_Client localhost $g_data(remoteport)]
+            puts $g_data(sd) $g_data(key)
+            set g_data(check_state) "CHECK_FIRST_ACK"
+        }
+
+    } elseif {$g_data(check_state) == "CHECK_FIRST_ACK"} {
+        gets $g_data(sd) line
+        if {$line == $g_data(key)} {
+
+            array set msgdata {}
+            Msgdef::Factory $g_data(msgname) msgdata
+            set msgdata(f1) 11111111
+            set msgdata(f2) 22222222 
+            set msgdata(f3) 33333333 
+            set msgdata(f4) 44444444 
+            foreach idx [array names msgdata] {
+                port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+            }
+            unset msgdata
+
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            puts $g_data(sd) $bcd_msg
+            set g_data(bcd_msg) $bcd_msg 
+
+            set g_data(check_state) "CHECK_FIRST_BCD_MSG"
+        }   
+
+    } elseif {$g_data(check_state) == "CHECK_FIRST_BCD_MSG"} {
+            gets $g_data(sd) line
+            sv_csr_read_wrapper $g_data(key) [port_mgr_get_msg out1]
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            if {$bcd_msg == $g_data(bcd_msg)} {
+                puts "bcd msg 1 matched"
+            } else {
+                puts "bcd msg 1 did not match"
+                puts "send: $g_data(bcd_msg)"
+                puts "get : $bcd_msg"
+            }
+
+            array set msgdata {}
+            Msgdef::Factory $g_data(msgname) msgdata
+            set msgdata(f1) eeeeeeee 
+            set msgdata(f2) ffffffff 
+            set msgdata(f3) gggggggg 
+            set msgdata(f4) hhhhhhhh 
+            foreach idx [array names msgdata] {
+                port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+            }
+            unset msgdata
+
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            puts $g_data(sd) $bcd_msg
+            set g_data(bcd_msg) $bcd_msg 
+
+            set g_data(check_state) "CHECK_SECOND_BCD_MSG"
+
+    } elseif {$g_data(check_state) == "CHECK_SECOND_BCD_MSG"} {
+            gets $g_data(sd) line
+            sv_csr_read_wrapper $g_data(key) [port_mgr_get_msg out1]
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            if {$bcd_msg == $g_data(bcd_msg)} {
+                puts "bcd msg 2 matched"
+            } else {
+                puts "bcd msg 2 did not match"
+                puts "send: $g_data(bcd_msg)"
+                puts "get : $bcd_msg"
+            }
+
+            array set msgdata {}
+            Msgdef::Factory $g_data(msgname) msgdata
+            set msgdata(f1) 55555555 
+            set msgdata(f2) 66666666 
+            set msgdata(f3) 77777777 
+            set msgdata(f4) 88888888 
+            foreach idx [array names msgdata] {
+                port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+            }
+            unset msgdata
+
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            puts $g_data(sd) $bcd_msg
+            set g_data(bcd_msg) $bcd_msg 
+
+            set g_data(check_state) "CHECK_THIRD_BCD_MSG"
+
+
+    } elseif {$g_data(check_state) == "CHECK_THIRD_BCD_MSG"} {
+            gets $g_data(sd) line
+            sv_csr_read_wrapper $g_data(key) [port_mgr_get_msg out1]
+            key_mgr_set_buff $g_data(key) [port_mgr_get_msg out1]
+            set bcd_msg [key_mgr_bcd_get $g_data(key)]
+            if {$bcd_msg == $g_data(bcd_msg)} {
+                puts "bcd msg 3 matched"
+            } else {
+                puts "bcd msg 3 did not match"
+                puts "send: $g_data(bcd_msg)"
+                puts "get : $bcd_msg"
+            }
+
+            close $g_data(admin_sock)
+
+            set g_data(check_state) "CHECK_WAIT_MORE"
+
+    } elseif {$g_data(check_state) == "CHECK_WAIT_MORE"} {
+            set forever 1
+            set g_data(check_state) "CHECK_TERMINATE"
+
+    } 
+    if {$g_data(check_state) != "CHECK_TERMINATE"} {
+        after 100 checkagain
     }
-    after 10 checkagain
 }
 
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
@@ -103,21 +202,10 @@ source blk_helper.tcl
 source key_helper.tcl
 
 Msgdef::Init
-Blk_helper::Init
 Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
 set keys ""
-
-set fd [open $compdir/test2.node r]
-while {[gets $fd line] > -1} {
-    set nodename [lindex $line 0]
-    set compfile [subst [lindex $line 1]]
-    set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $nodename $compname
-}
-close $fd
-
 set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]
 set key [Key_helper::Create_key "test-key"]
@@ -137,65 +225,14 @@ port_mgr_add out1 $size
 stub_init $key $len $size 
 stub_clear $key $len $size
 
-set g_bcd_msg_list ""
-
-after 2000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) 11111111
-set msgdata(f2) 22222222 
-set msgdata(f3) 33333333 
-set msgdata(f4) 44444444 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-
-}
-
-after 3000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) eeeeeeee 
-set msgdata(f2) ffffffff 
-set msgdata(f3) gggggggg 
-set msgdata(f4) hhhhhhhh 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-}
-
-after 4000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) 55555555 
-set msgdata(f2) 66666666 
-set msgdata(f3) 77777777 
-set msgdata(f4) 88888888 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-}
-
-set g_admin_sock ""
+array set g_data {admin_sock "" remoteport 14000}
+set g_data(msgname) $msgname
+set g_data(check_state) "CHECK_ADMIN_SOCK"
+set g_data(key) $key
+set g_data(bcd_msg) ""
 set hostport 13000
 set remoteport 14000
 Admin_Server $hostport 
-Echo_Server $remoteport 
 exec tclsh sock_node_rx.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
 after idle checkagain
 vwait forever
