@@ -169,20 +169,10 @@ source blk_helper.tcl
 source key_helper.tcl
 
 Msgdef::Init
-Blk_helper::Init
 Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
 set keys ""
-
-set fd [open $compdir/test2.node r]
-while {[gets $fd line] > -1} {
-    set nodename [lindex $line 0]
-    set compfile [subst [lindex $line 1]]
-    set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $nodename $compname
-}
-close $fd
 
 set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]

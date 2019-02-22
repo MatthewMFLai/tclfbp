@@ -93,40 +93,6 @@ proc Echo {sock} {
 }
 
 #
-# A client of the echo service.
-#
-
-proc Echo_Client {host port} {
-    set s [socket $host $port]
-    fconfigure $s -buffering line
-    return $s
-}
-
-proc Echo_Client_Config {s} {
-    fileevent $s readable "Echo_Client_Handle $s"
-    return
-}
-
-proc Echo_Client_Handle {cid} {
-    global g_coroutines
-
-    if {[gets $cid response] < 0} {
-        close $cid
-    } else {
-        # Custom code to handle ack from remote sock node.
-        #
-        set co_name [array names g_coroutines "*-$cid"]
-        if {$co_name != ""} {
-            if {$g_coroutines($co_name) == "WAIT_SOCK"} {
-                set g_coroutines($co_name) [$co_name $response]
-            } else {
-                puts "ERR: wrong coroutine state $g_coroutines($co_name)" 
-            } 
-        } 
-    }
-}
-
-#
 # Admin client
 #
 
@@ -149,69 +115,6 @@ proc Admin_Client_Handle {cid} {
     }
 }
 
-# A sample client session looks like this
-#   set s [Echo_Client localhost 2540]
-#   puts $s "Hello!"
-#   gets $s line
-
-#--------------------------------------------------
-# Socket interface code section
-
-proc client_init {cid} {
-    fileevent $cid readable "client_handle $cid"
-    fconfigure $cid -buffering line
-}
-
-proc client_handle {cid} {
-    if {[gets $cid request] < 0} {
-	global main-loop
-        close $cid
-	set main-loop 1
-    } else {
-        # Custom code to handle initialization.
-        #
-	set response ""
-        if {[initialize $request response]} {
-	    puts $cid $response
-	    flush $cid
-	}
-    }
-}
-
-proc initialize {request p_response} {
-    global g_running
-
-    upvar $p_response response
-    set response ""
-    set rc 0 
-
-    switch -- [lindex $request 0] {
-        INIT {
-            set response [app_init] 
-            set rc 1 
-        }
-        ENABLE {
-            set g_running 1
-            set response "App ruuning"
-            set rc 1 
-        }
-        DISABLE {
-            set g_running 0 
-            set response "App stopped"
-            set rc 1 
-        }
-        TEST {
-            set response [app_test] 
-            set rc 1 
-        }
-	default {
-            set response "$request not recognized"
-            set rc 1 
-        }
-    }
-    return $rc
-}
-# End Socket interface code section
 #-------------------------------------------------------------------
 proc process {key} {
     global g_coroutines
