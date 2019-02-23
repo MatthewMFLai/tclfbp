@@ -60,64 +60,6 @@ proc Admin_Client_Handle {cid} {
 #   puts $s "Hello!"
 #   gets $s line
 
-#--------------------------------------------------
-# Socket interface code section
-
-proc client_init {cid} {
-    fileevent $cid readable "client_handle $cid"
-    fconfigure $cid -buffering line
-}
-
-proc client_handle {cid} {
-    if {[gets $cid request] < 0} {
-	global main-loop
-        close $cid
-	set main-loop 1
-    } else {
-        # Custom code to handle initialization.
-        #
-	set response ""
-        if {[initialize $request response]} {
-	    puts $cid $response
-	    flush $cid
-	}
-    }
-}
-
-proc initialize {request p_response} {
-    global g_running
-
-    upvar $p_response response
-    set response ""
-    set rc 0 
-
-    switch -- [lindex $request 0] {
-        INIT {
-            set response [app_init] 
-            set rc 1 
-        }
-        ENABLE {
-            set g_running 1
-            set response "App ruuning"
-            set rc 1 
-        }
-        DISABLE {
-            set g_running 0 
-            set response "App stopped"
-            set rc 1 
-        }
-        TEST {
-            set response [app_test] 
-            set rc 1 
-        }
-	default {
-            set response "$request not recognized"
-            set rc 1 
-        }
-    }
-    return $rc
-}
-# End Socket interface code section
 #-------------------------------------------------------------------
 proc process {key} {
     global g_coroutines
@@ -157,46 +99,7 @@ proc process {key} {
     return
 }
 
-proc app_test {} {
-    global g_msgcount
-
-    return $g_msgcount
-}
-
-proc app_init {} {
-    global g_msgcount
-
-    set g_msgcount 0
-    return "OK"
-}
 #-------------------------------------------------------------------
-proc mem_write {key p_msgout} {
-    upvar $p_msgout msgout
-
-    Portmgr::Get_Portmsgdef $port msgname
-    array set tmpdata {}
-    Msgdef::Get_Attr_Offset $msgname tmpdata
-    foreach attr [array names tmpdata] {
-        if {![info exists msgout($attr)]} {
-            continue
-        }
-        port_mgr_msg_set $port $msgout($attr) $tmpdata($attr)
-    }
-
-    Portmgr::Get_Shm $port keylist
-    set rc 1 
-    while {$rc != 0} {
-        foreach shmkey $keylist {
-            set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
-            if {$rc == 0} {
-                break
-            }
-        }
-        if {$rc} {
-            yield
-        }
-    }
-}
 
 proc checkagain {} {
     global g_running
