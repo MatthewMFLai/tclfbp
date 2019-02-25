@@ -61,7 +61,7 @@ proc Admin_Client_Handle {cid} {
 #   gets $s line
 
 #-------------------------------------------------------------------
-proc process {key} {
+proc process_tx {key} {
     global g_coroutines
     yield "WAIT_START"    
 
@@ -151,7 +151,7 @@ foreach keydata $argdata(KEYS) {
         puts "$key mismatches $rc"
     }
     Echo_Client_Config $sd 
-    coroutine $key-$sd process $key
+    coroutine $key-$sd process_tx $key
     set g_coroutines($key-$sd) "WAIT_MEM" 
 } 
 

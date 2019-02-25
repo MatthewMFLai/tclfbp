@@ -57,7 +57,7 @@ proc EchoMatchKey {sock} {
     } else {
         puts $sock $key
         # Create coroutine if shared memory key is valid
-        coroutine $key-$sock process $key
+        coroutine $key-$sock process_rx $key
         set g_coroutines($key-$sock) "WAIT_SOCK" 
         fileevent $sock readable [list Echo $sock]
     }
@@ -116,7 +116,7 @@ proc Admin_Client_Handle {cid} {
 }
 
 #-------------------------------------------------------------------
-proc process {key} {
+proc process_rx {key} {
     global g_coroutines
 
     while {1} {
