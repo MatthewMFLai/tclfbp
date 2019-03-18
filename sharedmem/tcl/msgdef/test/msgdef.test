@@ -1,0 +1,27 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/msgdef/test
+
+test tc-1.1 {test 2 node setup} -setup {
+
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
+
+Msgdef::Init
+
+} -body {
+
+set msgname [Msgdef::Parse test0.msg]
+set size [Msgdef::Get_Max_Size $msgname]
+array set msgattr {}
+Msgdef::Get_Attr_Offset $msgname msgattr
+array set msgdata {}
+Msgdef::Factory $msgname msgdata
+set msgname
+
+} -cleanup {
+
+
+} -result {test0}
+
+cleanupTests

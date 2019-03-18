@@ -1,0 +1,36 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/portmgr/test
+
+test tc-1.1 {test key_helper api} -setup {
+
+source $env(DISK2)/sharedmem/tcl/portmgr/portmgr.tcl
+Portmgr::Init
+
+} -body {
+
+set port "IN-1"
+Portmgr::Add $port IN test0 
+Portmgr::Add_Shm $port "/tmp/key1-1-1" 4 
+Portmgr::Add_Shm $port "/tmp/key1-1-2" 8 
+
+Portmgr::Get_Portmsgdef $port msgname
+if {$msgname != "test0"} {
+    puts "msg name $msgname not recognized"
+}
+
+Portmgr::Get_Porttype $port porttype 
+if {$porttype != "IN"} {
+    puts "port type $porttype not recognized"
+}
+
+Portmgr::Get_Shm $port keylist
+
+set keylist 
+
+} -cleanup {
+
+} -result {/tmp/key1-1-1 /tmp/key1-1-2}
+
+cleanupTests

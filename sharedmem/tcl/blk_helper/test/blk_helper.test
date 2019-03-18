@@ -1,10 +1,19 @@
-source msgdef.tcl
-source blk_helper.tcl
-source key_helper.tcl
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/blk_helper/test
+
+test tc-1.1 {test blk_helper api} -setup {
+
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
+source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
+source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 Msgdef::Init
 Blk_helper::Init
 Key_helper::Init /tmp
+
+} -body {
 
 set compdir $env(COMP_HOME)/test
 set keys ""
@@ -47,9 +56,18 @@ close $fd
 Blk_helper::Dump
 puts [Blk_helper::Gen_str n1]
 puts [Blk_helper::Gen_str n2]
+
+set rc "pass"
+set rc
+
 #exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
 
 #exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
 
+} -cleanup {
+
 Key_helper::Delete_all_keys
 
+} -result {pass}
+
+cleanupTests

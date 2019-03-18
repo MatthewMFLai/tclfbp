@@ -136,9 +136,9 @@ proc checkagain {} {
     after 10 checkagain
 }
 
-source portmgr.tcl
+source $env(DISK2)/sharedmem/tcl/portmgr/portmgr.tcl
 Portmgr::Init
-source msgdef.tcl
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 Msgdef::Init
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
 queue_init

@@ -1,0 +1,33 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/key_helper/test
+
+test tc-1.1 {test key_helper api} -setup {
+
+source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
+
+Key_helper::Init /tmp
+
+} -body {
+
+set line "n1 1 n2 1"
+set key [Key_helper::Create_key $line]
+# Expect key already exists message.
+Key_helper::Create_key $line
+if {[Key_helper::Get_key $line] == $key} {
+    puts "key $key is ok"
+}
+# Expect key not exist message
+Key_helper::Delete_key "n1 2 n2 2"
+
+set rc pass
+set rc
+
+} -cleanup {
+
+    Key_helper::Delete_all_keys
+
+} -result {pass}
+
+cleanupTests

@@ -1,5 +1,5 @@
 name test2 
-filepath $env(DISK2)/sharedmem/tcl
+filepath $env(DISK2)/sharedmem/tcl/node
 # port format
 # <port type> {portname msgdef} {portname msgdef} ... 
 inports {1 $env(COMP_HOME)/msgdef/test/test0.msg}

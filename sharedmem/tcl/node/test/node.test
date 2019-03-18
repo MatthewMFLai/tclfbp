@@ -40,14 +40,14 @@ proc runit {} {
 package require tcltest
 namespace import ::tcltest::*
 
-workingDirectory $env(DISK2)/sharedmem/tcl
+workingDirectory $env(DISK2)/sharedmem/tcl/node/test
 
 test tc-1.1 {test 2 node setup} -setup {
 
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
-source msgdef.tcl
-source blk_helper.tcl
-source key_helper.tcl
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
+source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
+source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 Msgdef::Init
 Blk_helper::Init
@@ -216,7 +216,7 @@ set sd [socket -server server_accept 8000]
 } -body {
 
 foreach node [Blk_helper::Get_nodes] {
-    set cmd "exec tclsh node.tcl BLOCK $node INIT localhost:8000 "
+    set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $node INIT localhost:8000 "
     append cmd [Blk_helper::Gen_str $node]
     append cmd " RUNNING 0 &"
     eval $cmd

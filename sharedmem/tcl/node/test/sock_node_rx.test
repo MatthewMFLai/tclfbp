@@ -187,7 +187,7 @@ proc checkagain {} {
             set g_data(check_state) "CHECK_WAIT_MORE"
 
     } elseif {$g_data(check_state) == "CHECK_WAIT_MORE"} {
-            set forever 1
+            set forever pass 
             set g_data(check_state) "CHECK_TERMINATE"
 
     } 
@@ -196,10 +196,17 @@ proc checkagain {} {
     }
 }
 
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/node/test
+
+test tc-1.1 {test sock node rx path} -setup {
+
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
-source msgdef.tcl
-source blk_helper.tcl
-source key_helper.tcl
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
+source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
+source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 Msgdef::Init
 Key_helper::Init /tmp
@@ -232,11 +239,21 @@ set g_data(key) $key
 set g_data(bcd_msg) ""
 set hostport 13000
 set remoteport 14000
-Admin_Server $hostport 
-exec tclsh sock_node_rx.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
+Admin_Server $hostport
+ 
+} -body {
+
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node_rx.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
 after idle checkagain
 vwait forever
+global forever
+set forever
+
+} -cleanup {
 
 stub_cleanup $key
 Key_helper::Delete_all_keys
-exit 0
+
+} -result {pass}
+
+cleanupTests

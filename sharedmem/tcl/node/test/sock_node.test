@@ -97,7 +97,7 @@ proc Echo {sock} {
         incr g_count
         if {$g_count == 3} {
             close $g_admin_sock
-            set forever 1
+            set forever pass 
         }
     }
 }
@@ -163,10 +163,17 @@ proc Admin_Handle {sock} {
 }
 #--------------------------------------------------
 
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/sharedmem/tcl/node/test
+
+test tc-1.1 {test sock node tx path} -setup {
+
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
-source msgdef.tcl
-source blk_helper.tcl
-source key_helper.tcl
+source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
+source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
+source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 Msgdef::Init
 Key_helper::Init /tmp
@@ -250,10 +257,20 @@ sv_csr_write_wrapper $key [port_mgr_get_msg out1]
 set hostport 13000
 set remoteport 14000
 Admin_Server $hostport 
-Echo_Server $remoteport 
-exec tclsh sock_node.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
+Echo_Server $remoteport
+ 
+} -body {
+
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
 vwait forever
+global forever
+set forever
+
+} -cleanup {
 
 stub_cleanup $key
 Key_helper::Delete_all_keys
-exit 0
+
+} -result {pass}
+
+cleanupTests
