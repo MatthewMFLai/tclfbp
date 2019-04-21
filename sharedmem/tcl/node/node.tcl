@@ -6,6 +6,14 @@ proc client_init {cid} {
     fconfigure $cid -buffering line
 }
 
+# api to send message to the launcher (fbp agent). For use with running unit tests. 
+# Not to be used by app. 
+proc client_send {msg} {
+    global g_sd
+    puts $g_sd $msg
+    return
+}
+
 proc client_handle {cid} {
     if {[gets $cid request] < 0} {
 	global main-loop
@@ -178,8 +186,8 @@ source $appfile
 set g_running $argdata(RUNNING)
 
 set port [lindex [split $argdata(INIT) ":"] 1]
-set sd [socket localhost $port]
-client_init $sd
+set g_sd [socket localhost $port]
+client_init $g_sd
 
 coroutine checkit runit
 
