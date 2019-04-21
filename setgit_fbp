@@ -1,4 +1,4 @@
-export DISK2=/home/lai/gitrepos
+export DISK2=/home/ubuntu/tclfbp
 export TCLSHAREDMEM=$DISK2/sharedmem/c
 export MSGDEF_HOME=$DISK2/component/msgdef
 export PATH=/opt/ActiveTcl-8.6/bin:$PATH:$DISK2/msg:$DISK2/dg:$DISK2/max:$DISK2/test:$DISK2/launcher:$DISK2/fbp:$DISK2/kuribohbrothers:/usr/local/ActiveTcl/bin:$DISK2/corepanel:$DISK2/rftxlate:$DISK2/matcher:/home/lai/pattern/pattern_tcl:$DISK2/fob:$DISK2/fsm:$DISK2/hsm:$DISK2/web_driver:$DISK2/fi_db:$DISK2/scds:$DISK2/portfolio:$DISK2/strategy
