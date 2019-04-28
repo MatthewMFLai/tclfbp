@@ -6,7 +6,7 @@ source $env(PATTERN_HOME)/malloc.tcl
 source $env(PATTERN_HOME)/geturl.tcl
 source $env(PWD)/stock_fsm.tcl
 
-set sanity_mode 1
+set sanity_mode 0 
 Url::init
 
 if {$sanity_mode} {
