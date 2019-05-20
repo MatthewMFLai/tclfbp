@@ -15,48 +15,62 @@ proc client_send {msg} {
 }
 
 proc client_handle {cid} {
-    if {[gets $cid request] < 0} {
 	global main-loop
+
+    if {[gets $cid request] < 0} {
         close $cid
-	set main-loop 1
+		set main-loop 1
     } else {
         # Custom code to handle initialization.
         #
-	set response ""
-        if {[initialize $request response]} {
+		set response ""
+        set rc [initialize $request response]
+        if {$rc == 0} {
+			close $cid
+			set main-loop 1
+			return
+		}
 	    puts $cid $response
 	    flush $cid
+		return	
 	}
-    }
 }
 
 proc initialize {request p_response} {
     global g_running
+    global g_name
 
     upvar $p_response response
     set response ""
     set rc 0 
 
     switch -- [lindex $request 0] {
+        IDENT {
+            set response "IDENT $g_name" 
+            set rc 1 
+        }
         INIT {
-            set response [app_init] 
+            set response "INIT [app_init]" 
             set rc 1 
         }
         ENABLE {
             set g_running 1
-            set response "App ruuning"
+            set response "ENABLE App ruuning"
             set rc 1 
         }
         DISABLE {
             set g_running 0 
-            set response "App stopped"
+            set response "DISABLE App stopped"
             set rc 1 
         }
         TEST {
-            set response [app_test] 
+            set response "TEST [app_test]" 
             set rc 1 
         }
-	default {
+        SHUTDOWN {
+            set rc 0 
+        }
+		default {
             set response "$request not recognized"
             set rc 1 
         }
@@ -184,6 +198,7 @@ set appfile $argdata(PROGRAM)
 source $appfile
 
 set g_running $argdata(RUNNING)
+set g_name $argdata(BLOCK)
 
 set port [lindex [split $argdata(INIT) ":"] 1]
 set g_sd [socket localhost $port]
