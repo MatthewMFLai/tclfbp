@@ -133,6 +133,12 @@ proc port_write {port p_msgout} {
     }
 }
 
+proc port_factory_msg {port p_msgout} {
+    Portmgr::Get_Portmsgdef $port msgname
+    Msgdef::Factory $msgname $p_msgout
+    return 
+}
+
 proc runit {} {
     yield
 

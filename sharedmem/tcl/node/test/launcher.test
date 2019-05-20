@@ -9,16 +9,6 @@ proc global_init {} {
 	return
 }
 
-proc sendnread {cmd} {
-    global g_cids
-    foreach sd $g_cids {
-        puts $sd $cmd 
-        flush $sd
-        gets $sd rc
-        puts $rc
-    }
-}
-
 # socket server section
 proc server_accept {cid addr port} {
 	global g_cids
@@ -82,23 +72,24 @@ proc server_handle {cid} {
 					
 		}   ENABLE {
 				if {$state == "ENABLE"} {
-					set g_node_state($node) DISABLE 
-					puts $cid DISABLE 
-					flush $cid
+					set g_node_state($node) TESTEND 
 				}
 
-		}   DISABLE {
-				if {$state == "DISABLE"} {
-					set g_node_state($node) TEST 
-					puts $cid TEST 
+		}   TESTEND {
+				if {$state == "TESTEND"} {
+					set g_node_state($node) SHUTDOWN
+					puts $cid SHUTDOWN
 					flush $cid
-				}
-
-		}   TEST {
-				if {$state == "TEST"} {
-					set g_node_state($node) SHUTDOWN 
-					puts $cid SHUTDOWN 
-					flush $cid
+					
+					foreach to_cid $g_cids {
+						if {$to_cid == $cid} {
+							continue
+						}
+						set node $g_cid_node_map($to_cid)
+						set g_node_state($node) SHUTDOWN 
+						puts $to_cid SHUTDOWN 
+						flush $to_cid
+					}
 				}
 
 		}   default {
