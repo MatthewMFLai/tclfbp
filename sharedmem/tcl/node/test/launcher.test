@@ -154,9 +154,6 @@ while {[gets $fd line] > -1} {
 }
 close $fd
 
-set key1 [lindex $keys 0]
-set key2 [lindex $keys 1]
-
 array set msgattr {}
 Msgdef::Get_Attr_Offset $msgname msgattr
 
@@ -165,8 +162,8 @@ set len 4
 queue_init
 port_mgr_init
 
-port_mgr_add out1 $size
-port_mgr_add out2 $size
+#port_mgr_add out1 $size
+#port_mgr_add out2 $size
 
 # Allocate the sharedmem with the key reference.
 foreach token [Blk_helper::Get_keys] {
@@ -195,8 +192,6 @@ set g_result
 
 } -cleanup {
 
-    stub_cleanup $key1 
-    stub_cleanup $key2
     Key_helper::Delete_all_keys
 
 } -result {pass}
