@@ -116,7 +116,7 @@ Msgdef::Init
 Blk_helper::Init
 Key_helper::Init /tmp
 
-set compdir $env(COMP_HOME)/test/test1
+set compdir $env(COMP_HOME)/company/test1
 set keys ""
 
 set fd [open $compdir/test1.node r]

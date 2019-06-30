@@ -1,0 +1,9 @@
+name 20 company_resp
+version 10 0.1
+compname 80 xxx
+employees 10 xxx
+industry 80 xxx
+sector 80 xxx
+symbol 10 xxx
+urlerror 20 xxx
+description 2500 xxx

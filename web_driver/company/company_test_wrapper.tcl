@@ -44,7 +44,7 @@ proc Init {} {
     malloc::init
     Fsm::Init
 
-    Fsm::Load_Fsm company_fsm.dat
+    Fsm::Load_Fsm $env(WEB_DRIVER_HOME)/company/company_fsm.dat
     Fsm::Init_Fsm company_fsm
 
     array set data {}

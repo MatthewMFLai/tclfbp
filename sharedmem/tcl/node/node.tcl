@@ -134,8 +134,9 @@ proc port_write {port p_msgout} {
 }
 
 proc port_factory_msg {port p_msgout} {
+    upvar $p_msgout msgout
     Portmgr::Get_Portmsgdef $port msgname
-    Msgdef::Factory $msgname $p_msgout
+    Msgdef::Factory $msgname msgout
     return 
 }
 
