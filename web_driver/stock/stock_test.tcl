@@ -21,63 +21,20 @@
 # MERCHANTABILITY,  FITNESS   FOR  A  PARTICULAR   PURPOSE,  AND
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
-# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS
+# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #!/bin/sh
 # \
 exec tclsh $0 "$@"
 
-source $env(FSM_HOME)/fsm.tcl
-source $env(PATTERN_HOME)/malloc.tcl
-source $env(PATTERN_HOME)/geturl.tcl
-source $env(WEB_DRIVER_HOME)/stock/stock_fsm.tcl
+source $env(WEB_DRIVER_HOME)/stock/stock_test_wrapper.tcl
 
-set sanity_mode 1 
-Url::init
+Stock_Test_Wrapper::Init
+array set data {}
+set exchange [lindex $argv 0]
+set cur_symbol [lindex $argv 1]
+Stock_Test_Wrapper::Runit $exchange $cur_symbol data
 
-if {$sanity_mode} {
-    malloc::init
-    Fsm::Init
-
-    Fsm::Load_Fsm stock_fsm.dat
-    Fsm::Init_Fsm stock_fsm
-}
-
-set infile [lindex $argv 0]
-set sanity [lindex $argv 1]
-
-set in_fd [open $infile r]
-gets $in_fd url
-close $in_fd
-
-if {$sanity_mode != 2} {
-    set data [Url::get_no_retry $url]
-}
-if {$sanity_mode == 0} {
-    set fd [open raw.dat w]
-    puts $fd $data
-    close $fd
-} elseif {$sanity_mode == 2} {
-    set fd [open raw.dat r]
-    set data [read $fd]
-    close $fd
-} else {
-
-}
-
-if {$sanity_mode} {
-    set argdata(data) $data
-    Fsm::Run stock_fsm argdata
-    array set tmpdata {}
-    stock_fsm::Dump_Stock tmpdata
-    if {$sanity != "test"} {
-    	foreach idx [lsort [array names tmpdata]] {
-	    puts "$idx $tmpdata($idx)"
-    	}
-    } else {
-	if {[llength [array names tmpdata]] == 0} {
-	    exit -1
-	}
-    }
-}
-#Fsm::Dump
+foreach idx [lsort [array names data]] {
+	puts "$idx $data($idx)"
+} 
 exit 0

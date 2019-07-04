@@ -1,5 +1,5 @@
 TCL = tclsh
-NODEDIR = company 
+NODEDIR = stock 
 TARGETDIR = /tmp/node/stock/common/web_driver
 release:
 	$(TCL) $(PATTERN_HOME)/gen_release_dir.tcl $(TARGETDIR)/$(NODEDIR)
