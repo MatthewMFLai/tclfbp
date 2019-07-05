@@ -1,0 +1,6 @@
+name dividend 
+filepath $env(COMP_HOME)/dividend
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/dividend/dividend_rqst.msg}
+outports {1 $env(COMP_HOME)/msgdef/dividend/dividend_resp.msg}

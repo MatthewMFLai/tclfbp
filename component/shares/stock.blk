@@ -1,0 +1,6 @@
+name stock
+filepath $env(COMP_HOME)/shares
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/stock/stock_rqst.msg}
+outports {1 $env(COMP_HOME)/msgdef/stock/stock_resp.msg}

@@ -1,0 +1,11 @@
+name 20 stock_resp
+version 10 0.1
+eps 20 0.00
+market_cap 20 0
+pb 20 0.00
+pe 20 0.00
+price 20 0.00
+shares_outstanding 20 0
+volume 20 0
+symbol 10 xxx
+urlerror 20 xxx

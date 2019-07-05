@@ -1,0 +1,4 @@
+name test
+filepath /media/ubuntu/S3A4886D002/tclfbp/component/shares/test1
+inports {1 $env(COMP_HOME)/msgdef/stock/stock_resp.msg}
+outports {1 $env(COMP_HOME)/msgdef/stock/stock_rqst.msg}

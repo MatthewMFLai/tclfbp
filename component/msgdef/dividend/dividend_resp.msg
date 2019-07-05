@@ -1,0 +1,10 @@
+name 20 dividend_resp
+version 10 0.1
+Dividend-AllStar-Ranking 20 -
+Dividend-Amount-Current 10 0.00
+Dividend-Growth-Rate-5yr-Avg 10 0.0%
+Dividend-Yield-5yr-Avg 10 0.0%
+Dividend-Yield 10 0.0%
+Dividends-Paid-Since 10 -
+symbol 10 xxx
+urlerror 40 xxx
