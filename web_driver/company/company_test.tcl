@@ -26,8 +26,10 @@
 # \
 exec tclsh $0 "$@"
 
+source $env(WEB_DRIVER_HOME)/common/common_test_wrapper.tcl
 source $env(WEB_DRIVER_HOME)/company/company_test_wrapper.tcl
 
+Common_Test_Wrapper::Init
 Company_Test_Wrapper::Init
 array set data {}
 set exchange [lindex $argv 0]

@@ -26,8 +26,10 @@
 # \
 exec tclsh $0 "$@"
 
+source $env(WEB_DRIVER_HOME)/common/common_test_wrapper.tcl
 source $env(WEB_DRIVER_HOME)/dividend/dividend_test_wrapper.tcl
 
+Common_Test_Wrapper::Init
 Dividend_Test_Wrapper::Init
 array set data {}
 set exchange [lindex $argv 0]

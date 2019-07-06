@@ -22,21 +22,26 @@
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
 # MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
-#!/bin/sh
-# \
-exec tclsh $0 "$@"
 
-source $env(WEB_DRIVER_HOME)/common/common_test_wrapper.tcl
-source $env(WEB_DRIVER_HOME)/stock/stock_test_wrapper.tcl
+namespace eval Common_Test_Wrapper {
 
-Common_Test_Wrapper::Init
-Stock_Test_Wrapper::Init
-array set data {}
-set exchange [lindex $argv 0]
-set cur_symbol [lindex $argv 1]
-Stock_Test_Wrapper::Runit $exchange $cur_symbol data
+proc Init {} {
+    global tcl_platform
+    global env
 
-foreach idx [lsort [array names data]] {
-	puts "$idx $data($idx)"
-} 
-exit 0
+    if {$tcl_platform(platform) != "unix"} {
+        lappend auto_path $env(DISK2)/tclkit/modules
+    }
+
+    uplevel #0 {source $env(FSM_HOME)/fsm.tcl}
+    uplevel #0 {source $env(PATTERN_HOME)/malloc.tcl}
+    uplevel #0 {source $env(PATTERN_HOME)/geturl.tcl}
+    uplevel #0 {source $env(PATTERN_HOME)/stock_util.tcl}
+
+    Url::init
+    malloc::init
+    Fsm::Init
+
+}
+
+}

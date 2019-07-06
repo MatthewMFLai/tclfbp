@@ -26,23 +26,10 @@
 namespace eval Company_Test_Wrapper {
 
 proc Init {} {
-    global tcl_platform
     global env
 
-    if {$tcl_platform(platform) != "unix"} {
-        lappend auto_path $env(DISK2)/tclkit/modules
-    }
-
-    uplevel #0 {source $env(FSM_HOME)/fsm.tcl}
-    uplevel #0 {source $env(PATTERN_HOME)/malloc.tcl}
-    uplevel #0 {source $env(PATTERN_HOME)/geturl.tcl}
-    uplevel #0 {source $env(PATTERN_HOME)/stock_util.tcl}
-    uplevel #0 {source $env(WEB_DRIVER_HOME)/company/company_fsm.tcl}
-    uplevel #0 {source $env(WEB_DRIVER_HOME)/company/company.tcl}
-
-    Url::init
-    malloc::init
-    Fsm::Init
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/company/company_fsm.tcl}
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/company/company.tcl}
 
     Fsm::Load_Fsm $env(WEB_DRIVER_HOME)/company/company_fsm.dat
     Fsm::Init_Fsm company_fsm

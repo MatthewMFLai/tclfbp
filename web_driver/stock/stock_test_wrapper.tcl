@@ -26,24 +26,10 @@
 namespace eval Stock_Test_Wrapper {
 
 proc Init {} {
-	global tcl_platform
 	global env
 
-	if {$tcl_platform(platform) != "unix"} {
-		lappend auto_path $env(DISK2)/tclkit/modules
-	}
-
-	uplevel #0 {source $env(FSM_HOME)/fsm.tcl}
-	uplevel #0 {source $env(PATTERN_HOME)/malloc.tcl}
-	uplevel #0 {source $env(PATTERN_HOME)/geturl.tcl}
-	uplevel #0 {source $env(PATTERN_HOME)/stock_util.tcl}
 	uplevel #0 {source $env(WEB_DRIVER_HOME)/stock/stock_fsm.tcl}
 	uplevel #0 {source $env(WEB_DRIVER_HOME)/stock/stock.tcl}
-
-	Url::init
-	malloc::init
-	Fsm::Init
-
 	Fsm::Load_Fsm $env(WEB_DRIVER_HOME)/stock/stock_fsm.dat
 	Fsm::Init_Fsm stock_fsm
 
