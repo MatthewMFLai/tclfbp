@@ -1,0 +1,28 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/fsm/test
+
+test tc-1.1 {test fsm support for static namespace} -setup {
+
+source $env(FSM_HOME)/fsm.tcl
+source $env(PATTERN_HOME)/malloc.tcl
+
+malloc::init
+Fsm::Init
+
+} -body {
+
+set filename $env(FSM_HOME)/test/sample_fsm.dat 
+set fsm_name [lindex [split $filename "."] 0]
+set fsm_name [lindex [split $fsm_name "/"] end]
+Fsm::Load_Fsm $filename
+Fsm::Dot_Output $fsm_name
+
+set result 1
+
+} -cleanup {
+
+} -result {1}
+
+cleanupTests

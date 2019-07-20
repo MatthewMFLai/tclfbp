@@ -1,0 +1,28 @@
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(DISK2)/fsm/test
+
+test tc-1.1 {test fsm support for dynamic object/namespace} -setup {
+
+source $env(FSM_HOME)/fsm.tcl
+source $env(PATTERN_HOME)/malloc.tcl
+
+malloc::init
+Fsm::Init
+
+} -body {
+
+set filename $env(FSM_HOME)/test/sample_fsm_obj.dat 
+set objname "sample_fsm" 
+
+Fsm::Load_Fsm_Object $filename $objname 
+Fsm::Dot_Output $objname 
+
+set result 1
+
+} -cleanup {
+
+} -result {1}
+
+cleanupTests

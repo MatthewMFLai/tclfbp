@@ -111,8 +111,21 @@ proc Create_Link {fsm_name fromnode tonode eval_proc action_proc} {
     return 1
 }
 
+# Provide FSM support for dynamically created object/namespace
+proc Load_Fsm_Object {filename obj_name} {
+
+    create_fsm $obj_name
+
+    set fd [open $filename r]
+    set lines [read $fd]
+    close $fd
+    regsub -all "OBJNAME_FSM" $lines $obj_name lines
+    set lines [split $lines "\n"]
+    load_fsm_imp $obj_name $lines
+}
+
+# Provide FSM support for static namespace
 proc Load_Fsm {filename {fsm_name ""}} {
-    variable m_fsm
 
     # Extract fsm name from file name.
     if {$fsm_name == ""} {
@@ -121,9 +134,16 @@ proc Load_Fsm {filename {fsm_name ""}} {
     }
     create_fsm $fsm_name
 
-    set state "FIND_BEGIN_STATE" 
     set fd [open $filename r]
-    while {[gets $fd line] > -1} {
+    set lines [split [read $fd] "\n"]
+    close $fd
+    load_fsm_imp $fsm_name $lines
+}
+
+proc load_fsm_imp {fsm_name lines} {
+
+    set state "FIND_BEGIN_STATE"
+    foreach line $lines { 
 	if {$line == ""} {
 	    continue
 	}
@@ -131,6 +151,7 @@ proc Load_Fsm {filename {fsm_name ""}} {
 	if {[string first "#" $line] == 0} {
 	    continue
 	}
+
 	switch -- $state \
 	  FIND_BEGIN_STATE {
 	    if {[string first "BEGIN_STATE" $line] > -1} {
@@ -187,9 +208,7 @@ proc Load_Fsm {filename {fsm_name ""}} {
 	    # Do nothing.
 	}
     }
-    close $fd
 }
-
 proc Init_Fsm {fsm_name} {
     variable m_fsm
 

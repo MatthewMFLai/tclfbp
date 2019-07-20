@@ -119,7 +119,7 @@ Key_helper::Init /tmp
 set compdir $env(COMP_HOME)/company/test1
 set keys ""
 
-set fd [open $compdir/test1.node r]
+set fd [open $compdir/test.node r]
 while {[gets $fd line] > -1} {
     set nodename [lindex $line 0]
     set compfile [subst [lindex $line 1]]
@@ -129,7 +129,7 @@ while {[gets $fd line] > -1} {
 close $fd
 
 
-set fd [open $compdir/test1.link r]
+set fd [open $compdir/test.link r]
 while {[gets $fd line] > -1} {
     set fromname [lindex $line 0]
     set toname [lindex $line 2]
