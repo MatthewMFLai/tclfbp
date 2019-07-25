@@ -154,9 +154,6 @@ while {[gets $fd line] > -1} {
 }
 close $fd
 
-array set msgattr {}
-Msgdef::Get_Attr_Offset $msgname msgattr
-
 set size [Msgdef::Get_Max_Size $msgname] 
 set len 4 
 queue_init
