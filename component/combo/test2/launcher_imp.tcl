@@ -3,15 +3,18 @@ namespace eval %%% {
 	variable m_cids
 	variable m_cid_node_map
 	variable m_node_state
+	variable m_node_cid_map
 
 proc Init {} {
 	variable m_cids
 	variable m_cid_node_map
 	variable m_node_state
+	variable m_node_cid_map
 
 	set m_cids ""
 	array set m_cid_node_map {}
 	array set m_node_state {}
+	array set m_node_cid_map {}
 	return
 }
 
@@ -61,12 +64,20 @@ proc Handle_cid {cid request} {
 		set state $m_node_state($node)
 	}	
 
+	# Find node to cid mapping.
+	set fsm_id [Find_Fsm $cid]
+	if {$fsm_id != ""} {
+		# do something...
+	}	
 	switch -- $cmd \
 		IDENT {
 			set m_cid_node_map($cid) $data
 			set m_node_state($data) INIT
 			puts $cid INIT
 			flush $cid
+
+			# Set up node to cid mapping
+			Update_Fsm [Get_Fsm_Id $data] $cid
 
 	}   INIT {
 			if {$state == "INIT"} {
@@ -104,7 +115,7 @@ proc Handle_cid {cid request} {
 }
 
 proc Setup {nodefile linkfile} {
-
+	global env
 	set keys ""
 
 	set fd [open $nodefile r]
@@ -113,6 +124,11 @@ proc Setup {nodefile linkfile} {
     	set compfile [subst [lindex $line 1]]
     	set compname [Blk_helper::Parse $compfile]
     	Blk_helper::Add_node $nodename $compname
+
+		# Create Fsm object for each node.
+		set fsm_obj_file $env(COMP_HOME)/combo/test2/launcher_fsm_obj.dat
+		set templatefile $env(COMP_HOME)/combo/test2/launcher_fsm_obj.tcl
+		Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
 	}
 	close $fd
 
@@ -161,6 +177,51 @@ proc Execute {alloc_port} {
     	append cmd " RUNNING 0 &"
     	eval $cmd
 	}
+}
+
+proc Create_Fsm {fsm_obj_id fsm_obj_file templatefile} {
+    global env
+	variable m_node_cid_map
+
+	set fd [open $templatefile r]
+	set template [read $fd]
+	close $fd
+
+	regsub "OBJNAME_FSM" $template $fsm_obj_id template
+	catch {eval $template} rc
+	set m_node_cid_map($fsm_obj_id) ""	
+
+	Fsm::Load_Fsm_Object $fsm_obj_file $fsm_obj_id
+    return
+}
+
+proc Update_Fsm {fsm_obj_id cid} {
+	variable m_node_cid_map
+
+	foreach idx [array names m_node_cid_map] {
+		if {$idx == $fsm_obj_id} {
+			return 1
+		}
+	}
+	set m_node_cid_map($fsm_obj_id) $cid
+	return 0
+}
+
+proc Find_Fsm {cid} {
+	variable m_node_cid_map
+
+	foreach idx [array names m_node_cid_map] {
+		if {$m_node_cid_map($idx) == $cid} {
+			return $idx
+		}
+	}
+	return "" 
+}
+
+proc Get_Fsm_Id {nodename} {
+	set node_prefix [namespace current]
+	regsub "::" $node_prefix "" node_prefix
+	return $node_prefix-$nodename
 }
 
 }

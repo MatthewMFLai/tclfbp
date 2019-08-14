@@ -67,12 +67,17 @@ source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
 source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 source $env(COMP_HOME)/combo/test2/launcher_factory.tcl
+source $env(FSM_HOME)/fsm.tcl
+source $env(PATTERN_HOME)/malloc.tcl
 
 Msgdef::Init
 Blk_helper::Init
 Key_helper::Init /tmp
 queue_init
 port_mgr_init
+
+malloc::init
+Fsm::Init
 
 Launcher_Obj::Init $env(COMP_HOME)/combo/test2/launcher_imp.tcl
 Launcher_Obj::Create "graph1"
