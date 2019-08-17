@@ -27,15 +27,6 @@ proc process_generic {p_arg_array} {
     return
 }
 
-proc eval_ident_to_init {} {
-	variable m_cmd
-
-	if {$m_cmd == "IDENT"} {
-		return 1
-	}
-    return 0
-}
-
 proc eval_init_to_enable {} {
 	variable m_cmd
 
@@ -63,11 +54,10 @@ proc eval_testend_to_shutdown {} {
     return 0
 }
 
-proc act_iden_to_init {} {
-    return
-}
-
 proc act_init_to_enable {} {
+	variable m_cid
+	puts $m_cid ENABLE
+	flush $m_cid
     return
 }
 
@@ -76,10 +66,12 @@ proc act_enable_to_testend {} {
 }
 
 proc act_testend_to_shutdown {} {
+	variable m_cid
+	puts $m_cid SHUTDOWN 
+	flush $m_cid
     return
 }
 
-}
 proc Dump {p_data} {
 
     upvar $p_data data
