@@ -1,19 +1,13 @@
 namespace eval %%% {
 
 	variable m_cids
-	variable m_cid_node_map
-	variable m_node_state
 	variable m_node_cid_map
 
 proc Init {} {
 	variable m_cids
-	variable m_cid_node_map
-	variable m_node_state
 	variable m_node_cid_map
 
 	set m_cids ""
-	array set m_cid_node_map {}
-	array set m_node_state {}
 	array set m_node_cid_map {}
 	return
 }
@@ -35,82 +29,42 @@ proc Length_cid {} {
 
 proc Remove_cid {cid} {
 	variable m_cids
-	variable m_cid_node_map
-	variable m_node_state
 
 	set idx [lsearch $m_cids $cid]
 	if {$idx != -1} {
 		set m_cids [lreplace $m_cids $idx $idx]
 	}
-	if {[info exists m_cid_node_map($cid)]} {
-		set tmpnode $m_cid_node_map($cid)
-		unset m_cid_node_map($cid)
-		unset m_node_state($tmpnode)
-	}
 	return
 }
 
 proc Handle_cid {cid request} {
-	variable m_cids
-	variable m_cid_node_map
-	variable m_node_state
+	variable m_node_cid_map
 
 	set cmd [lindex $request 0]
 	set data [lindex $request 1]
-	set response ""
-	set state ""
-	if {[info exists m_cid_node_map($cid)]} {
-		set node $m_cid_node_map($cid)
-		set state $m_node_state($node)
-	}	
 
-	# Find node to cid mapping.
-	set fsm_id [Find_Fsm $cid]
-	if {$fsm_id != ""} {
-		# do something...
-	}	
-	switch -- $cmd \
-		IDENT {
-			set m_cid_node_map($cid) $data
-			set m_node_state($data) INIT
-			puts $cid INIT
-			flush $cid
+	if {$cmd == "IDENT"} {
+		# Set up node to cid mapping
+		Update_Fsm [Get_Fsm_Id $data] $cid
+		puts $cid INIT
+		flush $cid
 
-			# Set up node to cid mapping
-			Update_Fsm [Get_Fsm_Id $data] $cid
-
-	}   INIT {
-			if {$state == "INIT"} {
-				set m_node_state($node) ENABLE 
-				puts $cid ENABLE 
-				flush $cid
-			}
-					
-	}   ENABLE {
-			if {$state == "ENABLE"} {
-				set m_node_state($node) TESTEND 
-			}
-
-	}   TESTEND {
-			if {$state == "TESTEND"} {
-				set m_node_state($node) SHUTDOWN
-				puts $cid SHUTDOWN
-				flush $cid
-				
-				foreach to_cid $m_cids {
-					if {$to_cid == $cid} {
-						continue
-					}
-					set node $m_cid_node_map($to_cid)
-					set m_node_state($node) SHUTDOWN 
-					puts $to_cid SHUTDOWN 
-					flush $to_cid
+	} else {
+		array set arg_array {}
+        set arg_array(cid) $cid
+        set arg_array(cmd) $cmd
+        set arg_array(data) $data
+		Fsm::Run [Find_Fsm $cid] arg_array
+		if {$cmd == "TESTEND"} {
+			foreach nodename [array names m_node_cid_map] {
+				if {$m_node_cid_map($nodename) == $cid} {
+					continue
 				}
+				set arg_array(cid) $m_node_cid_map($nodename)
+				Fsm::Run $nodename arg_array
 			}
-
-	}   default {
-
-	}
+		}
+	} 
 	return
 }
 
@@ -188,10 +142,13 @@ proc Create_Fsm {fsm_obj_id fsm_obj_file templatefile} {
 	close $fd
 
 	regsub "OBJNAME_FSM" $template $fsm_obj_id template
-	catch {eval $template} rc
+	if {[catch {eval $template} rc]} {
+		puts $rc
+	}
 	set m_node_cid_map($fsm_obj_id) ""	
 
 	Fsm::Load_Fsm_Object $fsm_obj_file $fsm_obj_id
+	Fsm::Init_Fsm $fsm_obj_id
     return
 }
 
@@ -200,10 +157,10 @@ proc Update_Fsm {fsm_obj_id cid} {
 
 	foreach idx [array names m_node_cid_map] {
 		if {$idx == $fsm_obj_id} {
+			set m_node_cid_map($fsm_obj_id) $cid
 			return 1
 		}
 	}
-	set m_node_cid_map($fsm_obj_id) $cid
 	return 0
 }
 
@@ -220,7 +177,8 @@ proc Find_Fsm {cid} {
 
 proc Get_Fsm_Id {nodename} {
 	set node_prefix [namespace current]
-	regsub "::" $node_prefix "" node_prefix
+	# Need to keep the :: in node_prefix so that the generated nodename
+	# is also a global namespace name
 	return $node_prefix-$nodename
 }
 
