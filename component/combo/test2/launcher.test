@@ -66,7 +66,7 @@ source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
 source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
-source $env(COMP_HOME)/combo/test2/launcher_factory.tcl
+source $env(COMP_HOME)/ut_common/launcher_factory.tcl
 source $env(FSM_HOME)/fsm.tcl
 source $env(PATTERN_HOME)/malloc.tcl
 
@@ -79,7 +79,7 @@ port_mgr_init
 malloc::init
 Fsm::Init
 
-Launcher_Obj::Init $env(COMP_HOME)/combo/test2/launcher_imp.tcl
+Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 Launcher_Obj::Create "graph1"
 set launcher [Launcher_Obj::Get_Obj "graph1"]
 
@@ -89,7 +89,7 @@ PortToLauncher::Add $alloc_port $launcher
 
 ${launcher}::Init
 set compdir $env(COMP_HOME)/combo/test2 
-${launcher}::Setup $compdir/test.node $compdir/test.link $compdir/launcher_fsm_obj.dat $compdir/launcher_fsm_obj.tcl
+${launcher}::Setup $compdir/test.node $compdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 
 } -body {
 
