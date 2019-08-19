@@ -68,7 +68,7 @@ proc Handle_cid {cid request} {
 	return
 }
 
-proc Setup {nodefile linkfile} {
+proc Setup {nodefile linkfile fsm_obj_file templatefile} {
 	global env
 	set keys ""
 
@@ -80,8 +80,6 @@ proc Setup {nodefile linkfile} {
     	Blk_helper::Add_node $nodename $compname
 
 		# Create Fsm object for each node.
-		set fsm_obj_file $env(COMP_HOME)/combo/test2/launcher_fsm_obj.dat
-		set templatefile $env(COMP_HOME)/combo/test2/launcher_fsm_obj.tcl
 		Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
 	}
 	close $fd

@@ -89,7 +89,7 @@ PortToLauncher::Add $alloc_port $launcher
 
 ${launcher}::Init
 set compdir $env(COMP_HOME)/combo/test2 
-${launcher}::Setup $compdir/test.node $compdir/test.link
+${launcher}::Setup $compdir/test.node $compdir/test.link $compdir/launcher_fsm_obj.dat $compdir/launcher_fsm_obj.tcl
 
 } -body {
 
