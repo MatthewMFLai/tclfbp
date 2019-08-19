@@ -1,0 +1,11 @@
+Use the gen_unit_test.tcl to generate the launcher.test script in the unit test folder under the component. The following example illustrates generating the launcher.test for component combo:
+
+cd ~/tclfbp/component/combo/test3
+ls # should only have all.tcl and test.tcl
+tclsh
+source $env(COMP_HOME)/ut_common/gen_unit_test.tcl
+set dutfile $env(COMP_HOME)/combo/combo.blk
+set curdir [pwd]
+runit $dutfile $curdir
+ls # should see test.blk, test.link, test.node and launcher.test generated
+exit
