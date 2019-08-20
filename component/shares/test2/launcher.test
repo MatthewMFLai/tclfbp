@@ -1,45 +1,48 @@
-proc global_init {} {
-	global g_cids
-    global g_cid_node_map
-    global g_node_state
+namespace eval PortToLauncher {
+    variable m_portlaunchmap
 
-    set g_cids ""
-	array set g_cid_node_map {}
-	array set g_node_state {}
-	return
+proc Init {} {
+    variable m_portlaunchmap
+
+}
+
+proc Add {port launcher} {
+    variable m_portlaunchmap
+
+    set m_portlaunchmap($port) $launcher
+    return
+}
+
+proc Get {port} {
+    variable m_portlaunchmap
+
+    if {[info exists m_portlaunchmap($port)]} { 
+    	return $m_portlaunchmap($port)
+    } else {
+		return ""
+	}
+}
+
 }
 
 # socket server section
 proc server_accept {cid addr port} {
-	global g_cids
 
-	lappend g_cids $cid
+    set launcher_obj [PortToLauncher::Get [lindex [fconfigure $cid -sockname] 2]]
+    ${launcher_obj}::Add_cid $cid
     fileevent $cid readable "server_handle $cid"
     fconfigure $cid -buffering line
-
-	puts $cid "IDENT"
-	flush $cid
 }
 
 proc server_handle {cid} {
-    global g_cids
-    global g_cid_node_map
-    global g_node_state
 	global forever
 	global g_result
 
+    set launcher_obj [PortToLauncher::Get [lindex [fconfigure $cid -sockname] 2]]
     if {[gets $cid request] < 0} {
-		set idx [lsearch $g_cids $cid]
-		if {$idx != -1} {
-			set g_cids [lreplace $g_cids $idx $idx]
-		}
-		if {[info exists g_cid_node_map($cid)]} {
-			set tmpnode $g_cid_node_map($cid)
-			unset g_cid_node_map($cid)
-			unset g_node_state($tmpnode)
-		}
+		${launcher_obj}::Remove_cid $cid
 
-		if {![llength $g_cids]} {
+		if {![${launcher_obj}::Length_cid]} {
 			set forever 1
 			set g_result "pass"
 		}
@@ -47,142 +50,50 @@ proc server_handle {cid} {
     } else {
 		# Custom code to handle initialization.
 		#
-		set cmd [lindex $request 0]
-		set data [lindex $request 1]
-		set response ""
-		set state ""
-		if {[info exists g_cid_node_map($cid)]} {
-			set node $g_cid_node_map($cid)
-			set state $g_node_state($node)
-		}	
-
-		switch -- $cmd \
-			IDENT {
-				set g_cid_node_map($cid) $data
-				set g_node_state($data) INIT
-				puts $cid INIT
-				flush $cid
-
-		}   INIT {
-				if {$state == "INIT"} {
-					set g_node_state($node) ENABLE 
-					puts $cid ENABLE 
-					flush $cid
-				}
-					
-		}   ENABLE {
-				if {$state == "ENABLE"} {
-					set g_node_state($node) TESTEND 
-				}
-
-		}   TESTEND {
-				if {$state == "TESTEND"} {
-					set g_node_state($node) SHUTDOWN
-					puts $cid SHUTDOWN
-					flush $cid
-					
-					foreach to_cid $g_cids {
-						if {$to_cid == $cid} {
-							continue
-						}
-						set node $g_cid_node_map($to_cid)
-						set g_node_state($node) SHUTDOWN 
-						puts $to_cid SHUTDOWN 
-						flush $to_cid
-					}
-				}
-
-		}   default {
-
-		}
+		${launcher_obj}::Handle_cid $cid $request
 	}
 }
 
 package require tcltest
 namespace import ::tcltest::*
 
-workingDirectory $env(COMP_HOME)/shares/test2 
+workingDirectory /media/ubuntu/S3A4886D002/tclfbp/component/shares/test2 
 
 test tc-1.1 {test 2 node setup} -setup {
-
-global_init
 
 load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
 source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
+source $env(COMP_HOME)/ut_common/launcher_factory.tcl
+source $env(FSM_HOME)/fsm.tcl
+source $env(PATTERN_HOME)/malloc.tcl
+
 Msgdef::Init
 Blk_helper::Init
 Key_helper::Init /tmp
-
-set compdir $env(COMP_HOME)/shares/test2 
-set keys ""
-
-set fd [open $compdir/test.node r]
-while {[gets $fd line] > -1} {
-    set nodename [lindex $line 0]
-    set compfile [subst [lindex $line 1]]
-    set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $nodename $compname
-}
-close $fd
-
-
-set fd [open $compdir/test.link r]
-while {[gets $fd line] > -1} {
-    set fromname [lindex $line 0]
-    set toname [lindex $line 2]
-    set fromport [lindex $line 1]
-    set toport [lindex $line 3]
-    set fifo_len [lindex $line 4]
-
-    set frommsgname [Blk_helper::Get_port_msgdef $fromname 0 $fromport]
-    set tomsgname [Blk_helper::Get_port_msgdef $toname 1 $toport]
-    if {$frommsgname != $tomsgname} {
-        puts "$line not professed for incompatible msgdef $frommsgname vs $tomsgname"
-        continue
-    }
-
-    set msgname [Msgdef::Parse $tomsgname]
-    set size [Msgdef::Get_Max_Size $msgname]
-
-    set key [Key_helper::Create_key $line]
-    Blk_helper::Add_fifo_len $fromname 0 $fromport $key $fifo_len $size
-    Blk_helper::Add_fifo_len $toname 1 $toport $key $fifo_len $size
-    lappend keys $key
-}
-close $fd
-
-array set msgattr {}
-Msgdef::Get_Attr_Offset $msgname msgattr
-
-set size [Msgdef::Get_Max_Size $msgname] 
-set len 4 
 queue_init
 port_mgr_init
 
-# Allocate the sharedmem with the key reference.
-foreach token [Blk_helper::Get_keys] {
-    set key [lindex $token 0]
-    set len [lindex $token 1]
-    set size [lindex $token 2]
+malloc::init
+Fsm::Init
 
-    stub_init $key $len $size 
-    stub_clear $key $len $size
-}
+Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
+Launcher_Obj::Create "graph1"
+set launcher [Launcher_Obj::Get_Obj "graph1"]
 
-set sd [socket -server server_accept 8000]
+set sd [socket -server server_accept 0]
+set alloc_port [lindex [fconfigure $sd -sockname] 2]
+PortToLauncher::Add $alloc_port $launcher 
+
+${launcher}::Init
+set compdir /media/ubuntu/S3A4886D002/tclfbp/component/shares/test2 
+${launcher}::Setup $compdir/test.node $compdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 
 } -body {
 
-foreach node [Blk_helper::Get_nodes] {
-    set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $node INIT localhost:8000 "
-    append cmd [Blk_helper::Gen_str $node]
-    append cmd " RUNNING 0 &"
-    eval $cmd
-}
-
+${launcher}::Execute $alloc_port
 vwait forever
 global g_result 
 set g_result 
@@ -194,3 +105,4 @@ set g_result
 } -result {pass}
 
 cleanupTests
+
