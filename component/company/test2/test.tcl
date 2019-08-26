@@ -1,4 +1,4 @@
-proc process {count} {
+proc process {} {
     global g_symbols
 
 	foreach symbol $g_symbols {

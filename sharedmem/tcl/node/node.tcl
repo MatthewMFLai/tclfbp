@@ -143,14 +143,8 @@ proc port_factory_msg {port p_msgout} {
 proc runit {} {
     yield
 
-    set count 10
     while {1} {
-
-        incr count -1
-        process $count
-        if {$count == 0} {
-            set count 10
-        }
+        process
     }
  
     return

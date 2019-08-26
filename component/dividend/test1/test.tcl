@@ -1,4 +1,4 @@
-proc process {count} {
+proc process {} {
 
     array set msgout {}
     port_factory_msg OUT-1 msgout
