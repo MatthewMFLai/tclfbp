@@ -58,6 +58,12 @@ proc Get_key {idxstr} {
     return $key
 }
 
+proc Get_all_keys {} {
+    variable m_keys
+
+	return $m_keys
+}
+ 
 proc Delete_all_keys {} {
     variable m_keys_dir
     variable m_keys

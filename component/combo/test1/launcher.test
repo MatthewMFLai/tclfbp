@@ -186,6 +186,7 @@ set g_result
 
 } -cleanup {
 
+	${launcher}::Cleanup
     Key_helper::Delete_all_keys
 
 } -result {pass}

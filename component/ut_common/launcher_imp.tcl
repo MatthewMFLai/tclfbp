@@ -131,6 +131,13 @@ proc Execute {alloc_port} {
 	}
 }
 
+proc Cleanup {} {
+	foreach key [Key_helper::Get_all_keys] {
+		stub_cleanup $key
+	}
+	return
+}
+
 proc Create_Fsm {fsm_obj_id fsm_obj_file templatefile} {
     global env
 	variable m_node_cid_map
