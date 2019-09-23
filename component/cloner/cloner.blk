@@ -1,0 +1,5 @@
+name ZZZ_NAME 
+filepath ZZZ_PATH 
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 ZZZ_MSGDEF_PATH_NAME}
