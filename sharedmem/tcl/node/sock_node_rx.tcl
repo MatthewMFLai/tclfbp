@@ -161,7 +161,7 @@ proc checkagain {} {
 global g_coroutines
 array set g_coroutines {}
 
-load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
+load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem 
 queue_init
 key_mgr_init
 

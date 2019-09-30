@@ -163,7 +163,7 @@ source $env(DISK2)/sharedmem/tcl/portmgr/portmgr.tcl
 Portmgr::Init
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 Msgdef::Init
-load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
+load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem 
 queue_init
 port_mgr_init
 

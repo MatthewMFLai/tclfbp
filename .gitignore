@@ -10,6 +10,7 @@ factory/
 *.exe
 *.o
 *.so
+*.dylib
 *.raw
 graph_*.dat
 !Mk4tcl.so
@@ -18,6 +19,7 @@ graph_*.dat
 test_wrap*
 *.s
 *.swp
+*.bc
 
 # Packages #
 ############

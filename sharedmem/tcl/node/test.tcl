@@ -33,7 +33,7 @@ proc checkagain {} {
     after 5 checkagain
 }
 
-load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem 
+load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem 
 
 stub_init [lindex $argv 0]
 set inport0 [lindex $argv 1]

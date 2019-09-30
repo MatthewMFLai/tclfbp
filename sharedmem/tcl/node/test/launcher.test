@@ -107,7 +107,7 @@ test tc-1.1 {test 2 node setup} -setup {
 
 global_init
 
-load $env(TCLSHAREDMEM)/tclsharedmem.so tclsharedmem
+load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
 source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
