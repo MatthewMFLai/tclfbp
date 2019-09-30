@@ -1,5 +1,13 @@
+# Sample API calling
+# runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1}
+#
 proc runit {filename curdir} {
 	global env
+
+	set filename_str $filename
+	set curdir_str $curdir
+	set filename [subst $filename]
+	set curdir [subst $curdir]
 
     set idx [string last "/" $curdir]
     #set newname [string range $curdir [expr $idx + 1] end]
@@ -22,7 +30,7 @@ proc runit {filename curdir} {
     # Generate the test blk file.
     set fd [open $curdir/$newname.blk w]
     puts $fd "name $newname"
-    puts $fd "filepath $curdir"
+    puts $fd "filepath $curdir_str"
     if {[info exists data(outports)]} {
         puts $fd [concat "inports" $data(outports)]
     }
@@ -34,8 +42,8 @@ proc runit {filename curdir} {
     # Generate the 2-node node file.
     # tdr = test driver, dut = device under test
     set fd [open $curdir/$newname.node w]
-    puts $fd "tdr $curdir/$newname.blk"
-    puts $fd "dut $filename"
+    puts $fd "tdr $curdir_str/$newname.blk"
+    puts $fd "dut $filename_str"
     close $fd 
 
     # Generate the 2-node link file.

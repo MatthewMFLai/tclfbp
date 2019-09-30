@@ -1,2 +1,2 @@
-tdr /media/ubuntu/S3A4886D002/tclfbp/component/company/test1/test.blk
-dut /home/ubuntu/tclfbp/component/company/company.blk
+tdr $env(HOME)/tclfbp/component/company/test1/test.blk
+dut $env(HOME)/tclfbp/component/company/company.blk

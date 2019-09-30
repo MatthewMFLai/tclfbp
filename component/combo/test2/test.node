@@ -1,2 +1,2 @@
-tdr /media/ubuntu/S3A4886D002/tclfbp/component/combo/test2/test.blk
-dut /home/ubuntu/tclfbp/component/combo/combo.blk
+tdr $env(HOME)/tclfbp/component/combo/test2/test.blk
+dut $env(HOME)/tclfbp/component/combo/combo.blk

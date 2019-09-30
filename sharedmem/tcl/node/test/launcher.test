@@ -192,6 +192,10 @@ set g_result
 
 } -cleanup {
 
+	foreach token [Blk_helper::Get_keys] {
+    	set key [lindex $token 0]
+    	stub_cleanup $key
+	}
     Key_helper::Delete_all_keys
 
 } -result {pass}

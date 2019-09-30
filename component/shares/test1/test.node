@@ -1,2 +1,2 @@
-tdr /media/ubuntu/S3A4886D002/tclfbp/component/shares/test1/test.blk
-dut /home/ubuntu/tclfbp/component/shares/stock.blk
+tdr $env(HOME)/tclfbp/component/shares/test1/test.blk
+dut $env(HOME)/tclfbp/component/shares/stock.blk

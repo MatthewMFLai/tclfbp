@@ -1,4 +1,4 @@
 name test
-filepath /media/ubuntu/S3A4886D002/tclfbp/component/company/test1
+filepath $env(HOME)/tclfbp/component/company/test1
 inports {1 $env(COMP_HOME)/msgdef/company/company_resp.msg}
 outports {1 $env(COMP_HOME)/msgdef/company/company_rqst.msg}
