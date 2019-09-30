@@ -70,7 +70,7 @@ proc runit {filename curdir} {
 	set fd [open $env(COMP_HOME)/ut_common/launcher.test.template r]
 	set template [read $fd]
 	close $fd
-	regsub -all "COMPONENTTESTDIR" $template $curdir template
+	regsub -all "COMPONENTTESTDIR" $template $curdir_str template
 	set fd [open $curdir/launcher.test w]
 	puts $fd $template
 	close $fd

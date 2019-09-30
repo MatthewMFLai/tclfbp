@@ -57,7 +57,7 @@ proc server_handle {cid} {
 package require tcltest
 namespace import ::tcltest::*
 
-workingDirectory /home/ubuntu/tclfbp/component/company/test2 
+workingDirectory $env(HOME)/tclfbp/component/company/test2 
 
 test tc-1.1 {test 2 node setup} -setup {
 
@@ -88,7 +88,7 @@ set alloc_port [lindex [fconfigure $sd -sockname] 2]
 PortToLauncher::Add $alloc_port $launcher 
 
 ${launcher}::Init
-set compdir /home/ubuntu/tclfbp/component/company/test2 
+set compdir $env(HOME)/tclfbp/component/company/test2 
 ${launcher}::Setup $compdir/test.node $compdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 
 } -body {
