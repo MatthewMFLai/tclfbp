@@ -1,0 +1,2 @@
+immediately {直接地；接近地 立即，即刻，馬上 緊接地 【主英】一……（就……）} seized {抓住；奪過 奪取；攫取；抓獲 沒收；查獲 （強烈情感或劇痛）突然侵襲} wolf {狼 【口】色狼，色鬼 殘忍兇狠的人，貪婪的人 赤貧，飢餓 【音】狼音，不諧和音 狼吞虎嚥地吃} fraud {詐騙（罪） 騙子；騙人的事物} acquired 取得，獲得；購得；學到 surrender {投降 任憑擺布，屈服 （被迫）交出，放棄 投降} theft 盜竊；偷竊，偷
+immediately,5.89 0 fraud,7.68 0 theft,5.232 0 acquired,5.220 0 seized,5.11 0 wolf,5.2 0 wolf,3.4 0 wolf,5.168 0 surrender,5.145 2
