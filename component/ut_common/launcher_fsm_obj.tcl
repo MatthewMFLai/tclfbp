@@ -27,7 +27,7 @@ proc process_generic {p_arg_array} {
     return
 }
 
-proc eval_init_to_enable {} {
+proc eval_origin_to_init {} {
 	variable m_cmd
 
 	if {$m_cmd == "INIT"} {
@@ -36,7 +36,16 @@ proc eval_init_to_enable {} {
     return 0
 }
 
-proc eval_enable_to_testend {} {
+proc eval_init_to_ident {} {
+	variable m_cmd
+
+	if {$m_cmd == "IDENT"} {
+		return 1
+	}
+    return 0
+}
+
+proc eval_ident_to_enable {} {
 	variable m_cmd
 
 	if {$m_cmd == "ENABLE"} {
@@ -45,10 +54,19 @@ proc eval_enable_to_testend {} {
     return 0
 }
 
-proc eval_testend_to_shutdown {} {
+proc eval_enable_to_disable {} {
 	variable m_cmd
 
-	if {$m_cmd == "TESTEND"} {
+	if {$m_cmd == "DISABLE"} {
+		return 1
+	}
+    return 0
+}
+
+proc eval_disable_to_shutdown {} {
+	variable m_cmd
+
+	if {$m_cmd == "SHUTDOWN"} {
 		return 1
 	}
     return 0
@@ -65,10 +83,8 @@ proc act_enable_to_testend {} {
     return
 }
 
-proc act_testend_to_shutdown {} {
+proc act_disable_to_shutdown {} {
 	variable m_cid
-	puts $m_cid SHUTDOWN 
-	flush $m_cid
     return
 }
 

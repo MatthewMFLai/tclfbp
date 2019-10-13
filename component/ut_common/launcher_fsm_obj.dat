@@ -1,18 +1,22 @@
 #Node section
 #Name process_proc
 BEGIN_STATE 
+ORIGIN OBJNAME_FSM::process_generic
 INIT OBJNAME_FSM::process_generic
+IDENT OBJNAME_FSM::process_generic
 ENABLE OBJNAME_FSM::process_generic
-TESTEND OBJNAME_FSM::process_generic
+DISABLE OBJNAME_FSM::process_generic
 SHUTDOWN OBJNAME_FSM::process_generic
 END_STATE
 
 #Link section
 #from_state to_state eval_proc action_proc
 BEGIN_LINK
-INIT ENABLE OBJNAME_FSM::eval_init_to_enable OBJNAME_FSM::act_init_to_enable 
-ENABLE TESTEND OBJNAME_FSM::eval_enable_to_testend OBJNAME_FSM::act_enable_to_testend
-TESTEND SHUTDOWN OBJNAME_FSM::eval_testend_to_shutdown OBJNAME_FSM::act_testend_to_shutdown
+ORIGIN INIT OBJNAME_FSM::eval_origin_to_init null 
+INIT IDENT OBJNAME_FSM::eval_init_to_ident null 
+IDENT ENABLE OBJNAME_FSM::eval_ident_to_enable null 
+ENABLE DISABLE OBJNAME_FSM::eval_enable_to_disable null
+DISABLE SHUTDOWN OBJNAME_FSM::eval_disable_to_shutdown OBJNAME_FSM::act_disable_to_shutdown
 END_LINK
 
 #Init section
@@ -22,5 +26,5 @@ END_INIT
 
 #Default state section
 BEGIN_DEFAULT_STATE
-state = INIT
+state = ORIGIN
 END_DEFAULT_STATE

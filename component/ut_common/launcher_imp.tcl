@@ -3,21 +3,96 @@ namespace eval %%% {
 	variable m_cids
 	variable m_node_cid_map
 
-proc Init {} {
+	# For cmd sync. Support 1 fbp mgr only.
+	variable m_max_cids
+	variable m_cid_set
+	variable m_cur_cmd
+	variable m_fbp_mgr_cid
+
+proc Init {fbp_mgr_cid} {
 	variable m_cids
 	variable m_node_cid_map
+	variable m_max_cids
+	variable m_cid_set
+	variable m_cur_cmd
+	variable m_fbp_mgr_cid
 
 	set m_cids ""
 	array set m_node_cid_map {}
+	set m_max_cids 0 
+	set m_cid_set ""
+	set m_cur_cmd ""
+	set m_fbp_mgr_cid $fbp_mgr_cid 
 	return
 }
 
+# For cmd sync
+proc Cmd_set {cmd} {
+	variable m_cur_cmd
+
+	if {$m_cur_cmd != ""} {
+		if {$m_cur_cmd == $m_cur_cmd} {
+			return "CMD_SAME"
+		} else {
+			return "CMD_IN_PROGRESS"
+		}
+	}
+	set m_cur_cmd $cmd
+	return "CMD_OK"
+}
+
+proc Cmd_get {} {
+	variable m_cur_cmd
+
+	return $m_cur_cmd
+}
+
+proc Cmd_clr {} {
+	variable m_cur_cmd
+
+	set m_cur_cmd "" 
+	return
+}
+
+proc Handle_Fbp_Mgr {cid request} {
+	variable m_cids
+	variable m_node_cid_map
+	variable m_cid_set
+	variable m_cur_cmd
+
+	set cmd [lindex $request 1]
+	if {[Cmd_set $cmd] == "CMD_OK"} {
+		set m_cid_set $m_cids
+		foreach to_cid $m_cids {
+			puts $to_cid $cmd
+			flush $to_cid 	
+		}
+	} else {
+
+	}
+	return	
+}
+
+proc Get_Fbp_Mgr_Cid {} {
+	variable m_fbp_mgr_cid
+
+	return $m_fbp_mgr_cid
+}
+
+# End for cmd sync
+
 proc Add_cid {cid} {
 	variable m_cids
+	variable m_max_cids
+	variable m_fbp_mgr_cid
 
 	lappend m_cids $cid
-	puts $cid "IDENT"
-	flush $cid
+	if {[llength $m_cids] == $m_max_cids} {
+		puts $m_fbp_mgr_cid "CREATE OK"
+		flush $m_fbp_mgr_cid
+	}
+	#puts $cid "IDENT"
+	#flush $cid
     return
 }
 
@@ -34,11 +109,13 @@ proc Remove_cid {cid} {
 	if {$idx != -1} {
 		set m_cids [lreplace $m_cids $idx $idx]
 	}
-	return
+	return $idx
 }
 
 proc Handle_cid {cid request} {
 	variable m_node_cid_map
+	variable m_cid_set
+	variable m_fbp_mgr_cid
 
 	set cmd [lindex $request 0]
 	set data [lindex $request 1]
@@ -46,29 +123,32 @@ proc Handle_cid {cid request} {
 	if {$cmd == "IDENT"} {
 		# Set up node to cid mapping
 		Update_Fsm [Get_Fsm_Id $data] $cid
-		puts $cid INIT
-		flush $cid
-
+	} 
+	if {$cmd == "TESTEND"} {
+		puts $m_fbp_mgr_cid "TESTEND"
+		flush $m_fbp_mgr_cid
 	} else {
 		array set arg_array {}
-        set arg_array(cid) $cid
-        set arg_array(cmd) $cmd
-        set arg_array(data) $data
+		set arg_array(cid) $cid
+		set arg_array(cmd) $cmd
+		set arg_array(data) $data
 		Fsm::Run [Find_Fsm $cid] arg_array
-		if {$cmd == "TESTEND"} {
-			foreach nodename [array names m_node_cid_map] {
-				if {$m_node_cid_map($nodename) == $cid} {
-					continue
-				}
-				set arg_array(cid) $m_node_cid_map($nodename)
-				Fsm::Run $nodename arg_array
+		# For cmd sync
+		set idx [lsearch $m_cid_set $cid]
+		if {$idx != -1} {
+			set m_cid_set [lreplace $m_cid_set $idx $idx]
+			if {$m_cid_set == ""} {
+				Cmd_clr
+				puts $m_fbp_mgr_cid "$cmd OK"
+				flush $m_fbp_mgr_cid
 			}
 		}
-	} 
+	}
 	return
 }
 
 proc Setup {nodefile linkfile fsm_obj_file templatefile} {
+	variable m_max_cids
 	global env
 	set keys ""
 
@@ -81,6 +161,8 @@ proc Setup {nodefile linkfile fsm_obj_file templatefile} {
 
 		# Create Fsm object for each node.
 		Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
+
+		incr m_max_cids
 	}
 	close $fd
 

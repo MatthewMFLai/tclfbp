@@ -1,7 +1,8 @@
 # Sample API calling
 # runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1}
+# runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1 10}
 #
-proc runit {filename curdir} {
+proc runit {filename curdir {queue_size 4}} {
 	global env
 
 	set filename_str $filename
@@ -50,7 +51,6 @@ proc runit {filename curdir} {
     # Here data(inports) = dut(inports), data(outports) = dut(outports)
     # Map dut(outports) to tdr(inports), tdr(outports) to dut(inports)
     set fd [open $curdir/$newname.link w]
-    set queue_size 4
     if {[info exists data(outports)]} {
         foreach outport $data(outports) {
             set port [lindex $outport 0]
@@ -64,6 +64,16 @@ proc runit {filename curdir} {
         } 
     }
     close $fd
+
+	# Generate the agent.tcl with COMPONENTTESTDIR substituted
+	# with curdir
+	set fd [open $env(COMP_HOME)/ut_common/agent.tcl.template r]
+	set template [read $fd]
+	close $fd
+	regsub -all "COMPONENTTESTDIR" $template $curdir_str template
+	set fd [open $curdir/agent.tcl w]
+	puts $fd $template
+	close $fd
 
 	# Generate the launcher.test with COMPONENTTESTDIR substituted
 	# with curdir
