@@ -66,6 +66,7 @@ proc fbp_mgr_server_accept {cid addr port} {
 
 proc fbp_mgr_server_handle {cid} {
 	global forever env
+    global g_workdir
 
     if {[gets $cid request] < 0} {
 
@@ -83,9 +84,10 @@ proc fbp_mgr_server_handle {cid} {
 			PortToLauncher::Add $alloc_port $launcher 
 
 			${launcher}::Init $cid
-			set compdir $env(HOME)/tclfbp/component/combo/test1 
-			${launcher}::Setup $compdir/test.node $compdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 
+			${launcher}::Setup $g_workdir/test.node $g_workdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
+			file delete $g_workdir/test.node
+			file delete $g_workdir/test.link
 			${launcher}::Execute $alloc_port
 
 		} elseif {$cmd == "CLEANUP"} {
@@ -112,6 +114,26 @@ proc fbp_mgr_server_handle {cid} {
 	}
 }
 
+#-----------------------------------------------------------
+# File receive utility
+#
+proc receive_file {channel_name client_address client_port} {
+    global g_workdir
+
+    fconfigure $channel_name -translation binary
+    gets $channel_name line
+    foreach {name size} $line {}
+
+    set fully_qualified_filename [file join $g_workdir $name]
+    set fp [open $fully_qualified_filename w]
+    fconfigure $fp -translation binary
+
+    fcopy $channel_name $fp -size $size
+
+    close $channel_name
+    close $fp
+}
+#-----------------------------------------------------------
 load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
@@ -132,7 +154,9 @@ Fsm::Init
 
 Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 
-set fbp_mgr_sd [socket -server fbp_mgr_server_accept 14000]
+set g_workdir $env(DISK2)/scratchpad
+socket -server fbp_mgr_server_accept 14000
+socket -server receive_file 14001 
 
 vwait forever
 

@@ -65,16 +65,6 @@ proc runit {filename curdir {queue_size 4}} {
     }
     close $fd
 
-	# Generate the agent.tcl with COMPONENTTESTDIR substituted
-	# with curdir
-	set fd [open $env(COMP_HOME)/ut_common/agent.tcl.template r]
-	set template [read $fd]
-	close $fd
-	regsub -all "COMPONENTTESTDIR" $template $curdir_str template
-	set fd [open $curdir/agent.tcl w]
-	puts $fd $template
-	close $fd
-
 	# Generate the launcher.test with COMPONENTTESTDIR substituted
 	# with curdir
 	set fd [open $env(COMP_HOME)/ut_common/launcher.test.template r]
