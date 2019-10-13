@@ -1,15 +1,9 @@
-proc process {count} {
+proc process {} {
     global g_msgcount
 
     array set msgin {}
     port_read IN-1 msgin 
     incr g_msgcount
-
-    if {$count == 0} {
-        foreach idx [array names msgin] {
-            #puts $msgin($idx)
-        }
-    }
 
     port_write OUT-1 msgin
     return

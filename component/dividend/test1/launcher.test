@@ -1,109 +1,70 @@
-namespace eval PortToLauncher {
-    variable m_portlaunchmap
-
-proc Init {} {
-    variable m_portlaunchmap
-
-}
-
-proc Add {port launcher} {
-    variable m_portlaunchmap
-
-    set m_portlaunchmap($port) $launcher
-    return
-}
-
-proc Get {port} {
-    variable m_portlaunchmap
-
-    if {[info exists m_portlaunchmap($port)]} { 
-    	return $m_portlaunchmap($port)
-    } else {
-		return ""
-	}
-}
-
-}
-
-# socket server section
-proc server_accept {cid addr port} {
-
-    set launcher_obj [PortToLauncher::Get [lindex [fconfigure $cid -sockname] 2]]
-    ${launcher_obj}::Add_cid $cid
-    fileevent $cid readable "server_handle $cid"
-    fconfigure $cid -buffering line
-}
-
-proc server_handle {cid} {
-	global forever
-	global g_result
-
-    set launcher_obj [PortToLauncher::Get [lindex [fconfigure $cid -sockname] 2]]
-    if {[gets $cid request] < 0} {
-		${launcher_obj}::Remove_cid $cid
-
-		if {![${launcher_obj}::Length_cid]} {
-			set forever 1
-			set g_result "pass"
-		}
-
-    } else {
-		# Custom code to handle initialization.
-		#
-		${launcher_obj}::Handle_cid $cid $request
-	}
-}
-
 package require tcltest
 namespace import ::tcltest::*
 
 workingDirectory $env(HOME)/tclfbp/component/dividend/test1 
 
-test tc-1.1 {test 2 node setup} -setup {
-
-load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem
-source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
-source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
-source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
-
-source $env(COMP_HOME)/ut_common/launcher_factory.tcl
-source $env(FSM_HOME)/fsm.tcl
-source $env(PATTERN_HOME)/malloc.tcl
-
-Msgdef::Init
-Blk_helper::Init
-Key_helper::Init /tmp
-queue_init
-port_mgr_init
-
-malloc::init
-Fsm::Init
-
-Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
-Launcher_Obj::Create "graph1"
-set launcher [Launcher_Obj::Get_Obj "graph1"]
-
-set sd [socket -server server_accept 0]
-set alloc_port [lindex [fconfigure $sd -sockname] 2]
-PortToLauncher::Add $alloc_port $launcher 
-
-${launcher}::Init
-set compdir $env(HOME)/tclfbp/component/dividend/test1 
-${launcher}::Setup $compdir/test.node $compdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
+test tc-1.1 {test cloner} -setup {
 
 } -body {
 
-${launcher}::Execute $alloc_port
-vwait forever
-global g_result 
-set g_result 
+set cmd "exec tclsh $env(HOME)/tclfbp/component/dividend/test1/agent.tcl &"
+eval $cmd
+after 100
+
+set sd [socket localhost 14000]
+
+puts $sd "graph1 CREATE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 INIT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 IDENT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 ENABLE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+# Expect TESTEND
+gets $sd result 
+#puts "rc = $rc"
+
+puts $sd "graph1 DISABLE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 SHUTDOWN"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 CLEANUP"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "graph1 IDENT_AGENT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+set process_id [lindex $rc 1]
+exec kill -9 $process_id
+
+set result
 
 } -cleanup {
 
-	${launcher}::Cleanup
-    Key_helper::Delete_all_keys
-
-} -result {pass}
+} -result {TESTEND}
 
 cleanupTests
 
