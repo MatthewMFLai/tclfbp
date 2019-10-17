@@ -1,0 +1,4 @@
+name test
+filepath $env(HOME)/tclfbp/component/2.0/source/test1
+inports {1 $env(COMP_HOME)/msgdef/test/test0.msg}
+outports {1 $env(COMP_HOME)/msgdef/test/test0.msg}

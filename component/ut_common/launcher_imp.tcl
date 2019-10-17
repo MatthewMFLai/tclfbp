@@ -124,8 +124,8 @@ proc Handle_cid {cid request} {
 		# Set up node to cid mapping
 		Update_Fsm [Get_Fsm_Id $data] $cid
 	} 
-	if {$cmd == "TESTEND"} {
-		puts $m_fbp_mgr_cid "TESTEND"
+	if {$cmd == "TESTEND" || $cmd == "TESTFAIL"} {
+		puts $m_fbp_mgr_cid "$cmd"
 		flush $m_fbp_mgr_cid
 	} else {
 		array set arg_array {}

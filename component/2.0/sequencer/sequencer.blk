@@ -1,0 +1,6 @@
+name sequencer 
+filepath $env(COMP_HOME)/2.0/sequencer
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/test/test0.msg} {2 $env(COMP_HOME)/msgdef/test/test0.msg} {3 $env(COMP_HOME)/msgdef/test/test0.msg} 
+outports {1 $env(COMP_HOME)/msgdef/test/test0.msg}

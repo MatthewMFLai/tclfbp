@@ -1,0 +1,6 @@
+name source 
+filepath $env(COMP_HOME)/2.0/source
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/test/test0.msg}
+outports {1 $env(COMP_HOME)/msgdef/test/test0.msg}

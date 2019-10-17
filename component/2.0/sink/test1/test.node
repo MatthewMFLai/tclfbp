@@ -1,0 +1,2 @@
+tdr $env(HOME)/tclfbp/component/2.0/sink/test1/test.blk
+dut $env(HOME)/tclfbp/component/2.0/sink/sink.blk
