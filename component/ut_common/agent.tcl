@@ -94,6 +94,7 @@ proc fbp_mgr_server_handle {cid} {
 			set launcher [Launcher_Obj::Get_Obj $id]
 			if {$launcher != ""} {
 				${launcher}::Cleanup $id
+				Blk_helper::Clean $id
 				Key_helper::Delete_all_keys $id
 				set sd [${launcher}::Get_Fbp_Mgr_Cid]
 				namespace delete $launcher

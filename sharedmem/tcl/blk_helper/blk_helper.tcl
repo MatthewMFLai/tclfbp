@@ -23,6 +23,25 @@ proc Init {} {
     return
 }
 
+proc Clean {id} {
+    variable m_node
+    variable m_node_ports
+    variable m_keys
+
+	if {[info exists m_keys($id)]} {
+		unset m_keys($id)
+	}
+
+	foreach nodename [array names m_node "$id-*"] {
+		unset m_node($nodename)
+	}
+
+	foreach idx [array names m_node_ports "$id-*"] {
+		unset m_node_ports($idx)
+	}
+	return
+}
+
 proc Parse {blkfile} {
     global env
     variable m_name
@@ -83,7 +102,6 @@ proc Add_node {id nodename compname} {
     variable m_name
     variable m_filepath
     variable m_node
-    variable m_node_ports
 
 	set nodename $id-$nodename
     if {[lsearch $m_name $compname] == -1} {
