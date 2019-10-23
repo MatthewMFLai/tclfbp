@@ -12,10 +12,11 @@ Key_helper::Init /tmp
 } -body {
 
 set line "n1 1 n2 1"
-set key [Key_helper::Create_key $line]
+set id "graph1"
+set key [Key_helper::Create_key $id $line]
 # Expect key already exists message.
-Key_helper::Create_key $line
-if {[Key_helper::Get_key $line] == $key} {
+Key_helper::Create_key $id $line
+if {[Key_helper::Get_key $id $line] == $key} {
     puts "key $key is ok"
 }
 # Expect key not exist message
@@ -26,7 +27,7 @@ set rc
 
 } -cleanup {
 
-    Key_helper::Delete_all_keys
+    Key_helper::Delete_all_keys $id
 
 } -result {pass}
 

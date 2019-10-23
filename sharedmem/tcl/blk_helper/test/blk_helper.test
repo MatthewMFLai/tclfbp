@@ -17,13 +17,14 @@ Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
 set keys ""
+set id "graph1"
 
 set fd [open $compdir/test2.node r]
 while {[gets $fd line] > -1} {
     set nodename [lindex $line 0]
     set compfile [subst [lindex $line 1]]
     set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $nodename $compname
+    Blk_helper::Add_node $id $nodename $compname
 }
 close $fd
 
@@ -36,8 +37,8 @@ while {[gets $fd line] > -1} {
     set toport [lindex $line 3]
     set fifo_len [lindex $line 4]
 
-    set frommsgname [Blk_helper::Get_port_msgdef $fromname 0 $fromport]
-    set tomsgname [Blk_helper::Get_port_msgdef $toname 1 $toport]
+    set frommsgname [Blk_helper::Get_port_msgdef $id $fromname 0 $fromport]
+    set tomsgname [Blk_helper::Get_port_msgdef $id $toname 1 $toport]
     if {$frommsgname != $tomsgname} {
         puts "$line not professed for incompatible msgdef $frommsgname vs $tomsgname"
         continue
@@ -46,16 +47,16 @@ while {[gets $fd line] > -1} {
     set msgname [Msgdef::Parse $frommsgname]
     set size [Msgdef::Get_Max_Size $msgname]
 
-    set key [Key_helper::Create_key $line]
-    Blk_helper::Add_fifo_len $fromname 0 $fromport $key $fifo_len $size
-    Blk_helper::Add_fifo_len $toname 1 $toport $key $fifo_len $size
+    set key [Key_helper::Create_key $id $line]
+    Blk_helper::Add_fifo_len $id $fromname 0 $fromport $key $fifo_len $size
+    Blk_helper::Add_fifo_len $id $toname 1 $toport $key $fifo_len $size
     lappend keys $key
 }
 close $fd
 
 Blk_helper::Dump
-puts [Blk_helper::Gen_str n1]
-puts [Blk_helper::Gen_str n2]
+puts [Blk_helper::Gen_str $id-n1]
+puts [Blk_helper::Gen_str $id-n2]
 
 set rc "pass"
 set rc
@@ -66,7 +67,7 @@ set rc
 
 } -cleanup {
 
-Key_helper::Delete_all_keys
+Key_helper::Delete_all_keys $id
 
 } -result {pass}
 

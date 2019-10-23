@@ -15,11 +15,11 @@ proc Init {key_dir} {
 # Expect space separated, unique string input for creating a key
 # eg.
 # n1 1 n2 1
-proc Create_key {idxstr} {
+proc Create_key {id idxstr} {
     variable m_keys_dir
     variable m_keys
     
-    set key $m_keys_dir/[join $idxstr "-"]
+    set key $m_keys_dir/$id-[join $idxstr "-"]
     if {[lsearch $m_keys $key] != -1} {
         puts "key for $idxstr already exists!"
         return
@@ -46,11 +46,11 @@ proc Delete_key {key} {
     return
 }
 
-proc Get_key {idxstr} {
+proc Get_key {id idxstr} {
     variable m_keys_dir
     variable m_keys
     
-    set key $m_keys_dir/[join $idxstr "-"]
+    set key $m_keys_dir/$id-[join $idxstr "-"]
     if {[lsearch $m_keys $key] != -1} {
         return ""
     }
@@ -58,21 +58,35 @@ proc Get_key {idxstr} {
     return $key
 }
 
-proc Get_all_keys {} {
+proc Get_all_keys {id} {
     variable m_keys
+    variable m_keys_dir
 
-	return $m_keys
+	set rc ""
+	foreach key $m_keys {
+		if {[string first "$m_keys_dir/$id-" $key] == 0} {
+			lappend rc $key
+		}
+	}	
+	return $rc
 }
  
-proc Delete_all_keys {} {
+proc Delete_all_keys {id} {
     variable m_keys_dir
     variable m_keys
     
-
+	set delete_keys ""
     foreach key $m_keys { 
-        file delete -force $key
+		if {[string first "$m_keys_dir/$id-" $key] == 0} {
+        	file delete -force $key
+			lappend delete_keys $key
+		}
     }
-    set m_keys ""
+
+	foreach key $delete_keys {
+		set idx [lsearch $m_keys $key]
+		set m_keys [lreplace $m_keys $idx $idx]
+	}
     return
 }
 

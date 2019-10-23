@@ -1,0 +1,6 @@
+name cloner 
+filepath /Users/matthewlai/tclfbp/component/cloner2 
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg}
+outports {1 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg} {2 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg} 

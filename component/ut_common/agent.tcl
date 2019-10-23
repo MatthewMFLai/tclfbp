@@ -85,16 +85,16 @@ proc fbp_mgr_server_handle {cid} {
 
 			${launcher}::Init $cid
 
-			${launcher}::Setup $g_workdir/test.node $g_workdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
+			${launcher}::Setup $id $g_workdir/test.node $g_workdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 			file delete $g_workdir/test.node
 			file delete $g_workdir/test.link
-			${launcher}::Execute $alloc_port
+			${launcher}::Execute $id $alloc_port
 
 		} elseif {$cmd == "CLEANUP"} {
 			set launcher [Launcher_Obj::Get_Obj $id]
 			if {$launcher != ""} {
-				${launcher}::Cleanup
-				Key_helper::Delete_all_keys
+				${launcher}::Cleanup $id
+				Key_helper::Delete_all_keys $id
 				set sd [${launcher}::Get_Fbp_Mgr_Cid]
 				namespace delete $launcher
 				puts $sd "$cmd OK"

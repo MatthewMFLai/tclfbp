@@ -55,13 +55,14 @@ Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
 set keys ""
+set id "graph1"
 
 set fd [open $compdir/test2.node r]
 while {[gets $fd line] > -1} {
     set nodename [lindex $line 0]
     set compfile [subst [lindex $line 1]]
     set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $nodename $compname
+    Blk_helper::Add_node $id $nodename $compname
 }
 close $fd
 
@@ -74,8 +75,8 @@ while {[gets $fd line] > -1} {
     set toport [lindex $line 3]
     set fifo_len [lindex $line 4]
 
-    set frommsgname [Blk_helper::Get_port_msgdef $fromname 0 $fromport]
-    set tomsgname [Blk_helper::Get_port_msgdef $toname 1 $toport]
+    set frommsgname [Blk_helper::Get_port_msgdef $id $fromname 0 $fromport]
+    set tomsgname [Blk_helper::Get_port_msgdef $id $toname 1 $toport]
     if {$frommsgname != $tomsgname} {
         puts "$line not professed for incompatible msgdef $frommsgname vs $tomsgname"
         continue
@@ -84,9 +85,9 @@ while {[gets $fd line] > -1} {
     set msgname [Msgdef::Parse $tomsgname]
     set size [Msgdef::Get_Max_Size $msgname]
 
-    set key [Key_helper::Create_key $line]
-    Blk_helper::Add_fifo_len $fromname 0 $fromport $key $fifo_len $size
-    Blk_helper::Add_fifo_len $toname 1 $toport $key $fifo_len $size
+    set key [Key_helper::Create_key $id $line]
+    Blk_helper::Add_fifo_len $id $fromname 0 $fromport $key $fifo_len $size
+    Blk_helper::Add_fifo_len $id $toname 1 $toport $key $fifo_len $size
     lappend keys $key
 }
 close $fd
@@ -106,7 +107,7 @@ port_mgr_add out1 $size
 port_mgr_add out2 $size
 
 # Allocate the sharedmem with the key reference.
-foreach token [Blk_helper::Get_keys] {
+foreach token [Blk_helper::Get_keys $id] {
     set key [lindex $token 0]
     set len [lindex $token 1]
     set size [lindex $token 2]
@@ -215,7 +216,7 @@ set sd [socket -server server_accept 8000]
 
 } -body {
 
-foreach node [Blk_helper::Get_nodes] {
+foreach node [Blk_helper::Get_nodes $id] {
     set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $node INIT localhost:8000 "
     append cmd [Blk_helper::Gen_str $node]
     append cmd " RUNNING 0 &"
@@ -230,7 +231,7 @@ set g_result
 
     stub_cleanup $key1 
     stub_cleanup $key2
-    Key_helper::Delete_all_keys
+    Key_helper::Delete_all_keys $id
 
 } -result {pass}
 

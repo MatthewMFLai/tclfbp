@@ -19,7 +19,7 @@ proc Init {} {
     array set m_ports {}
     array set m_node {}
     array set m_node_ports {}
-    set m_keys ""
+    array set m_keys {} 
     return
 }
 
@@ -79,12 +79,13 @@ proc Parse {blkfile} {
     return $compname 
 }
 
-proc Add_node {nodename compname} {
+proc Add_node {id nodename compname} {
     variable m_name
     variable m_filepath
     variable m_node
     variable m_node_ports
 
+	set nodename $id-$nodename
     if {[lsearch $m_name $compname] == -1} {
         puts "$compname does not exist!"
         return
@@ -98,12 +99,13 @@ proc Add_node {nodename compname} {
     return 
 }
 
-proc Add_fifo_len {nodename in_out portname key fifo_len size} {
+proc Add_fifo_len {id nodename in_out portname key fifo_len size} {
     variable m_ports
     variable m_node
     variable m_node_ports
     variable m_keys
 
+	set nodename $id-$nodename
     if {![info exists m_node($nodename)]} {
         puts "$nodename does not exist!"
         return
@@ -125,18 +127,22 @@ proc Add_fifo_len {nodename in_out portname key fifo_len size} {
         set m_node_ports($nodename,$port) "" 
     }
     lappend m_node_ports($nodename,$port) "$key $fifo_len $size"
- 
-    if {[lsearch $m_keys "$key * *"] == -1} {
-        lappend m_keys "$key $fifo_len $size"
+
+    if {![info exists m_keys($id)]} {
+        set m_keys($id) ""
+    }
+    if {[lsearch $m_keys($id) "$key * *"] == -1} {
+        lappend m_keys($id) "$key $fifo_len $size"
     } 
     return
 }
 
-proc Get_ports {nodename in_out} {
+proc Get_ports {id nodename in_out} {
     variable m_name
     variable m_node
     variable m_ports
 
+	set nodename $id-$nodename
     if {![info exists m_node($nodename)]} {
         puts "$nodename does not exist!"
         return
@@ -157,11 +163,12 @@ proc Get_ports {nodename in_out} {
     return $rc
 }
 
-proc Get_port_msgdef {nodename in_out portname} {
+proc Get_port_msgdef {id nodename in_out portname} {
     variable m_name
     variable m_node
     variable m_ports
 
+	set nodename $id-$nodename
     if {![info exists m_node($nodename)]} {
         puts "$nodename does not exist!"
         return
@@ -182,11 +189,12 @@ proc Get_port_msgdef {nodename in_out portname} {
     return $m_ports($compname,$prefix-$portname)
 }
 
-proc Get_fifo_len {nodename in_out portname} {
+proc Get_fifo_len {id nodename in_out portname} {
     variable m_ports
     variable m_node
     variable m_node_ports
 
+	set nodename $id-$nodename
     if {![info exists m_node($nodename)]} {
         puts "$nodename does not exist!"
         return
@@ -210,10 +218,14 @@ proc Get_fifo_len {nodename in_out portname} {
     return $m_node_ports($nodename,$port)
 }
 
-proc Get_keys {} {
+proc Get_keys {id} {
     variable m_keys
 
-    return $m_keys
+	if {[info exists m_keys($id)]} {	
+    	return $m_keys($id)
+	} else {
+		return ""
+	}
 }
 
 proc Gen_str {nodename} {
@@ -226,7 +238,6 @@ proc Gen_str {nodename} {
     variable m_ports
     variable m_node
     variable m_node_ports
-    variable m_keys
 
     set rc ""
     if {![info exists m_node($nodename)]} {
@@ -272,10 +283,10 @@ proc Gen_str {nodename} {
     return $rc
 }
 
-proc Get_nodes {} {
+proc Get_nodes {id} {
     variable m_node
 
-    return [array names m_node]
+    return [array names m_node "$id-*"]
 }
 
 proc Dump {} {
@@ -315,9 +326,12 @@ proc Dump {} {
     puts ""
 
     puts "Keys:"
-    foreach token $m_keys {
-        puts "[lindex $token 0] [lindex $token 1] [lindex $token 2]"
-    }
+	foreach id [array names m_keys] {
+		puts "ID: $id"
+    	foreach token $m_keys($id) {
+        	puts "[lindex $token 0] [lindex $token 1] [lindex $token 2]"
+    	}
+	}
     return
 }
 

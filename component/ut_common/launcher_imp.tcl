@@ -147,7 +147,7 @@ proc Handle_cid {cid request} {
 	return
 }
 
-proc Setup {nodefile linkfile fsm_obj_file templatefile} {
+proc Setup {id nodefile linkfile fsm_obj_file templatefile} {
 	variable m_max_cids
 	global env
 	set keys ""
@@ -157,7 +157,7 @@ proc Setup {nodefile linkfile fsm_obj_file templatefile} {
     	set nodename [lindex $line 0]
     	set compfile [subst [lindex $line 1]]
     	set compname [Blk_helper::Parse $compfile]
-    	Blk_helper::Add_node $nodename $compname
+    	Blk_helper::Add_node $id $nodename $compname
 
 		# Create Fsm object for each node.
 		Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
@@ -174,8 +174,8 @@ proc Setup {nodefile linkfile fsm_obj_file templatefile} {
     	set toport [lindex $line 3]
     	set fifo_len [lindex $line 4]
 
-    	set frommsgname [Blk_helper::Get_port_msgdef $fromname 0 $fromport]
-    	set tomsgname [Blk_helper::Get_port_msgdef $toname 1 $toport]
+    	set frommsgname [Blk_helper::Get_port_msgdef $id $fromname 0 $fromport]
+    	set tomsgname [Blk_helper::Get_port_msgdef $id $toname 1 $toport]
     	if {$frommsgname != $tomsgname} {
         	puts "$line not professed for incompatible msgdef $frommsgname vs $tomsgname"
         	continue
@@ -184,15 +184,15 @@ proc Setup {nodefile linkfile fsm_obj_file templatefile} {
     	set msgname [Msgdef::Parse $tomsgname]
     	set size [Msgdef::Get_Max_Size $msgname]
 
-    	set key [Key_helper::Create_key $line]
-    	Blk_helper::Add_fifo_len $fromname 0 $fromport $key $fifo_len $size
-    	Blk_helper::Add_fifo_len $toname 1 $toport $key $fifo_len $size
+    	set key [Key_helper::Create_key $id $line]
+    	Blk_helper::Add_fifo_len $id $fromname 0 $fromport $key $fifo_len $size
+    	Blk_helper::Add_fifo_len $id $toname 1 $toport $key $fifo_len $size
     	lappend keys $key
 	}
 	close $fd
 
 	# Allocate the sharedmem with the key reference.
-	foreach token [Blk_helper::Get_keys] {
+	foreach token [Blk_helper::Get_keys $id] {
     	set key [lindex $token 0]
     	set len [lindex $token 1]
     	set size [lindex $token 2]
@@ -202,10 +202,10 @@ proc Setup {nodefile linkfile fsm_obj_file templatefile} {
 	}
 }
 
-proc Execute {alloc_port} {
+proc Execute {id alloc_port} {
 	global env
 
-	foreach node [Blk_helper::Get_nodes] {
+	foreach node [Blk_helper::Get_nodes $id] {
     	set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $node INIT localhost:$alloc_port "
     	append cmd [Blk_helper::Gen_str $node]
     	append cmd " RUNNING 0 &"
@@ -213,8 +213,8 @@ proc Execute {alloc_port} {
 	}
 }
 
-proc Cleanup {} {
-	foreach key [Key_helper::Get_all_keys] {
+proc Cleanup {id} {
+	foreach key [Key_helper::Get_all_keys $id] {
 		stub_cleanup $key
 	}
 	return

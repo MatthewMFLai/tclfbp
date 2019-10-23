@@ -1,0 +1,4 @@
+name test
+filepath $env(HOME)/tclfbp/component/cloner2/test1
+inports {1 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg} {2 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg}
+outports {1 /Users/matthewlai/tclfbp/component/msgdef/test/test0.msg}

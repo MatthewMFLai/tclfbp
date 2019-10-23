@@ -213,9 +213,10 @@ Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
 set keys ""
+set id "graph1"
 set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]
-set key [Key_helper::Create_key "test-key"]
+set key [Key_helper::Create_key $id "test-key"]
 puts "key = $key"
 set len 4 
 
@@ -252,7 +253,7 @@ set forever
 } -cleanup {
 
 stub_cleanup $key
-Key_helper::Delete_all_keys
+Key_helper::Delete_all_keys $id
 
 } -result {pass}
 

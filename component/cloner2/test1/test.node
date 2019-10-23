@@ -1,0 +1,2 @@
+tdr $env(HOME)/tclfbp/component/cloner2/test1/test.blk
+dut $env(HOME)/tclfbp/component/cloner2/cloner.blk
