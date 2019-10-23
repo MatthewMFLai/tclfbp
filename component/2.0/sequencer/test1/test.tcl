@@ -57,7 +57,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-2 msgin
     if {$msgin(f1) != "cccc"} {
 		client_send "TESTFAIL"
 		return
@@ -65,7 +65,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-2 msgin
     if {$msgin(f1) != "dddd"} {
 		client_send "TESTFAIL"
 		return
@@ -73,7 +73,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-3 msgin
     if {$msgin(f1) != "eeee"} {
 		client_send "TESTFAIL"
 		return
@@ -81,7 +81,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-3 msgin
     if {$msgin(f1) != "ffff"} {
 		client_send "TESTFAIL"
 		return
@@ -105,7 +105,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-2 msgin
     if {$msgin(f1) != "cccc"} {
 		client_send "TESTFAIL"
 		return
@@ -113,7 +113,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-2 msgin
     if {$msgin(f1) != "dddd"} {
 		client_send "TESTFAIL"
 		return
@@ -121,7 +121,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-3 msgin
     if {$msgin(f1) != "eeee"} {
 		client_send "TESTFAIL"
 		return
@@ -129,7 +129,7 @@ proc process {} {
 	unset msgin
 
     array set msgin {}
-    port_read IN-1 msgin
+    port_read IN-3 msgin
     if {$msgin(f1) != "ffff"} {
 		client_send "TESTFAIL"
 		return

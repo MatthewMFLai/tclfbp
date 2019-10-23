@@ -1,0 +1,14 @@
+puts $sd "graph1 DISABLE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd "graph1 SHUTDOWN"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd "graph1 CLEANUP"
+flush $sd
+gets $sd rc
+puts "rc = $rc"

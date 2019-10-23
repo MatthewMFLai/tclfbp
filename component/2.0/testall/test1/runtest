@@ -1,0 +1,26 @@
+source sendfile.tcl
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/test.node localhost 14001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/test.link localhost 14001
+
+set sd [socket localhost 14000]
+
+puts $sd "graph1 CREATE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd "graph1 INIT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd "graph1 IDENT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd "graph1 ENABLE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+

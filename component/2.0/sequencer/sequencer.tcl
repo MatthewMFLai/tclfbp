@@ -5,6 +5,7 @@ proc process {} {
 
     array set msgin {}
 	port_read IN-$g_port msgin
+    port_write OUT-$g_port msgin
 	incr g_count -1
 	if {$g_count == 0} {
 		set g_count $g_count_max
@@ -13,7 +14,6 @@ proc process {} {
 			set g_port 1
 		}
 	}
-    port_write OUT-1 msgin
     return
 }
 

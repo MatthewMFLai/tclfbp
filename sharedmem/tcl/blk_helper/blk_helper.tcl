@@ -248,11 +248,12 @@ proc Gen_str {nodename} {
         append rc $port
         append rc " "
         append rc $m_ports($compname,$port)
-        append rc ":"
-        set keydata [lindex $m_node_ports($nodename,$port) 0]
-        append rc [lindex $keydata 0]
-        append rc ":"
-        append rc [lindex $keydata 1]
+        foreach keydata $m_node_ports($nodename,$port) { 
+        	append rc ":"
+        	append rc [lindex $keydata 0]
+        	append rc ":"
+        	append rc [lindex $keydata 1]
+		}
         append rc " "
     }
     foreach port $outports {

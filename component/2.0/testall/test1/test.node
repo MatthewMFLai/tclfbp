@@ -1,0 +1,11 @@
+seq $env(HOME)/tclfbp/component/2.0/sequencer/sequencer.blk
+src1 $env(HOME)/tclfbp/component/2.0/source/source.blk
+src2 $env(HOME)/tclfbp/component/2.0/source/source.blk
+src3 $env(HOME)/tclfbp/component/2.0/source/source.blk
+trc1 $env(HOME)/tclfbp/component/2.0/tracer/tracer.blk
+trc2 $env(HOME)/tclfbp/component/2.0/tracer/tracer.blk
+trc3 $env(HOME)/tclfbp/component/2.0/tracer/tracer.blk
+sink $env(HOME)/tclfbp/component/2.0/sink/sink.blk
+clo1 $env(HOME)/tclfbp/component/cloner2/cloner.blk
+clo2 $env(HOME)/tclfbp/component/cloner2/cloner.blk
+clo3 $env(HOME)/tclfbp/component/cloner2/cloner.blk
