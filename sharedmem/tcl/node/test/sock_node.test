@@ -27,7 +27,7 @@ proc EchoAccept {sock addr port} {
 
     # Record the client's information
 
-    puts "Accept $sock from $addr port $port"
+    puts "Echo accept $sock from $addr port $port"
     set echo(addr,$sock) [list $addr $port]
 
     # Ensure that each "puts" by the server
@@ -72,18 +72,17 @@ proc EchoMatchKey {sock} {
 
 proc Echo {sock} {
     global echo
-    global forever
     global g_count
     global g_bcd_msg_list
-    global g_admin_sock 
+	global g_admin_sock
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
 
     if {[eof $sock] || [catch {gets $sock line}]} {
-	close $sock
-	puts "Close $echo(addr,$sock)"
-	unset echo(addr,$sock)
+		close $sock
+		puts "Close $echo(addr,$sock)"
+		unset echo(addr,$sock)
     } else {
         set src_line [lindex $g_bcd_msg_list $g_count]
         if {$src_line == $line} {
@@ -93,11 +92,13 @@ proc Echo {sock} {
             puts "src line: $src_line"
             puts "rxd line: $line"
         }
-	puts $sock $line
+		puts $sock $line
         incr g_count
         if {$g_count == 3} {
-            close $g_admin_sock
-            set forever pass 
+            #close $g_admin_sock
+            #set forever pass
+			puts $g_admin_sock "DISABLE"
+			flush $g_admin_sock
         }
     }
 }
@@ -128,7 +129,7 @@ proc Admin_Accept {sock addr port} {
 
     # Record the client's information
 
-    puts "Accept $sock from $addr port $port"
+    puts "Admin accept $sock from $addr port $port"
     set g_admin_sock $sock 
 
     # Ensure that each "puts" by the server
@@ -139,6 +140,10 @@ proc Admin_Accept {sock addr port} {
     # Set up a callback for when the client sends data
 
     fileevent $sock readable [list Admin_Handle $sock]
+
+	# Start admin state change.
+	puts $sock "IDENT"
+	flush $sock
 }
 
 # Admin_Handle --
@@ -149,19 +154,88 @@ proc Admin_Accept {sock addr port} {
 #	sock	The socket connection to the client
 
 proc Admin_Handle {sock} {
+	global forever
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
 
     if {[eof $sock] || [catch {gets $sock line}]} {
-	close $sock
+		close $sock
+        set forever pass
     } else {
         #
         #
         #
+		puts "Admin: $line"
+		set cmd [lindex $line 0]
+		if {$cmd == "IDENT"} {
+			puts $sock "INIT"
+			flush $sock
+		} elseif {$cmd == "INIT"} {
+			puts $sock "ENABLE"
+			flush $sock
+		} elseif {$cmd == "ENABLE"} {
+			send_test_msgs
+		} elseif {$cmd == "DISABLE"} {
+			puts $sock "SHUTDOWN"
+			flush $sock
+		} 
     }
 }
 #--------------------------------------------------
+
+proc send_test_msgs {} {
+	global g_bcd_msg_list
+	global g_msgname
+	global g_key
+
+	array set msgattr {}
+	Msgdef::Get_Attr_Offset $g_msgname msgattr
+	array set msgdata {}
+	Msgdef::Factory $g_msgname msgdata
+	set msgdata(f1) 11111111
+	set msgdata(f2) 22222222 
+	set msgdata(f3) 33333333 
+	set msgdata(f4) 44444444 
+	foreach idx [array names msgdata] {
+    	port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+	}
+	unset msgdata
+
+	key_mgr_set_buff $g_key [port_mgr_get_msg out1]
+	lappend g_bcd_msg_list [key_mgr_bcd_get $g_key]
+	sv_csr_write_wrapper $g_key [port_mgr_get_msg out1]
+
+	array set msgdata {}
+	Msgdef::Factory $g_msgname msgdata
+	set msgdata(f1) eeeeeeee 
+	set msgdata(f2) ffffffff 
+	set msgdata(f3) gggggggg 
+	set msgdata(f4) hhhhhhhh 
+	foreach idx [array names msgdata] {
+    	port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+	}
+	unset msgdata
+
+	key_mgr_set_buff $g_key [port_mgr_get_msg out1]
+	lappend g_bcd_msg_list [key_mgr_bcd_get $g_key]
+	sv_csr_write_wrapper $g_key [port_mgr_get_msg out1]
+
+	array set msgdata {}
+	Msgdef::Factory $g_msgname msgdata
+	set msgdata(f1) 55555555 
+	set msgdata(f2) 66666666 
+	set msgdata(f3) 77777777 
+	set msgdata(f4) 88888888 
+	foreach idx [array names msgdata] {
+    	port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
+	}
+	unset msgdata
+
+	key_mgr_set_buff $g_key [port_mgr_get_msg out1]
+	lappend g_bcd_msg_list [key_mgr_bcd_get $g_key]
+	sv_csr_write_wrapper $g_key [port_mgr_get_msg out1]
+}
 
 package require tcltest
 namespace import ::tcltest::*
@@ -182,78 +256,23 @@ set compdir $env(COMP_HOME)/test
 set keys ""
 set id "graph1"
 
-set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
-set size [Msgdef::Get_Max_Size $msgname]
-set key [Key_helper::Create_key $id "test-key"]
-puts "key = $key"
+set g_msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
+set size [Msgdef::Get_Max_Size $g_msgname]
+set g_key [Key_helper::Create_key $id "test-key"]
+puts "key = $g_key"
 set len 4 
-
-array set msgattr {}
-Msgdef::Get_Attr_Offset $msgname msgattr
 
 queue_init
 port_mgr_init
 key_mgr_init
 
-key_mgr_add $key $size
+key_mgr_add $g_key $size
 port_mgr_add out1 $size
 
-stub_init $key $len $size 
-stub_clear $key $len $size
+stub_init $g_key $len $size 
+stub_clear $g_key $len $size
 
 set g_bcd_msg_list ""
-
-after 2000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) 11111111
-set msgdata(f2) 22222222 
-set msgdata(f3) 33333333 
-set msgdata(f4) 44444444 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-
-}
-
-after 3000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) eeeeeeee 
-set msgdata(f2) ffffffff 
-set msgdata(f3) gggggggg 
-set msgdata(f4) hhhhhhhh 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-}
-
-after 4000 {
-array set msgdata {}
-Msgdef::Factory $msgname msgdata
-set msgdata(f1) 55555555 
-set msgdata(f2) 66666666 
-set msgdata(f3) 77777777 
-set msgdata(f4) 88888888 
-foreach idx [array names msgdata] {
-    port_mgr_msg_set out1 $msgdata($idx) $msgattr($idx)
-}
-unset msgdata
-
-key_mgr_set_buff $key [port_mgr_get_msg out1]
-lappend g_bcd_msg_list [key_mgr_bcd_get $key]
-sv_csr_write_wrapper $key [port_mgr_get_msg out1]
-}
 
 set hostport 13000
 set remoteport 14000
@@ -262,14 +281,14 @@ Echo_Server $remoteport
  
 } -body {
 
-exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK graph1-sock_rtx_1 INIT localhost:$hostport IN-1 "null.msg:$g_key:4:$size" TX_DATA "localhost:0:localhost:$remoteport" &
 vwait forever
 global forever
 set forever
 
 } -cleanup {
 
-stub_cleanup $key
+stub_cleanup $g_key
 Key_helper::Delete_all_keys $id
 
 } -result {pass}

@@ -36,6 +36,49 @@ proc Echo_Client_Handle {cid} {
 # Admin client
 #
 
+proc handle_launcher_rqst {request p_response} {
+    global g_running
+    global g_name
+
+    upvar $p_response response
+    set response ""
+    set rc 0 
+
+    switch -- [lindex $request 0] {
+        IDENT {
+            set response "IDENT $g_name" 
+            set rc 1 
+        }
+        INIT {
+			handle_init
+            set response "INIT ok" 
+            set rc 1 
+        }
+        ENABLE {
+            set g_running 1
+            set response "ENABLE App ruuning"
+            set rc 1 
+        }
+        DISABLE {
+            set g_running 0 
+            set response "DISABLE App stopped"
+            set rc 1 
+        }
+        TEST {
+            set response "TEST ok" 
+            set rc 1 
+        }
+        SHUTDOWN {
+            set rc 0 
+        }
+		default {
+            set response "$request not recognized"
+            set rc 1 
+        }
+    }
+    return $rc
+}
+
 proc Admin_Client {host port} {
     set s [socket $host $port]
     fconfigure $s -buffering line
@@ -44,6 +87,8 @@ proc Admin_Client {host port} {
 }
 
 proc Admin_Client_Handle {cid} {
+	global main-loop
+
     if {[gets $cid request] < 0} {
         close $cid
         # Kludge: for testing only!!!
@@ -51,7 +96,16 @@ proc Admin_Client_Handle {cid} {
     } else {
         # Custom code to handle request.
         #
-        #	
+		set response ""
+        set rc [handle_launcher_rqst $request response]
+		if {$rc == 0} {
+			close $cid
+			set main-loop 1
+			return
+		}
+	    puts $cid $response
+	    flush $cid
+		return	
     }
 }
 
@@ -116,46 +170,53 @@ proc checkagain {} {
     after 10 checkagain
 }
 
-global g_coroutines
-array set g_coroutines {}
+proc handle_init {} {
+	global g_argdata
+	global g_coroutines
+
+	set keydata $g_argdata(IN-1)
+	set tokens [split $keydata ":"]
+	set key [lindex $tokens 1]
+	set size [lindex $tokens 3]
+	set len [lindex $tokens 2]
+
+	set keydata $g_argdata(TX_DATA)
+	set tokens [split $keydata ":"]
+	set from_ipaddr [lindex $tokens 0]
+	set from_port [lindex $tokens 1]
+	set to_ipaddr [lindex $tokens 2]
+	set to_port [lindex $tokens 3]
+
+	key_mgr_add $key $size
+	stub_init $key $len $size
+	set sd [Echo_Client $to_ipaddr $to_port]
+	puts $sd $key
+	gets $sd rc
+	if {$key != $rc} {
+    	puts "$key mismatches $rc"
+	}
+	Echo_Client_Config $sd 
+	coroutine $key-$sd process_tx $key
+	set g_coroutines($key-$sd) "WAIT_MEM" 
+
+	return
+}
 
 load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem 
 queue_init
 key_mgr_init
 
 # argument data looks like this:
-# tclsh node_socif.tcl BLOCK s0:source0 INIT localhost:8000 KEYS {<from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>:<key>:<size>:<len> ... }
+# tclsh node_socif.tcl BLOCK s0:source0 BLOCK <nodename> INIT localhost:8000 IN-1 <msg type>:<key>:<size>:<len> TX_DATA <from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>
 #
-array set argdata $argv 
+array set g_argdata $argv 
+array set g_coroutines {}
 
-set initport [lindex [split $argdata(INIT) ":"] 1]
-set initaddr [lindex [split $argdata(INIT) ":"] 0]
+set initport [lindex [split $g_argdata(INIT) ":"] 1]
+set initaddr [lindex [split $g_argdata(INIT) ":"] 0]
 set init_sd [Admin_Client $initaddr $initport]
-
-foreach keydata $argdata(KEYS) { 
-    set tokens [split $keydata ":"]
-    set key [lindex $tokens 4]
-    set size [lindex $tokens 5]
-    set len [lindex $tokens 6]
-    set from_ipaddr [lindex $tokens 0]
-    set from_port [lindex $tokens 1]
-    set to_ipaddr [lindex $tokens 2]
-    set to_port [lindex $tokens 3]
-
-    key_mgr_add $key $size
-    stub_init $key $len $size
-    set sd [Echo_Client $to_ipaddr $to_port]
-    puts $sd $key
-    gets $sd rc
-    if {$key != $rc} {
-        puts "$key mismatches $rc"
-    }
-    Echo_Client_Config $sd 
-    coroutine $key-$sd process_tx $key
-    set g_coroutines($key-$sd) "WAIT_MEM" 
-} 
-
-set g_running 1 
+set g_name $g_argdata(BLOCK)
+set g_running 0 
 
 after idle checkagain
 
