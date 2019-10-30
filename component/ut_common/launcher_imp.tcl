@@ -2,6 +2,7 @@ namespace eval %%% {
 
 	variable m_cids
 	variable m_node_cid_map
+	variable m_cfg
 
 	# For cmd sync. Support 1 fbp mgr only.
 	variable m_max_cids
@@ -12,10 +13,16 @@ namespace eval %%% {
 proc Init {fbp_mgr_cid} {
 	variable m_cids
 	variable m_node_cid_map
+	variable m_cfg
 	variable m_max_cids
 	variable m_cid_set
 	variable m_cur_cmd
 	variable m_fbp_mgr_cid
+	global env
+
+	set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg
+	array set m_cfg {}
+	source $cfgfile
 
 	set m_cids ""
 	array set m_node_cid_map {}
@@ -91,8 +98,6 @@ proc Add_cid {cid} {
 		puts $m_fbp_mgr_cid "CREATE OK"
 		flush $m_fbp_mgr_cid
 	}
-	#puts $cid "IDENT"
-	#flush $cid
     return
 }
 
@@ -147,22 +152,50 @@ proc Handle_cid {cid request} {
 	return
 }
 
-proc Setup {id nodefile linkfile fsm_obj_file templatefile} {
+proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 	variable m_max_cids
+	variable m_cfg
 	global env
 	set keys ""
 
+	# A temporary mapping table to map the SOCK_RTX_* to local and remote ip.
+	# eg. SOCK_RTX_1 ... ip
+	#     SOCK_RTX_1 ... ip2
+	# will result in sock_ip_map(SOCK_RTX_1) {ip ip2}
+	array set sock_ip_map {}
+	
 	set fd [open $nodefile r]
 	while {[gets $fd line] > -1} {
     	set nodename [lindex $line 0]
     	set compfile [subst [lindex $line 1]]
+    	set node_ip [lindex $line 2]
+		if {$node_ip == ""} {
+			set node_ip $ip
+		}
+	
+		# Populate nodename to ip mapping table	
+		# Must perform this step before the check for matching ip below
+		# $ip != $node_ip
+		if {[string first $m_cfg(sock_str) $nodename] == 0} {
+			if {![info exists sock_ip_map($nodename)]} {
+				set sock_ip_map($nodename) ""
+			}
+			lappend sock_ip_map($nodename) $node_ip
+		}
+
+		if {$ip != $node_ip} {
+			continue
+		}
     	set compname [Blk_helper::Parse $compfile]
     	Blk_helper::Add_node $id $nodename $compname
 
-		# Create Fsm object for each node.
-		Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
+		# sock rx does not need to be created as it exists as a separate daemon.
+		if {$compname != $m_cfg(sock_rx)} {
+			# Create Fsm object for each node.
+			Create_Fsm [Get_Fsm_Id $nodename] $fsm_obj_file $templatefile
 
-		incr m_max_cids
+			incr m_max_cids
+		}
 	}
 	close $fd
 
@@ -174,20 +207,54 @@ proc Setup {id nodefile linkfile fsm_obj_file templatefile} {
     	set toport [lindex $line 3]
     	set fifo_len [lindex $line 4]
 
+		# Allocate shared memory for the link with both endpoint nodes
+		# on the current machine.
+		if {![Blk_helper::Find_node $id $fromname] ||
+			![Blk_helper::Find_node $id $toname]} {
+			continue
+		}
+ 
     	set frommsgname [Blk_helper::Get_port_msgdef $id $fromname 0 $fromport]
     	set tomsgname [Blk_helper::Get_port_msgdef $id $toname 1 $toport]
     	if {$frommsgname != $tomsgname} {
-        	puts "$line not professed for incompatible msgdef $frommsgname vs $tomsgname"
-        	continue
-    	}
+			if {$frommsgname != $m_cfg(msg_null) && $tomsgname != $m_cfg(msg_null)} {
+        		puts "$line not checked for incompatible msgdef $frommsgname vs $tomsgname"
+				continue
+			} else {
+				# Process the line as one endpoint can be a sock node.
+			}
+    	}	
 
-    	set msgname [Msgdef::Parse $tomsgname]
+		if {$frommsgname == $m_cfg(msg_null)} {
+    		set msgname [Msgdef::Parse $tomsgname]
+		} else {
+    		set msgname [Msgdef::Parse $frommsgname]
+		}
     	set size [Msgdef::Get_Max_Size $msgname]
-
-    	set key [Key_helper::Create_key $id $line]
+ 
+		if {[string first $m_cfg(sock_str) $fromname] == 0} {
+    		set key [Key_helper::Create_key $id $fromname]
+		} elseif {[string first $m_cfg(sock_str) $toname] == 0} {
+    		set key [Key_helper::Create_key $id $tomname]
+		} else {
+    		set key [Key_helper::Create_key $id $line]
+		}
     	Blk_helper::Add_fifo_len $id $fromname 0 $fromport $key $fifo_len $size
     	Blk_helper::Add_fifo_len $id $toname 1 $toport $key $fifo_len $size
-    	lappend keys $key
+
+		# Update the tx and rx data in Blk_helper for the cross machines link.
+		if {[string first $m_cfg(sock_str) $fromname] == 0} {
+			Blk_helper::Add_rx_data $id $fromname $key
+		}
+		if {[string first $m_cfg(sock_str) $toname] == 0} {
+			foreach to_ip $sock_ip_map($nodename) {
+				if {$to_ip == $ip} {
+					continue
+				}
+				Blk_helper::Add_tx_data $id $toname $to_ip
+				break
+			}
+		}
 	}
 	close $fd
 
@@ -203,12 +270,8 @@ proc Setup {id nodefile linkfile fsm_obj_file templatefile} {
 }
 
 proc Execute {id alloc_port} {
-	global env
 
-	foreach node [Blk_helper::Get_nodes $id] {
-    	set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $node INIT localhost:$alloc_port "
-    	append cmd [Blk_helper::Gen_str $node]
-    	append cmd " RUNNING 0 &"
+	foreach cmd [Blk_helper::Get_Exec_Cmds $id $alloc_port] {
     	eval $cmd
 	}
 }

@@ -5,6 +5,8 @@ namespace eval Blk_helper {
     variable m_node
     variable m_node_ports
     variable m_keys
+	variable m_tx_data
+	variable m_rx_data
 
 proc Init {} {
     variable m_name
@@ -13,6 +15,8 @@ proc Init {} {
     variable m_node
     variable m_node_ports
     variable m_keys
+	variable m_tx_data
+	variable m_rx_data
 
     set m_name ""
     array set m_filepath {}
@@ -20,6 +24,8 @@ proc Init {} {
     array set m_node {}
     array set m_node_ports {}
     array set m_keys {} 
+    array set m_tx_data {} 
+    array set m_rx_data {} 
     return
 }
 
@@ -27,6 +33,8 @@ proc Clean {id} {
     variable m_node
     variable m_node_ports
     variable m_keys
+	variable m_tx_data
+	variable m_rx_data
 
 	if {[info exists m_keys($id)]} {
 		unset m_keys($id)
@@ -39,6 +47,15 @@ proc Clean {id} {
 	foreach idx [array names m_node_ports "$id-*"] {
 		unset m_node_ports($idx)
 	}
+
+	foreach idx [array names m_tx_data "$id-*"] {
+		unset m_tx_data($idx)
+	}
+
+	foreach idx [array names m_rx_data "$id-*"] {
+		unset m_rx_data($idx)
+	}
+
 	return
 }
 
@@ -153,6 +170,45 @@ proc Add_fifo_len {id nodename in_out portname key fifo_len size} {
         lappend m_keys($id) "$key $fifo_len $size"
     } 
     return
+}
+
+proc Add_tx_data {id nodename data} {
+	variable m_node
+	variable m_tx_data
+
+	set nodename $id-$nodename
+    if {![info exists m_node($nodename)]} {
+        puts "$nodename does not exist!"
+        return
+    }
+	set m_tx_data($nodename) $data
+	return
+}
+
+proc Add_rx_data {id data} {
+	variable m_node
+	variable m_rx_data
+
+	set nodename $id-$nodename
+    if {![info exists m_node($nodename)]} {
+        puts "$nodename does not exist!"
+        return
+    }
+	set m_rx_data($nodename) $data
+	return
+}
+
+proc Find_node {id nodename} {
+    variable m_name
+    variable m_filepath
+    variable m_node
+
+	set nodename $id-$nodename
+    if {[info exist m_node($nodename)]} {
+        return 1
+    } else {
+		return 0
+	}
 }
 
 proc Get_ports {id nodename in_out} {
@@ -299,6 +355,52 @@ proc Gen_str {nodename} {
  
     append rc "PROGRAM $m_filepath($compname)/$compname.tcl" 
     return $rc
+}
+
+proc gen_sock_str {nodename alloc_port} {
+	variable m_node
+	variable m_tx_data
+	variable m_node_ports
+	global env
+
+	set cmd ""
+	if {![info exists m_tx_data($nodename)]} {
+		return $cmd
+	}
+
+    if {![info exists m_node_ports($nodename,IN-1)]} {
+		return $cmd
+    }
+
+    set token $m_node_ports($nodename,$port)
+	set key [lindex $token 0]
+	set fifo_len [lindex $token 1]
+	set size [lindex $token 2]
+	set to_ip $m_tx_data($nodename)
+    set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK $nodename INIT localhost:$alloc_port "
+	append cmd "IN-1 "null.msg:$key:$fifo_len:$size "
+	append cmd "TX_DATA \"localhost:0:$to_ip:15000\" &"
+
+	return $cmd
+}
+	
+proc Get_Exec_Cmds {id alloc_port} {
+	variable m_node
+	variable m_tx_data
+	global env
+	
+	set rc ""
+	foreach nodename [Get_nodes $id] {
+		if {[info exists m_tx_data($nodename)]} {
+			lappend rc [gen_sock_str $nodename $alloc_port]
+			continue
+		}
+    	set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $nodename INIT localhost:$alloc_port "
+    	append cmd [Blk_helper::Gen_str $nodename]
+    	append cmd " RUNNING 0 &"
+		lappend rc $cmd
+	}
+	return $rc
 }
 
 proc Get_nodes {id} {

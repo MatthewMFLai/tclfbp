@@ -66,7 +66,7 @@ proc fbp_mgr_server_accept {cid addr port} {
 
 proc fbp_mgr_server_handle {cid} {
 	global forever env
-    global g_workdir
+    global g_data
 
     if {[gets $cid request] < 0} {
 
@@ -85,9 +85,9 @@ proc fbp_mgr_server_handle {cid} {
 
 			${launcher}::Init $cid
 
-			${launcher}::Setup $id $g_workdir/test.node $g_workdir/test.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
-			file delete $g_workdir/test.node
-			file delete $g_workdir/test.link
+			${launcher}::Setup $id $g_data(ip) $g_data(workdir)/$id.node $g_data(workdir)/$id.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
+			file delete $g_data(workdir)/$id.node
+			file delete $g_data(workdir)/$id.link
 			${launcher}::Execute $id $alloc_port
 
 		} elseif {$cmd == "CLEANUP"} {
@@ -119,13 +119,13 @@ proc fbp_mgr_server_handle {cid} {
 # File receive utility
 #
 proc receive_file {channel_name client_address client_port} {
-    global g_workdir
+    global g_data
 
     fconfigure $channel_name -translation binary
     gets $channel_name line
     foreach {name size} $line {}
 
-    set fully_qualified_filename [file join $g_workdir $name]
+    set fully_qualified_filename [file join $g_data(workdir) $name]
     set fp [open $fully_qualified_filename w]
     fconfigure $fp -translation binary
 
@@ -155,7 +155,10 @@ Fsm::Init
 
 Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 
-set g_workdir $env(DISK2)/scratchpad
+array set g_data {}
+set g_data(workdir) $env(DISK2)/scratchpad
+set g_data(ip) "localhost"
+ 
 socket -server fbp_mgr_server_accept 14000
 socket -server receive_file 14001 
 

@@ -1,0 +1,5 @@
+name sock_node_tx 
+filepath $env(COMP_HOME)/2.0/sock_node
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/test/null.msg}

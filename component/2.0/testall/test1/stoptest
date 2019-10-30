@@ -1,14 +1,14 @@
-puts $sd "graph1 DISABLE"
+puts $sd "$id DISABLE"
 flush $sd
 gets $sd rc
 puts "rc = $rc"
 
-puts $sd "graph1 SHUTDOWN"
+puts $sd "$id SHUTDOWN"
 flush $sd
 gets $sd rc
 puts "rc = $rc"
 
-puts $sd "graph1 CLEANUP"
+puts $sd "$id CLEANUP"
 flush $sd
 gets $sd rc
 puts "rc = $rc"
