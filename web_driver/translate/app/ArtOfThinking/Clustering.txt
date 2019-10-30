@@ -1,0 +1,21 @@
+3
+
+Why You See Shapes in the Clouds
+
+Clustering Illusion
+
+In 1957, Swedish opera singer Friedrich Jorgensen bought a tape player to record his vocals. When he listened back to the recording, he heard strange noises throughout, whispers that sounded like supernatural messages. A few years later, he recorded birdsong. This time, he heard the voice of his deceased mother in the background whispering to him: “Fried, my little Fried, can you hear me? It’s Mammy.” That did it. Jorgensen turned his life around and devoted himself to communicating with the deceased via tape recordings.
+
+In 1994, Diane Duyser from Florida also had an otherworldly encounter. After biting into a slice of toast and placing it back down on the plate, she noticed the face of the Virgin Mary in it. Immediately, she stopped eating and stored the divine message (minus a bite) in a plastic container. In November 2004, she auctioned the still fairly well preserved snack on eBay. Her daily bread earned her $28,000.
+
+In 1978, a woman from New Mexico had a similar experience. Her tortilla’s blackened spots resembled Jesus’s face. The press latched on to thestory, and thousands of people flocked to New Mexico to see the savior in burrito form. Two years earlier, in 1976, the orbiter of the Viking spacecraft photographed a rock formation that, from high above, looked like a human face. The “face on Mars” made headlines around the world.
+
+And you? Have you ever seen faces in the clouds or the outlines of animals in rocks? Of course. This is perfectly normal. The human brain seeks patterns and rules. In fact, it takes it one step further: If it finds no familiar patterns, it simply invents some. The more diffuse the signal, such as the background noise on the tape, the easier it is to find “hidden messages” in it. Twenty-five years after uncovering the “face on Mars,” the Mars global surveyor sent back crisp, clear images of the rock formations: The captivating human face had dissolved into plain old scree.
+
+These frothy examples make the clustering illusion seem innocuous; it is not. Consider the financial markets, which churn out floods of data every second. Grinning from ear to ear, a friend told me that he had discovered a pattern in the sea of data: “If you multiply the percentage change of the Dow Jones by the percentage change of the oil price, you get the move of the gold price in two days’ time.” In other words, if share prices and oil climb or fall in unison, gold will rise the day after tomorrow. His theory worked well for a few weeks, until he began to speculate with ever-larger sums and eventually squandered his savings. He had sensed a pattern where none existed.
+
+oxxxoxxxoxxoooxooxxoo. Is this sequence random or planned? Psychology professor Thomas Gilovich interviewed hundreds of people for an answer. Most did not want to believe the sequence was arbitrary. They figured some law must govern the order of the letters. Wrong, explained Gilovich, and pointed to some dice: It is quite possible to roll the same number four times in a row, which mystifies many people. Apparently we have trouble accepting that such events can take place by chance.
+
+During World War II, the Germans bombed London. Among other ammunition, they used V1 rockets, a kind of self-navigating drone. With each attack, the impact sites were carefully plotted on a map, terrifying Londoners: They thought they had discovered a pattern and developed theories about which parts of the city were the safest. However, after the war, statistical analysis confirmed that the distribution was totally random. Today it’s clear why: The V1’s navigation system was extremely inaccurate.
+
+In conclusion: When it comes to pattern recognition, we are oversensitive.Regain your skepticism. If you think you have discovered a pattern, first consider it pure chance. If it seems too good to be true, find a mathematician and have the data tested statistically. And if the crispy parts of your pancake start to look a lot like Jesus’s face, ask yourself: If he really wants to reveal himself, why doesn’t he do it in Times Square or on CNN? 

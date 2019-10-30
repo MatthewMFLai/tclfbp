@@ -1,0 +1,101 @@
+3 Why You See Shapes in the Clouds
+
+Clustering Illusion
+
+In 1957, Swedish opera(歌劇) singer Friedrich Jorgensen bought a tape player to record his vocals. When he listened back to the recording, he heard strange noises throughout(在各處), whispers(小聲說話) that sounded like supernatural(超自然的) messages. A few years later, he recorded birdsong. This time, he heard the voice of his deceased(亡故者) mother in the background whispering to him: “Fried, my little Fried, can you hear me? It’s Mammy.” That did it. Jorgensen turned his life around and devoted(忠誠的) himself to communicating with the deceased via tape recordings.
+
+In 1994, Diane Duyser from Florida also had an otherworldly(超脫塵俗的) encounter(遭遇). After biting into a slice(薄片) of toast and placing it back down on the plate, she noticed(注意) the face of the Virgin Mary in it. Immediately(馬上), she stopped eating and stored the divine(神的) message (minus a bite) in a plastic container. In November 2004, she auctioned(拍賣) the still fairly well preserved(保存) snack(小吃) on eBay. Her daily bread earned(賺) her $28,000.
+
+In 1978, a woman from New Mexico had a similar(相似的) experience. Her tortilla’s blackened(使…變成黑色) spots resembled(像) Jesus’s face. The press latched on to thestory, and thousands of people flocked(群集) to New Mexico to see the savior in burrito(墨西哥麵餅捲) form. Two years earlier, in 1976, the orbiter(太空船) of the Viking spacecraft photographed a rock formation that, from high above, looked like a human face. The “face on Mars” made headlines(大標題) around the world.
+
+And you? Have you ever seen faces in the clouds or the outlines(輪廓) of animals in rocks? Of course. This is perfectly normal. The human brain seeks(尋找) patterns(模式) and rules. In fact, it takes it one step further: If it finds no familiar(熟悉的) patterns, it simply invents(創造) some. The more diffuse(費解的) the signal, such as the background(背景) noise on the tape, the easier it is to find “hidden messages” in it. Twenty-five years after uncovering(發現) the “face on Mars,” the Mars global surveyor(考察) sent back crisp(乾淨俐落的), clear images of the rock formations: The captivating(令人神魂顛倒的) human face had dissolved into plain old scree(岩屑堆).
+
+These frothy(淺薄的) examples make the clustering illusion(幻覺) seem innocuous(無害的); it is not. Consider the financial markets, which churn(翻攪) out floods of data every second. Grinning(露齒而笑) from ear to ear, a friend told me that he had discovered(發現) a pattern in the sea of data: “If you multiply the percentage(百分比) change of the Dow Jones by the percentage change of the oil price, you get the move of the gold price in two days’ time.” In other words, if share prices and oil climb or fall in unison(一致), gold will rise the day after tomorrow. His theory(論說) worked well for a few weeks, until he began to speculate(猜測) with ever-larger sums and eventually(最終) squandered(揮霍) his savings. He had sensed a pattern where none(一點兒也沒) existed(存在).
+
+oxxxoxxxoxxoooxooxxoo. Is this sequence random(隨機的) or planned? Psychology(心理學) professor(教授) Thomas Gilovich interviewed(面試) hundreds of people for an answer. Most did not want to believe the sequence(一系列) was arbitrary(反覆無常的). They figured(認為) some law must govern the order of the letters. Wrong, explained Gilovich, and pointed to some dice(骰子): It is quite possible to roll the same number four times in a row, which mystifies(使困惑) many people. Apparently(顯然地) we have trouble accepting that such events can take place by chance.
+
+During World War II, the Germans bombed(炸) London. Among other ammunition(軍火), they used V1 rockets, a kind of self-navigating drone. With each attack, the impact(撞擊力) sites were carefully plotted on a map, terrifying(很可怕的) Londoners: They thought they had discovered a pattern and developed theories about which parts of the city were the safest. However, after the war, statistical(統計的) analysis confirmed(堅定的) that the distribution(分配) was totally random. Today it’s clear why: The V1’s navigation(導航) system was extremely(非常) inaccurate(不精確的).
+
+In conclusion(結論): When it comes to pattern recognition(識別), we are over sensitive. Regain(恢復) your skepticism(懷疑的態度). If you think you have discovered a pattern, first consider it pure chance. If it seems too good to be true, find a mathematician(數學家) and have the data tested statistically. And if the crispy(酥脆的) parts of your pancake(薄煎餅) start to look a lot like Jesus’s face, ask yourself: If he really wants to reveal(使顯露) himself, why doesn’t he do it in Times Square or on CNN? 
+
+
+ammunition 彈藥，軍火 
+apparently 顯然地 
+arbitrary 隨心所欲的，武斷的；反覆無常的，任性多變的 
+auctioned 拍賣 
+background （畫、相片的）背景，襯托 
+blackened 使…變成黑色 
+bombed {炸彈；原子彈；核武器[the} 
+burrito 墨西哥料理的一種（以肉、乳酪、豆泥做餡的麵餅捲）；【俚】陰莖 
+captivating 令人神魂顛倒的；captivate的動詞現在分詞、動名詞 
+churn 劇烈攪動（尤指液體）；翻攪；使猛烈翻騰 
+clustering cluster的動詞現在分詞、動名詞 
+conclusion 結論；推論；決定 
+confirmed 成習慣的；根深蒂固的；堅定的 
+crisp 乾脆的，乾淨俐落的；有生氣的 
+crispy 酥脆的；清脆的；涼爽的 
+deceased 新近去世的人；亡故者 
+devoted 摯愛的；忠實的，忠誠的 
+dice 骰子 
+diffuse 含混的，費解的，晦澀的 
+discovered 發現 
+distribution 分發，散發；分配 
+divine 神的；像神一樣的 
+earned 賺（錢）；掙得；賺得 
+encounter 遭遇，遇到（尤指不愉快的事情） 
+eventually 最終，終於 
+existed 存在 
+extremely 非常；極端；極其 
+familiar 熟悉的；常見的；常聽說 
+figured 認為，以為；估計；料到 
+flocked 聚集；群集；蜂擁 
+frothy 泡沫的；泡沫般的；淺薄的；不重要的 
+grinning 露齒而笑 
+headlines （報紙等的）標題；大標題；（書頁上的）欄外標題；頁頭書名；章節標題 
+illusion 幻覺，幻想 
+immediately 立即，即刻，馬上 
+impact 衝擊（力）；撞擊（力） 
+inaccurate 不準確的；不精確的 
+innocuous 無害的 
+interviewed 面試；面談 
+invents 發明，創造；捏造，虛構 
+mathematician 數學家 
+mystifies 使困惑；使大為驚奇；欺騙，蒙蔽 
+navigation 航海；航空；航行；航海術；航行學；領航，導航 
+none 一點兒也沒；一個也沒 
+noticed 注意；察覺 
+opera 歌劇 
+orbiter 沿軌道運行之物；人造衛星；太空船 
+otherworldly 來世的；空想的；超脫塵俗的 
+outlines 外形；輪廓 
+pancake 鬆餅，薄煎餅，薄烤餅；【空】（失速）平墜著陸，平降 
+patterns 方式，形式；模式 
+percentage 百分率，百分比 
+preserved 保護，維護；保存；保養 
+professor 教授 
+psychology 心理學 
+random 任意的；隨機的；胡亂的 
+recognition 認出，認識；識別 
+regain 重新獲得；恢復；收回 
+resembled 像；看起來像；與…相似 
+reveal 使顯露；展現；顯示 
+scree （常用複數）小石子；岩屑堆 
+seeks 尋找；探索；追求 
+sequence 一連串；一系列；順序，次序 
+similar 相似的，近似的 
+skepticism 懷疑論；懷疑的態度 
+slice （切下的食物）薄片 
+snack 快餐；小吃，點心；一份；部分 
+speculate 猜測；推測，推斷 
+squandered 浪費，揮霍（金錢或補給品）；糟蹋（機會） 
+statistical 統計的；統計學的 
+supernatural 超自然的，無法用科學解釋的 
+surveyor 調查員；考察者；測量員；勘測員；房產鑑定員 
+terrifying 很可怕的 
+theory 學說；論說；……論 
+throughout 在各處；自始至終 
+uncovering 揭露，發現（秘密或隱藏物）；揭開（覆蓋物） 
+unison 共同；一致；一齊 
+whispers 小聲說話；低語；耳語 
+
+
