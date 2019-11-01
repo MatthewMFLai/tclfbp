@@ -53,13 +53,17 @@ proc EchoMatchKey {sock} {
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
 
-    if {[eof $sock] || [catch {gets $sock key}]} {
+    if {[eof $sock] || [catch {gets $sock line}]} {
 		close $sock
     } else {
-		if {[lsearch $g_key $key] > -1} {
-        	puts $sock "$key OK"
+		set id [lindex $line 0]
+		set key [lindex $line 1]
+		if {![info exists g_key($id)]} {
+			puts $sock "$id $key ERROR"
+		} elseif {[lsearch $g_key($id) $key] > -1} {
+        	puts $sock "$id $key OK"
 		} else {
-			puts $sock "$key ERROR"
+			puts $sock "$id $key ERROR"
 		}
         # Create coroutine if shared memory key is valid
         coroutine $key-$sock process_rx $key
@@ -101,11 +105,14 @@ proc Echo {sock} {
 # Admin client
 #
 
-proc handle_keys {keylist} {
+proc handle_keys {id keylist} {
 	global g_key
 
 	# keydata looks like
 	# {<key>:<size>:<len> ... }
+	if {![info exists g_key($id)]} {
+		set g_key($id) ""
+	}
 	foreach keydata $keylist { 
     	set tokens [split $keydata ":"]
     	set key [lindex $tokens 0]
@@ -114,14 +121,17 @@ proc handle_keys {keylist} {
 
     	key_mgr_add $key $size
     	stub_init $key $len $size
-		lappend g_key $key
+		lappend g_key($id) $key
 	}
 }
 
-proc handle_keys_remove {keylist} {
+proc handle_keys_remove {id keylist} {
 	global g_key
     global g_coroutines
 
+	if {![info exists g_key($id)]} {
+		return	
+	}
 	# keydata looks like
 	# {<key> ... }
 	foreach key $keylist { 
@@ -130,21 +140,22 @@ proc handle_keys_remove {keylist} {
         foreach co_name [array names g_coroutines "$key-*"] {
 			rename $co_name {}
 		}
-		set idx [lsearch $g_key $key]
+		set idx [lsearch $g_key($id) $key]
 		if {$idx != -1} {
-			set g_key [lreplace $g_key $idx $idx]
+			set g_key($id) [lreplace $g_key($id) $idx $idx]
 		} 
 	}
 }
 
 proc handle_admin {keydata} {
 	set cmd [lindex $keydata 0]
+	set id [lindex $keydata 1]
 	if {$cmd == "KEYS"} {
-		handle_keys [lindex $keydata 1]
+		handle_keys $id [lindex $keydata 2]
 	} elseif {$cmd == "KEYS-REMOVE"} {
-		handle_keys_remove [lindex $keydata 1]
+		handle_keys_remove $id [lindex $keydata 2]
 	}
-	return "$cmd OK"
+	return "$cmd $id OK"
 }
 
 proc Admin_Client {host port} {
@@ -224,7 +235,7 @@ key_mgr_init
 # tclsh node_socif.tcl INIT localhost:8000 KEYS RX_PORT <rx port> 
 #
 array set argdata $argv 
-set g_key ""
+array set g_key {} 
 
 set initport [lindex [split $argdata(INIT) ":"] 1]
 set initaddr [lindex [split $argdata(INIT) ":"] 0]

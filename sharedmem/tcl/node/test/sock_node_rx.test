@@ -65,10 +65,10 @@ proc Admin_Handle {sock} {
 		close $sock
     } else {
 		if {$resp == "sock rx connected"} {
-			set cmd [list KEYS "$g_data(key):$g_data(size):4"]
+			set cmd [list KEYS $g_data(id) "$g_data(key):$g_data(size):4"]
 			puts $sock $cmd
 			flush $sock
-		} elseif {$resp == "KEYS OK"} {
+		} elseif {$resp == "KEYS $g_data(id) OK"} {
 			set g_data(check_state) "CHECK_KEY_OK"
 		}
         #
@@ -88,13 +88,13 @@ proc checkagain {} {
     if {$g_data(check_state) == "CHECK_KEY_OK"} {
         if {$g_data(admin_sock) != ""} {
             set g_data(sd) [Echo_Client localhost $g_data(remoteport)]
-            puts $g_data(sd) $g_data(key)
+            puts $g_data(sd) "$g_data(id) $g_data(key)"
             set g_data(check_state) "CHECK_FIRST_ACK"
         }
 
     } elseif {$g_data(check_state) == "CHECK_FIRST_ACK"} {
         gets $g_data(sd) line
-        if {$line == "$g_data(key) OK"} {
+        if {$line == "$g_data(id) $g_data(key) OK"} {
 
             array set msgdata {}
             Msgdef::Factory $g_data(msgname) msgdata
@@ -194,7 +194,7 @@ proc checkagain {} {
                 puts "get : $bcd_msg"
             }
 
-			puts $g_data(admin_sock) "KEYS-REMOVE $g_data(key)"
+			puts $g_data(admin_sock) "KEYS-REMOVE $g_data(id) $g_data(key)"
 
             set g_data(check_state) "CHECK_WAIT_MORE"
 
@@ -245,7 +245,7 @@ port_mgr_add out1 $size
 stub_init $key $len $size 
 stub_clear $key $len $size
 
-array set g_data {admin_sock "" remoteport 14000}
+array set g_data {id graph1 admin_sock "" remoteport 14000}
 set g_data(msgname) $msgname
 set g_data(check_state) "CHECK_ADMIN_SOCK"
 set g_data(key) $key
