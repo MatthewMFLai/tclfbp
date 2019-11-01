@@ -17,6 +17,7 @@ proc Echo_Client {host port} {
 
 proc Admin_Server {port} {
     set s [socket -server Admin_Accept $port]
+	return $s
 }
 
 # Admin_Accept --
@@ -55,13 +56,21 @@ proc Admin_Accept {sock addr port} {
 #	sock	The socket connection to the client
 
 proc Admin_Handle {sock} {
+	global g_data
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
 
-    if {[eof $sock] || [catch {gets $sock line}]} {
-	close $sock
+    if {[eof $sock] || [catch {gets $sock resp}]} {
+		close $sock
     } else {
+		if {$resp == "sock rx connected"} {
+			set cmd [list KEYS "$g_data(key):$g_data(size):4"]
+			puts $sock $cmd
+			flush $sock
+		} elseif {$resp == "KEYS OK"} {
+			set g_data(check_state) "CHECK_KEY_OK"
+		}
         #
         #
         #
@@ -76,7 +85,7 @@ proc checkagain {} {
     array set msgattr {}
     Msgdef::Get_Attr_Offset $g_data(msgname) msgattr
 
-    if {$g_data(check_state) == "CHECK_ADMIN_SOCK"} {
+    if {$g_data(check_state) == "CHECK_KEY_OK"} {
         if {$g_data(admin_sock) != ""} {
             set g_data(sd) [Echo_Client localhost $g_data(remoteport)]
             puts $g_data(sd) $g_data(key)
@@ -85,7 +94,7 @@ proc checkagain {} {
 
     } elseif {$g_data(check_state) == "CHECK_FIRST_ACK"} {
         gets $g_data(sd) line
-        if {$line == $g_data(key)} {
+        if {$line == "$g_data(key) OK"} {
 
             array set msgdata {}
             Msgdef::Factory $g_data(msgname) msgdata
@@ -104,7 +113,10 @@ proc checkagain {} {
             set g_data(bcd_msg) $bcd_msg 
 
             set g_data(check_state) "CHECK_FIRST_BCD_MSG"
-        }   
+        } else {   
+            set forever fail 
+            set g_data(check_state) "CHECK_TERMINATE"
+		}
 
     } elseif {$g_data(check_state) == "CHECK_FIRST_BCD_MSG"} {
             gets $g_data(sd) line
@@ -182,7 +194,7 @@ proc checkagain {} {
                 puts "get : $bcd_msg"
             }
 
-            close $g_data(admin_sock)
+			puts $g_data(admin_sock) "KEYS-REMOVE $g_data(key)"
 
             set g_data(check_state) "CHECK_WAIT_MORE"
 
@@ -237,14 +249,16 @@ array set g_data {admin_sock "" remoteport 14000}
 set g_data(msgname) $msgname
 set g_data(check_state) "CHECK_ADMIN_SOCK"
 set g_data(key) $key
+set g_data(size) $size
+set g_data(remoteport) 14000
 set g_data(bcd_msg) ""
 set hostport 13000
 set remoteport 14000
-Admin_Server $hostport
+set g_admin_sd [Admin_Server $hostport]
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node_rx.tcl INIT localhost:$hostport RX_PORT $remoteport &
  
 } -body {
 
-exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node_rx.tcl INIT localhost:$hostport KEYS "localhost:0:localhost:$remoteport:$key:$size:4" &
 after idle checkagain
 vwait forever
 global forever
