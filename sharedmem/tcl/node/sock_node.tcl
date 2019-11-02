@@ -187,12 +187,14 @@ proc handle_init {} {
 	set to_ipaddr [lindex $tokens 2]
 	set to_port [lindex $tokens 3]
 
+	set id $g_argdata(GRAPH_ID)
+
 	key_mgr_add $key $size
 	stub_init $key $len $size
 	set sd [Echo_Client $to_ipaddr $to_port]
-	puts $sd $key
+	puts $sd "$id $key"
 	gets $sd rc
-	if {$key != $rc} {
+	if {$rc != "$id $key"} {
     	puts "$key mismatches $rc"
 	}
 	Echo_Client_Config $sd 
@@ -207,7 +209,7 @@ queue_init
 key_mgr_init
 
 # argument data looks like this:
-# tclsh node_socif.tcl BLOCK s0:source0 BLOCK <nodename> INIT localhost:8000 IN-1 <msg type>:<key>:<size>:<len> TX_DATA <from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>
+# tclsh node_socif.tcl BLOCK s0:source0 BLOCK <nodename> INIT localhost:8000 GRAPH_ID <id> IN-1 <msg type>:<key>:<size>:<len> TX_DATA <from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>
 #
 array set g_argdata $argv 
 array set g_coroutines {}

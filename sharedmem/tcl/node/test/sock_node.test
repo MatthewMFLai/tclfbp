@@ -281,7 +281,7 @@ Echo_Server $remoteport
  
 } -body {
 
-exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK graph1-sock_rtx_1 INIT localhost:$hostport IN-1 "null.msg:$g_key:4:$size" TX_DATA "localhost:0:localhost:$remoteport" &
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK graph1-sock_rtx_1 INIT localhost:$hostport GRAPH_ID $id IN-1 "null.msg:$g_key:4:$size" TX_DATA "localhost:0:localhost:$remoteport" &
 vwait forever
 global forever
 set forever
