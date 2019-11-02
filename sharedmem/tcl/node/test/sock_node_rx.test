@@ -67,7 +67,6 @@ proc Admin_Handle {sock} {
 		if {$resp == "sock rx connected"} {
 			set cmd [list KEYS $g_data(id) "$g_data(key):$g_data(size):4"]
 			puts $sock $cmd
-			flush $sock
 		} elseif {$resp == "KEYS $g_data(id) OK"} {
 			set g_data(check_state) "CHECK_KEY_OK"
 		}
