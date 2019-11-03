@@ -133,10 +133,9 @@ proc handle_keys_remove {id keylist} {
 		return	
 	}
 	# keydata looks like
-	# {<key> ... }
-	foreach key $keylist { 
-    	#key_mgr_add $key $size
-    	#stub_init $key $len $size
+	# {<key>:<size>:<len> ... }
+	foreach token $keylist {
+		set key [lindex $token 0]
         foreach co_name [array names g_coroutines "$key-*"] {
 			rename $co_name {}
 		}
@@ -152,7 +151,7 @@ proc handle_admin {keydata} {
 	set id [lindex $keydata 1]
 	if {$cmd == "KEYS"} {
 		handle_keys $id [lindex $keydata 2]
-	} elseif {$cmd == "KEYS-REMOVE"} {
+	} elseif {$cmd == "KEYS_REMOVE"} {
 		handle_keys_remove $id [lindex $keydata 2]
 	}
 	return "$cmd $id OK"
