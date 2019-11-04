@@ -48,14 +48,23 @@ proc EchoAccept {sock addr port} {
 
 proc EchoMatchKey {sock} {
     global g_coroutines
+	global g_key
 
     # Check end of file or abnormal connection drop,
     # then echo data back to the client.
 
-    if {[eof $sock] || [catch {gets $sock key}]} {
-	close $sock
+    if {[eof $sock] || [catch {gets $sock line}]} {
+		close $sock
     } else {
-        puts $sock $key
+		set id [lindex $line 0]
+		set key [lindex $line 1]
+		if {![info exists g_key($id)]} {
+			puts $sock "$id $key ERROR"
+		} elseif {[lsearch $g_key($id) $key] > -1} {
+        	puts $sock "$id $key OK"
+		} else {
+			puts $sock "$id $key ERROR"
+		}
         # Create coroutine if shared memory key is valid
         coroutine $key-$sock process_rx $key
         set g_coroutines($key-$sock) "WAIT_SOCK" 
@@ -96,8 +105,62 @@ proc Echo {sock} {
 # Admin client
 #
 
+proc handle_keys {id keylist} {
+	global g_key
+
+	# keydata looks like
+	# {<key>:<size>:<len> ... }
+	if {![info exists g_key($id)]} {
+		set g_key($id) ""
+	}
+	foreach keydata $keylist { 
+    	set tokens [split $keydata ":"]
+    	set key [lindex $tokens 0]
+    	set size [lindex $tokens 1]
+    	set len [lindex $tokens 2]
+
+    	key_mgr_add $key $size
+    	stub_init $key $len $size
+		lappend g_key($id) $key
+	}
+}
+
+proc handle_keys_remove {id keylist} {
+	global g_key
+    global g_coroutines
+
+	if {![info exists g_key($id)]} {
+		return	
+	}
+	# keydata looks like
+	# {<key>:<size>:<len> ... }
+	foreach token $keylist {
+		set key [lindex $token 0]
+        foreach co_name [array names g_coroutines "$key-*"] {
+			rename $co_name {}
+		}
+		set idx [lsearch $g_key($id) $key]
+		if {$idx != -1} {
+			set g_key($id) [lreplace $g_key($id) $idx $idx]
+		} 
+	}
+}
+
+proc handle_admin {keydata} {
+	set cmd [lindex $keydata 0]
+	set id [lindex $keydata 1]
+	if {$cmd == "KEYS"} {
+		handle_keys $id [lindex $keydata 2]
+	} elseif {$cmd == "KEYS_REMOVE"} {
+		handle_keys_remove $id [lindex $keydata 2]
+	}
+	return "$cmd $id OK"
+}
+
 proc Admin_Client {host port} {
     set s [socket $host $port]
+	puts $s "sock rx connected"
+	flush $s
     fconfigure $s -buffering line
     fileevent $s readable "Admin_Client_Handle $s"
     return $s
@@ -111,7 +174,9 @@ proc Admin_Client_Handle {cid} {
     } else {
         # Custom code to handle request.
         #
-        #	
+		set resp [handle_admin $request]
+		puts $cid $resp
+		flush $cid
     }
 }
 
@@ -166,33 +231,20 @@ queue_init
 key_mgr_init
 
 # argument data looks like this:
-# tclsh node_socif.tcl BLOCK s0:source0 INIT localhost:8000 KEYS {<from-ipaddr>:<from-port>:<to-ipaddr>:<to-port>:<key>:<size>:<len> ... }
+# tclsh node_socif.tcl INIT localhost:8000 KEYS RX_PORT <rx port> 
 #
 array set argdata $argv 
+array set g_key {} 
 
 set initport [lindex [split $argdata(INIT) ":"] 1]
 set initaddr [lindex [split $argdata(INIT) ":"] 0]
 set init_sd [Admin_Client $initaddr $initport]
 
-foreach keydata $argdata(KEYS) { 
-    set tokens [split $keydata ":"]
-    set key [lindex $tokens 4]
-    set size [lindex $tokens 5]
-    set len [lindex $tokens 6]
-    set from_ipaddr [lindex $tokens 0]
-    set from_port [lindex $tokens 1]
-    set to_ipaddr [lindex $tokens 2]
-    set to_port [lindex $tokens 3]
-
-    key_mgr_add $key $size
-    stub_init $key $len $size
-} 
-
 set g_running 1 
 
 after idle checkagain
 
-Echo_Server $to_port
+Echo_Server $argdata(RX_PORT)
 vwait main-loop 
 
 exit

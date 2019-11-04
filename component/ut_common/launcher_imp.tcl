@@ -3,6 +3,7 @@ namespace eval %%% {
 	variable m_cids
 	variable m_node_cid_map
 	variable m_cfg
+	variable m_sock_node_rx_ack
 
 	# For cmd sync. Support 1 fbp mgr only.
 	variable m_max_cids
@@ -14,6 +15,7 @@ proc Init {fbp_mgr_cid} {
 	variable m_cids
 	variable m_node_cid_map
 	variable m_cfg
+	variable m_sock_node_rx_ack
 	variable m_max_cids
 	variable m_cid_set
 	variable m_cur_cmd
@@ -24,6 +26,7 @@ proc Init {fbp_mgr_cid} {
 	array set m_cfg {}
 	source $cfgfile
 
+	set m_sock_node_rx_ack 1
 	set m_cids ""
 	array set m_node_cid_map {}
 	set m_max_cids 0 
@@ -92,9 +95,10 @@ proc Add_cid {cid} {
 	variable m_cids
 	variable m_max_cids
 	variable m_fbp_mgr_cid
+	variable m_sock_node_rx_ack
 
 	lappend m_cids $cid
-	if {[llength $m_cids] == $m_max_cids} {
+	if {[llength $m_cids] == $m_max_cids && $m_sock_node_rx_ack} {
 		puts $m_fbp_mgr_cid "CREATE OK"
 		flush $m_fbp_mgr_cid
 	}
@@ -152,9 +156,24 @@ proc Handle_cid {cid request} {
 	return
 }
 
+proc Set_sock_node_rx_ack {} {
+	variable m_cids
+	variable m_max_cids
+	variable m_fbp_mgr_cid
+	variable m_sock_node_rx_ack
+
+	set m_sock_node_rx_ack 1
+	if {[llength $m_cids] == $m_max_cids} {
+		puts $m_fbp_mgr_cid "CREATE OK"
+		flush $m_fbp_mgr_cid
+	}
+    return
+}
+
 proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 	variable m_max_cids
 	variable m_cfg
+	variable m_sock_node_rx_ack
 	global env
 	set keys ""
 
@@ -244,14 +263,20 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 
 		# Update the tx and rx data in Blk_helper for the cross machines link.
 		if {[string first $m_cfg(sock_str) $fromname] == 0} {
-			Blk_helper::Add_rx_data $id $fromname $key
+			Blk_helper::Add_rx_data $id $fromname $key:$size:$fifo_len
+			set m_sock_node_rx_ack 0
 		}
 		if {[string first $m_cfg(sock_str) $toname] == 0} {
 			foreach to_ip $sock_ip_map($nodename) {
 				if {$to_ip == $ip} {
 					continue
 				}
-				Blk_helper::Add_tx_data $id $toname $to_ip
+				if {![info exists m_cfg($to_ip)] ||
+					![info exists m_cfg($to_ip:port)} {
+					# Log error?
+					continue
+				}
+				Blk_helper::Add_tx_data $id $toname $m_cfg($to_ip):$m_cfg($to_ip:port)
 				break
 			}
 		}
@@ -274,9 +299,21 @@ proc Execute {id alloc_port} {
 	foreach cmd [Blk_helper::Get_Exec_Cmds $id $alloc_port] {
     	eval $cmd
 	}
+	# For setting up sock_node_rx with keys
+	set keydatalist [Blk_helper::Get_rx_data $id]
+	if {$keydatalist != ""} {
+		sock_node_rx_send_keys $id $keydatalist
+	}
+	return
 }
 
 proc Cleanup {id} {
+	# For setting up sock_node_rx with keys delete
+	set keydatalist [Blk_helper::Get_rx_data $id]
+	if {$keydatalist != ""} {
+		sock_node_rx_send_keys_delete $id $keydatalist
+	}
+
 	foreach key [Key_helper::Get_all_keys $id] {
 		stub_cleanup $key
 	}

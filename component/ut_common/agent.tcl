@@ -135,6 +135,86 @@ proc receive_file {channel_name client_address client_port} {
     close $fp
 }
 #-----------------------------------------------------------
+# sock_node_rx handler
+#
+# sock_node_rx_accept --
+#	Accept a connection from sock_node_rx daemon.
+#
+# Arguments:
+#	sock	The new socket connection to sock_node_rx 
+#	addr	The client's IP address
+#	port	The client's port number
+	
+proc sock_node_rx_accept {sock addr port} {
+    global g_data
+
+    set g_data(sock_node_rx) $sock 
+
+    # Ensure that each "puts" by the server
+    # results in a network transmission
+
+    fconfigure $sock -buffering line
+
+    # Set up a callback for when the client sends data
+
+    fileevent $sock readable [list sock_node_rx_handle $sock]
+}
+
+# sock_node_rx_handle --
+#	This procedure is called when the server
+#	can read data from the sock_node_rx 
+#
+# Arguments:
+#	sock	The socket connection to the sock_node_rx 
+
+proc sock_node_rx_handle {sock} {
+	global g_data
+
+    # Check end of file or abnormal connection drop,
+    # then echo data back to the client.
+
+    if {[eof $sock] || [catch {gets $sock resp}]} {
+		close $sock
+    } else {
+		if {$resp == "sock rx connected"} {
+			# log the response?
+		} else {
+			set cmd [lindex $resp 0]
+			set id [lindex $resp 1]
+			set rc [lindex $resp 2]
+			if {$cmd == "KEYS" && $rc == "OK"} {
+				set launcher [Launcher_Obj::Get_Obj $id]
+				${launcher}::Set_sock_node_rx_ack
+			} elseif {$cmd == "KEYS_REMOVE" && $rc == "OK"} {
+
+			}
+		}
+        #
+        #
+        #
+    }
+}
+
+proc sock_node_rx_send_keys {id keydatalist} {
+	global g_data
+
+	# keydatalist looks like 
+	# "key:size:fifo_len key:size:fifo_len ..."
+	set cmd [list KEYS $id $keydatalist]
+    puts $g_data(sock_node_rx) $cmd
+	return
+}
+
+proc sock_node_rx_send_keys_delete {id keydatalist} {
+	global g_data
+
+	# keydatalist looks like 
+	# "key:size:fifo_len key:size:fifo_len ..."
+	set cmd [list KEYS_REMOVE $id $keydatalist]
+    puts $g_data(sock_node_rx) $cmd
+	return
+}
+#-----------------------------------------------------------
 load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
@@ -158,9 +238,11 @@ Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 array set g_data {}
 set g_data(workdir) $env(DISK2)/scratchpad
 set g_data(ip) "localhost"
+set g_data(sock_node_rx) ""
  
 socket -server fbp_mgr_server_accept 14000
 socket -server receive_file 14001 
+socket -server sock_node_rx_accept 14002
 
 vwait forever
 

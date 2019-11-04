@@ -198,6 +198,16 @@ proc Add_rx_data {id data} {
 	return
 }
 
+proc Get_rx_data {id} {
+	variable m_rx_data
+
+	set rc ""
+	foreach nodename [array names m_rx_data "$id-*"] {
+		lappend rc $m_rx_data($nodename)
+	}	
+	return $rc
+}
+
 proc Find_node {id nodename} {
     variable m_name
     variable m_filepath
@@ -357,7 +367,7 @@ proc Gen_str {nodename} {
     return $rc
 }
 
-proc gen_sock_str {nodename alloc_port} {
+proc gen_sock_str {id nodename alloc_port} {
 	variable m_node
 	variable m_tx_data
 	variable m_node_ports
@@ -376,10 +386,12 @@ proc gen_sock_str {nodename alloc_port} {
 	set key [lindex $token 0]
 	set fifo_len [lindex $token 1]
 	set size [lindex $token 2]
-	set to_ip $m_tx_data($nodename)
-    set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK $nodename INIT localhost:$alloc_port "
-	append cmd "IN-1 "null.msg:$key:$fifo_len:$size "
-	append cmd "TX_DATA \"localhost:0:$to_ip:15000\" &"
+	set to_data $m_tx_data($nodename)
+	set to_ip [lindex [split $to_data ":"] 0]
+	set to_port [lindex [split $to_data ":"] 1]
+    set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node.tcl BLOCK $nodename INIT localhost:$alloc_port GRAPH_ID $id "
+	append cmd "IN-1 \"null.msg:$key:$fifo_len:$size\" "
+	append cmd "TX_DATA \"localhost:0:$to_ip:$to_port\" &"
 
 	return $cmd
 }
@@ -392,7 +404,7 @@ proc Get_Exec_Cmds {id alloc_port} {
 	set rc ""
 	foreach nodename [Get_nodes $id] {
 		if {[info exists m_tx_data($nodename)]} {
-			lappend rc [gen_sock_str $nodename $alloc_port]
+			lappend rc [gen_sock_str $id $nodename $alloc_port]
 			continue
 		}
     	set cmd "exec tclsh $env(DISK2)/sharedmem/tcl/node/node.tcl BLOCK $nodename INIT localhost:$alloc_port "
