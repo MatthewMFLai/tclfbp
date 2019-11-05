@@ -65,7 +65,7 @@ proc Admin_Handle {sock} {
 		close $sock
     } else {
 		if {$resp == "sock rx connected"} {
-			set cmd [list KEYS $g_data(id) "$g_data(key):$g_data(size):4"]
+			set cmd [list KEYS $g_data(id) "$g_data(key_create):$g_data(size):4"]
 			puts $sock $cmd
 		} elseif {$resp == "KEYS $g_data(id) OK"} {
 			set g_data(check_state) "CHECK_KEY_OK"
@@ -193,7 +193,7 @@ proc checkagain {} {
                 puts "get : $bcd_msg"
             }
 
-			puts $g_data(admin_sock) "KEYS_REMOVE $g_data(id) $g_data(key):0:0"
+			puts $g_data(admin_sock) "KEYS_REMOVE $g_data(id) $g_data(key_create):0:0"
 
             set g_data(check_state) "CHECK_WAIT_MORE"
 
@@ -227,7 +227,8 @@ set keys ""
 set id "graph1"
 set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]
-set key [Key_helper::Create_key $id "test-key"]
+set key [Key_helper::Create_key $id "test-key_RX"]
+regsub "_RX" $key "" key_trimmed
 puts "key = $key"
 set len 4 
 
@@ -247,7 +248,8 @@ stub_clear $key $len $size
 array set g_data {id graph1 admin_sock "" remoteport 14000}
 set g_data(msgname) $msgname
 set g_data(check_state) "CHECK_ADMIN_SOCK"
-set g_data(key) $key
+set g_data(key_create) $key
+set g_data(key) $key_trimmed
 set g_data(size) $size
 set g_data(remoteport) 14000
 set g_data(bcd_msg) ""

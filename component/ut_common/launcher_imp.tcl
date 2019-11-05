@@ -11,7 +11,7 @@ namespace eval %%% {
 	variable m_cur_cmd
 	variable m_fbp_mgr_cid
 
-proc Init {fbp_mgr_cid} {
+proc Init {fbp_mgr_cid cfgfile} {
 	variable m_cids
 	variable m_node_cid_map
 	variable m_cfg
@@ -22,7 +22,6 @@ proc Init {fbp_mgr_cid} {
 	variable m_fbp_mgr_cid
 	global env
 
-	set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg
 	array set m_cfg {}
 	source $cfgfile
 
@@ -236,7 +235,8 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
     	set frommsgname [Blk_helper::Get_port_msgdef $id $fromname 0 $fromport]
     	set tomsgname [Blk_helper::Get_port_msgdef $id $toname 1 $toport]
     	if {$frommsgname != $tomsgname} {
-			if {$frommsgname != $m_cfg(msg_null) && $tomsgname != $m_cfg(msg_null)} {
+			if {[string first $m_cfg(msg_null) $frommsgname] == -1 &&
+				[string first $m_cfg(msg_null) $tomsgname] == -1} {
         		puts "$line not checked for incompatible msgdef $frommsgname vs $tomsgname"
 				continue
 			} else {
@@ -244,7 +244,7 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 			}
     	}	
 
-		if {$frommsgname == $m_cfg(msg_null)} {
+		if {[string first $m_cfg(msg_null) $frommsgname] > -1} {
     		set msgname [Msgdef::Parse $tomsgname]
 		} else {
     		set msgname [Msgdef::Parse $frommsgname]
@@ -252,9 +252,9 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
     	set size [Msgdef::Get_Max_Size $msgname]
  
 		if {[string first $m_cfg(sock_str) $fromname] == 0} {
-    		set key [Key_helper::Create_key $id $fromname]
+    		set key [Key_helper::Create_key $id $fromname$m_cfg(sock_rx_key_suffix)]
 		} elseif {[string first $m_cfg(sock_str) $toname] == 0} {
-    		set key [Key_helper::Create_key $id $tomname]
+    		set key [Key_helper::Create_key $id $toname]
 		} else {
     		set key [Key_helper::Create_key $id $line]
 		}
@@ -267,12 +267,12 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 			set m_sock_node_rx_ack 0
 		}
 		if {[string first $m_cfg(sock_str) $toname] == 0} {
-			foreach to_ip $sock_ip_map($nodename) {
+			foreach to_ip $sock_ip_map($toname) {
 				if {$to_ip == $ip} {
 					continue
 				}
 				if {![info exists m_cfg($to_ip)] ||
-					![info exists m_cfg($to_ip:port)} {
+					![info exists m_cfg($to_ip:port)]} {
 					# Log error?
 					continue
 				}

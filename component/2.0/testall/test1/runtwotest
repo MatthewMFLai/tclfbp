@@ -1,0 +1,51 @@
+source sendfile.tcl
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 14001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 14001
+
+set sd [socket localhost 14000]
+
+puts $sd "$id CREATE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 15001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 15001
+
+set sd2 [socket localhost 15000]
+
+puts $sd2 "$id CREATE"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd "$id INIT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id INIT"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd "$id IDENT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id IDENT"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd "$id ENABLE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id ENABLE"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+

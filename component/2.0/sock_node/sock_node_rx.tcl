@@ -60,8 +60,13 @@ proc EchoMatchKey {sock} {
 		set key [lindex $line 1]
 		if {![info exists g_key($id)]} {
 			puts $sock "$id $key ERROR"
-		} elseif {[lsearch $g_key($id) $key] > -1} {
+		} elseif {[lsearch $g_key($id) "$key*"] > -1} {
         	puts $sock "$id $key OK"
+			# The received key may be aa-bb while the real key is
+			# aa-bb-RX. Use the real key for subsequent coroutine
+			# creation.
+			set idx [lsearch $g_key($id) "$key*"]
+			set key [lindex $g_key($id) $idx]
 		} else {
 			puts $sock "$id $key ERROR"
 		}

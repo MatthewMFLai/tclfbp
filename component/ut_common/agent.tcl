@@ -83,7 +83,7 @@ proc fbp_mgr_server_handle {cid} {
 			set alloc_port [lindex [fconfigure $sd -sockname] 2]
 			PortToLauncher::Add $alloc_port $launcher 
 
-			${launcher}::Init $cid
+			${launcher}::Init $cid $g_data(cfgfile)
 
 			${launcher}::Setup $id $g_data(ip) $g_data(workdir)/$id.node $g_data(workdir)/$id.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 			file delete $g_data(workdir)/$id.node
@@ -233,16 +233,28 @@ port_mgr_init
 malloc::init
 Fsm::Init
 
+#--------------------------------------------------------
+# Config file is located at the default dir
+set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg
+set newcfgfile [lindex $argv 0]
+if {$newcfgfile != "" && [file exists $newcfgfile]} {
+	set cfgfile $newcfgfile
+}
+array set m_cfg {}
+source $cfgfile
+#--------------------------------------------------------
+
 Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 
 array set g_data {}
 set g_data(workdir) $env(DISK2)/scratchpad
-set g_data(ip) "localhost"
+set g_data(ip) $m_cfg(ip) 
 set g_data(sock_node_rx) ""
+set g_data(cfgfile) $cfgfile
  
-socket -server fbp_mgr_server_accept 14000
-socket -server receive_file 14001 
-socket -server sock_node_rx_accept 14002
+socket -server fbp_mgr_server_accept $m_cfg(server_accept) 
+socket -server receive_file $m_cfg(receive_file) 
+socket -server sock_node_rx_accept $m_cfg(rx_accept) 
 
 vwait forever
 
