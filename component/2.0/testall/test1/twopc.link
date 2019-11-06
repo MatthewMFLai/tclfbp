@@ -2,4 +2,5 @@ clo1 1 src1 1 4
 src1 1 clo1 1 32
 clo1 2 SOCK_RTX_1 1 16
 SOCK_RTX_1 1 trc1 1 16
-trc1 1 sink 1 32
+trc1 1 SOCK_RTX_2 1 16
+SOCK_RTX_2 1 sink 1 16
