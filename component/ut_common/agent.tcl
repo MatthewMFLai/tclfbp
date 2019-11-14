@@ -235,7 +235,7 @@ Fsm::Init
 
 #--------------------------------------------------------
 # Config file is located at the default dir
-set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg
+set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg.def
 set newcfgfile [lindex $argv 0]
 if {$newcfgfile != "" && [file exists $newcfgfile]} {
 	set cfgfile $newcfgfile

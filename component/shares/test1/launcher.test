@@ -35,22 +35,22 @@ send_one_file $env(HOME)/tclfbp/component/shares/test1/test.link localhost 14001
 
 set sd [socket localhost 14000]
 
-puts $sd "graph1 CREATE"
+puts $sd "test CREATE"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 INIT"
+puts $sd "test INIT"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 IDENT"
+puts $sd "test IDENT"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 ENABLE"
+puts $sd "test ENABLE"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
@@ -59,22 +59,22 @@ gets $sd rc
 gets $sd result 
 #puts "rc = $rc"
 
-puts $sd "graph1 DISABLE"
+puts $sd "test DISABLE"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 SHUTDOWN"
+puts $sd "test SHUTDOWN"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 CLEANUP"
+puts $sd "test CLEANUP"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
 
-puts $sd "graph1 IDENT_AGENT"
+puts $sd "test IDENT_AGENT"
 flush $sd
 gets $sd rc
 #puts "rc = $rc"
