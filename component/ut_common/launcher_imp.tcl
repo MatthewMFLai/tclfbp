@@ -246,6 +246,10 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 
 		if {[string first $m_cfg(msg_null) $frommsgname] > -1} {
     		set msgname [Msgdef::Parse $tomsgname]
+			Blk_helper::Add_reflected_port $id $fromname 0 $fromport $tomsgname
+		} elseif {[string first $m_cfg(msg_null) $tomsgname] > -1} {
+    		set msgname [Msgdef::Parse $frommsgname]
+			Blk_helper::Add_reflected_port $id $toname 1 $toport $frommsgname
 		} else {
     		set msgname [Msgdef::Parse $frommsgname]
 		}

@@ -224,15 +224,6 @@ source $env(COMP_HOME)/ut_common/launcher_factory.tcl
 source $env(FSM_HOME)/fsm.tcl
 source $env(PATTERN_HOME)/malloc.tcl
 
-Msgdef::Init
-Blk_helper::Init
-Key_helper::Init /tmp
-queue_init
-port_mgr_init
-
-malloc::init
-Fsm::Init
-
 #--------------------------------------------------------
 # Config file is located at the default dir
 set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg.def
@@ -243,6 +234,15 @@ if {$newcfgfile != "" && [file exists $newcfgfile]} {
 array set m_cfg {}
 source $cfgfile
 #--------------------------------------------------------
+
+Msgdef::Init
+Blk_helper::Init $m_cfg(msg_null)
+Key_helper::Init /tmp
+queue_init
+port_mgr_init
+
+malloc::init
+Fsm::Init
 
 Launcher_Obj::Init $env(COMP_HOME)/ut_common/launcher_imp.tcl
 

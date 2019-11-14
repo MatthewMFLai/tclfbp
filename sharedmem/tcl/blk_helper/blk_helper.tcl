@@ -1,17 +1,21 @@
 namespace eval Blk_helper {
     variable m_name
+    variable m_msg_null
     variable m_filepath
     variable m_ports
+    variable m_reflected_ports
     variable m_node
     variable m_node_ports
     variable m_keys
 	variable m_tx_data
 	variable m_rx_data
 
-proc Init {} {
+proc Init {msg_null} {
     variable m_name
+    variable m_msg_null
     variable m_filepath
     variable m_ports
+    variable m_reflected_ports
     variable m_node
     variable m_node_ports
     variable m_keys
@@ -19,8 +23,10 @@ proc Init {} {
 	variable m_rx_data
 
     set m_name ""
+	set m_msg_null $msg_null
     array set m_filepath {}
     array set m_ports {}
+    array set m_reflected_ports {}
     array set m_node {}
     array set m_node_ports {}
     array set m_keys {} 
@@ -32,6 +38,7 @@ proc Init {} {
 proc Clean {id} {
     variable m_node
     variable m_node_ports
+    variable m_reflected_ports
     variable m_keys
 	variable m_tx_data
 	variable m_rx_data
@@ -46,6 +53,10 @@ proc Clean {id} {
 
 	foreach idx [array names m_node_ports "$id-*"] {
 		unset m_node_ports($idx)
+	}
+
+	foreach idx [array names m_reflected_ports "$id-*"] {
+		unset m_reflected_ports($idx)
 	}
 
 	foreach idx [array names m_tx_data "$id-*"] {
@@ -169,6 +180,44 @@ proc Add_fifo_len {id nodename in_out portname key fifo_len size} {
     if {[lsearch $m_keys($id) "$key * *"] == -1} {
         lappend m_keys($id) "$key $fifo_len $size"
     } 
+    return
+}
+
+proc Add_reflected_port {id nodename in_out portname msgname} {
+    variable m_node
+    variable m_reflected_ports
+
+	set nodename $id-$nodename
+    if {![info exists m_node($nodename)]} {
+        puts "$nodename does not exist!"
+        return
+    }
+
+    if {$in_out} {
+        set port IN-$portname
+    } else {
+        set port OUT-$portname
+    }
+
+    set m_reflected_ports($nodename,$port) $msgname
+    return
+}
+
+proc Get_reflected_port {nodename portname} {
+    variable m_node
+    variable m_reflected_ports
+
+    if {![info exists m_node($nodename)]} {
+        puts "$nodename does not exist!"
+        return ""
+    }
+
+    if {![info exists m_reflected_ports($nodename,$portname)]} {
+        puts "No reflected port msgdef for $nodename $portname"
+		return ""
+	} else {
+		return $m_reflected_ports($nodename,$portname)
+	}
     return
 }
 
@@ -318,8 +367,10 @@ proc Gen_str {nodename} {
 #exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
 
     variable m_name
+    variable m_msg_null
     variable m_filepath
     variable m_ports
+    variable m_reflected_ports
     variable m_node
     variable m_node_ports
 
@@ -342,7 +393,14 @@ proc Gen_str {nodename} {
     foreach port $inports {
         append rc $port
         append rc " "
-        append rc $m_ports($compname,$port)
+
+        set msgdef $m_ports($compname,$port)
+		if {[string first $m_msg_null $msgdef] == -1} {
+        	append rc $msgdef
+		} else {
+			append rc [Get_reflected_port $nodename $port]
+		}
+
         foreach keydata $m_node_ports($nodename,$port) { 
         	append rc ":"
         	append rc [lindex $keydata 0]
@@ -354,7 +412,14 @@ proc Gen_str {nodename} {
     foreach port $outports {
         append rc $port
         append rc " "
-        append rc $m_ports($compname,$port)
+
+        set msgdef $m_ports($compname,$port)
+		if {[string first $m_msg_null $msgdef] == -1} {
+        	append rc $msgdef
+		} else {
+			append rc [Get_reflected_port $nodename $port]
+		}
+
         append rc ":"
         set keydata [lindex $m_node_ports($nodename,$port) 0]
         append rc [lindex $keydata 0]

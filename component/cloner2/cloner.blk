@@ -2,5 +2,5 @@ name cloner
 filepath $env(COMP_HOME)/cloner2 
 # port format
 # <port type> {portname msgdef} {portname msgdef} ... 
-inports {1 $env(COMP_HOME)/msgdef/test/test0.msg}
-outports {1 $env(COMP_HOME)/msgdef/test/test0.msg} {2 $env(COMP_HOME)/msgdef/test/test0.msg} 
+inports {1 $env(COMP_HOME)/msgdef/test/null.msg}
+outports {1 $env(COMP_HOME)/msgdef/test/null.msg} {2 $env(COMP_HOME)/msgdef/test/null.msg} 
