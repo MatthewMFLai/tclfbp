@@ -1,8 +1,8 @@
 src1 $env(HOME)/tclfbp/component/2.0/source/source.blk ip1
 clo1 $env(HOME)/tclfbp/component/cloner2/cloner.blk ip1
 SOCK_RTX_1 $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_tx.blk ip1
-SOCK_RTX_1 $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_rx.blk ip2 
+SOCK_RTX_1-RX $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_rx.blk ip2 
 SOCK_RTX_2 $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_tx.blk ip2
-SOCK_RTX_2 $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_rx.blk ip1
+SOCK_RTX_2-RX $env(HOME)/tclfbp/component/2.0/sock_node/sock_node_rx.blk ip1
 trc1 $env(HOME)/tclfbp/component/2.0/tracer/tracer.blk ip2 
 sink $env(HOME)/tclfbp/component/2.0/sink/sink.blk ip1

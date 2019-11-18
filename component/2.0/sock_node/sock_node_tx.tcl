@@ -194,7 +194,7 @@ proc handle_init {} {
 	set sd [Echo_Client $to_ipaddr $to_port]
 	puts $sd "$id $key"
 	gets $sd rc
-	if {$rc != "$id $key"} {
+	if {$rc != "$id $key OK"} {
     	puts "$key mismatches $rc"
 	}
 	Echo_Client_Config $sd 

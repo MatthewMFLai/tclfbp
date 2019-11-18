@@ -5,6 +5,7 @@ namespace eval Blk_helper {
     variable m_ports
     variable m_reflected_ports
     variable m_node
+    variable m_node_desc
     variable m_node_ports
     variable m_keys
 	variable m_tx_data
@@ -17,6 +18,7 @@ proc Init {msg_null} {
     variable m_ports
     variable m_reflected_ports
     variable m_node
+    variable m_node_desc
     variable m_node_ports
     variable m_keys
 	variable m_tx_data
@@ -28,6 +30,7 @@ proc Init {msg_null} {
     array set m_ports {}
     array set m_reflected_ports {}
     array set m_node {}
+    array set m_node_desc {}
     array set m_node_ports {}
     array set m_keys {} 
     array set m_tx_data {} 
@@ -37,6 +40,7 @@ proc Init {msg_null} {
 
 proc Clean {id} {
     variable m_node
+    variable m_node_desc
     variable m_node_ports
     variable m_reflected_ports
     variable m_keys
@@ -49,6 +53,10 @@ proc Clean {id} {
 
 	foreach nodename [array names m_node "$id-*"] {
 		unset m_node($nodename)
+	}
+
+	foreach nodename [array names m_node_desc "$id-*"] {
+		unset m_node_desc($nodename)
 	}
 
 	foreach idx [array names m_node_ports "$id-*"] {
@@ -126,10 +134,11 @@ proc Parse {blkfile} {
     return $compname 
 }
 
-proc Add_node {id nodename compname} {
+proc Add_node {id nodename compname desc} {
     variable m_name
     variable m_filepath
     variable m_node
+    variable m_node_desc
 
 	set nodename $id-$nodename
     if {[lsearch $m_name $compname] == -1} {
@@ -142,6 +151,7 @@ proc Add_node {id nodename compname} {
     }
 
     set m_node($nodename) $compname
+    set m_node_desc($nodename) $desc
     return 
 }
 
@@ -257,14 +267,19 @@ proc Get_rx_data {id} {
 	return $rc
 }
 
-proc Find_node {id nodename} {
+proc Find_node {id nodename desc} {
     variable m_name
     variable m_filepath
     variable m_node
+	variable m_node_desc
 
 	set nodename $id-$nodename
-    if {[info exist m_node($nodename)]} {
-        return 1
+    if {[info exist m_node($nodename)] && [info exist m_node_desc($nodename)]} {
+		if {$m_node_desc($nodename) == $desc} {
+        	return 1
+		} else {
+			return 0
+		}
     } else {
 		return 0
 	}
@@ -463,8 +478,9 @@ proc gen_sock_str {id nodename alloc_port} {
 	return $cmd
 }
 	
-proc Get_Exec_Cmds {id alloc_port} {
+proc Get_Exec_Cmds {id alloc_port desc} {
 	variable m_node
+	variable m_node_desc
 	variable m_tx_data
 	variable m_rx_data
 	global env
@@ -480,6 +496,9 @@ proc Get_Exec_Cmds {id alloc_port} {
 
 	set rc ""
 	foreach nodename [Get_nodes $id] {
+		if {$m_node_desc($nodename) != $desc} {
+			continue
+		}	
 		if {[info exists m_rx_data($nodename)]} {
 			continue
 		}
