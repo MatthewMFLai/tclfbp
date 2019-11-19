@@ -1,0 +1,2 @@
+victory {勝利，獲勝；成功 （贏得比賽勝利後的）繞場慶祝} proclaimed {宣佈；聲明 表明；顯示} urging {（尤指難以或無法控制的）慾望，衝動 敦促；驅策；力勸} contending {競爭；爭奪 聲稱；斷言；主張} statue （尤指石頭或金屬的）雕像，雕塑，塑像 sculptors 雕刻家 evidence {證據；證詞；證人；物證 跡象 清楚，明顯 證明 顯示，表明} superiority 優越，優勢；上等；優等；上級 refrain {避免；忍住；節制 （尤指不同的節之間的）副歌，疊歌 一再重複的話；老調} disputing {（尤指勞資雙方或相鄰兩國之間的）爭執，爭端，糾紛 毫無爭議地，無可爭辯地，不容置疑地 正在受到懷疑的 不確定的，不肯定的 （對…）有異議；不同意，否認；爭論 異議；爭議；紛爭}
+sculptors,5.402 0 statue,5.317 0 urging,5.32 1 victory,5.550 0 evidence,5.304 0 proclaimed,5.124 0 refrain,5.62 0 contending,5.232 0 superiority,5.139 0 disputing,3.21 0
