@@ -102,6 +102,15 @@ proc fbp_mgr_server_handle {cid} {
 				flush $sd
 			}
 
+		} elseif {$cmd == "QLEN"} {
+			set launcher [Launcher_Obj::Get_Obj $id]
+			if {$launcher != ""} {
+				set rc [${launcher}::Qlen $id]
+				set sd [${launcher}::Get_Fbp_Mgr_Cid]
+				puts $sd "$cmd OK $rc"
+				flush $sd
+			}
+
 		} elseif {$cmd == "IDENT_AGENT"} {
 			puts $cid "$cmd [pid]"
 			flush $cid

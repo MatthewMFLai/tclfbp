@@ -412,6 +412,14 @@ proc Cleanup {id} {
 	return
 }
 
+proc Qlen {id} {
+	set rc ""
+	foreach key [Key_helper::Get_all_keys $id] {
+		lappend rc "$key [sv_csr_qlen_wrapper $key]"
+	}
+	return $rc
+}
+
 proc Create_Fsm {fsm_obj_id fsm_obj_file templatefile} {
     global env
 	variable m_node_cid_map

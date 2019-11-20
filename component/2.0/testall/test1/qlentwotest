@@ -1,0 +1,9 @@
+puts $sd "$id QLEN"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id QLEN"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"

@@ -64,6 +64,23 @@ uint32_t sv_csr_peek_wrapper(char *p_key, void *p_data)
     return (rc);
 }
 
+// Return queue length 
+uint32_t sv_csr_qlen_wrapper(char *p_key)
+{
+    enum RBUFF_RC rc;
+    rbuff_t *p_rbuff;
+    uint8_t *p_csr;
+   
+    p_csr = shm_mgr_get_addr(p_key);
+    if (p_csr == NULL)
+        return(3);
+
+
+    p_rbuff = (rbuff_t *)p_csr;
+    rc = rbuff_get_len(p_rbuff);
+    return (rc);
+}
+
 void queue_init(void)
 {
     shm_mgr_init();

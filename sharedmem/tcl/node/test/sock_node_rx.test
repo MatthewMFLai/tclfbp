@@ -227,8 +227,8 @@ set keys ""
 set id "graph1"
 set msgname [Msgdef::Parse $env(COMP_HOME)/msgdef/test/test0.msg]
 set size [Msgdef::Get_Max_Size $msgname]
-set key [Key_helper::Create_key $id "test-key_RX"]
-regsub "_RX" $key "" key_trimmed
+set key [Key_helper::Create_key $id "test-key-RX"]
+regsub {\-RX} $key "" key_trimmed
 puts "key = $key"
 set len 4 
 
