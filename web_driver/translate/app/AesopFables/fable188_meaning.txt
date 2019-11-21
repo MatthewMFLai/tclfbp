@@ -1,0 +1,2 @@
+opportune （時間）合適的，恰當的，適宜的 charlatans 冒充內行的人；騙子；（尤指）江湖醫生 entombed 埋葬；成為……的墳墓 freedmen 自由民；（法律上）解除了約束的人 cemetery 公墓，墓地 indict 控告，告發；起訴 refute 駁斥；反駁；否認…的正確性（或真實性）
+charlatans,7.33 0 indict,7.26 0 refute,5.338 0 cemetery,5.78 0 entombed,5.299 0 freedmen,5.152 0 opportune,5.224 0
