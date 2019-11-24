@@ -1,0 +1,65 @@
+7 Beware the “Special Case”
+
+Confirmation(確認) Bias(偏見) (Part 1)
+
+Gil wants to lose weight. He selects a particular diet(節食) and checks his progress on the scale every morning. If he has lost weight, he pats himself on the back and considers the diet a success. If he has gained weight, he writes it off as a normal fluctuation(波動) and forgets about it. For months, he lives under the illusion(幻覺) that the diet is working, even though his weight remains constant. Gil is a victim of the confirmation bias — albeit(儘管) a harmless form of it.
+
+The confirmation bias is the mother of all misconceptions(錯誤想法). It is the tendency(思想傾向) to interpret(詮釋) new information so that it becomes compatible(適合的) with our existing theories, beliefs(相信), and convictions(堅定的看法). In other words, we filter(過濾) out any new information that contradicts(（與…有抵觸) our existing views (“disconfirming evidence”). This is a dangerous practice. “Facts do not cease(停止) to exist because they are ignored,” said writer Aldous Huxley. However, we do exactly that, as super-investor Warren Buffett knows: “What the human being is best at doing is interpreting all new information so that their prior(在先的) conclusions remain intact.”
+
+The confirmation bias is alive and well in the business world. One example: An executive team decides on a new strategy(策略). The team enthusiastically(熱衷的) celebrates(慶祝) any sign that the strategy is a success. Everywhere the executives look, they see plenty of confirming evidence, while indications(指示) to the contrary(對立面) remain unseen or are quickly dismissed as “exceptions” or “special cases.” They have become blind to disconfirming evidence.
+
+What can you do? If the word “exception” crops(結果) up, prick(紮) up your ears. Often it hides the presence(存在) of disconfirming(證明為不確) evidence. It pays to listen to Charles Darwin: Since his youth, he set out to fight the confirmation(確認) bias(偏見) systematically(有系統的). Whenever observations contradicted(與…有抵觸) his theory, he took them very seriously(嚴肅地) and noted them down immediately. He knew that the brain actively “forgets” disconfirming evidence after a short time. The more correct he judged(判斷) his theory to be, the more actively he looked for contradictions.
+
+The following experiment(實驗) shows how much effort it takes to question your own theory. A professor presented his students with the number sequence(一連串) 2–4–6. They had to calculate the underlying rule that the professor had written on the back of a sheet of paper. The students had to provide the next number in the sequence to which the professor would reply “fits the rule” or “does not fit the rule.” The students could guess as many numbers as they wanted but could try only once to identify(識別) the rule. Most students suggested 8 as the next number, and the professor replied: “Fits the rule.” To be sure, they tried 10, 12, and 14. The professor replied each time: “Fits the rule.” The students concluded: “The rule is to add two to the last number.” The professor shook his head: “That is not the rule.”
+
+One shrewd(精明的) student tried a different approach(方式). He tested out the number –2. The professor said: “Does not fit the rule.” “Seven?” he asked. “Fits the rule.” The student tried all sorts of numbers: –24, 9, –43. Apparently he had an idea, and he was trying to find a flaw(錯誤) with it. Only when he could no longer find a counterexample(反例), the student said: “The rule is this: The next number must be higher than the previous(先前的) one.” The professor turned over the sheet of paper, revealing(揭露真相的) those very words. What distinguished(突出) the resourceful(機敏的) student from the others? While the majority(大多數) of students sought merely(僅僅) to confirm their theories(理論), he tried to find fault(缺點) with his, consciously looking for disconfirming evidence. You might think: “Good for him, but not the end of the world for the others.” However, falling for the confirmation bias is not a petty(無足輕重的) intellectual(智力的) offense(過錯). How it affects our lives will be revealed in the next chapter. 
+
+albeit 【書】儘管，雖然 
+approach （思考問題的）方式，方法，態度 
+beliefs 相信，信心；信仰 
+bias 偏見；偏心；偏袒 
+cease 停止，中止 
+celebrates 慶祝；舉行（宗教儀式）；主持（聖餐等） 
+compatible 能共處的；可並立的；適合的；兼用式的；【電腦】相容的 
+confirmation （常指書面的）確認，確定 
+contradicted （指人）反駁，否定；（指事實或聲明）（與…）相矛盾，（與…）有抵觸 
+contradicts （指人）反駁，否定；（指事實或聲明）（與…）相矛盾，（與…）有抵觸 
+contrary 相反；反面；對立面；相反事物 
+convictions 堅定的看法；堅定的信念；堅定的信仰 
+counterexample 反例 
+crops （植物）結果，開花，收成，收穫 
+diet 節食，限制飲食 （日常）飲食 
+disconfirming 證明為不確 
+distinguished 傑出的，突出的，卓越的 
+enthusiastically 熱心的；熱情的；熱衷的 
+experiment 實驗；試驗；試用 
+fault 缺點；弱點 
+filter 濾器；多孔過濾材料；濾光器；濾波器；濾光鏡 
+flaw 錯誤；缺點；缺陷，瑕疵 
+fluctuation 波動；變動；動搖 
+identify 認出，識別 
+illusion 幻覺，幻想 
+indications 指示；指點；表示 
+intellectual 智力的，腦力的 
+interpret 解釋，說明，詮釋 
+judged 根據…判斷 
+majority 大多數，大部分 
+merely 僅僅，只，不過 
+misconceptions 誤解；錯誤想法 
+offense 罪過；犯法（行為）；過錯 
+petty 瑣碎的；無足輕重的 
+presence 出席，在場；存在 
+previous 以前的，先前的 
+prick 刺，戳，紮 
+prior 在先的，在前的；居先的 
+resourceful 機敏的；足智多謀的 
+revealing 揭露真相的；透露內情的；發人深省的 
+sequence 一連串；一系列；順序，次序 
+seriously 嚴肅地；認真地 
+shrewd 明智的；精明的 
+strategy 戰略；策略；計謀；行動計劃；策劃，部署 
+systematically 有條理的，有系統的，有計劃的 
+tendency （思想、行為等的）傾向 
+theories 理論 
+
+
