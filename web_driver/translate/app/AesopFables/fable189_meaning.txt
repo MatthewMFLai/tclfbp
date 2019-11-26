@@ -1,0 +1,2 @@
+presided 主持（會議或儀式） eminent 顯赫的；卓越的；著名的 pedigrees 家譜，系譜；家世，血統，出身 crocodile {鱷魚 兩人一排成縱隊行走的人（尤指兒童）} gymnasiums 體育館；健身房 mere {【古】【書】淺湖；池 僅僅的，只不過的} athletic {強壯的；擅長運動的 運動員的；田徑運動的} ancestors {祖先，祖宗 （動植物）原種；（物體）原型} boasting {自吹自擂，吹噓，誇耀 有（值得自豪的東西） 誇耀} enumerating 數，點；列舉；枚舉 proudly 自豪地
+crocodile,3.16 0 proudly,5.82 0 crocodile,5.68 0 mere,5.288 1 crocodile,5.16 0 crocodile,7.32 0 athletic,7.132 0 boasting,7.42 0 ancestors,5.131 0 presided,7.114 0 pedigrees,5.53 0 enumerating,5.90 0 ancestors,7.60 0 athletic,5.372 0 gymnasiums,7.141 0 eminent,5.106 0 athletic,5.198 0
