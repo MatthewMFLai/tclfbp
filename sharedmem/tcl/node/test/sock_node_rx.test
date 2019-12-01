@@ -214,6 +214,12 @@ workingDirectory $env(DISK2)/sharedmem/tcl/node/test
 
 test tc-1.1 {test sock node rx path} -setup {
 
+#-------------------------------------------------
+# Load the test.cfg file
+set cfgfile $env(DISK2)/sharedmem/tcl/node/test/test.cfg
+array set m_cfg {}
+source $cfgfile
+#-------------------------------------------------
 load $env(TCLSHAREDMEM)/tclsharedmem[info sharedlibextension] tclsharedmem
 source $env(DISK2)/sharedmem/tcl/msgdef/msgdef.tcl
 source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
@@ -245,18 +251,20 @@ port_mgr_add out1 $size
 stub_init $key $len $size 
 stub_clear $key $len $size
 
-array set g_data {id graph1 admin_sock "" remoteport 14000}
+# Get remoteport from m_cfg
+set myip $m_cfg(ip)
+set remoteport $m_cfg($myip:port)
+array set g_data {id graph1 admin_sock ""}
 set g_data(msgname) $msgname
 set g_data(check_state) "CHECK_ADMIN_SOCK"
 set g_data(key_create) $key
 set g_data(key) $key_trimmed
 set g_data(size) $size
-set g_data(remoteport) 14000
 set g_data(bcd_msg) ""
-set hostport 13000
-set remoteport 14000
+set hostport $m_cfg(rx_accept) 
+set g_data(remoteport) $remoteport 
 set g_admin_sd [Admin_Server $hostport]
-exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node_rx.tcl INIT localhost:$hostport RX_PORT $remoteport &
+exec tclsh $env(DISK2)/sharedmem/tcl/node/sock_node_rx.tcl $env(DISK2)/sharedmem/tcl/node/test/test.cfg &
  
 } -body {
 

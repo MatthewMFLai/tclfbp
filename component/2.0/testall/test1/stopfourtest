@@ -1,0 +1,59 @@
+puts $sd "$id DISABLE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id DISABLE"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id DISABLE"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id DISABLE"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+puts $sd "$id SHUTDOWN"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id SHUTDOWN"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id SHUTDOWN"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id SHUTDOWN"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+puts $sd "$id CLEANUP"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id CLEANUP"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id CLEANUP"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id CLEANUP"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"

@@ -1,0 +1,108 @@
+source sendfile.tcl
+
+set cmd "exec tclsh fbp_postproc.tcl $id.node $id.link $id\_x.node $id\_x.link"
+eval $cmd
+set id $id\_x 
+
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 14001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 14001
+
+set sd [socket localhost 14000]
+
+puts $sd "$id CREATE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 15001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 15001
+
+set sd2 [socket localhost 15000]
+
+puts $sd2 "$id CREATE"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 16001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 16001
+
+set sd3 [socket localhost 16000]
+
+puts $sd3 "$id CREATE"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.node localhost 17001
+send_one_file $env(HOME)/tclfbp/component/2.0/testall/test1/$id.link localhost 17001
+
+set sd4 [socket localhost 17000]
+
+puts $sd4 "$id CREATE"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+puts $sd "$id INIT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id INIT"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id INIT"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id INIT"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+puts $sd "$id IDENT"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id IDENT"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id IDENT"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id IDENT"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+puts $sd "$id ENABLE"
+flush $sd
+gets $sd rc
+puts "rc = $rc"
+
+puts $sd2 "$id ENABLE"
+flush $sd2
+gets $sd2 rc
+puts "rc2 = $rc"
+
+puts $sd3 "$id ENABLE"
+flush $sd3
+gets $sd3 rc
+puts "rc3 = $rc"
+
+puts $sd4 "$id ENABLE"
+flush $sd4
+gets $sd4 rc
+puts "rc4 = $rc"
+
+file delete $id.node
+file delete $id.link
