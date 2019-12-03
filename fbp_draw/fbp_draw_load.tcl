@@ -254,8 +254,18 @@ proc load_block {c} {
 	} kicker {
 	    set kicker $value
 	} inports {
+		set value ""
+		set values [lrange $line 1 end]
+		foreach token $values {
+			lappend value [lindex $token 0]
+		}
 	    set inports $value
 	} outports {
+		set value ""
+		set values [lrange $line 1 end]
+		foreach token $values {
+			lappend value [lindex $token 0]
+		}
 	    set outports $value
 	} ipaddr {
 	    set ipaddr $value
