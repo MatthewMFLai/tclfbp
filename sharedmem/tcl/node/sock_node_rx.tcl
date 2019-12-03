@@ -229,6 +229,17 @@ proc checkagain {} {
     after 10 checkagain
 }
 
+#--------------------------------------------------------
+# Config file is located at the default dir
+set cfgfile $env(COMP_HOME)/ut_common/launcher_imp.cfg.def
+set newcfgfile [lindex $argv 0]
+if {$newcfgfile != "" && [file exists $newcfgfile]} {
+	set cfgfile $newcfgfile
+}
+array set m_cfg {}
+source $cfgfile
+#--------------------------------------------------------
+
 global g_coroutines
 array set g_coroutines {}
 
@@ -239,18 +250,18 @@ key_mgr_init
 # argument data looks like this:
 # tclsh node_socif.tcl INIT localhost:8000 KEYS RX_PORT <rx port> 
 #
-array set argdata $argv 
 array set g_key {} 
 
-set initport [lindex [split $argdata(INIT) ":"] 1]
-set initaddr [lindex [split $argdata(INIT) ":"] 0]
+set initport $m_cfg(rx_accept) 
+set initaddr "localhost"
 set init_sd [Admin_Client $initaddr $initport]
 
 set g_running 1 
 
 after idle checkagain
 
-Echo_Server $argdata(RX_PORT)
+set myip $m_cfg(ip)
+Echo_Server $m_cfg($myip:port)
 vwait main-loop 
 
 exit
