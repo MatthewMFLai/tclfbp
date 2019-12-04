@@ -1,0 +1,2 @@
+captivity 關押；囚禁 bragging 吹噓，誇耀 dovecote 鴿舍 slavery 奴隸身分；奴役；奴隸制；蓄奴 dove {鴿子 鴿派參政者；溫和派 跳水；潛水} unfortunate {不幸的，倒霉的 令人遺憾的；可惜的 不適宜的；不成功的 不幸的人} boasting {自吹自擂，吹噓，誇耀 有（值得自豪的東西） 誇耀} crow {烏鴉 （公雞）啼叫，打鳴 （嬰兒）歡叫 誇耀；誇口，自誇}
+slavery,5.199 0 crow,5.109 0 crow,3.17 0 boasting,5.43 0 bragging,5.145 0 captivity,7.98 0 unfortunate,7.30 0 dovecote,5.30 0 dove,5.2 0 dove,3.4 0
