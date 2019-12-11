@@ -46,7 +46,7 @@ proc handle_launcher_rqst {request p_response} {
 
     switch -- [lindex $request 0] {
         IDENT {
-            set response "IDENT $g_name" 
+            set response "IDENT $g_name [pid]" 
             set rc 1 
         }
         INIT {

@@ -50,7 +50,7 @@ source $env(DISK2)/sharedmem/tcl/blk_helper/blk_helper.tcl
 source $env(DISK2)/sharedmem/tcl/key_helper/key_helper.tcl
 
 Msgdef::Init
-Blk_helper::Init
+Blk_helper::Init "null"
 Key_helper::Init /tmp
 
 set compdir $env(COMP_HOME)/test
@@ -62,7 +62,7 @@ while {[gets $fd line] > -1} {
     set nodename [lindex $line 0]
     set compfile [subst [lindex $line 1]]
     set compname [Blk_helper::Parse $compfile]
-    Blk_helper::Add_node $id $nodename $compname
+    Blk_helper::Add_node $id $nodename $compname "create-true"
 }
 close $fd
 

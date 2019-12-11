@@ -131,7 +131,7 @@ proc Handle_cid {cid request} {
 	set cmd [lindex $request 0]
 	set data [lindex $request 1]
 
-	if {$cmd == "IDENT"} {
+	if {$cmd == "INIT"} {
 		# Set up node to cid mapping
 		Update_Fsm [Get_Fsm_Id $data] $cid
 	} 
