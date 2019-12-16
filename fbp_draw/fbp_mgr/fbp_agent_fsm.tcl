@@ -1,14 +1,16 @@
 namespace eval fbp_agent_fsm {
 
-
+# Graph id.
+variable m_id
 variable m_ipaddrlist
 variable m_currlist
-# 2 filenames: first is the taskfile, second is the graphfile.
+# 2 filenames: first is the node file, second is the link file.
 variable m_filename
 variable m_cmd
 
 proc init {} {
     
+	variable m_id
     variable m_ipaddrlist
     variable m_currlist
     variable m_filename
@@ -16,6 +18,7 @@ proc init {} {
     variable m_action
     variable m_reconnect
 
+	set m_id ""
     set m_ipaddrlist ""
     set m_currlist ""
     set m_filename ""
@@ -36,10 +39,12 @@ proc get_clr_cmd {} {
 
 proc process_ready {p_arg_array} {
     upvar $p_arg_array arg_array
+	variable m_id
     variable m_ipaddrlist
     variable m_filename
     variable m_reconnect
 
+	set m_id $arg_array(id)
     set m_ipaddrlist $arg_array(ipaddrlist)
     lappend m_filename $arg_array(filename)
     lappend m_filename $arg_array(graphname)
@@ -121,59 +126,75 @@ proc act_default {} {
 }
 
 proc act_ready_to_create {} {
+	variable m_id
     variable m_cmd
     variable m_filename
 
     act_default 
-    set m_cmd "CREATE [lindex $m_filename 0] [lindex $m_filename 1]"
+    set m_cmd "$m_id CREATE"
     return
 }
 
-proc act_create_to_enable {} {
+proc act_create_to_init {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "ENABLE"
+    set m_cmd "$m_id INIT"
     return
 }
 
-proc act_enable_to_pid {} {
+proc act_init_to_ident {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "PID"
+    set m_cmd "$m_id IDENT"
     return
 }
 
-proc act_pid_to_kick {} {
+proc act_ident_to_enable {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "KICK"
+    set m_cmd "$m_id ENABLE"
     return
 }
 
-proc act_running_to_drain {} {
+proc act_running_to_disable {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "DRAIN"
+    set m_cmd "$m_id DISABLE"
     return
 }
 
 proc act_drain_to_disable {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "DISABLE"
+    set m_cmd "$m_id DISABLE"
     return
 }
 
-proc act_disable_to_close {} {
+proc act_disable_to_shutdown {} {
+	variable m_id
     variable m_cmd
 
     act_default 
-    set m_cmd "CLOSE"
+    set m_cmd "$m_id SHUTDOWN"
+    return
+}
+
+proc act_shutdown_to_cleanup {} {
+	variable m_id
+    variable m_cmd
+
+    act_default 
+    set m_cmd "$m_id CLEANUP"
     return
 }
 

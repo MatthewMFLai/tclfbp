@@ -7,22 +7,34 @@ namespace eval FbpDraw {
     variable m_queryid
     variable m_portqueuelist
     variable m_cpus
+	variable m_ipaddrlist
 
-proc launch_init {} {
+proc launch_init {cfgfiles} {
     variable m_tmpdir
     variable m_querytime
     variable m_queryid
     variable m_runstate
     variable m_portqueuelist
     variable m_cpus
+	variable m_ipaddrlist
     global env
 
-    set m_tmpdir $env(DISK2)/scratchpad
+    set m_tmpdir $env(DISK2)/scratchpad/tmp
     array set m_querytime {QUEUE 0 CPU 0} 
     array set m_queryid {QUEUE 0 CPU 0} 
     set m_runstate "LAUNCH_IDLE"
     set m_portqueuelist ""
     set m_cpus ""
+	set m_ipaddrlist ""
+
+	foreach cfgfile $cfgfiles {
+		Cfg::Init $cfgfile
+		set rc [Cfg::Get_Ip]
+		# idx 0 = virtual name
+		# idx 1 = ip address
+		# idx 2 = port number
+		lappend m_ipaddrlist "[lindex $rc 1] [lindex $rc 2]"
+	} 
     return
 }
 
@@ -84,10 +96,12 @@ proc launch_run {p_blockname_map} {
     }
 
     # Call the routines to generate block and link files.
-    set name "$m_tmpdir/task"
+    set name "$m_tmpdir/$m_graph(graph_id)"
     upvar $p_blockname_map blockname_map
-    gen_block_file $name.block  blockname_map
+    gen_block_file $name.node  blockname_map
     gen_link_file $name.link blockname_map
+
+	if {0} {
     # Call the fbp routines to generate the out and split files.
     if {[string first "Windows" $tcl_platform(os)] > -1} {
     	set line "exec tclsh $env(FBP_HOME)/fbp_test.tcl "
@@ -101,12 +115,14 @@ proc launch_run {p_blockname_map} {
             $name.block $name.link $m_network(circuitname) $m_network(first_port) $name.out
     	exec $env(FBP_HOME)/fbp_postproc.tcl $name.out $name.split 
     }
+	}
+
     # Call FBP mgr to spawn the processes.
     set ipaddrlist [block_get_all_ipaddr]
-    set graphfile [Gen_Graphfile_Name] 
-    if {[catch {Mgr_Run $name.split $graphfile $ipaddrlist} rc]} {
-	puts $rc
-	return
+    set graphfile [Gen_Graphfile_Name]
+    if {[catch {Mgr_Run $m_graph(graph_id) $name.node $name.link $ipaddrlist} rc]} {
+		puts $rc
+		return
     }
     set m_runstate "LAUNCH_RUNNING"
     file delete -force $name.block

@@ -5,6 +5,7 @@ source fbp_draw_genfile.tcl
 source fbp_draw_load.tcl
 source fbp_draw_launch.tcl
 source fbp_draw_zig.tcl
+source $env(COMP_HOME)/ut_common/cfg_if.tcl
 
 namespace eval FbpDraw {
     variable m_a
@@ -280,12 +281,12 @@ namespace eval FbpDraw {
 	    set data(f3_desc) "Kicker:"
 	    if {$inports != ""} {
 	    	custom_dialog_with_ip "Component customization" "f1 f2 f3" 40 \
-                    data ipaddr [FbpMgr::getip]
+                    data ipaddr [FbpMgr::getipnames]
 	    } else {  
 	    	set data(f4) $timeout
 	    	set data(f4_desc) "Timeout:"
 	    	custom_dialog_with_ip "Component customization" "f1 f2 f3 f4" \
-                    40 data ipaddr [FbpMgr::getip]
+                    40 data ipaddr [FbpMgr::getipnames]
 	    }
 	    if {$data(f1) != ""} {
 		%W itemconfig $id -text $data(f1)
@@ -424,13 +425,16 @@ menu .mbar.ipaddr.m
     set data(f3) $FbpDraw::m_network(ip_max)
     set data(f3_desc) "IP address suffix max:" 
     custom_dialog "Sweep parameters" "f1 f2 f3" 12 data
-    ::FbpDraw::Mgr_Init $data(f1) $FbpDraw::m_network(service_port)
-    ::FbpDraw::Mgr_Sweep $data(f2) $data(f3) 
-    info_dialog "IP addr found: [::FbpMgr::getip]"     
+    #::FbpDraw::Mgr_Init $data(f1) $FbpDraw::m_network(service_port)
+    #::FbpDraw::Mgr_Sweep $data(f2) $data(f3) 
+	# Get ip address list from cfg files
+    ::FbpDraw::Mgr_Init
+    ::FbpDraw::Mgr_Sweep $FbpDraw::m_ipaddrlist
+    info_dialog "IP addr found: [::FbpMgr::getipnames]"     
 }
 .mbar.ipaddr.m add command -label "SetAll" -command {
     set ipaddr ""
-    Reset_IP [FbpMgr::getip] ipaddr
+    Reset_IP [FbpMgr::getipnames] ipaddr
     if {$ipaddr != ""} {
     	::FbpDraw::block_set_all_ipaddr $ipaddr
     } else {
@@ -476,4 +480,4 @@ pack .ybar -side right -fill y
 pack .xbar -side bottom -fill both
 pack .c -side left -fill both -expand 1
 FbpDraw::makeMovable $c
-FbpDraw::launch_init
+FbpDraw::launch_init $argv

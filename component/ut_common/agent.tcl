@@ -112,7 +112,7 @@ proc fbp_mgr_server_handle {cid} {
 			}
 
 		} elseif {$cmd == "IDENT_AGENT"} {
-			puts $cid "$cmd [pid]"
+			puts $cid "$cmd [pid] $g_data(ip)"
 			flush $cid
 
 		} else {

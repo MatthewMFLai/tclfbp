@@ -7,12 +7,12 @@ namespace eval FbpDraw {
 
 variable m_fd
 
-proc fd_to_ipaddr {cid} {
+proc fd_to_ipname {cid} {
     variable m_fd
 
-    foreach ipaddr [array names m_fd] {
-	if {$m_fd($ipaddr) == $cid} {
-	    return $ipaddr
+    foreach ipname [array names m_fd] {
+	if {$m_fd($ipname) == $cid} {
+	    return $ipname
 	}
     }
     return ""	
@@ -25,95 +25,99 @@ proc fbpmgr_handle {cid} {
     if {[gets $cid request] < 0} {
         close $cid
     } else {
-	puts "Rx: $request"
-	if {$request != "DONE"} {
-	    return
-	}
-	set tmpdata(ipaddr) [fd_to_ipaddr $cid]
-	if {$tmpdata(ipaddr) == ""} {
-	    return
-	}
-	Fsm::Run fbp_agent_fsm tmpdata
-	set cmd [fbp_agent_fsm::get_clr_cmd]
-	if {$cmd != ""} {
-	    set cmd [lappend cmd $m_graph(graph_id)]
-    	    foreach ipaddr [array names m_fd] {
-		puts $m_fd($ipaddr) $cmd
-		flush $m_fd($ipaddr)
-	        puts "Tx: $ipaddr $cmd"
+		puts "Rx: $request"
+		if {[string first "OK" $request] == -1} {
+	    	return
+		}
+		set tmpdata(ipaddr) [fd_to_ipname $cid]
+		if {$tmpdata(ipaddr) == ""} {
+	    	return
+		}
+		Fsm::Run fbp_agent_fsm tmpdata
+		set cmd [fbp_agent_fsm::get_clr_cmd]
+		if {$cmd != ""} {
+	    	set cmd [lappend cmd $m_graph(graph_id)]
+    	    foreach ipname [array names m_fd] {
+				puts $m_fd($ipname) $cmd
+				flush $m_fd($ipname)
+	        	puts "Tx: $ipname $cmd"
     	    }
-	}
+		}
     }
 }
 
-proc Mgr_Init {ip_prefix port} {
+proc Mgr_Init {} {
     variable m_fd
 
     array set m_fd {}
-    FbpMgr::Init $ip_prefix $port
+    FbpMgr::Init
     return
 }
 
-proc Mgr_Sweep {start stop} {
+proc Mgr_Sweep {ipaddrlist} {
     variable m_fd
 
     # Close preivous file descriptors first.
-    foreach ipaddr [array names m_fd] {
-	catch {close $m_fd($ipaddr)}
-	unset m_fd($ipaddr)
+    foreach ipname [array names m_fd] {
+		catch {close $m_fd($ipname)}
+		unset m_fd($ipname)
     }	
-    FbpMgr::Sweep $start $stop 
+    FbpMgr::Sweep $ipaddrlist
     return
 }
 
-proc Mgr_Run {taskfile graphfile ipaddrlist} {
+proc Mgr_Run {id nodefile linkfile ipnamelist} {
     variable m_fd
     variable m_network
     variable m_graph
 
     # Close preivous file descriptors first.
-    foreach ipaddr [array names m_fd] {
-	catch {close $m_fd($ipaddr)}
-	unset m_fd($ipaddr)
+    foreach ipname [array names m_fd] {
+		catch {close $m_fd($ipname)}
+		unset m_fd($ipname)
     }
 	
     # FbpMgr already has list of ip addresses from previous sweep.
-    set rc [FbpMgr::bcast_send_file $taskfile $ipaddrlist $m_network(fcopy_port)]
+    set rc [FbpMgr::bcast_send_file $nodefile $ipnamelist $m_network(fcopy_port)]
     if {$rc != ""} {
-	return -code error $rc
+		return -code error $rc
     }
-    # Download the current graph file to fbp agent.
-    # This is needed for the network recovery feature.
-    set rc [FbpMgr::bcast_send_file $graphfile $ipaddrlist $m_network(fcopy_port)]
+    # Download the current link file to fbp agent.
+    set rc [FbpMgr::bcast_send_file $linkfile $ipnamelist $m_network(fcopy_port)]
     if {$rc != ""} {
-	return -code error $rc
+		return -code error $rc
     }
 
-    foreach ipaddr $ipaddrlist { 
-    	set m_fd($ipaddr) [socket $ipaddr $m_network(service_port)]
-    	fileevent $m_fd($ipaddr) readable "FbpDraw::fbpmgr_handle $m_fd($ipaddr)"
-    	fconfigure $m_fd($ipaddr) -buffering line -blocking 0 
+    foreach ipname $ipnamelist {
+		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
+		if {$ipaddr == ""} {
+			puts "FbpDraw: $ipname has no ipaddr!"
+			continue	
+		}
+    	set m_fd($ipname) [socket $ipaddr $m_network(service_port)]
+    	fileevent $m_fd($ipname) readable "FbpDraw::fbpmgr_handle $m_fd($ipname)"
+    	fconfigure $m_fd($ipname) -buffering line -blocking 0 
     }
 
-    set idx [string last "/" $taskfile]
+    set idx [string last "/" $nodefile]
     incr idx
-    set filename [string range $taskfile $idx end]
-    set idx [string last "/" $graphfile]
+    set filename [string range $nodefile $idx end]
+    set idx [string last "/" $linkfile]
     incr idx
-    set graphname [string range $graphfile $idx end]
+    set graphname [string range $linkfile $idx end]
 
-    set tmpdata(ipaddrlist) $ipaddrlist 
+	set tmpdata(id) $id
+    set tmpdata(ipaddrlist) $ipnamelist 
     set tmpdata(filename) $filename
     set tmpdata(graphname) $graphname
     set tmpdata(reconnect) 0
     Fsm::Run fbp_agent_fsm tmpdata
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
-	set cmd [lappend cmd $m_graph(graph_id)]
-    	foreach ipaddr $ipaddrlist {
-	    puts $m_fd($ipaddr) $cmd
-	    flush $m_fd($ipaddr)
-            puts "send $ipaddr $cmd"
+    	foreach ipname $ipnamelist {
+	    	puts $m_fd($ipname) $cmd
+	    	flush $m_fd($ipname)
+            puts "send $ipname $cmd"
     	}
     }
     unset tmpdata
@@ -128,10 +132,10 @@ proc mgr_terminate {action} {
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
 	set cmd [lappend cmd $m_graph(graph_id)]
-    	foreach ipaddr [array names m_fd] {
-	    puts $m_fd($ipaddr) $cmd
-	    flush $m_fd($ipaddr)
-            puts "send $ipaddr $cmd"
+    	foreach ipname [array names m_fd] {
+			puts $m_fd($ipname) $cmd
+			flush $m_fd($ipname)
+            puts "send $ipname $cmd"
     	}
     }
     unset tmpdata
@@ -142,35 +146,36 @@ proc Mgr_Disconnect {} {
     return
 }
 
-proc Mgr_Reconnect {ipaddrlist} {
+proc Mgr_Reconnect {ipnamelist} {
     variable m_fd
     variable m_network
     variable m_graph
 
     # Close preivous file descriptors first.
-    foreach ipaddr [array names m_fd] {
-	catch {close $m_fd($ipaddr)}
-	unset m_fd($ipaddr)
+    foreach ipname [array names m_fd] {
+		catch {close $m_fd($ipname)}
+		unset m_fd($ipname)
     }
 	
-    foreach ipaddr $ipaddrlist { 
-    	set m_fd($ipaddr) [socket $ipaddr $m_network(service_port)]
-    	fileevent $m_fd($ipaddr) readable "FbpDraw::fbpmgr_handle $m_fd($ipaddr)"
-    	fconfigure $m_fd($ipaddr) -buffering line -blocking 0 
+    foreach ipname $ipnamelist { 
+		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
+    	set m_fd($ipname) [socket $ipaddr $m_network(service_port)]
+    	fileevent $m_fd($ipname) readable "FbpDraw::fbpmgr_handle $m_fd($ipname)"
+    	fconfigure $m_fd($ipname) -buffering line -blocking 0 
     }
 
-    set tmpdata(ipaddrlist) $ipaddrlist 
+    set tmpdata(ipaddrlist) $ipnamelist 
     set tmpdata(filename) "-----" 
     set tmpdata(graphname) $m_graph(graph_id)
     set tmpdata(reconnect) 1
     Fsm::Run fbp_agent_fsm tmpdata
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
-	set cmd [lappend cmd $m_graph(graph_id)]
-    	foreach ipaddr $ipaddrlist {
-	    puts $m_fd($ipaddr) $cmd
-	    flush $m_fd($ipaddr)
-            puts "send $ipaddr $cmd"
+		set cmd [lappend cmd $m_graph(graph_id)]
+    	foreach ipname $ipnamelist {
+	    	puts $m_fd($ipname) $cmd
+	    	flush $m_fd($ipname)
+            puts "send $ipname $cmd"
     	}
     }
     unset tmpdata
@@ -188,21 +193,23 @@ proc Mgr_Query {query} {
 
     set rc ""
     set query [lappend query $m_graph(graph_id)]
-    foreach ipaddr [array names m_fd] { 
+    foreach ipname [array names m_fd] { 
+		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
     	set fd [socket $ipaddr $m_network(info_port)]
-	puts $fd $query
-	flush $fd
-	gets $fd response
-	close $fd
-	set rc [concat $rc $response]
+		puts $fd $query
+		flush $fd
+		gets $fd response
+		close $fd
+		set rc [concat $rc $response]
     }
     return $rc
 }
 
-proc Mgr_Query_Graph {query ipaddr graph_id} {
+proc Mgr_Query_Graph {query ipname graph_id} {
     variable m_network
 
     lappend query $graph_id
+	set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
     set fd [socket $ipaddr $m_network(info_port)]
     puts $fd $query
     flush $fd
@@ -229,20 +236,3 @@ malloc::init
 Fsm::Init
 Fsm::Load_Fsm $env(DISK2)/fbp_draw/fbp_mgr/fbp_agent_fsm.dat
 Fsm::Init_Fsm fbp_agent_fsm
-
-if {0} {
-set w .fr1
-frame $w -borderwidth 1 -relief raised
-pack $w -fill x
-text $w.text -relief sunken -bd 2
-pack $w.text -expand yes -fill both
-frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.sweep -text Sweep -command {
-    FbpMgr::Init 192.168.0 14000
-    FbpMgr::Sweep 113 117
-    $w.text delete 0.0 end
-    $w.text insert end "[FbpMgr::getip]\n" 
-}
-}
-

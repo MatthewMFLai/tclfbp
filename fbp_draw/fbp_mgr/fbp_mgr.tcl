@@ -1,19 +1,12 @@
 namespace eval FbpMgr {
 
-variable m_port
-variable m_ip_prefix
 variable m_ip_array
 
-proc Init {ip_prefix port} {
-    variable m_port
-    variable m_ip_prefix
-
-    set m_port $port
-    set m_ip_prefix $ip_prefix
+proc Init {} {
     return
 }
 
-proc getip {} {
+proc getipnames {} {
     variable m_ip_array
     
     return [array names m_ip_array]
@@ -23,13 +16,13 @@ proc get_graph_ids {p_data} {
     variable m_ip_array
     upvar $p_data data
 
-    foreach ipaddr [array names m_ip_array] {
-	foreach graph_id $m_ip_array($ipaddr) {
-	    if {![info exists data($graph_id)]} {
-		set data($graph_id) ""
-	    }	
-	    lappend data($graph_id) $ipaddr
-	}
+    foreach ipname [array names m_ip_array] {
+		foreach graph_id $m_ip_array($ipname) {
+	    	if {![info exists data($graph_id)]} {
+				set data($graph_id) ""
+	    	}
+	    	lappend data($graph_id) $ipname
+		}
     }
     return
 }
@@ -42,40 +35,35 @@ proc checkip {ipaddr port} {
     if {[catch {socket $ipaddr $port} fd]} {
     	return 
     }
-    puts $fd "IDENT $ipaddr"
+	# Put in a dummy graph id for now.
+    puts $fd "dummy IDENT_AGENT"
     flush $fd
     gets $fd resp
-    if {[lindex $resp 0] != "DONE"} {
-     # if {$resp != "DONE"} 
+    if {[lindex $resp 0] != "IDENT_AGENT"} {
     	close $fd
     	return 
     }
-    set m_ip_array($ipaddr) [lindex $resp 1]
-    puts "$ipaddr service available"
+    set ipname [lindex $resp 2]
+    set m_ip_array($ipname) "$ipaddr $port"
+    puts "$ipname $ipaddr $port service available"
     close $fd
     return
 }
 
-proc Sweep {start stop} {
-    variable m_port
-    variable m_ip_prefix
+proc Sweep {ipaddrlist} {
     variable m_ip_array
 
     # Clean the ip array first.
     foreach idx [array names m_ip_array] {
-	unset m_ip_array($idx)
+		unset m_ip_array($idx)
     }
 
-    set dot "."
-    for {set i $start} {$i < $stop} {incr i} {
-	set ipaddr $m_ip_prefix$dot$i
-	checkip $ipaddr $m_port
+    foreach token $ipaddrlist {
+		set ipaddr [lindex $token 0]
+		set port [lindex $token 1] 
+		checkip $ipaddr $port
     }
 
-    # Check localhost if ip array is empty.
-    if {[array names m_ip_array] == ""} {
-	checkip "localhost" $m_port
-    }	
     return
 }
 
@@ -98,17 +86,27 @@ proc send_one_file {name host port} {
     close $channel
 }
 
-proc bcast_send_file {filename ipaddrlist port} {
+proc bcast_send_file {filename ipnamelist port} {
     variable m_ip_array
 
-    foreach ipaddr $ipaddrlist {
-	if {![info exists m_ip_array($ipaddr)]} {
-	    return "$ipaddr not in sweep set \([array names m_ip_array]\)"
-	}
-	puts "sending $filename $ipaddr $port"
-	send_one_file $filename $ipaddr $port
+    foreach ipname $ipnamelist {
+		if {![info exists m_ip_array($ipname)]} {
+	    	return "$ipname not in sweep set \([array names m_ip_array]\)"
+		}
+		set ipaddr [lindex $m_ip_array($ipname) 0]
+		puts "sending $filename $ipaddr $port"
+		send_one_file $filename $ipaddr $port
     }
     return "" 
+}
+
+proc get_ipaddr {ipname} {
+    variable m_ip_array
+
+	if {![info exists m_ip_array($ipname)]} {
+	    return "" 
+	}
+    return $m_ip_array($ipname) 
 }
 	
 }
