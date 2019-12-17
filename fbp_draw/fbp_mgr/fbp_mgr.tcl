@@ -27,7 +27,7 @@ proc get_graph_ids {p_data} {
     return
 }
 
-proc checkip {ipaddr port} {
+proc checkip {ipaddr port fileport} {
     variable m_ip_array
 
     set dot "."
@@ -44,8 +44,8 @@ proc checkip {ipaddr port} {
     	return 
     }
     set ipname [lindex $resp 2]
-    set m_ip_array($ipname) "$ipaddr $port"
-    puts "$ipname $ipaddr $port service available"
+    set m_ip_array($ipname) "$ipaddr $port $fileport"
+    puts "$ipname $ipaddr $port $fileport service available"
     close $fd
     return
 }
@@ -61,7 +61,8 @@ proc Sweep {ipaddrlist} {
     foreach token $ipaddrlist {
 		set ipaddr [lindex $token 0]
 		set port [lindex $token 1] 
-		checkip $ipaddr $port
+		set fileport [lindex $token 2] 
+		checkip $ipaddr $port $fileport
     }
 
     return
@@ -86,7 +87,7 @@ proc send_one_file {name host port} {
     close $channel
 }
 
-proc bcast_send_file {filename ipnamelist port} {
+proc bcast_send_file {filename ipnamelist} {
     variable m_ip_array
 
     foreach ipname $ipnamelist {
@@ -94,6 +95,7 @@ proc bcast_send_file {filename ipnamelist port} {
 	    	return "$ipname not in sweep set \([array names m_ip_array]\)"
 		}
 		set ipaddr [lindex $m_ip_array($ipname) 0]
+		set port [lindex $m_ip_array($ipname) 2]
 		puts "sending $filename $ipaddr $port"
 		send_one_file $filename $ipaddr $port
     }

@@ -26,7 +26,8 @@ proc Get_Ip {} {
 		set ipaddr $m_cfg($ipname)
 	}
 	set port $m_cfg(server_accept)
-	return "$ipname $ipaddr $port"
+	set fileport $m_cfg(receive_file)
+	return "$ipname $ipaddr $port $fileport"
 }
 
 }

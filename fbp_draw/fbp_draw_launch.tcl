@@ -32,8 +32,9 @@ proc launch_init {cfgfiles} {
 		set rc [Cfg::Get_Ip]
 		# idx 0 = virtual name
 		# idx 1 = ip address
-		# idx 2 = port number
-		lappend m_ipaddrlist "[lindex $rc 1] [lindex $rc 2]"
+		# idx 2 = service port number
+		# idx 3 = file receive port number
+		lappend m_ipaddrlist "[lindex $rc 1] [lindex $rc 2] [lindex $rc 3]"
 	} 
     return
 }
@@ -125,7 +126,7 @@ proc launch_run {p_blockname_map} {
 		return
     }
     set m_runstate "LAUNCH_RUNNING"
-    file delete -force $name.block
+    file delete -force $name.node
     file delete -force $name.link
     #file delete -force $name.out
     file delete -force $name.split

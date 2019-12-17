@@ -480,4 +480,11 @@ pack .ybar -side right -fill y
 pack .xbar -side bottom -fill both
 pack .c -side left -fill both -expand 1
 FbpDraw::makeMovable $c
-FbpDraw::launch_init $argv
+if {$argv == ""} {
+	# Config file is located at the default dir
+	set cfgfilelist ""
+	lappend cfgfilelist $env(COMP_HOME)/ut_common/launcher_imp.cfg.def
+	FbpDraw::launch_init $cfgfilelist
+} else {
+	FbpDraw::launch_init $argv
+}

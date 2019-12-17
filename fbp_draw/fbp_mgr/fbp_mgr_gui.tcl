@@ -36,7 +36,6 @@ proc fbpmgr_handle {cid} {
 		Fsm::Run fbp_agent_fsm tmpdata
 		set cmd [fbp_agent_fsm::get_clr_cmd]
 		if {$cmd != ""} {
-	    	set cmd [lappend cmd $m_graph(graph_id)]
     	    foreach ipname [array names m_fd] {
 				puts $m_fd($ipname) $cmd
 				flush $m_fd($ipname)
@@ -68,7 +67,6 @@ proc Mgr_Sweep {ipaddrlist} {
 
 proc Mgr_Run {id nodefile linkfile ipnamelist} {
     variable m_fd
-    variable m_network
     variable m_graph
 
     # Close preivous file descriptors first.
@@ -78,23 +76,24 @@ proc Mgr_Run {id nodefile linkfile ipnamelist} {
     }
 	
     # FbpMgr already has list of ip addresses from previous sweep.
-    set rc [FbpMgr::bcast_send_file $nodefile $ipnamelist $m_network(fcopy_port)]
+    set rc [FbpMgr::bcast_send_file $nodefile $ipnamelist]
     if {$rc != ""} {
 		return -code error $rc
     }
     # Download the current link file to fbp agent.
-    set rc [FbpMgr::bcast_send_file $linkfile $ipnamelist $m_network(fcopy_port)]
+    set rc [FbpMgr::bcast_send_file $linkfile $ipnamelist]
     if {$rc != ""} {
 		return -code error $rc
     }
 
     foreach ipname $ipnamelist {
 		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
+		set port [lindex [FbpMgr::get_ipaddr $ipname] 1]
 		if {$ipaddr == ""} {
 			puts "FbpDraw: $ipname has no ipaddr!"
 			continue	
 		}
-    	set m_fd($ipname) [socket $ipaddr $m_network(service_port)]
+    	set m_fd($ipname) [socket $ipaddr $port]
     	fileevent $m_fd($ipname) readable "FbpDraw::fbpmgr_handle $m_fd($ipname)"
     	fconfigure $m_fd($ipname) -buffering line -blocking 0 
     }
@@ -148,7 +147,6 @@ proc Mgr_Disconnect {} {
 
 proc Mgr_Reconnect {ipnamelist} {
     variable m_fd
-    variable m_network
     variable m_graph
 
     # Close preivous file descriptors first.
@@ -159,7 +157,8 @@ proc Mgr_Reconnect {ipnamelist} {
 	
     foreach ipname $ipnamelist { 
 		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
-    	set m_fd($ipname) [socket $ipaddr $m_network(service_port)]
+		set port [lindex [FbpMgr::get_ipaddr $ipname] 1]
+    	set m_fd($ipname) [socket $ipaddr $port]
     	fileevent $m_fd($ipname) readable "FbpDraw::fbpmgr_handle $m_fd($ipname)"
     	fconfigure $m_fd($ipname) -buffering line -blocking 0 
     }
