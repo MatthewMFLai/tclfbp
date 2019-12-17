@@ -83,53 +83,42 @@ proc launch_run {p_blockname_map} {
     global tcl_platform
 
     if {$m_graph(graph_id) == ""} {
-	error_dialog "Graph name cannot be empty!"
-	return
+		error_dialog "Graph name cannot be empty!"
+		return
     }
     if {$m_runstate != "LAUNCH_IDLE"} {
-	error_dialog "Network is already running!"
-	return
+		error_dialog "Network is already running!"
+		return
     }
 	
     if {$m_tmpdir == ""} {
-	error_dialog "Select scratchpad to set working directory!"
-	return
+		error_dialog "Select scratchpad to set working directory!"
+		return
     }
 
     # Call the routines to generate block and link files.
-    set name "$m_tmpdir/$m_graph(graph_id)"
+	set raw "_raw"
+    set name "$m_tmpdir/$m_graph(graph_id)$raw"
+    set name_expanded "$m_tmpdir/$m_graph(graph_id)"
     upvar $p_blockname_map blockname_map
     gen_block_file $name.node  blockname_map
     gen_link_file $name.link blockname_map
 
-	if {0} {
-    # Call the fbp routines to generate the out and split files.
-    if {[string first "Windows" $tcl_platform(os)] > -1} {
-    	set line "exec tclsh $env(FBP_HOME)/fbp_test.tcl "
-        append line "$name.block $name.link $m_network(circuitname) $m_network(first_port) $name.out"
-	eval $line
-    	set line "exec tclsh $env(FBP_HOME)/fbp_postproc.tcl "
-	append line "$name.out $name.split"
-	eval $line
-    } else {
-    	exec $env(FBP_HOME)/fbp_test.tcl \
-            $name.block $name.link $m_network(circuitname) $m_network(first_port) $name.out
-    	exec $env(FBP_HOME)/fbp_postproc.tcl $name.out $name.split 
-    }
-	}
+    # Call the fbp routines to generate the expanded node and link files.
+	exec tclsh $env(FBP_HOME)/fbp_postproc.tcl $name.node $name.link $name_expanded.node $name_expanded.link
 
     # Call FBP mgr to spawn the processes.
     set ipaddrlist [block_get_all_ipaddr]
     set graphfile [Gen_Graphfile_Name]
-    if {[catch {Mgr_Run $m_graph(graph_id) $name.node $name.link $ipaddrlist} rc]} {
+    if {[catch {Mgr_Run $m_graph(graph_id) $name_expanded.node $name_expanded.link $ipaddrlist} rc]} {
 		puts $rc
 		return
     }
     set m_runstate "LAUNCH_RUNNING"
     file delete -force $name.node
     file delete -force $name.link
-    #file delete -force $name.out
-    file delete -force $name.split
+    file delete -force $name_expanded.node
+    file delete -force $name_expanded.link
     file delete -force $graphfile
     return
 }

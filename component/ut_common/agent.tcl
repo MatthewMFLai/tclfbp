@@ -85,9 +85,9 @@ proc fbp_mgr_server_handle {cid} {
 
 			${launcher}::Init $cid $g_data(cfgfile)
 
-			${launcher}::Setup $id $g_data(ip) $g_data(workdir)/$id.node $g_data(workdir)/$id.link $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
-			file delete $g_data(workdir)/$id.node
-			file delete $g_data(workdir)/$id.link
+			${launcher}::Setup $id $g_data(ip) $g_data(workdir)/$id.node.[pid] $g_data(workdir)/$id.link.[pid] $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
+			file delete $g_data(workdir)/$id.node.[pid]
+			file delete $g_data(workdir)/$id.link.[pid]
 			${launcher}::Execute $id $alloc_port
 
 		} elseif {$cmd == "CLEANUP"} {
@@ -134,7 +134,7 @@ proc receive_file {channel_name client_address client_port} {
     gets $channel_name line
     foreach {name size} $line {}
 
-    set fully_qualified_filename [file join $g_data(workdir) $name]
+    set fully_qualified_filename [file join $g_data(workdir) $name.[pid]]
     set fp [open $fully_qualified_filename w]
     fconfigure $fp -translation binary
 

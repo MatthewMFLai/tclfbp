@@ -1,6 +1,6 @@
 source sendfile.tcl
 
-set cmd "exec tclsh fbp_postproc.tcl $id.node $id.link $id\_x.node $id\_x.link"
+set cmd "exec tclsh $env(FBP_HOME)/fbp_postproc.tcl $id.node $id.link $id\_x.node $id\_x.link"
 eval $cmd
 set id $id\_x 
 
