@@ -186,12 +186,12 @@ proc set_sock_node_msgdef {id lines} {
     	set toport [lindex $line 3]
     	set fifo_len [lindex $line 4]
  
-		if {[string first $m_cfg(sock_str) $fromname] != 0 &&
-			[string first $m_cfg(sock_str) $toname] != 0} {
+		if {[string first $m_cfg(sock_str) $fromname] == -1 &&
+			[string first $m_cfg(sock_str) $toname] == -1} {
 			continue
 		}
 
-		if {[string first $m_cfg(sock_str) $fromname] == 0} {
+		if {[string first $m_cfg(sock_str) $fromname] > 0} {
 			set sock_node_name $fromname
 		} else {
 			set sock_node_name $toname
@@ -253,7 +253,7 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 		# Populate nodename to ip mapping table	
 		# Must perform this step before the check for matching ip below
 		# $ip != $node_ip
-		if {[string first $m_cfg(sock_str) $nodename] == 0} {
+		if {[string first $m_cfg(sock_str) $nodename] > 0} {
 			set sock_ip_map($nodename) $node_ip 
 		}
 
@@ -326,10 +326,10 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 			# Both msgdef are null. Find out which endpoint is a socket node,
 			# get the msgdef from the m_sock_node_msgdef array that has been
 			# set up before, and use that msgdef for the OTHER endpoint.
-			if {[string first $m_cfg(sock_str) $fromname] == 0} {
+			if {[string first $m_cfg(sock_str) $fromname] > 0} {
     			set msgname [Msgdef::Parse [get_sock_node_msgdef $fromname]]
 				Blk_helper::Add_reflected_port $id $toname 1 $toport [get_sock_node_msgdef $fromname]
-			} elseif {[string first $m_cfg(sock_str) $toname] == 0} {
+			} elseif {[string first $m_cfg(sock_str) $toname] > 0} {
     			set msgname [Msgdef::Parse [get_sock_node_msgdef $toname]]
 				Blk_helper::Add_reflected_port $id $fromname 0 $fromport [get_sock_node_msgdef $toname]
 			} else {
@@ -340,9 +340,9 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 		}
     	set size [Msgdef::Get_Max_Size $msgname]
 
-		if {[string first $m_cfg(sock_str) $fromname] == 0} {
+		if {[string first $m_cfg(sock_str) $fromname] > 0} {
     		set key [Key_helper::Create_key $id $fromname]
-		} elseif {[string first $m_cfg(sock_str) $toname] == 0} {
+		} elseif {[string first $m_cfg(sock_str) $toname] > 0} {
     		set key [Key_helper::Create_key $id $toname]
 		} else {
     		set key [Key_helper::Create_key $id $line]
@@ -352,11 +352,11 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
     	Blk_helper::Add_fifo_len $id $toname 1 $toport $key $fifo_len $size
 
 		# Update the tx and rx data in Blk_helper for the cross machines link.
-		if {[string first $m_cfg(sock_str) $fromname] == 0} {
+		if {[string first $m_cfg(sock_str) $fromname] > 0} {
 			Blk_helper::Add_rx_data $id $fromname $key:$size:$fifo_len
 			set m_sock_node_rx_ack 0
 		}
-		if {[string first $m_cfg(sock_str) $toname] == 0} {
+		if {[string first $m_cfg(sock_str) $toname] > 0} {
 			#foreach to_ip $sock_ip_map($toname) {}
 			foreach idx [array names sock_ip_map "$toname*"] {
 				set to_ip $sock_ip_map($idx)
@@ -412,10 +412,40 @@ proc Cleanup {id} {
 	return
 }
 
+# input key looks like
+#    <dir>/<id>-<from>-<from port>-<to>-<to port>-<max queue len>[SOCK_RTX...]
+# eg. /tmp/onepc_x-clo1-2-seq-1-32
+# eg. /tmp/onepc_x-clo1-2-seq-1-32SOCK_RTX_1-RX
+# output stripped key should be
+#    <from> <from port> <to> <to port>
+# eg. clo1 2 seq 1
+proc strip_key {id key} {
+	variable m_cfg
+
+	# Remove <dir>/<id>-	
+	set idx [string first $id $key]
+	incr idx [string length $id]
+	incr idx
+	set key [string range $key $idx end]
+
+	# Remove [SOCK_RTX...] if present
+	set idx [string first $m_cfg(sock_str) $key]
+	if {$idx > 0} {
+		incr idx -1
+		set key [string range $key 0 $idx] 	
+	}
+
+	# Remove -<max queue len>
+	set idx [string last "-" $key]
+	incr idx -1
+	set key [string range $key 0 $idx]
+	return [split $key "-"]	
+}
+
 proc Qlen {id} {
 	set rc ""
 	foreach key [Key_helper::Get_all_keys $id] {
-		lappend rc "$key [sv_csr_qlen_wrapper $key]"
+		lappend rc "[strip_key $id $key] [sv_csr_qlen_wrapper $key]"
 	}
 	return $rc
 }

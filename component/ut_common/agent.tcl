@@ -106,9 +106,10 @@ proc fbp_mgr_server_handle {cid} {
 			set launcher [Launcher_Obj::Get_Obj $id]
 			if {$launcher != ""} {
 				set rc [${launcher}::Qlen $id]
-				set sd [${launcher}::Get_Fbp_Mgr_Cid]
-				puts $sd "$cmd OK $rc"
-				flush $sd
+				# Use the local cid instead of the saved cid for now.
+				#set sd [${launcher}::Get_Fbp_Mgr_Cid]
+				puts $cid "$cmd OK $rc"
+				flush $cid
 			}
 
 		} elseif {$cmd == "IDENT_AGENT"} {

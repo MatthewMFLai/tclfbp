@@ -187,20 +187,40 @@ proc Mgr_Stop {} {
 
 proc Mgr_Query {query} {
     variable m_fd
-    variable m_network
     variable m_graph
 
+	array set keytab {}
     set rc ""
-    set query [lappend query $m_graph(graph_id)]
+    set query "$m_graph(graph_id) $query"
     foreach ipname [array names m_fd] { 
 		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
-    	set fd [socket $ipaddr $m_network(info_port)]
+		set port [lindex [FbpMgr::get_ipaddr $ipname] 1]
+    	set fd [socket $ipaddr $port]
+		#puts "fbp_mgr: send $query to $fd $ipaddr $port"
 		puts $fd $query
 		flush $fd
 		gets $fd response
+		# response looks like
+		# QLEN OK {<from> <outport> <to> <inport> <len>} {...}
+		foreach token [lrange $response 2 end] {
+			set toname [lindex $token 2]				
+			set inport [lindex $token 3]				
+			set len [lindex $token 4]				
+			if {!$len} {
+				continue
+			}
+			set idx "$toname $inport"
+			if {![info exists keytab($idx)]} {
+				set keytab($idx) 0
+			}
+			incr keytab($idx) $len
+		}
 		close $fd
-		set rc [concat $rc $response]
     }
+	# Return the {toname inport len} tuples.
+	foreach idx [array names keytab] {
+		lappend rc "[lindex $idx 0] [lindex $idx 1] $keytab($idx)"
+	}
     return $rc
 }
 

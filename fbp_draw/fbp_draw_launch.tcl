@@ -224,7 +224,7 @@ proc query_queue {win} {
     variable m_queryid
     variable m_portqueuelist
 
-    set rc [Mgr_Query QUERY_QUEUE]
+    set rc [Mgr_Query QLEN]
     if {$rc != ""} {
 	update_port_queue $win $m_portqueuelist
 	set m_portqueuelist ""

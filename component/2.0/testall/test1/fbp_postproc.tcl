@@ -65,20 +65,20 @@ while {[gets $fd line] > -1} {
 	# Change the line 
 	# clo1 2 trc1 1 32
 	# to
-	# clo1 2 SOCK_RTX_1 1 16
-	# SOCK_RTX_1-RX 1 trc1 1 16
-
+	# clo1 2 clo1-2-trc1-32SOCK_RTX_1 1 16
+	# clo1-2-trc1-32SOCK_RTX_1-RX 1 trc1 1 16
+	set line [join $line "-"]
 	set fifo_len [expr $fifo_len / 2]
 	if {$fifo_len == 0} {
 		set fifo_len 1
 	}
 	
-	lappend outlinks "$fromname $fromport $sock_node_prefix$nodenum 1 $fifo_len"	
-	lappend outlinks "$sock_node_prefix$nodenum$rx_suffix 1 $toname $toport $fifo_len"
+	lappend outlinks "$fromname $fromport $line$sock_node_prefix$nodenum 1 $fifo_len"	
+	lappend outlinks "$line$sock_node_prefix$nodenum$rx_suffix 1 $toname $toport $fifo_len"
 
 	# Add sock nodes to outnodes list.
-	lappend outnodes "$sock_node_prefix$nodenum $tx_path $nodes($fromname)"
-	lappend outnodes "$sock_node_prefix$nodenum$rx_suffix $rx_path $nodes($toname)"
+	lappend outnodes "$line$sock_node_prefix$nodenum $tx_path $nodes($fromname)"
+	lappend outnodes "$line$sock_node_prefix$nodenum$rx_suffix $rx_path $nodes($toname)"
 
 	incr nodenum
 }
