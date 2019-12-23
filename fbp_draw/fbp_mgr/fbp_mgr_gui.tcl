@@ -21,7 +21,6 @@ proc fd_to_ipname {cid} {
 
 proc fbpmgr_handle {cid} {
     variable m_fd
-    variable m_graph
 
     if {[gets $cid request] < 0} {
         close $cid
@@ -75,7 +74,6 @@ proc Mgr_Sweep {ipaddrlist} {
 proc Mgr_Run {id nodefile linkfile ipnamelist} {
     variable m_fd
     variable m_fd2
-    variable m_graph
 
     # Close preivous file descriptors first.
     foreach ipname [array names m_fd] {
@@ -137,15 +135,14 @@ proc Mgr_Run {id nodefile linkfile ipnamelist} {
     unset tmpdata
 }
 
-proc mgr_terminate {action} {
+proc mgr_terminate {action graph_id} {
     variable m_fd
-    variable m_graph
 
     set tmpdata(action) $action 
     Fsm::Run fbp_agent_fsm tmpdata
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
-	set cmd [lappend cmd $m_graph(graph_id)]
+	set cmd [lappend cmd $graph_id]
     	foreach ipname [array names m_fd] {
 			puts $m_fd($ipname) $cmd
 			flush $m_fd($ipname)
@@ -155,14 +152,13 @@ proc mgr_terminate {action} {
     unset tmpdata
 }
 
-proc Mgr_Disconnect {} {
-    mgr_terminate "disconnect"
+proc Mgr_Disconnect {graph_id} {
+    mgr_terminate "disconnect" $graph_id
     return
 }
 
-proc Mgr_Reconnect {ipnamelist} {
+proc Mgr_Reconnect {ipnamelist graph_id} {
     variable m_fd
-    variable m_graph
 
     # Close preivous file descriptors first.
     foreach ipname [array names m_fd] {
@@ -180,12 +176,12 @@ proc Mgr_Reconnect {ipnamelist} {
 
     set tmpdata(ipaddrlist) $ipnamelist 
     set tmpdata(filename) "-----" 
-    set tmpdata(graphname) $m_graph(graph_id)
+    set tmpdata(graphname) $graph_id
     set tmpdata(reconnect) 1
     Fsm::Run fbp_agent_fsm tmpdata
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
-		set cmd [lappend cmd $m_graph(graph_id)]
+		set cmd [lappend cmd $graph_id]
     	foreach ipname $ipnamelist {
 	    	puts $m_fd($ipname) $cmd
 	    	flush $m_fd($ipname)
@@ -195,18 +191,17 @@ proc Mgr_Reconnect {ipnamelist} {
     unset tmpdata
 }
 
-proc Mgr_Stop {} {
-    mgr_terminate "stop"
+proc Mgr_Stop {graph_id} {
+    mgr_terminate "stop" $graph_id
     return
 }
 
-proc Mgr_Query {query} {
+proc Mgr_Query {query graph_id} {
     variable m_fd2
-    variable m_graph
 
 	array set keytab {}
     set rc ""
-    set query "$m_graph(graph_id) $query"
+    set query "$graph_id $query"
     foreach ipname [array names m_fd2] { 
 		set fd $m_fd2($ipname)	
 		puts $fd $query

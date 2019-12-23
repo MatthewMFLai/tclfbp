@@ -146,13 +146,14 @@ proc launch_stop_trace {win} {
 
 proc launch_disconnect {win} {
     variable m_runstate
+	variable m_graph
 
     if {$m_runstate != "LAUNCH_RUNNING"} {
 	error_dialog "Network is not running!"
 	return
     }
     launch_stop_trace $win
-    if {[catch {Mgr_Disconnect} rc]} {
+    if {[catch {Mgr_Disconnect $m_graph(graph_id)} rc]} {
 	
     }
     set m_runstate "LAUNCH_IDLE"
@@ -161,13 +162,14 @@ proc launch_disconnect {win} {
 
 proc launch_stop {win} {
     variable m_runstate
+	variable m_graph
 
     if {$m_runstate != "LAUNCH_RUNNING"} {
 	error_dialog "Network is not running!"
 	return
     }
     launch_stop_trace $win
-    if {[catch {Mgr_Stop} rc]} {
+    if {[catch {Mgr_Stop $m_graph(graph_id)} rc]} {
 	
     }
     set m_runstate "LAUNCH_IDLE"
@@ -223,8 +225,9 @@ proc query_queue {win} {
     variable m_querytime
     variable m_queryid
     variable m_portqueuelist
+	variable m_graph
 
-    set rc [Mgr_Query QLEN]
+    set rc [Mgr_Query QLEN $m_graph(graph_id)]
     if {$rc != ""} {
 	update_port_queue $win $m_portqueuelist
 	set m_portqueuelist ""
@@ -252,8 +255,9 @@ proc query_cpu {win} {
     variable m_querytime
     variable m_queryid
     variable m_cpus
+	variable m_graph
 
-    set rc [Mgr_Query QUERY_CPU]
+    set rc [Mgr_Query QUERY_CPU $m_graph(graph_id)]
     if {$rc != ""} {
 	# Clear old data first.
 	launch_clear_cpu $win
@@ -291,7 +295,7 @@ proc launch_reconnect {win} {
 
     # Call FBP mgr to spawn the processes.
     set ipaddrlist [block_get_all_ipaddr]
-    if {[catch {Mgr_Reconnect $ipaddrlist} rc]} {
+    if {[catch {Mgr_Reconnect $ipaddrlist $m_graph(graph_id)} rc]} {
 	puts $rc
 	return
     }
