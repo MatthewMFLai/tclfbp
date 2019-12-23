@@ -6,6 +6,7 @@ source $env(DISK2)/fbp_draw/fbp_mgr/fbp_mgr.tcl
 namespace eval FbpDraw {
 
 variable m_fd
+variable m_fd2
 
 proc fd_to_ipname {cid} {
     variable m_fd
@@ -47,8 +48,10 @@ proc fbpmgr_handle {cid} {
 
 proc Mgr_Init {} {
     variable m_fd
+    variable m_fd2
 
     array set m_fd {}
+    array set m_fd2 {}
     FbpMgr::Init
     return
 }
@@ -61,18 +64,27 @@ proc Mgr_Sweep {ipaddrlist} {
 		catch {close $m_fd($ipname)}
 		unset m_fd($ipname)
     }	
+    foreach ipname [array names m_fd2] {
+		catch {close $m_fd2($ipname)}
+		unset m_fd2($ipname)
+    }	
     FbpMgr::Sweep $ipaddrlist
     return
 }
 
 proc Mgr_Run {id nodefile linkfile ipnamelist} {
     variable m_fd
+    variable m_fd2
     variable m_graph
 
     # Close preivous file descriptors first.
     foreach ipname [array names m_fd] {
 		catch {close $m_fd($ipname)}
 		unset m_fd($ipname)
+    }
+    foreach ipname [array names m_fd2] {
+		catch {close $m_fd2($ipname)}
+		unset m_fd2($ipname)
     }
 	
     # FbpMgr already has list of ip addresses from previous sweep.
@@ -95,7 +107,10 @@ proc Mgr_Run {id nodefile linkfile ipnamelist} {
 		}
     	set m_fd($ipname) [socket $ipaddr $port]
     	fileevent $m_fd($ipname) readable "FbpDraw::fbpmgr_handle $m_fd($ipname)"
-    	fconfigure $m_fd($ipname) -buffering line -blocking 0 
+    	fconfigure $m_fd($ipname) -buffering line -blocking 0
+		
+		# Allocate a query socket also to monitor queue length.
+    	set m_fd2($ipname) [socket $ipaddr $port]
     }
 
     set idx [string last "/" $nodefile]
@@ -186,17 +201,14 @@ proc Mgr_Stop {} {
 }
 
 proc Mgr_Query {query} {
-    variable m_fd
+    variable m_fd2
     variable m_graph
 
 	array set keytab {}
     set rc ""
     set query "$m_graph(graph_id) $query"
-    foreach ipname [array names m_fd] { 
-		set ipaddr [lindex [FbpMgr::get_ipaddr $ipname] 0]
-		set port [lindex [FbpMgr::get_ipaddr $ipname] 1]
-    	set fd [socket $ipaddr $port]
-		#puts "fbp_mgr: send $query to $fd $ipaddr $port"
+    foreach ipname [array names m_fd2] { 
+		set fd $m_fd2($ipname)	
 		puts $fd $query
 		flush $fd
 		gets $fd response
@@ -215,7 +227,6 @@ proc Mgr_Query {query} {
 			}
 			incr keytab($idx) $len
 		}
-		close $fd
     }
 	# Return the {toname inport len} tuples.
 	foreach idx [array names keytab] {
