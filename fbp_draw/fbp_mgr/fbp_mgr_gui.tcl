@@ -123,6 +123,7 @@ proc Mgr_Run {id nodefile linkfile ipnamelist} {
     set tmpdata(filename) $filename
     set tmpdata(graphname) $graphname
     set tmpdata(reconnect) 0
+	Fsm::Set_State fbp_agent_fsm "READY"
     Fsm::Run fbp_agent_fsm tmpdata
     set cmd [fbp_agent_fsm::get_clr_cmd]
     if {$cmd != ""} {
