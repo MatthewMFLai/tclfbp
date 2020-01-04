@@ -83,7 +83,7 @@ proc fbp_mgr_server_handle {cid} {
 			set alloc_port [lindex [fconfigure $sd -sockname] 2]
 			PortToLauncher::Add $alloc_port $launcher 
 
-			${launcher}::Init $cid $g_data(cfgfile)
+			${launcher}::Init $cid $g_data(cfgfile) $g_data(netcfgfile)
 
 			${launcher}::Setup $id $g_data(ip) $g_data(workdir)/$id.node.[pid] $g_data(workdir)/$id.link.[pid] $env(COMP_HOME)/ut_common/launcher_fsm_obj.dat $env(COMP_HOME)/ut_common/launcher_fsm_obj.tcl
 			file delete $g_data(workdir)/$id.node.[pid]
@@ -241,8 +241,14 @@ set newcfgfile [lindex $argv 0]
 if {$newcfgfile != "" && [file exists $newcfgfile]} {
 	set cfgfile $newcfgfile
 }
+set netcfgfile $env(COMP_HOME)/ut_common/launcher_imp.net.cfg.def
+set newcfgfile [lindex $argv 1]
+if {$newcfgfile != "" && [file exists $newcfgfile]} {
+	set netcfgfile $newcfgfile
+}
 array set m_cfg {}
 source $cfgfile
+source $netcfgfile
 #--------------------------------------------------------
 
 Msgdef::Init
@@ -261,6 +267,7 @@ set g_data(workdir) $env(DISK2)/scratchpad
 set g_data(ip) $m_cfg(ip) 
 set g_data(sock_node_rx) ""
 set g_data(cfgfile) $cfgfile
+set g_data(netcfgfile) $netcfgfile
  
 socket -server fbp_mgr_server_accept $m_cfg(server_accept) 
 socket -server receive_file $m_cfg(receive_file) 

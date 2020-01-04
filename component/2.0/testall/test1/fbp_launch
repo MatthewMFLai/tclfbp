@@ -1,7 +1,7 @@
 cd $HOME/tclfbp
 . setgit_fbp
 cd $COMP_HOME/ut_common
-tclsh agent.tcl $COMP_HOME/ut_common/$1 &
+tclsh agent.tcl $COMP_HOME/ut_common/$1 $COMP_HOME/ut_common/$2 &
 sleep 2
 cd $COMP_HOME/2.0/sock_node
 tclsh sock_node_rx.tcl $COMP_HOME/ut_common/$1 &

@@ -12,7 +12,7 @@ namespace eval %%% {
 	variable m_cur_cmd
 	variable m_fbp_mgr_cid
 
-proc Init {fbp_mgr_cid cfgfile} {
+proc Init {fbp_mgr_cid cfgfile netcfgfile} {
 	variable m_cids
 	variable m_node_cid_map
 	variable m_cfg
@@ -26,6 +26,7 @@ proc Init {fbp_mgr_cid cfgfile} {
 
 	array set m_cfg {}
 	source $cfgfile
+	source $netcfgfile
 
 	set m_sock_node_rx_ack 1
 	array set m_sock_node_msgdef {}
