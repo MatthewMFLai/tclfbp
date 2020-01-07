@@ -253,7 +253,7 @@ source $netcfgfile
 
 Msgdef::Init
 Blk_helper::Init $m_cfg(msg_null)
-Key_helper::Init /tmp
+Key_helper::Init $env(DISK2)/scratchpad/tmp
 queue_init
 port_mgr_init
 

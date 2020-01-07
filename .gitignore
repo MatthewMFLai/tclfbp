@@ -20,6 +20,7 @@ test_wrap*
 *.s
 *.swp
 *.bc
+*.log
 
 # Packages #
 ############
