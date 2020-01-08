@@ -141,9 +141,11 @@ proc handle_keys_remove {id keylist} {
 	# keydata looks like
 	# {<key>:<size>:<len> ... }
 	foreach token $keylist {
+		set token [split $token ":"]
 		set key [lindex $token 0]
         foreach co_name [array names g_coroutines "$key-*"] {
 			rename $co_name {}
+			unset g_coroutines($co_name)
 		}
 		set idx [lsearch $g_key($id) $key]
 		if {$idx != -1} {
