@@ -38,6 +38,30 @@ proc EchoAccept {sock addr port} {
     fileevent $sock readable [list EchoMatchKey $sock]
 }
 
+# tx_key_search --
+#	This procedure is called to find the matching key stored in sock_node_rx.
+#   The tx_key is of the form <tx prefix path>/<key>
+#   The stored key is of the form <rx prefix path>/<key>
+#   The <tx prefix path> may or may not be the same as the <rx prefix path>!!!
+#
+# Arguments:
+#	id     graph name 
+#	tx_key key sent by sock_node_tx
+#
+# Returns:
+#   rc     index to the found key. Returns -1 if key not found.
+proc tx_key_search {id tx_key} {
+	global g_key
+
+	set rc -1
+	set idx [string last "/" $tx_key]
+	incr idx 1
+	set tx_key [string range $tx_key $idx end]
+	
+	set rc [lsearch $g_key($id) "*$tx_key"]
+	return $rc
+}
+
 # EchoMatchKey --
 #	This procedure is called when the server
 #	reads the very first data line from the client
@@ -61,12 +85,12 @@ proc EchoMatchKey {sock} {
 		set key [lindex $line 1]
 		if {![info exists g_key($id)]} {
 			puts $sock "$id $key ERROR"
-		} elseif {[lsearch $g_key($id) $key$key_prefix] > -1} {
+		} elseif {[tx_key_search $id $key$key_prefix] > -1} {
         	puts $sock "$id $key OK"
 			# The received key may be aa-bb while the real key is
 			# aa-bb-RX. Use the real key for subsequent coroutine
 			# creation.
-			set idx [lsearch $g_key($id) $key$key_prefix]
+			set idx [tx_key_search $id $key$key_prefix]
 			set key [lindex $g_key($id) $idx]
 		} else {
 			puts $sock "$id $key ERROR"
