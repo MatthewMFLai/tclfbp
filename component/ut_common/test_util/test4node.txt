@@ -1,0 +1,7 @@
+test4node
+$env(COMP_HOME)/ut_common/test_util/test4node.node
+$env(COMP_HOME)/ut_common/test_util/test4node.link
+$env(COMP_HOME)/ut_common/launcher_imp.cfg
+$env(COMP_HOME)/ut_common/launcher_imp2.cfg
+$env(COMP_HOME)/ut_common/launcher_imp3.cfg
+$env(COMP_HOME)/ut_common/launcher_imp4.cfg

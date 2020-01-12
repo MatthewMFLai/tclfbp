@@ -1,0 +1,5 @@
+test2node
+$env(COMP_HOME)/ut_common/test_util/test2node.node
+$env(COMP_HOME)/ut_common/test_util/test2node.link
+$env(COMP_HOME)/ut_common/launcher_imp.cfg
+$env(COMP_HOME)/ut_common/launcher_imp2.cfg

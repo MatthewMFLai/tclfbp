@@ -1,0 +1,15 @@
+clo1 1 src1 1 4
+clo1 2 seq 1 32
+src1 1 clo1 1 32
+clo2 1 src2 1 4
+clo2 2 seq 2 32
+src2 1 clo2 1 32
+clo3 1 src3 1 4
+clo3 2 seq 3 32
+src3 1 clo3 1 32
+seq 1 trc1 1 32
+seq 2 trc2 1 32
+seq 3 trc3 1 32
+trc1 1 sink 1 32
+trc2 1 sink 1 32
+trc3 1 sink 1 32
