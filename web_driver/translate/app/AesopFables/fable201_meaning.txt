@@ -1,0 +1,2 @@
+crab {蟹，螃蟹；蟹肉 陰虱 巨蟹（星）座} sophisticated 老於世故的；富有經驗的；精通的 quarrel {爭吵，不和 爭吵，不和} amongst 在……之中；在……中間 nearby 在附近；附近的 bramble {黑莓灌木；刺藤 黑莓 懸鈎子屬植物} dispute {（尤指勞資雙方或相鄰兩國之間的）爭執，爭端，糾紛 毫無爭議地，無可爭辯地，不容置疑地 正在受到懷疑的 不確定的，不肯定的 （對…）有異議；不同意，否認；爭論 異議；爭議；紛爭} disputants 辯論者；爭議人，爭論者 pomegranate 【植】石榴；石榴樹
+sophisticated,3.290 0 pomegranate,3.4 0 amongst,5.166 0 dispute,5.62 0 nearby,3.155 0 bramble,3.137 0 bramble,1.18 0 disputants,5.178 0 crab,5.34 0 dispute,3.276 0 quarrel,3.229 0
