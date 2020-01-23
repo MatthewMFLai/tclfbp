@@ -14,8 +14,26 @@ set cfgfiles [Testfile_Parser::Get_Cfgfiles]
 FbpDraw::launch_init $cfgfiles
 FbpDraw::Mgr_Init
 FbpDraw::Mgr_Sweep $FbpDraw::m_ipaddrlist
+
+# Extract the set of ip names from node file
+set fd [open $nodefile r]
+while {[gets $fd line] > -1} {
+	lappend ipnames [lindex $line 2]
+}
+close $fd
+set ipnames [lsort -unique $ipnames]
+
+# Check for typos with ipnames.
+set ipnamelist [FbpMgr::getipnames]
+foreach ipname $ipnames {
+	if {[lsearch $ipnamelist $ipname] == -1} {
+		puts "$ipname not found in name list $ipnamelist"
+		exit -1
+	}
+}
+
 exec tclsh $env(FBP_HOME)/fbp_postproc.tcl $nodefile $linkfile $exp_nodefile $exp_linkfile
-FbpDraw::Mgr_Run $id $exp_nodefile $exp_linkfile [FbpMgr::getipnames]
+FbpDraw::Mgr_Run $id $exp_nodefile $exp_linkfile $ipnames
 file delete -force $exp_nodefile 
 file delete -force $exp_linkfile
 

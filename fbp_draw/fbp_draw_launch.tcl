@@ -107,8 +107,16 @@ proc launch_run {p_blockname_map} {
     # Call the fbp routines to generate the expanded node and link files.
 	exec tclsh $env(FBP_HOME)/fbp_postproc.tcl $name.node $name.link $name_expanded.node $name_expanded.link
 
+	# Extract the set of ip names from node file
+	set ipaddrlist ""
+	set fd [open $name.node r]
+	while {[gets $fd line] > -1} {
+		lappend ipaddrlist [lindex $line 2]
+	}
+	close $fd
+	set ipaddrlist [lsort -unique $ipaddrlist]
+
     # Call FBP mgr to spawn the processes.
-    set ipaddrlist [block_get_all_ipaddr]
     set graphfile [Gen_Graphfile_Name]
     if {[catch {Mgr_Run $m_graph(graph_id) $name_expanded.node $name_expanded.link $ipaddrlist} rc]} {
 		puts $rc
