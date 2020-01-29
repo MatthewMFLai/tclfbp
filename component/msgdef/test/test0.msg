@@ -1,3 +1,4 @@
+INCLUDE <$env(COMP_HOME)/msgdef/test/system.msg>
 f1 10 aaaaaaaa
 f2 10 bbbbbbbb 
 f3 10 cccccccc 

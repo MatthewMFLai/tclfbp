@@ -105,6 +105,30 @@ proc port_read {port p_msgin} {
     }
 }
 
+proc port_read_once {port p_msgin} {
+    upvar $p_msgin msgin
+
+    Portmgr::Get_Portmsgdef $port msgname
+    Portmgr::Get_Shm $port keylist
+    foreach shmkey $keylist {
+        set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
+        if {$rc == 0} {
+            break
+        }
+    }
+    if {$rc} {
+        yield
+		return $rc
+    }
+
+    array set tmpdata {}
+    Msgdef::Get_Attr_Offset $msgname tmpdata
+    foreach attr [array names tmpdata] {
+        set msgin($attr) [port_mgr_msg_get $port $tmpdata($attr)]
+    }
+	return $rc	
+}
+
 proc port_write {port p_msgout} {
     upvar $p_msgout msgout
 

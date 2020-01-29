@@ -1,0 +1,6 @@
+name demux
+filepath $env(COMP_HOME)/2.0/demux
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/test/null.msg}
+outports {1 $env(COMP_HOME)/msgdef/test/null.msg} {2 $env(COMP_HOME)/msgdef/test/null.msg} {3 $env(COMP_HOME)/msgdef/test/null.msg}

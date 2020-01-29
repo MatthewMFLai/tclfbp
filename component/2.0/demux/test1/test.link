@@ -1,0 +1,4 @@
+dut 1 tdr 1 4
+dut 2 tdr 2 4
+dut 3 tdr 3 4
+tdr 1 dut 1 4

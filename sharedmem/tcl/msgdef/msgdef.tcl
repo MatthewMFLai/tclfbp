@@ -45,6 +45,7 @@ proc Factory {msgname p_data} {
 }
 
 proc Parse {filename} {
+	global env
     variable m_raw_attr
     variable m_attr_offset
     variable m_max_size
@@ -60,29 +61,51 @@ proc Parse {filename} {
     set offset 0
     set maxsize 0
 
-    set fd [open $filename r]
-    while {[gets $fd line] > -1} {
-        set line [string trim $line]
-        if {$line == ""} {
-            continue
-        }
-        if {[string index $line 0] == "#"} {
-            continue
-        }
-        
-        set attr [lindex $line 0]
-        set size [lindex $line 1]
-        set defval [lindex $line 2]
+	set filelist ""
+	lappend filelist $filename
 
-        if {$attr == "name"} {
-            set msgname $defval
-        }
+    while {$filelist != ""} {
+		set filename [lindex $filelist 0]
+		set filelist [lrange $filelist 1 end]
 
-        lappend attrlist $line 
-        lappend attr_offset_list "$attr $offset"
-        incr maxsize $size
-        incr offset $size
-    }
+    	set fd [open $filename r]
+    	while {[gets $fd line] > -1} {
+        	set line [string trim $line]
+        	if {$line == ""} {
+            	continue
+        	}
+        	if {[string index $line 0] == "#"} {
+            	continue
+        	}
+			# Handle the INCLUDE of other message def file.        
+        	if {[string first "INCLUDE" $line] == 0} {
+				set idx [string first "<" $line]
+				incr idx 1	
+				set idx2 [string first ">" $line]
+				incr idx2 -1
+				if {$idx == 0 || $idx2 == -2} {
+					continue
+				}
+				lappend filelist [subst [string range $line $idx $idx2]]
+            	continue
+        	}
+
+        	set attr [lindex $line 0]
+        	set size [lindex $line 1]
+        	set defval [lindex $line 2]
+
+        	if {$attr == "name"} {
+            	set msgname $defval
+        	}
+
+        	lappend attrlist $line 
+        	lappend attr_offset_list "$attr $offset"
+        	incr maxsize $size
+        	incr offset $size
+    	}
+		close $fd
+	}
+
     if {$msgname == ""} {
         puts "missing msgdef name!"
         return
@@ -93,7 +116,6 @@ proc Parse {filename} {
     set m_max_size($msgname) $maxsize
     set m_attr_offset($msgname) $attr_offset_list
     set m_raw_attr($msgname) $attrlist
-
     return $msgname
 }
 
