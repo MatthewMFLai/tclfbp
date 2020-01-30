@@ -247,6 +247,7 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
     	set nodename [lindex $line 0]
     	set compfile [subst [lindex $line 1]]
     	set node_ip [lindex $line 2]
+		set node_data [lindex $line 3]
 		if {$node_ip == ""} {
 			set node_ip $ip
 		}
@@ -270,6 +271,9 @@ proc Setup {id ip nodefile linkfile fsm_obj_file templatefile} {
 				incr m_max_cids
 			}
 
+			# Add node specific initialization data.
+			Blk_helper::Add_node_data $id $nodename $node_data
+ 
 		} else {
     		Blk_helper::Add_node $id $nodename $compname $m_cfg(node_create_false)
 		}

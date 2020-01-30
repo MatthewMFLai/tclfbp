@@ -14,8 +14,9 @@ proc app_test {} {
 }
 
 proc app_init {} {
+	global argdata
 	global g_data
 
-	set g_data(mux) "sys_mux1port"
+	set g_data(mux) [lindex $argdata(DATA) 0] 
     return "OK"
 }

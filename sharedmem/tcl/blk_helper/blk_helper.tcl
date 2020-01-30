@@ -7,6 +7,7 @@ namespace eval Blk_helper {
     variable m_node
     variable m_node_desc
     variable m_node_ports
+    variable m_node_data
     variable m_keys
 	variable m_tx_data
 	variable m_rx_data
@@ -20,6 +21,7 @@ proc Init {msg_null} {
     variable m_node
     variable m_node_desc
     variable m_node_ports
+    variable m_node_data
     variable m_keys
 	variable m_tx_data
 	variable m_rx_data
@@ -32,6 +34,7 @@ proc Init {msg_null} {
     array set m_node {}
     array set m_node_desc {}
     array set m_node_ports {}
+    array set m_node_data {}
     array set m_keys {} 
     array set m_tx_data {} 
     array set m_rx_data {} 
@@ -42,6 +45,7 @@ proc Clean {id} {
     variable m_node
     variable m_node_desc
     variable m_node_ports
+    variable m_node_data
     variable m_reflected_ports
     variable m_keys
 	variable m_tx_data
@@ -61,6 +65,10 @@ proc Clean {id} {
 
 	foreach idx [array names m_node_ports "$id-*"] {
 		unset m_node_ports($idx)
+	}
+
+	foreach idx [array names m_node_data "$id-*"] {
+		unset m_node_data($idx)
 	}
 
 	foreach idx [array names m_reflected_ports "$id-*"] {
@@ -267,6 +275,28 @@ proc Get_rx_data {id} {
 	return $rc
 }
 
+proc Add_node_data {id nodename data} {
+	variable m_node
+	variable m_node_data
+
+	set nodename $id-$nodename
+    if {![info exists m_node($nodename)]} {
+        puts "$nodename does not exist!"
+        return
+    }
+	set m_node_data($nodename) $data
+	return
+}
+
+proc Get_node_data {nodename} {
+	variable m_node_data
+
+	if {![info exists m_node_data($nodename)]} {
+		return ""
+	}
+	return $m_node_data($nodename)
+}
+
 proc Find_node {id nodename desc} {
     variable m_name
     variable m_filepath
@@ -378,8 +408,8 @@ proc Get_keys {id} {
 
 proc Gen_str {nodename} {
 # Generate inports, outports and app string that looks like these:
-#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
-#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl RUNNING 0 &
+#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl DATA {sys_mux1port} RUNNING 0 &
+#exec tclsh node.tcl BLOCK s0:source0 INIT localhost:8000 IN-1 $env(MSGDEF_HOME)/test/test0.msg:$key2:4 OUT-1 $env(MSGDEF_HOME)/test/test0.msg:$key1:4 PROGRAM $env(DISK2)/sharedmem/tcl/test2.tcl DATA {} RUNNING 0 &
 
     variable m_name
     variable m_msg_null
@@ -443,7 +473,8 @@ proc Gen_str {nodename} {
         append rc " "
     }
  
-    append rc "PROGRAM $m_filepath($compname)/$compname.tcl" 
+    append rc "PROGRAM $m_filepath($compname)/$compname.tcl "
+	append rc "DATA [list [Get_node_data $nodename]]"
     return $rc
 }
 
