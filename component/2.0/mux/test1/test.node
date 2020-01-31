@@ -1,2 +1,2 @@
 tdr $env(COMP_HOME)/2.0/mux/test1/test.blk
-dut /Users/matthewlai/tclfbp/component/2.0/mux/mux.blk localhost {sys_mux1port}
+dut $env(COMP_HOME)/2.0/mux/mux.blk localhost sys_mux1port

@@ -1,8 +1,9 @@
 # Sample API calling
 # runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1}
-# runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1 10}
+# runit {$env(HOME)/tclfbp/component/company/company.blk} {$env(HOME)/tclfbp/component/company/test1} 10
+# runit {$env(COMP_HOME)/2.0/mux/mux.blk} {$env(COMP_HOME)/2.0/mux/test1} 4 sys_mux1port
 #
-proc runit {filename curdir {queue_size 4}} {
+proc runit {filename curdir {queue_size 4} {node_data {}}} {
 	global env
 
 	set filename_str $filename
@@ -44,7 +45,12 @@ proc runit {filename curdir {queue_size 4}} {
     # tdr = test driver, dut = device under test
     set fd [open $curdir/$newname.node w]
     puts $fd "tdr $curdir_str/$newname.blk"
-    puts $fd "dut $filename_str"
+	# Add node data if necessary
+	if {$node_data == ""} {
+    	puts $fd "dut $filename_str"
+	} else {
+    	puts $fd "dut $filename_str localhost [list $node_data]"
+	}
     close $fd 
 
     # Generate the 2-node link file.
