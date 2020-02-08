@@ -22,21 +22,30 @@
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
 # MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
-#!/bin/sh
-# \
-exec tclsh $0 "$@"
 
-source $env(WEB_DRIVER_HOME)/common/common_test_wrapper.tcl
-source $env(WEB_DRIVER_HOME)/translate/translate_test_wrapper.tcl
-package require htmlparse
+namespace eval Translate_Test_Wrapper {
 
-Common_Test_Wrapper::Init
-Translate_Test_Wrapper::Init
-array set data {}
-set word [lindex $argv 0]
-Translate_Test_Wrapper::Runit $word data
+proc Init {} {
+    global env
 
-foreach idx [lsort [array names data]] {
-    puts "$idx $data($idx)"
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/translate/translate_fsm.tcl}
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/translate/translate.tcl}
+
+    Fsm::Load_Fsm $env(WEB_DRIVER_HOME)/translate/translate_fsm.dat
+    Fsm::Init_Fsm translate_fsm
+
+    array set data {}
+    set fd [open $env(WEB_DRIVER_HOME)/translate/url.template r]
+    gets $fd url_template
+    close $fd
+    translate::init $url_template
 }
-exit 0
+
+proc Runit {word p_rc} {
+    upvar $p_rc rc
+
+    translate::extract_data $word rc
+    return 
+}
+
+}

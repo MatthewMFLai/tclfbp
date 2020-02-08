@@ -1,0 +1,4 @@
+name test
+filepath $env(COMP_HOME)/translate/test1
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/translate.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/translate.msg}

@@ -1,0 +1,2 @@
+tdr $env(COMP_HOME)/translate/test1/test.blk
+dut $env(COMP_HOME)/translate/translate.blk
