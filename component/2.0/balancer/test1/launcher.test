@@ -1,0 +1,93 @@
+proc send_one_file {name host port} {
+    set size [file size $name]
+    set fp [open $name r]
+    fconfigure $fp -translation binary
+
+    set channel [socket $host $port]
+    fconfigure $channel -translation binary
+    # Strip the directory prefix from file name.
+    set idx [string last "/" $name]
+    incr idx
+    set filename [string range $name $idx end]
+    puts $channel [list $filename $size]
+
+    fcopy $fp $channel -size $size
+
+    close $fp
+    close $channel
+}
+
+package require tcltest
+namespace import ::tcltest::*
+
+workingDirectory $env(COMP_HOME)/2.0/balancer/test1 
+
+test tc-1.1 {test cloner} -setup {
+
+} -body {
+
+set cmd "exec tclsh $env(COMP_HOME)/ut_common/agent.tcl &"
+eval $cmd
+after 100
+
+send_one_file $env(COMP_HOME)/2.0/balancer/test1/test.node localhost 14001
+send_one_file $env(COMP_HOME)/2.0/balancer/test1/test.link localhost 14001
+
+set sd [socket localhost 14000]
+
+puts $sd "test CREATE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test INIT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test IDENT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test ENABLE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+# Expect TESTEND
+gets $sd result 
+#puts "rc = $rc"
+
+puts $sd "test DISABLE"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test SHUTDOWN"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test CLEANUP"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+puts $sd "test IDENT_AGENT"
+flush $sd
+gets $sd rc
+#puts "rc = $rc"
+
+set process_id [lindex $rc 1]
+exec kill -9 $process_id
+
+set result
+
+} -cleanup {
+
+} -result {TESTEND}
+
+cleanupTests
+
+

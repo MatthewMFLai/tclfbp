@@ -157,6 +157,30 @@ proc port_write {port p_msgout} {
     }
 }
 
+proc port_write_once {port p_msgout} {
+    upvar $p_msgout msgout
+
+    Portmgr::Get_Portmsgdef $port msgname
+    array set tmpdata {}
+    Msgdef::Get_Attr_Offset $msgname tmpdata
+    foreach attr [array names tmpdata] {
+        if {![info exists msgout($attr)]} {
+            continue
+        }
+        port_mgr_msg_set $port $msgout($attr) $tmpdata($attr)
+    }
+
+    Portmgr::Get_Shm $port keylist
+    set rc 1
+    foreach shmkey $keylist {
+        set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
+        if {$rc == 0} {
+            break
+        }
+    }
+	return $rc
+}
+
 proc port_factory_msg {port p_msgout} {
     upvar $p_msgout msgout
     Portmgr::Get_Portmsgdef $port msgname
