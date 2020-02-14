@@ -1,0 +1,4 @@
+name test
+filepath $env(COMP_HOME)/bigEnglish/dictionary/test2
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/dictionary.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/dictionary_resp.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/dictionary.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/dictionary_set.msg}

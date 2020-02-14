@@ -1,0 +1,2 @@
+tdr $env(COMP_HOME)/bigEnglish/dictionary/test2/test.blk
+dut $env(COMP_HOME)/bigEnglish/dictionary/dictionary.blk localhost {$env(COMP_HOME)/bigEnglish/dictionary/test2/test.dat}
