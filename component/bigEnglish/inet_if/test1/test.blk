@@ -1,0 +1,4 @@
+name test
+filepath $env(COMP_HOME)/bigEnglish/inet_if/test1
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/inet_if_resp.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/dictionary_resp.msg}

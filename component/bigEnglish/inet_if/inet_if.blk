@@ -1,5 +1,7 @@
-name inet_if 
-filepath $env(DISK2)/component/bigEnglish/inet_if
-init {{a b c d e f g h i j k l m n o p q r s t u v w x y z}}
-inports {1 2}
-outports {1 2}
+name inet_if
+filepath $env(COMP_HOME)/bigEnglish/inet_if
+# init {{a b c d e f g h i j k l m n o p q r s t u v w x y z}}
+# port format
+# <port type> {portname msgdef} {portname msgdef} ... 
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/dictionary_resp.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/inet_if_resp.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg}

@@ -1,0 +1,2 @@
+tdr $env(COMP_HOME)/bigEnglish/inet_if/test1/test.blk
+dut $env(COMP_HOME)/bigEnglish/inet_if/inet_if.blk localhost {{a b c d}}

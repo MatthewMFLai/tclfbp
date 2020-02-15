@@ -28,15 +28,15 @@ proc words_add {words} {
 }
 
 proc words_delete {words} {
-    variable m_words
+	variable m_words
 
-    foreach word $words {
-	set idx [lsearch $m_words $word]
-	if {$idx > -1} {
-	    set m_words [lreplace $m_words $idx $idx]
+	foreach word $words {
+		set idx [lsearch $m_words $word]
+		if {$idx > -1} {
+			set m_words [lreplace $m_words $idx $idx]
+		}
 	}
-    }
-    return
+	return
 }
 
 proc words_check {word} {
@@ -70,73 +70,83 @@ proc ldifference {a b} {
      return $result
 }
 
-proc forward_ip {p_ip word outport} {
+proc forward_ip {p_tmpdata word outport} {
+	upvar $p_tmpdata tmpdata
 
-    set p_out [ip::clone $p_ip]
-    if {[byList::get_crawler $p_out] != "stub"} {
-    	byList::set_list $p_out [list word $word]
+	array set outdata {}
+	port_factory_msg $outport outdata
+	set outdata(crawler) $tmpdata(crawler)
+    if {$outdata(crawler) != "stub"} {
+    	set outdata(word) $word
     }
-    server_send $p_out $outport
-    ip::sink $p_out
+	port_write $outport outdata
     return
 }
 
-proc forward_load_response {p_ip words outport} {
+proc process_imp {inport p_tmpdata} {
+	upvar $p_tmpdata tmpdata
 
-    set p_out [ip::clone $p_ip]
-    if {[byList::get_crawler $p_out] != "stub"} {
-    	byList::set_list $p_out [list words $words]
-    }
-    server_send $p_out $outport
-    ip::sink $p_out
-    return
-}
-
-proc process {inport p_ip} {
-
-    set rc ""
-	
     if {$inport == "IN-1"} {
-    	array set tmpdata [byList::get_list $p_ip]
-	set words $tmpdata(words)
-	set tmplist ""
-	foreach word $words {
-    	    if {[inet_if::words_check $word] == -1 &&
-		[inet_if::word_filter_check $word] > -1} {
-		lappend tmplist $word
-	    }    
-	}
-	forward_load_response $p_ip [ldifference $words $tmplist] "OUT-2"
+		set words $tmpdata(words)
+		set tmplist ""
+		foreach word $words {
+    	    if {[inet_if::words_check $word] > -1 || 
+				[inet_if::word_filter_check $word] > -1} {
+				lappend tmplist $word
+	    	}
+		}
+		if {$tmpdata(crawler) != "stub"} {
+			set tmpdata(words) [ldifference $words $tmplist]
+		}
+		port_write OUT-2 tmpdata
 
-	foreach word $tmplist {
-	    forward_ip $p_ip $word "OUT-1"
-	}
-	#inet_if::words_add $tmplist
+		foreach word $tmplist {
+			if {[inet_if::words_check $word] == -1} {
+	    		forward_ip tmpdata $word "OUT-1"
+			}
+		}
+		#inet_if::words_add $tmplist
 
     } elseif {$inport == "IN-2"} {
-    	array set tmpdata [byList::get_list $p_ip]
-	set words $tmpdata(words)
-	set mode $tmpdata(mode)
-	if {$mode == "CACHE_SET"} {
-	    inet_if::words_add $words
-	} elseif {$mode == "CACHE_DEL"} {
-	    inet_if::words_delete $words
-	} else {
+		set words $tmpdata(words)
+		set mode $tmpdata(mode)
+		if {$mode == "CACHE_SET"} {
+	    	inet_if::words_add $words
+		} elseif {$mode == "CACHE_DEL"} {
+	    	inet_if::words_delete $words
+		} else {
 
-	}
+		}
     } else {
 
     }
-    return $rc
 }
 
-proc init {datalist} {
-    set filter [lindex $datalist 0]
+proc process {} {
+
+	array set msgin {}
+	set rc [port_read_once IN-1 msgin]
+	if {!$rc} {
+		process_imp IN-1 msgin
+	}
+	unset msgin
+
+	array set msgin {}
+	set rc [port_read_once IN-2 msgin]
+	if {!$rc} {
+		process_imp IN-2 msgin
+	}
+	unset msgin
+	return
+}
+
+proc app_init {} {
+	global argdata
+
+    set filter [lindex $argdata(DATA) 0]
     inet_if::init $filter
     return
 }
 
 proc shutdown {} {
 }
-
-source $env(COMP_HOME)/ip2/byList.tcl
