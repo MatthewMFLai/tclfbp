@@ -188,6 +188,35 @@ proc port_factory_msg {port p_msgout} {
     return 
 }
 
+#------------------------------------------------------------
+# Delayed outport send section
+
+# Callee must be running in Tk code!
+# Callee cannot be running in the client's process() routine!
+proc port_write_queued {outport p_msgout} {
+    upvar $p_msgout msgout
+	global g_port_write_queue
+
+	lappend g_port_write_queue [list $outport [array get msgout]]
+	return
+}
+
+# Callee must be running in the client's process() routine!
+proc port_write_dequeued {} {
+	global g_port_write_queue
+
+	foreach token $g_port_write_queue {
+		set outport [lindex $token 0]
+		array set msgout [lindex $token 1]
+		port_write $outport msgout
+		unset msgout
+	}
+
+	set g_port_write_queue ""
+	return	
+}
+#------------------------------------------------------------
+
 proc runit {} {
     yield
 
@@ -248,7 +277,7 @@ source $appfile
 
 set g_running $argdata(RUNNING)
 set g_name $argdata(BLOCK)
-
+set g_port_write_queue ""
 set port [lindex [split $argdata(INIT) ":"] 1]
 set g_sd [socket localhost $port]
 client_init $g_sd

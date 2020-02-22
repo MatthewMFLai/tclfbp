@@ -1,4 +1,4 @@
 name dict_if 
-filepath $env(DISK2)/component/bigEnglish/dict_if
-inports {1 2}
-outports {1 2}
+filepath $env(COMP_HOME)/bigEnglish/dict_if
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/dictionary_resp.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/dictionary.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg}

@@ -97,88 +97,99 @@ pack .f3.list .f3.scroll -side left -fill y -expand 1
 # Framework proceudres
 ###########################################################
 
-proc send_request {word outport} {
+proc send_request {word outport {queued 1}} {
 
-    set p_ip [ip::source]
-    byList::init $p_ip
-    byList::set_list $p_ip [list word $word command READ meanings ""]
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "word $word cmd READ meanings {}"
+	if {$queued} { 
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
-proc send_update {word meaning outport} {
+proc send_update {word meaning outport {queued 1}} {
 
-    set p_ip [ip::source]
-    byList::init $p_ip
-    byList::set_list $p_ip [list word $word meaning $meaning command UPDATE]
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "word $word cmd UPDATE meaning [list $meaning]"
+	if {$queued} { 
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
 proc send_save {outport} {
 
-    set p_ip [ip::source]
-    byList::init $p_ip
-    byList::set_list $p_ip [list command SAVE]
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "cmd SAVE"
+	port_write_queued $outport msgout
+	unset msgout
     return
 }
 
-proc send_populate_request {words outport} {
+proc send_populate_request {words outport {queued 1}} {
     global g_crawler_populate
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list words $words]
-    byList::set_crawler $p_ip $g_crawler_populate
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "words [list $words] crawler $g_crawler_populate"
+	if {$queued} { 
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
-proc send_define_request {word meaning outport} {
+proc send_define_request {word meaning outport {queued 1}} {
     global g_crawler_stub
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list words $word symbol $word meanings $meaning]
-    byList::set_crawler $p_ip $g_crawler_stub
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "words $word symbol $word meanings [list $meaning] crawler $g_crawler_stub"
+	if {$queued} { 
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
-proc send_map_request {word derived outport} {
+proc send_map_request {word derived outport {queued 1}} {
     global g_crawler_stub
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list words $derived symbol $derived root $word]
-    byList::set_crawler $p_ip $g_crawler_stub
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "words $derived symbol $derived root $word crawler $g_crawler_stub"
+	if {$queued} { 
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
 proc send_delete_request {word derived outport} {
 
-    if {$word != "" || $derived != ""} {
-    	set p_ip [ip::source]
-    	byList::init $p_ip
-    	byList::set_list $p_ip [list word $word derived $derived command DELETE]
-    	server_send $p_ip $outport
-    	ip::sink $p_ip
-    }
-    return
+	if {$word != "" || $derived != ""} {
+		array set msgout {}
+		port_factory_msg $outport msgout
+		array set msgout "cmd DELETE word $word derived $derived meanings {}"
+		port_write_queued $outport msgout
+		unset msgout
+	}
+	return
 }
 
 # Begin: procedures to handle the manual setting of meanings and derived words.
@@ -243,9 +254,10 @@ proc trim_update_words {} {
 
 # End: procedures to handle the manual setting of meanings and derived words.
 
-proc process {inport p_ip} {
+proc process {inport p_tmpdata} {
     global g_count
     global g_count_max
+	upvar $p_tmpdata tmpdata
 
     set rc ""
     if {$inport == "IN-1"} {
@@ -265,11 +277,11 @@ proc process {inport p_ip} {
 		set root [get_root]
 		set derived [get_derived]
 		if {$meanings == ""} {
-		    send_populate_request $root "OUT-2"
+		    send_populate_request $root "OUT-2" 0
 		    set_state FSM_CHECK_SET
     		    .f3.list insert end "[get_state] set root: $root" 
 		} else {
-		    send_map_request $root $derived "OUT-2"
+		    send_map_request $root $derived "OUT-2" 0
 		    set_state FSM_CHECK_MAP
     		    .f3.list insert end "[get_state] set mapping: $root $derived" 
 		}
@@ -282,12 +294,12 @@ proc process {inport p_ip} {
 		    if {$g_count > 0} {
     		        .f3.list insert end "[get_state] wait for $root meaning set" 
 		    	after 1000 
-	    	    	send_request $root "OUT-1"
+	    	    	send_request $root "OUT-1" 0
 		    } else {
 
 	    		if {[trim_update_words]} {
 			    set root [get_root]
-			    send_request $root "OUT-1"
+			    send_request $root "OUT-1" 0
 			    set_state FSM_CHECK_ROOT
     			    .f3.list delete 0 end
     			    .f3.list insert end "[get_state] check root: $root" 
@@ -299,7 +311,7 @@ proc process {inport p_ip} {
 		    }
 		} else {
 		    after 1000 
-		    send_map_request $root $derived "OUT-2"
+		    send_map_request $root $derived "OUT-2" 0
 		    set_state FSM_CHECK_MAP
     		    .f3.list insert end "[get_state] set mapping: $root $derived" 
 		}
@@ -315,14 +327,14 @@ proc process {inport p_ip} {
 
 	} FSM_CHECK_SET {
 	    set root [get_root]
-	    send_request $root "OUT-1"
+	    send_request $root "OUT-1" 0
 	    set_state FSM_GET_ROOT
 	    set g_count $g_count_max
 
 	} FSM_CHECK_MAP {
 	    if {[trim_update_words]} {
 		set root [get_root]
-		send_request $root "OUT-1"
+		send_request $root "OUT-1" 0
 		set_state FSM_CHECK_ROOT
     		.f3.list delete 0 end
     	        .f3.list insert end "[get_state] check root: $root" 
@@ -343,7 +355,29 @@ proc process {inport p_ip} {
     return $rc
 }
 
-proc init {datalist} {
+proc process {} {
+
+	port_write_dequeued
+
+	array set msgin {}
+	set rc [port_read_once IN-1 msgin]
+	if {!$rc} {
+		process_imp IN-1 msgin
+	}
+	unset msgin
+
+	array set msgin {}
+	set rc [port_read_once IN-2 msgin]
+	if {!$rc} {
+		process_imp IN-2 msgin
+	}
+	unset msgin
+	return
+}
+
+proc app_init {} {
+	global argdata
+
     global g_crawler_populate
     global g_crawler_stub
     global g_state
@@ -351,8 +385,8 @@ proc init {datalist} {
     global g_count
     global g_count_max
  
-    set g_crawler_populate [lindex $datalist 0]
-    set g_crawler_stub [lindex $datalist 1]
+    set g_crawler_populate [lindex $argdata(DATA) 0]
+    set g_crawler_stub [lindex $argdata(DATA) 1]
     set g_state NULL 
     set g_update_words ""
     set g_count 0
@@ -362,6 +396,3 @@ proc init {datalist} {
 
 proc shutdown {} {
 }
-
-source $env(COMP_HOME)/ip2/byList.tcl
-source $env(COMP_HOME)/ip2/byRetry.tcl
