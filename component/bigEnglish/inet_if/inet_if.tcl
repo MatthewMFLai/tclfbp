@@ -76,8 +76,13 @@ proc forward_ip {p_tmpdata word outport} {
 	array set outdata {}
 	port_factory_msg $outport outdata
 	set outdata(crawler) $tmpdata(crawler)
+	set outdata(retry) $tmpdata(retry)
+	set outdata(symbol) $tmpdata(symbol)
+	set outdata(root) $tmpdata(root)
+	set outdata(meanings) $tmpdata(meanings)
     if {$outdata(crawler) != "stub"} {
-    	set outdata(word) $word
+    	#set outdata(word) $word
+		set outdata(meanings) "" 
     }
 	port_write $outport outdata
     return

@@ -2,33 +2,40 @@
 # Framework proceudres
 ###########################################################
 
-proc forward_ip {p_ip outport} {
+proc forward_ip {p_tmpdata outport} {
+	upvar $p_tmpdata tmpdata
 
-    set p_out [ip::clone $p_ip]
-    server_send $p_out $outport
-    ip::sink $p_out
+	array set outdata {}
+	port_factory_msg $outport outdata
+	set outdata(symbol) $tmpdata(symbol)
+	set outdata(root) "" 
+	set outdata(meanings) $tmpdata(meanings)
+	port_write $outport outdata
     return
 }
 
-proc forward_word_root_ip {p_ip word root outport} {
+proc forward_word_root_ip {word root outport} {
 
-    set p_out [ip::clone $p_ip]
-    byList::set_list $p_out [list symbol $word root $root]
-    server_send $p_out $outport
-    ip::sink $p_out
+	array set outdata {}
+	port_factory_msg $outport outdata
+	set outdata(symbol) $word
+	set outdata(root) $root 
+	set outdata(meanings) ""
+	port_write $outport outdata
     return
 }
 
-proc send_request {word crawler outport} {
+proc send_request {p_tmpdata word crawler outport} {
+	upvar $p_tmpdata tmpdata
 
-    set p_out [ip::source]
-    byRetry::init $p_out
-    byRetry::set_retry $p_out 0
-    byList::init $p_out
-    byList::set_list $p_out [list words $word]
-    byList::set_crawler $p_out $crawler
-    server_send $p_out $outport
-    ip::sink $p_out
+	array set outdata {}
+	port_factory_msg $outport outdata
+	set outdata(words) $word
+	set outdata(crawler) $crawler
+	set outdata(retry) $tmpdata(retry)
+	set outdata(meanings) "" 
+	
+    #byRetry::set_retry $p_out 0
     return
 }
 
@@ -39,26 +46,26 @@ proc log_word {word} {
     return
 }
 
-proc process {inport p_ip} {
+proc process_imp {inport p_tmpdata} {
     global g_crawler_browse
     global g_crawler_translate
+	upvar $p_tmpdata tmpdata
 
     set rc ""
 
-    array set tmpdata [byList::get_list $p_ip]
-    set crawler [byList::get_crawler $p_ip]
+    set crawler $tmpdata(crawler)
     if {$crawler == "translate"} {
         if {$tmpdata(meanings) != ""} {
-    	    forward_ip $p_ip "OUT-1" 
+    	    forward_ip tmpdata "OUT-1" 
     	} else {
-	    send_request $tmpdata(symbol) $g_crawler_browse "OUT-2"
+	    send_request tmpdata $tmpdata(symbol) $g_crawler_browse "OUT-2"
     	}
 
     } elseif {$crawler == "stub"} { 
-    	forward_ip $p_ip "OUT-1"
+    	forward_ip tmpdata "OUT-1"
 
     } elseif {$crawler == "gutenberg"} { 
-    	forward_ip $p_ip "OUT-1"
+    	forward_ip tmpdata "OUT-1"
 
     } elseif {$crawler == "browse"} { 
 
@@ -82,8 +89,8 @@ proc process {inport p_ip} {
 	    	    regsub -all {\-} $root "" root
                     # Double check to make sure root not equal to word!
                     if {$root != $word} {
-	    	        send_request $root $g_crawler_translate "OUT-2"
-	    	        forward_word_root_ip $p_ip $word $root "OUT-1"
+	    	        send_request tmpdata $root $g_crawler_translate "OUT-2"
+	    	        forward_word_root_ip $word $root "OUT-1"
                     }
 	    	}
     	    } else {
@@ -97,18 +104,25 @@ proc process {inport p_ip} {
     return $rc
 }
 
-proc init {datalist} {
+proc process {} {
+
+	array set msgin {}
+	port_read IN-1 msgin
+	process_imp IN-1 msgin
+	unset msgin
+	return
+}
+
+proc app_init {} {
+	global argdata
     global g_crawler_translate
     global g_crawler_browse
 
-    set g_crawler_translate [lindex $datalist 0]
-    set g_crawler_browse [lindex $datalist 1]
+    set g_crawler_translate [lindex $argdata(DATA) 0]
+    set g_crawler_browse [lindex $argdata(DATA) 1]
     return
 }
 
 proc shutdown {} {
     return
 }
-
-source $env(COMP_HOME)/ip2/byList.tcl
-source $env(COMP_HOME)/ip2/byRetry.tcl

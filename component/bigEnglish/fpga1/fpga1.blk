@@ -1,5 +1,5 @@
 name fpga1 
-filepath $env(DISK2)/component/bigEnglish/fpga1
-init {browse}
-inports {1}
-outports {1 2}
+filepath $env(COMP_HOME)/bigEnglish/fpga1
+#init {browse}
+inports {1 $env(COMP_HOME)/msgdef/bigenglish/translate.msg}
+outports {1 $env(COMP_HOME)/msgdef/bigenglish/dictionary_set.msg} {2 $env(COMP_HOME)/msgdef/bigenglish/inet_if.msg}

@@ -3,18 +3,16 @@ proc process {} {
     array set msgin {}
     port_read IN-1 msgin 
 
+	if {$msgin(crawler) == "stub"} {
+		port_write OUT-1 msgin
+		return
+	}
+
     array set data {}
     set symbol $msgin(symbol)
     Translate_Test_Wrapper::Runit $symbol data
-
-    array set outdata {}
-    port_factory_msg OUT-1 outdata
-    foreach idx [array names outdata] {
-        if {[info exists data($idx)]} {
-            set outdata($idx) $data($idx)
-        }
-    }
-    port_write OUT-1 outdata 
+	set msgin(meanings) $data(meanings)
+    port_write OUT-1 msgin 
     return
 }
 
