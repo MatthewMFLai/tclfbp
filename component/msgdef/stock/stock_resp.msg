@@ -1,3 +1,4 @@
+INCLUDE <$env(COMP_HOME)/msgdef/test/system.msg>
 name 20 stock_resp
 version 10 0.1
 eps 20 0.00

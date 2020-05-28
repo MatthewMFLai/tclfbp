@@ -1,3 +1,4 @@
+INCLUDE <$env(COMP_HOME)/msgdef/test/system.msg>
 name 20 dividend_resp
 version 10 0.1
 Dividend-AllStar-Ranking 20 -

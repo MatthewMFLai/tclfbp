@@ -1,3 +1,4 @@
+sys_msgcomplete 4 1
 sys_mux1port 10 PORT0
 sys_mux2port 10 PORT0
 sys_mux3port 10 PORT0

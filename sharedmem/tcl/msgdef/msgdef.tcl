@@ -99,7 +99,7 @@ proc Parse {filename} {
         	}
 
         	lappend attrlist $line 
-        	lappend attr_offset_list "$attr $offset"
+        	lappend attr_offset_list "$attr $offset $size"
         	incr maxsize $size
         	incr offset $size
     	}
@@ -132,6 +132,24 @@ proc Get_Attr_Offset {msgname p_data} {
         set attr [lindex $tokens 0]
         set offset [lindex $tokens 1]
         set data($attr) $offset
+    }
+
+    return $rc
+}
+
+proc Get_Attr_Size {msgname p_data} {
+    upvar $p_data data
+    variable m_attr_offset 
+    
+    set rc 0 
+    if {![info exists m_attr_offset($msgname)]} {
+        return -1 
+    }
+
+    foreach tokens $m_attr_offset($msgname) {
+        set attr [lindex $tokens 0]
+        set size [lindex $tokens 2]
+        set data($attr) $size
     }
 
     return $rc

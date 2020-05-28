@@ -84,49 +84,94 @@ proc port_read {port p_msgin} {
     upvar $p_msgin msgin
 
     Portmgr::Get_Portmsgdef $port msgname
-    Portmgr::Get_Shm $port keylist
-    set rc 1 
-    while {$rc != 0} {
-        foreach shmkey $keylist {
-            set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
-            if {$rc == 0} {
-                break
-            }
-        }
-        if {$rc} {
-            yield
-        }
-    }
-
     array set tmpdata {}
-    Msgdef::Get_Attr_Offset $msgname tmpdata
+   	Msgdef::Get_Attr_Offset $msgname tmpdata
     foreach attr [array names tmpdata] {
-        set msgin($attr) [port_mgr_msg_get $port $tmpdata($attr)]
+       	set msgin($attr) "" 
     }
+	
+	set shmkey_cur ""
+	set msg_complete 0 
+	while {!$msg_complete} {
+
+		if {$shmkey_cur == ""} {	
+    		Portmgr::Get_Shm $port keylist
+		} else {
+			set keylist [list $shmkey_cur]
+		}
+    	set rc 1 
+    	while {$rc != 0} {
+        	foreach shmkey $keylist {
+            	set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
+            	if {$rc == 0} {
+					# Large message support: send subsequent fragmented message
+					# to the same shmkey used for the 1st message.
+					set shmkey_cur $shmkey
+                	break
+            	}
+        	}
+        	if {$rc} {
+            	yield
+        	}
+    	}
+
+    	foreach attr [array names tmpdata] {
+        	append msgin($attr) [port_mgr_msg_get $port $tmpdata($attr)]
+    	}
+		# Do not append the sys_msgcomplete attr.
+        set msgin(sys_msgcomplete) [port_mgr_msg_get $port $tmpdata(sys_msgcomplete)]
+		set msg_complete $msgin(sys_msgcomplete) 
+	}
 }
 
 proc port_read_once {port p_msgin} {
     upvar $p_msgin msgin
 
     Portmgr::Get_Portmsgdef $port msgname
-    Portmgr::Get_Shm $port keylist
-    foreach shmkey $keylist {
-        set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
-        if {$rc == 0} {
-            break
-        }
-    }
-    if {$rc} {
-        yield
-		return $rc
-    }
-
     array set tmpdata {}
-    Msgdef::Get_Attr_Offset $msgname tmpdata
+   	Msgdef::Get_Attr_Offset $msgname tmpdata
     foreach attr [array names tmpdata] {
-        set msgin($attr) [port_mgr_msg_get $port $tmpdata($attr)]
+       	set msgin($attr) "" 
     }
-	return $rc	
+	
+	set shmkey_cur ""
+	set msg_complete 0 
+	while {!$msg_complete} {
+
+		if {$shmkey_cur == ""} {	
+    		Portmgr::Get_Shm $port keylist
+		} else {
+			set keylist [list $shmkey_cur]
+		}
+    	set rc 1 
+    	while {$rc != 0} {
+        	foreach shmkey $keylist {
+            	set rc [sv_csr_read_wrapper $shmkey [port_mgr_get_msg $port]]
+            	if {$rc == 0} {
+					# Large message support: send subsequent fragmented message
+					# to the same shmkey used for the 1st message.
+					set shmkey_cur $shmkey
+                	break
+            	}
+        	}
+			if {$shmkey_cur == ""} {
+				# Large message support: 1st fragment read on all links fail.
+				# Simply return.
+				return $rc
+			}
+        	if {$rc} {
+            	yield
+        	}
+    	}
+
+    	foreach attr [array names tmpdata] {
+        	append msgin($attr) [port_mgr_msg_get $port $tmpdata($attr)]
+    	}
+		# Do not append the sys_msgcomplete attr.
+        set msgin(sys_msgcomplete) [port_mgr_msg_get $port $tmpdata(sys_msgcomplete)]
+		set msg_complete $msgin(sys_msgcomplete) 
+	}
+
 }
 
 proc port_write {port p_msgout} {
@@ -134,27 +179,54 @@ proc port_write {port p_msgout} {
 
     Portmgr::Get_Portmsgdef $port msgname
     array set tmpdata {}
+    array set sizedata {}
     Msgdef::Get_Attr_Offset $msgname tmpdata
-    foreach attr [array names tmpdata] {
-        if {![info exists msgout($attr)]} {
-            continue
-        }
-        port_mgr_msg_set $port $msgout($attr) $tmpdata($attr)
-    }
+    Msgdef::Get_Attr_Size $msgname sizedata
 
-    Portmgr::Get_Shm $port keylist
-    set rc 1 
-    while {$rc != 0} {
-        foreach shmkey $keylist {
-            set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
-            if {$rc == 0} {
-                break
-            }
-        }
-        if {$rc} {
-            yield
-        }
-    }
+	# Large message support
+	set shmkey_cur ""
+	set msg_complete 0 
+	while {!$msg_complete} {
+
+		set msg_complete 1 
+    	foreach attr [array names tmpdata] {
+        	if {![info exists msgout($attr)]} {
+            	continue
+        	}
+			set size [expr $sizedata($attr) - 1]
+			if {[string length $msgout($attr)] > $size} {
+        		set data [string range $msgout($attr) 0 [expr $size - 1]]
+				set msgout($attr) [string range $msgout($attr) $size end]
+				set msg_complete 0 
+			} else {
+        		set data $msgout($attr)
+				set msgout($attr) "" 
+			}	
+        	port_mgr_msg_set $port $data $tmpdata($attr)
+    	}
+      	port_mgr_msg_set $port $msg_complete $tmpdata(sys_msgcomplete)
+
+		if {$shmkey_cur == ""} {	
+    		Portmgr::Get_Shm $port keylist
+		} else {
+			set keylist [list $shmkey_cur]
+		}
+    	set rc 1 
+    	while {$rc != 0} {
+        	foreach shmkey $keylist {
+            	set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
+            	if {$rc == 0} {
+					# Large message support: send subsequent fragmented message
+					# to the same shmkey used for the 1st message.
+					set shmkey_cur $shmkey
+                	break
+            	}
+        	}
+        	if {$rc} {
+            	yield
+        	}
+    	}
+	}
 }
 
 proc port_write_once {port p_msgout} {
@@ -162,22 +234,60 @@ proc port_write_once {port p_msgout} {
 
     Portmgr::Get_Portmsgdef $port msgname
     array set tmpdata {}
+    array set sizedata {}
     Msgdef::Get_Attr_Offset $msgname tmpdata
-    foreach attr [array names tmpdata] {
-        if {![info exists msgout($attr)]} {
-            continue
-        }
-        port_mgr_msg_set $port $msgout($attr) $tmpdata($attr)
-    }
+    Msgdef::Get_Attr_Size $msgname sizedata
 
-    Portmgr::Get_Shm $port keylist
-    set rc 1
-    foreach shmkey $keylist {
-        set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
-        if {$rc == 0} {
-            break
-        }
-    }
+	# Large message support
+	set shmkey_cur ""
+	set msg_complete 0 
+	while {!$msg_complete} {
+
+		set msg_complete 1 
+    	foreach attr [array names tmpdata] {
+        	if {![info exists msgout($attr)]} {
+            	continue
+        	}
+			set size [expr $sizedata($attr) - 1]
+			if {[string length $msgout($attr)] > $size} {
+        		set data [string range $msgout($attr) 0 [expr $size - 1]]
+				set msgout($attr) [string range $msgout($attr) $size end]
+				set msg_complete 0 
+			} else {
+        		set data $msgout($attr)
+				set msgout($attr) "" 
+			}	
+        	port_mgr_msg_set $port $data $tmpdata($attr)
+    	}
+      	port_mgr_msg_set $port $msg_complete $tmpdata(sys_msgcomplete)
+
+		if {$shmkey_cur == ""} {	
+    		Portmgr::Get_Shm $port keylist
+		} else {
+			set keylist [list $shmkey_cur]
+		}
+
+    	set rc 1
+    	while {$rc != 0} {
+    		foreach shmkey $keylist {
+        		set rc [sv_csr_write_wrapper $shmkey [port_mgr_get_msg $port]]
+        		if {$rc == 0} {
+					# Large message support: send subsequent fragmented message
+					# to the same shmkey used for the 1st message.
+					set shmkey_cur $shmkey
+            		break
+        		}
+        		if {$rc} {
+            		yield
+        		}
+    		}
+			if {$shmkey_cur == ""} {
+				# Large message support: 1st fragment send on all links fail.
+				# Simply return.
+				break
+			}
+		}
+	}
 	return $rc
 }
 
