@@ -656,42 +656,39 @@ bind .frame3.list <ButtonRelease-1> {
 proc send_request {word outport} {
     global g_crawler
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list word $word command READ meanings ""]
-    byList::set_crawler $p_ip $g_crawler
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	array set msgout "word $word cmd READ meanings {}"
+	port_write_queued $outport msgout
     return
 }
 
 proc send_request_src {title outport} {
     global g_crawler_src
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list word $title]
-    byList::set_crawler $p_ip $g_crawler_src
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	set msgout(retry) 0
+	set msgout(word) $title
+	set msgout(crawler) $g_crawler_src
+	port_write_queued $outport msgout
     return
 }
 
-proc send_populate_request {words outport} {
+proc send_populate_request {words outport {queued 1}} {
     global g_crawler
 
-    set p_ip [ip::source]
-    byRetry::init $p_ip
-    byRetry::set_retry $p_ip 0
-    byList::init $p_ip
-    byList::set_list $p_ip [list words $words]
-    byList::set_crawler $p_ip $g_crawler
-    server_send $p_ip $outport
-    ip::sink $p_ip
+	array set msgout {}
+	port_factory_msg $outport msgout
+	set msgout(retry) 0
+	set msgout(words) $words
+	set msgout(crawler) $g_crawler
+	if {$queued} {
+		port_write_queued $outport msgout
+	} else {
+		port_write $outport msgout
+	}
+	unset msgout
     return
 }
 
@@ -737,16 +734,16 @@ proc reset_all {data} {
     return
 }
 
-proc process {inport p_ip} {
+proc process {inport p_tmpdata} {
     global g_request
     global g_text_backup
     global w
     global g_chunk_list
     global g_chunk_size
+	upvar $p_tmpdata tmpdata
 
     set rc ""
     if {$inport == "IN-1"} {
-    	array set tmpdata [byList::get_list $p_ip]
     	set meanings $tmpdata(meanings) 
         set meanings [set_meaning $tmpdata(word) $meanings]
         .frame3.list delete 0 end
@@ -755,51 +752,48 @@ proc process {inport p_ip} {
     	}
 
     } elseif {$inport == "IN-2"} {
-    	array set tmpdata [byList::get_list $p_ip]
     	set words $tmpdata(words) 
 
- 	# Send another chunk
-	if {$g_chunk_list != ""} {
+ 		# Send another chunk
+		if {$g_chunk_list != ""} {
     	    set idx [expr $g_chunk_size - 1]
     	    set tmplist [lrange $g_chunk_list 0 $idx]
-    	    send_populate_request $tmplist "OUT-2"
+    	    send_populate_request $tmplist "OUT-2" 0
     	    set g_chunk_list [lrange $g_chunk_list $g_chunk_size end]
-	}
+		}
 	
     } elseif {$inport == "IN-3"} {
-    	array set tmpdata [byList::get_list $p_ip]
-	if {[info exists tmpdata(content)]} {
+		if {[info exists tmpdata(content)]} {
 
-	    set data $tmpdata(content)
-	    # Perform inverse substitution of "%%%" with "\n"
-	    regsub -all "%%%" $data "\n" data
+	    	set data $tmpdata(content)
+	    	# Perform inverse substitution of "%%%" with "\n"
+	    	regsub -all "%%%" $data "\n" data
 
-	    # Back up text data.
-	    set g_text_backup $data
+	    	# Back up text data.
+	    	set g_text_backup $data
 
-	    set wordlist [txlate::extract_words $data]
-	    .frame0.text delete 0.0 end 
-	    .frame.list delete 0 end 
-	    .frame2.list delete 0 end 
-	    .frame3.list delete 0 end 
-	    .frame0.text insert 0.0 $data
+	    	set wordlist [txlate::extract_words $data]
+	    	.frame0.text delete 0.0 end 
+	    	.frame.list delete 0 end 
+	    	.frame2.list delete 0 end 
+	    	.frame3.list delete 0 end 
+	    	.frame0.text insert 0.0 $data
          	
     	    .frame.list delete 0 end
             foreach word $wordlist {	
     	        .frame.list insert end $word
-	    }
+	    	}
 
-	    # Init the dictionary cache.
-	    txlate::init
-	}
+	    	# Init the dictionary cache.
+	    	txlate::init
+		}
 
     } elseif {$inport == "IN-4"} {
-    	array set tmpdata [byList::get_list $p_ip]
     	set cmd $tmpdata(cmd)
-	if {$cmd == "Get_All_Token"} {
-	    .frame0.text insert end $tmpdata(data)
-	    .frame0.text insert end "\n\n"
-	}
+		if {$cmd == "Get_All_Token"} {
+	    	.frame0.text insert end $tmpdata(data)
+	    	.frame0.text insert end "\n\n"
+		}
 
     } else {
 
@@ -807,16 +801,44 @@ proc process {inport p_ip} {
     return $rc
 }
 
-proc init {datalist} {
+proc process {} {
+
+	port_write_dequeued
+
+	array set msgin {}
+	set rc [port_read_once IN-1 msgin]
+	if {!$rc} {
+		process_imp IN-1 msgin
+	}
+	unset msgin
+
+	array set msgin {}
+	set rc [port_read_once IN-2 msgin]
+	if {!$rc} {
+		process_imp IN-2 msgin
+	}
+	unset msgin
+
+	array set msgin {}
+	set rc [port_read_once IN-3 msgin]
+	if {!$rc} {
+		process_imp IN-3 msgin
+	}
+	unset msgin
+	return
+}
+
+proc app_init {datalist} {
     global env
+	global argdata
     global g_crawler
     global g_crawler_src
     global g_chunk_size
     global g_chunk_list
 
-    set g_crawler [lindex $datalist 0]
-    set g_crawler_src [lindex $datalist 1]
-    set g_chunk_size [lindex $datalist 2]
+    set g_crawler [lindex $argdata(DATA) 0]
+    set g_crawler_src [lindex $argdata(DATA) 1]
+    set g_chunk_size [lindex $argdata(DATA) 2]
     if {$g_chunk_size == ""} {
 	set g_chunk_size 20
     }
@@ -831,9 +853,7 @@ proc init {datalist} {
 proc shutdown {} {
 }
 
-source $env(COMP_HOME)/ip2/byList.tcl
-source $env(COMP_HOME)/ip2/byRetry.tcl
-source $env(FSM_HOME)/fsm.tcl
+source $env(DISK2)/fsm/fsm.tcl
 source $env(COMP_HOME)/bigEnglish/translate_ui/content_fsm.tcl
 
 #package require Tk
