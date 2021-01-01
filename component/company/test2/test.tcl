@@ -5,7 +5,7 @@ proc process {} {
 
     	array set msgout {}
     	port_factory_msg OUT-1 msgout
-    	set msgout(exchange) "TO"
+    	set msgout(exchange) "T"
     	set msgout(symbol) $symbol 
     	port_write OUT-1 msgout
 
