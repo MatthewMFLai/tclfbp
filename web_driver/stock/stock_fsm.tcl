@@ -31,21 +31,25 @@ proc init {} {
     variable m_rx_list
     variable m_data
 
-#"sharesOutstanding":{"raw":1441129984,"fmt":"1.441B","longFmt":"1,441,129,984"}
-#"marketCap":{"raw":141432487936,"fmt":"141.432B","longFmt":"141,432,487,936"}
-#"trailingPE":{"raw":12.925062,"fmt":"12.93"}
-#"trailingEps":{"raw":7.593,"fmt":"7.59"}
+# For market cap
+#QuoteSummary-Proxy ... data-reactid="129">245B<
+# For pe 
+#QuoteSummary-Proxy ... data-reactid="139">13.45<
+# For EPS 
+#QuoteSummary-Proxy ... data-reactid="144">7.82<
+# For price to book ratio 
 #"priceToBook":{"raw":2.1331537,"fmt":"2.13"}
-#"regularMarketVolume":{"raw":1759541,"fmt":"1.76M","longFmt":"1,759,541.00"}
-#"regularMarketPrice":{"raw":98.14,"fmt":"98.14"}
+# For volume 
+#QuoteSummary-Proxy ... data-reactid="116">265,500<
+# For price 
+#Real Time Price ... data-reactid="32">105.23<
 	
-	set m_rx_list {{shares_outstanding \"sharesOutstanding\":\{\"raw\":(.*?), nul} \
-	               {market_cap \"marketCap\":\{\"raw\":(.*?), nul} \
-                   {pe \"trailingPE\":\{\"raw\":.*?,\"fmt\":\"(.*?)\"  nul} \
-                   {eps \"trailingEps\":\{\"raw\":.*?,\"fmt\":\"(.*?)\" nul} \
+	set m_rx_list {{market_cap QuoteSummary-Proxy.*?data-reactid=\"129\">(.*?)< nul} \
+                   {pe QuoteSummary-Proxy.*?data-reactid=\"139\">(.*?)<  nul} \
+                   {eps QuoteSummary-Proxy.*?data-reactid=\"144\">(.*?)< nul} \
                    {pb \"priceToBook\":\{\"raw\":.*?,\"fmt\":\"(.*?)\" nul} \
-				   {volume \"regularMarketVolume\":\{\"raw\":(.*?), nul} \
-				   {price \"regularMarketPrice\":\{\"raw\":(.*?), nul} \
+				   {volume QuoteSummary-Proxy.*?data-reactid=\"116\">(.*?)< nul} \
+				   {price {Real Time Price.*?data-reactid=\"32\">(.*?)<} nul} \
                   }
     if {[info exists m_data]} {
 	    unset m_data
@@ -75,6 +79,11 @@ proc trim_trail_zero {data} {
 	}
 }
 
+proc multiply {data factor} {
+	set data [string range $data 0 end-1]
+	return [expr $data * $factor]	
+}
+
 proc process_generic {p_data} {
     upvar $p_data argarray
     variable m_rx_list
@@ -90,6 +99,11 @@ proc process_generic {p_data} {
 				regsub -all "," $s1 "" s1
 				regsub -all "\t" $s1 "" s1
 				set s1 [string trim $s1]
+				if {[string index $s1 end] == "M"} {
+					set s1 [multiply $s1 1000000]
+				} elseif {[string index $s1 end] == "B"} {
+					set s1 [multiply $s1 1000000000]
+				}
 				set s1 [trim_trail_zero $s1]			
 				set m_data($key) $s1
 			}

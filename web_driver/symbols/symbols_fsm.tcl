@@ -21,19 +21,72 @@
 # MERCHANTABILITY,  FITNESS   FOR  A  PARTICULAR   PURPOSE,  AND
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
-# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS
-#!/bin/sh
-# \
-exec tclsh $0 "$@"
-if {[string first "Windows" $tcl_platform(os)] > -1} {
-    set runcmd [list exec tclsh [pwd]/getStock.tcl [pwd]/url.in test]
-} else {
-    set runcmd [list exec $env(PWD)/getStock.tcl $env(PWD)/url.in test]
+# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+namespace eval symbols_fsm {
+
+variable m_rx_list
+variable m_data
+
+proc init {} {
+    variable m_rx_list
+    variable m_data
+
+	set m_rx_list {{symbols {<tr class=.*?<A href=\".*?\">(.*?)<} nul} \
+                  }
+    if {[info exists m_data]} {
+	unset m_data
+    }
+    array set m_data {}
+
+    return
 }
-set status [catch $runcmd rc]
-if {$status} {
-    puts $errorCode
-} else {
-    puts "pass"
+
+proc process_generic {p_data} {
+    upvar $p_data argarray
+    variable m_rx_list
+    variable m_data
+
+	set startidx 0
+    set data $argarray(data)
+    foreach rx_tokens $m_rx_list {
+		set key [lindex $rx_tokens 0]
+		set exp [lindex $rx_tokens 1]
+		set default [lindex $rx_tokens 2]
+		set m_data($key) "" 
+
+		while {1} {
+			set startidx [string first "<tr class=" $data $startidx]
+			if {[regexp -start $startidx $exp $data -> s1]} {
+				regsub -all "amp;" $s1 "" s1			
+				lappend m_data($key) [string trim $s1]
+				unset s1
+				incr startidx
+			} else {
+				break	
+			}
+		}
+		if {$m_data($key) == ""} {
+			set m_data($key) $default
+		}
+    }
+
+    return
 }
-exit 0
+	    
+proc Dump_Symbols {p_data} {
+    upvar $p_data data
+    variable m_data
+
+    array set data [array get m_data]
+    return
+}
+
+proc Dump {} {
+    variable m_data
+
+    foreach idx [lsort [array names m_data]] {
+    }
+    return
+}
+
+}

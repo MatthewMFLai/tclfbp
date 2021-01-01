@@ -21,19 +21,22 @@
 # MERCHANTABILITY,  FITNESS   FOR  A  PARTICULAR   PURPOSE,  AND
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
-# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS
+# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #!/bin/sh
 # \
 exec tclsh $0 "$@"
-if {[string first "Windows" $tcl_platform(os)] > -1} {
-    set runcmd [list exec tclsh [pwd]/getStock.tcl [pwd]/url.in test]
-} else {
-    set runcmd [list exec $env(PWD)/getStock.tcl $env(PWD)/url.in test]
-}
-set status [catch $runcmd rc]
-if {$status} {
-    puts $errorCode
-} else {
-    puts "pass"
+
+source $env(WEB_DRIVER_HOME)/common/common_test_wrapper.tcl
+source $env(WEB_DRIVER_HOME)/symbols/symbols_test_wrapper.tcl
+
+Common_Test_Wrapper::Init
+Symbols_Test_Wrapper::Init
+array set data {}
+set exchange [lindex $argv 0]
+set cur_group [lindex $argv 1]
+Symbols_Test_Wrapper::Runit $exchange $cur_group data
+
+foreach idx [lsort [array names data]] {
+    puts "$idx $data($idx)"
 }
 exit 0

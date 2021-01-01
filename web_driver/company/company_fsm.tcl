@@ -32,8 +32,8 @@ proc init {} {
     variable m_data
 
 	set m_rx_list {{description Description<.*?><.*?><.*?>(.*?)<.*?> nul} \
-	               {compname \"longName\":\"(.*?)\" nul} \
-                   {sector Sector<.*?><.*?>:\\s<.*?><.*?>(.*?)<.*?> nul} \
+	               {compname QuoteHeader-Proxy.*?data-reactid=\"7\">(.*?)< nul} \
+                   {sector Sector.*?data-reactid=\".*?\">(.*?)< nul} \
                    {industry Industry<.*?><.*?>:\\s<.*?><.*?>(.*?)<.*?> nul} \
                    {employees Full\\sTime\\sEmployees<.*?><.*?>:\\s<.*?><.*?><.*?>(.*?)<.*?> nul} \
                   }
@@ -76,10 +76,13 @@ proc process_generic {p_data} {
 		set m_data(description) $desc
     }
 
-    if {[info exists m_data(name)]} {
-		set name $m_data(name)
+    if {[info exists m_data(compname)]} {
+		set name $m_data(compname)
 		regsub -all "&#x27;" $name "'" name
-		set m_data(name) $name
+		set idx [string first "(" $name]
+		incr idx -2
+		set name [string range $name 0 $idx]
+		set m_data(compname) $name
     }
 	
     return

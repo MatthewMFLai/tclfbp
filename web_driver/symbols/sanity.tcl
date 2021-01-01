@@ -1,7 +1,7 @@
 #!/bin/sh
 # \
 exec tclsh $0 "$@"
-set runcmd [list exec $env(PWD)/getCompany.tcl $env(PWD)/url.in test]
+set runcmd [list exec $env(PWD)/getSymbols.tcl $env(PWD)/url.in test]
 set status [catch $runcmd rc]
 if {$status} {
     puts $errorCode

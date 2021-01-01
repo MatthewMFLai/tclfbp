@@ -21,19 +21,31 @@
 # MERCHANTABILITY,  FITNESS   FOR  A  PARTICULAR   PURPOSE,  AND
 # NON-INFRINGEMENT.  THIS  SOFTWARE IS PROVIDED  ON AN "AS  IS" BASIS,
 # AND  THE  AUTHOR  AND  DISTRIBUTORS  HAVE  NO  OBLIGATION  TO  PROVIDE
-# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS
-#!/bin/sh
-# \
-exec tclsh $0 "$@"
-if {[string first "Windows" $tcl_platform(os)] > -1} {
-    set runcmd [list exec tclsh [pwd]/getStock.tcl [pwd]/url.in test]
-} else {
-    set runcmd [list exec $env(PWD)/getStock.tcl $env(PWD)/url.in test]
+# MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+
+namespace eval Symbols_Test_Wrapper {
+
+proc Init {} {
+    global env
+
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/symbols/symbols_fsm.tcl}
+	uplevel #0 {source $env(WEB_DRIVER_HOME)/symbols/symbols.tcl}
+
+    Fsm::Load_Fsm $env(WEB_DRIVER_HOME)/symbols/symbols_fsm.dat
+    Fsm::Init_Fsm symbols_fsm
+
+    array set data {}
+    set fd [open $env(WEB_DRIVER_HOME)/symbols/url.template r]
+    gets $fd url_template
+    close $fd
+    symbols::init $url_template
 }
-set status [catch $runcmd rc]
-if {$status} {
-    puts $errorCode
-} else {
-    puts "pass"
+
+proc Runit {exchange cur_group p_rc} {
+    upvar $p_rc rc
+
+    symbols::extract_data $exchange $cur_group rc
+    return 
 }
-exit 0
+
+}

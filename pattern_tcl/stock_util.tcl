@@ -1,20 +1,23 @@
 namespace eval UtilStock {
 
 proc convert_symbol_GM_YAHOO {symbol} {
-    set rc [regsub {\.} $symbol "-" symbol]
-    if {$rc} {
-	# Other "." are just removed.
-    	regsub -all {\.} $symbol "" symbol
-    	return $symbol
-    }
+	# Symbol remapping
+	# xxx.y --> xxx-y
+	# xxx.pr.y --> xxx-py
+	# xxx.pf.y --> xxx-pfy
+	# xxx.un --> xxx-un
+	# xxx.wt --> xxx-wt
+	regsub {\.} $symbol "-" symbol
+	regsub {\-PR\.} $symbol "-P" symbol
+	regsub {\-PF\.} $symbol "-PF" symbol
     return $symbol
 }
 
 proc convert_exchange_GM_YAHOO {exchange} {
     if {$exchange == "T"} {
-    	return "to"
+    	return "TO"
     } else {
-	return "v"
+	return "V"
     } 
 }
 
@@ -28,7 +31,7 @@ proc convert_exchange_YAHOO_GM {exchange} {
         $exchange == "TO"} {
     	return "T"
     } else {
-	return "X"
+	return "V"
     } 
 }
 

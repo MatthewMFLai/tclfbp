@@ -12,11 +12,9 @@ proc init {url_template} {
 proc doit {exchange symbol url_template p_outdata} {
     upvar $p_outdata outdata
 
+    set symbol [UtilStock::convert_symbol_GM_YAHOO $symbol]
+    set exchange [UtilStock::convert_exchange_GM_YAHOO $exchange]
     regsub -all "888" $url_template $symbol tmpurl
-    # Quick check.
-    if {$exchange == "V"} {
-	set exchange "X"
-    }
     regsub -all "999" $tmpurl $exchange url
     if {[catch {Url::get_no_retry $url} data]} {
     	set outdata(ERROR) $data 
